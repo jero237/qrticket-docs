@@ -1,0 +1,9 @@
+{
+	"id": "xOAK7jNhRLA8VO1",
+	"json": "{\"id\":\"xOAK7jNhRLA8VO1\",\"url\":\"https://qrticket.app/o/Mi-Productora-2\",\"loadedUrl\":\"https://qrticket.app/o/Mi-Productora-2\",\"uniqueKey\":\"https://qrticket.app/o/Mi-Productora-2\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":2,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:57:48.088Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/o/Mi-Productora-2",
+	"url": "https://qrticket.app/o/Mi-Productora-2"
+}

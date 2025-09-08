@@ -1,0 +1,9 @@
+{
+	"id": "gMbA24iWiLfT38Y",
+	"json": "{\"id\":\"gMbA24iWiLfT38Y\",\"url\":\"https://qrticket.app/landing\",\"loadedUrl\":\"https://qrticket.app/landing\",\"uniqueKey\":\"https://qrticket.app/landing\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":1,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:57:45.658Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/landing",
+	"url": "https://qrticket.app/landing"
+}

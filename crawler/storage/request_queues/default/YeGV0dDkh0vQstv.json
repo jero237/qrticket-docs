@@ -1,0 +1,9 @@
+{
+	"id": "YeGV0dDkh0vQstv",
+	"json": "{\"id\":\"YeGV0dDkh0vQstv\",\"url\":\"https://qrticket.app/auth/signin\",\"loadedUrl\":\"https://qrticket.app/dashboard\",\"uniqueKey\":\"https://qrticket.app/auth/signin\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":2,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:57:43.715Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/auth/signin",
+	"url": "https://qrticket.app/auth/signin"
+}

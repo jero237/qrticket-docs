@@ -1,0 +1,9 @@
+{
+	"id": "FnwLO4xEsQQ68Co",
+	"json": "{\"id\":\"FnwLO4xEsQQ68Co\",\"url\":\"https://qrticket.app/dashboard\",\"loadedUrl\":\"https://qrticket.app/dashboard\",\"uniqueKey\":\"https://qrticket.app/dashboard\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2025-09-08T13:57:30.761Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard",
+	"url": "https://qrticket.app/dashboard"
+}

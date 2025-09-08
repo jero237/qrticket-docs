@@ -1,0 +1,9 @@
+{
+	"id": "VS5kfcaeFk7UqxT",
+	"json": "{\"id\":\"VS5kfcaeFk7UqxT\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/mercadopago\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/mercadopago\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/mercadopago\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":2,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:58:02.460Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/mercadopago",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/mercadopago"
+}

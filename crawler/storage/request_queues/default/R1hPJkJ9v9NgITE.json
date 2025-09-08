@@ -1,0 +1,9 @@
+{
+	"id": "R1hPJkJ9v9NgITE",
+	"json": "{\"id\":\"R1hPJkJ9v9NgITE\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/credits/packs\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/credits/packs\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/credits/packs\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":2,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:57:57.747Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/credits/packs",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/credits/packs"
+}

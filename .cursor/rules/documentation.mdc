@@ -1,0 +1,28 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+We're building https://qrticket.app user guide with Mintlify.
+
+You're in charge of that task.
+
+Your job is to build, page by page, a user guide for non tech users on how to use the platform.
+
+For that, I've scrapped the entire site and stored the html results into crawler/storage/datasets folder. This folder containts json files with the following fields:
+
+{
+"title": title of the scrapped page
+"url": url of the scrapped page,
+"timestamp": timestamp of the scrapping,
+"html": html contents of the page, sanitized and cleaned up of non useful data
+}
+
+These files are indexed, so you need to grep them using keywords to learn how qrticket works and build the user guide.
+
+If a screenshot is suitable, add [image: image description] so I can manually add it to improve docs.
+
+Follow the structure given in docs.json, creating the .mdx corresponding files.
+
+It should be written in argentininan spanish tone, without over expressing.

@@ -1,0 +1,9 @@
+{
+	"id": "RiYuETFwi12Fzys",
+	"json": "{\"id\":\"RiYuETFwi12Fzys\",\"url\":\"https://qrticket.app/dashboard/organizations/create\",\"loadedUrl\":\"https://qrticket.app/dashboard/organizations/create\",\"uniqueKey\":\"https://qrticket.app/dashboard/organizations/create\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":1,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:57:36.701Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/organizations/create",
+	"url": "https://qrticket.app/dashboard/organizations/create"
+}

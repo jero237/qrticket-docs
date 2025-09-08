@@ -1,0 +1,9 @@
+{
+	"id": "PXbjcVjoAwOfPbK",
+	"json": "{\"id\":\"PXbjcVjoAwOfPbK\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/staff/cmfb1odty0000l504bf1fg221\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/staff/cmfb1odty0000l504bf1fg221\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/staff/cmfb1odty0000l504bf1fg221\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":4,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:58:43.570Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/staff/cmfb1odty0000l504bf1fg221",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/staff/cmfb1odty0000l504bf1fg221"
+}

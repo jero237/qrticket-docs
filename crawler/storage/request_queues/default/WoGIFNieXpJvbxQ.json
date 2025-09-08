@@ -1,0 +1,9 @@
+{
+	"id": "WoGIFNieXpJvbxQ",
+	"json": "{\"id\":\"WoGIFNieXpJvbxQ\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/scanner\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/scanner\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/scanner\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":3,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:58:30.167Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/scanner",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/scanner"
+}

@@ -1,0 +1,9 @@
+{
+	"id": "5XU2AbCGe1PXB5y",
+	"json": "{\"id\":\"5XU2AbCGe1PXB5y\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/staff\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/staff\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/staff\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":2,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:58:04.803Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/staff",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/staff"
+}

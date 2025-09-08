@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "crawlee": "^3.14.1",
+    "playwright": "^1.55.0",
+    "tsx": "^4.20.5"
+  },
+  "scripts": {
+    "start": "tsx index.ts"
+  }
+}

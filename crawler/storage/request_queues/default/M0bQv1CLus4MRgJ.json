@@ -1,0 +1,9 @@
+{
+	"id": "M0bQv1CLus4MRgJ",
+	"json": "{\"id\":\"M0bQv1CLus4MRgJ\",\"url\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/products/cmfb6ekk10003jy04v5tt3s6m/edit\",\"loadedUrl\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/products/cmfb6ekk10003jy04v5tt3s6m/edit\",\"uniqueKey\":\"https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/products/cmfb6ekk10003jy04v5tt3s6m/edit\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"crawlDepth\":5,\"enqueueStrategy\":\"same-hostname\",\"state\":4}},\"handledAt\":\"2025-09-08T13:58:47.906Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/products/cmfb6ekk10003jy04v5tt3s6m/edit",
+	"url": "https://qrticket.app/dashboard/org/eONtBfMjE/events/zp1jRYbBM/products/cmfb6ekk10003jy04v5tt3s6m/edit"
+}
