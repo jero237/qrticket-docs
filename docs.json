@@ -27,7 +27,6 @@
             "pages": [
               "credits/what-are-credits",
               "credits/credits-purchase",
-              "credits/transactions",
               "credits/coupons"
             ]
           },
@@ -36,8 +35,7 @@
             "pages": [
               "organizations/index",
               "organizations/create",
-              "organizations/team",
-              "organizations/credits"
+              "organizations/team"
             ]
           },
           {
@@ -45,69 +43,9 @@
             "pages": [
               "events/index",
               "events/create",
-              "events/page",
-              "events/settings",
-              "events/list",
-              "events/create-guests"
-            ]
-          },
-          {
-            "group": "Productos",
-            "pages": [
-              "products/index",
-              "products/create-tickets",
-              "products/create-extras",
-              "products/create-combos",
-              "products/manage",
-              "products/pricing"
-            ]
-          },
-          {
-            "group": "Ventas y Pagos",
-            "pages": [
-              "sales/index",
-              "sales/whatsapp-setup",
-              "sales/mercadopago-integration",
-              "sales/web-configuration",
-              "sales/publish-event"
-            ]
-          },
-          {
-            "group": "Scanner y Validación",
-            "pages": [
-              "scanner/index",
-              "scanner/setup",
-              "scanner/validate-entries",
-              "scanner/staff-links"
-            ]
-          },
-          {
-            "group": "Estadísticas",
-            "pages": [
-              "analytics/index",
-              "analytics/sales-metrics",
-              "analytics/scan-stats",
-              "analytics/page-views",
-              "analytics/referral-tracking"
-            ]
-          },
-          {
-            "group": "Gestión de Equipo",
-            "pages": [
-              "team/index",
-              "team/invite-staff",
-              "team/roles-permissions",
-              "team/manage-members"
-            ]
-          },
-          {
-            "group": "Funciones Avanzadas",
-            "pages": [
-              "advanced/index",
-              "advanced/referral-system",
-              "advanced/event-settings",
-              "advanced/transfer-tickets",
-              "advanced/multi-day-events"
+              "events/products",
+              "events/sales",
+              "events/scanner"
             ]
           }
         ]
