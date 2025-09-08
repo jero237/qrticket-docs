@@ -49,21 +49,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "qrTicket",
-          "href": "https://qrticket.app",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Whatsapp",
-          "href": "https://wa.me/5491122503348",
-          "icon": "slack"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.png",
@@ -72,8 +58,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:soporte@qrticket.app"
+        "label": "Soporte",
+        "href": "https://wa.me/5491122503348"
       }
     ],
     "primary": {
