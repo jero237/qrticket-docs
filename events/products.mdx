@@ -9,34 +9,38 @@ icon: "package"
 Los **productos** son todo lo que podés vender en tu evento: entradas de acceso, extras (comida/bebida) y combos que combinan varios elementos.
 
 <Card title="1 crédito = 1 producto generado" icon="coins">
-  Cada vez que se vende o crea cualquier producto (entrada, extra o combo), se
-  descuenta 1 crédito.
+  Cada vez que se vende o crea cualquier producto (entrada, o extra), se descuenta 1 crédito.
 </Card>
 
 ## Tipos de productos
 
 <CardGroup cols={3}>
-  <Card title="🎫 Entradas" icon="ticket">
+  <Card title="Entradas" icon="ticket">
     **Acceso al evento**
-    
+
     Dan derecho de ingreso. Ejemplos:
+
     - General, VIP, Preventa
     - Estudiantes, Jubilados
     - Early Bird, Last Minute
   </Card>
+  <Card title="Extras" icon="basket-shopping">
+    **Productos adicionales** Se venden junto con entradas:
 
-<Card title="🍺 Extras" icon="shopping-cart">
-  **Productos adicionales** Se venden junto con entradas: - Comida y bebidas -
-  Merchandise (remeras, gorras) - Servicios (estacionamiento)
-</Card>
+    - Comida y bebidas
 
-  <Card title="📦 Combos" icon="box">
+    - Merchandise (remeras, gorras)
+
+    - Servicios (estacionamiento)
+  </Card>
+  <Card title="Combos" icon="box">
     **Paquetes combinados**
-    
-    Combinan entradas + extras:
-    - Entrada + 2 cervezas
-    - VIP + cena + copa de bienvenida
-    - General + remera + descuento
+
+    Combinan entradas \+ extras:
+
+    - - Entrada \+ 2 cervezas
+    - - 2x1 entrada General
+      - - Entrada VIP \+ estacionamiento \+ consumo
   </Card>
 </CardGroup>
 
@@ -50,7 +54,6 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
   <Step title="Desde tu evento">
     Dashboard → Tu evento → "Productos" → "Crear"
   </Step>
-
   <Step title="Elegir tipo">
     Seleccioná: Entrada, Extra o Combo
   </Step>
@@ -63,21 +66,25 @@ Independientemente del tipo, todos los productos tienen:
 <AccordionGroup>
   <Accordion title="Información básica">
     **Requerido:**
-    - **Nombre:** Ej: "General", "Cerveza Artesanal", "VIP + Cena"
+
+    - **Nombre:** Ej: "General", "Cerveza Artesanal", "VIP \+ Cena"
     - **Estado:** Activo, Oculto, Exclusivo, etc.
-    
+
     **Opcional:**
+
     - **Descripción:** Detalles adicionales para compradores
     - **Imagen:** Visual del producto
   </Accordion>
+  <Accordion title="Precio y límites">
+    **Precio:**
 
-<Accordion title="Precio y límites">
-  **Precio:** - **Sin precio:** Productos gratuitos (cortesías) - **Con
-  precio:** Necesario para ventas por MercadoPago **Límites:** - **Límite
-  total:** Máximo disponible (ej: 200 entradas VIP) - **Límite por compra:**
-  Máximo por transacción MercadoPago
-</Accordion>
+    - **Sin precio:** Productos gratuitos (cortesías)\
+    - **Con precio:** Necesario para ventas por MercadoPago
 
+    **Límites:**\
+    - **Límite total:** Máximo disponible (ej: 200 entradas VIP)\
+    - **Límite por compra: **Máximo por transacción MercadoPago
+  </Accordion>
   <Accordion title="Estados del producto">
     - **Activo:** Visible para todos, se puede comprar
     - **Agotado:** Automático cuando se alcanza el límite
@@ -91,42 +98,15 @@ Independientemente del tipo, todos los productos tienen:
 
 ## Gestión de productos existentes
 
-### Ver todos los productos
-
-En "Productos" del evento ves 3 pestañas:
-
-<CardGroup cols={3}>
-  <Card title="Entradas" icon="ticket">
-    Lista de todos los tipos de entradas con:
-    - Nombre y precio
-    - Límite y vendidas
-    - Recaudación total
-  </Card>
-
-<Card title="Extras" icon="shopping-cart">
-  Productos adicionales con: - Stock disponible - Ventas por tipo - Estado
-  actual
-</Card>
-
-  <Card title="Combos" icon="box">
-    Paquetes combinados con:
-    - Componentes incluidos
-    - Descuento aplicado
-    - Popularidad
-  </Card>
-</CardGroup>
-
 ### Editar productos
 
 <Steps>
   <Step title="Seleccionar producto">
     Hacé clic en el nombre del producto que querés editar
   </Step>
-
-<Step title="Modificar configuración">
-  Podés cambiar: nombre, precio, límites, estado, descripción
-</Step>
-
+  <Step title="Modificar configuración">
+    Podés cambiar: nombre, precio, límites, estado, descripción
+  </Step>
   <Step title="Guardar cambios">
     Los cambios son inmediatos y afectan las ventas futuras
   </Step>
@@ -139,178 +119,18 @@ En "Productos" del evento ves 3 pestañas:
 
 ---
 
-## Configuración avanzada
-
-### Entradas con características especiales
-
-<AccordionGroup>
-  <Accordion title="Entradas gratuitas (cortesías)">
-    **Sin precio** - Para invitados especiales, prensa, staff
-    
-    **Configuración:**
-    - Precio: dejar vacío o en $0
-    - Estado: "Exclusivo" para que solo admins las creen
-    - Límite: controlar cuántas cortesías permitir
-  </Accordion>
-
-<Accordion title="Preventas con descuento">
-  **Precio reducido** - Para incentivar compras tempranas **Configuración:** -
-  Nombre: "Early Bird" o "Preventa" - Precio menor que entrada regular - Límite:
-  cantidad limitada para crear urgencia
-</Accordion>
-
-  <Accordion title="Entradas VIP">
-    **Precio premium** - Para experiencias exclusivas
-    
-    **Configuración:**
-    - Descripción detallada de beneficios
-    - Precio más alto
-    - Límite bajo para exclusividad
-  </Accordion>
-</AccordionGroup>
-
-### Extras populares
-
-<AccordionGroup>
-  <Accordion title="Bebidas y comida">
-    **Ejemplos:**
-    - "Cerveza Artesanal - $2000"
-    - "Hamburguesa Completa - $3500"
-    - "Combo Bebidas x3 - $5000"
-    
-    **Tip:** Usá límites para controlar stock de cocina
-  </Accordion>
-
-<Accordion title="Merchandise">
-  **Ejemplos:** - "Remera del Evento - $4000" - "Gorra Bordada - $2500" -
-  "Sticker Pack - $500" **Tip:** Sin límite si tenés stock flexible
-</Accordion>
-
-  <Accordion title="Servicios adicionales">
-    **Ejemplos:**
-    - "Estacionamiento VIP - $1000"
-    - "Guardarropa - $500"
-    - "Foto Profesional - $2000"
-    
-    **Tip:** Límites según capacidad del servicio
-  </Accordion>
-</AccordionGroup>
-
-### Combos estratégicos
-
-<AccordionGroup>
-  <Accordion title="Combo básico: Entrada + bebida">
-    **Componentes:**
-    - 1 Entrada General ($5000)
-    - 2 Cervezas ($2000 c/u)
-    
-    **Precio combo:** $8000 (ahorro de $1000)
-    **Atractivo:** Conveniencia + descuento
-  </Accordion>
-
-  <Accordion title="Combo premium: VIP completo">
-    **Componentes:**
-    - 1 Entrada VIP ($10000)
-    - Cena incluida ($4000)
-    - Copa de bienvenida ($1500)
-    - Estacionamiento ($1000)
-    
-    **Precio combo:** $15000 (ahorro de $1500)
-    **Atractivo:** Experiencia completa
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Estrategias de precios
-
-### Segmentación de precios
-
-<CardGroup cols={2}>
-  <Card title="Por tiempo" icon="clock">
-    **Preventas:** Precio bajo para incentivo temprano
-    **Regulares:** Precio estándar durante la venta
-    **Last minute:** Precio alto o descuento de liquidación
-  </Card>
-
-  <Card title="Por segmento" icon="users">
-    **Estudiantes:** Descuento con verificación
-    **Jubilados:** Precio social
-    **Grupos:** Descuentos por cantidad
-    **Corporativo:** Precio diferencial B2B
-  </Card>
-</CardGroup>
-
-### Gestión de demanda
-
-<AccordionGroup>
-  <Accordion title="Crear urgencia con límites">
-    - Entradas limitadas generan FOMO (fear of missing out)
-    - "Solo 50 entradas VIP disponibles"
-    - Actualizar límites según demanda real
-  </Accordion>
-
-<Accordion title="Precios dinámicos">
-  - Empezá con precios bajos (preventa) - Incrementá gradualmente según demanda
-  - Último mes: precio completo
-</Accordion>
-
-  <Accordion title="Estados estratégicos">
-    - "Oculto": Preparar lanzamientos sorpresa
-    - "Exclusivo": Solo para círculo cercano
-    - "Agotado": Mostrar popularidad
-  </Accordion>
-</AccordionGroup>
-
----
-
-## Análisis de rendimiento
-
-### Métricas por producto
-
-En la vista de productos podés ver:
-
-- **Vendidas/Total:** Progreso hacia el límite
-- **Recaudación:** Total generado por producto
-- **Popularidad:** Productos más elegidos
-- **Conversión:** % de vistas que terminan en compra
-
-### Optimización continua
-
-<Steps>
-  <Step title="Monitorear ventas">
-    ¿Qué productos se venden más/menos?
-  </Step>
-
-<Step title="Ajustar precios">
-  Subir precios de productos populares, bajar los lentos
-</Step>
-
-<Step title="Crear variaciones">
-  Nuevos combos basados en productos exitosos
-</Step>
-
-  <Step title="Eliminar productos fallidos">
-    Inactivar productos que no funcionan
-  </Step>
-</Steps>
-
----
-
 ## Problemas comunes
 
 <AccordionGroup>
   <Accordion title="'No tengo suficientes créditos para generar entradas'">
     **Causa:** Balance de créditos insuficiente para la demanda
-    
+
     **Solución:** Comprar más créditos antes de que se agoten las ventas
   </Accordion>
-
-<Accordion title="'Los compradores no ven un producto'">
-  **Verificá:** - Que el estado sea "Activo" - Que no esté agotado (límite
-  alcanzado) - Que tenga precio para ventas MercadoPago
-</Accordion>
-
+  <Accordion title="'Los compradores no ven un producto'">
+    **Verificá:** - Que el estado sea "Activo" - Que no esté agotado (límite
+    alcanzado) - Que tenga precio para ventas MercadoPago
+  </Accordion>
   <Accordion title="'Quiero cambiar el precio pero ya se vendieron entradas'">
     **Opción 1:** Crear nuevo producto con precio actualizado
     **Opción 2:** Cambiar precio (solo afecta ventas futuras)
@@ -323,7 +143,6 @@ En la vista de productos podés ver:
   <Card title="Configurar ventas" icon="credit-card" href="/events/sales">
     Habilitá MercadoPago y WhatsApp para tus productos
   </Card>
-
   <Card title="Preparar validación" icon="qrcode" href="/events/scanner">
     Configurá el scanner para el día del evento
   </Card>
