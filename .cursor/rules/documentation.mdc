@@ -30,3 +30,5 @@ It should be written in argentininan spanish tone, without over expressing.
 When creating new docs, grep the already existing ones to follow the same structure.
 
 Take your time to analyze the datasets files. If there is something that you dont know or you are not sure, ask me.
+
+Dont add {" "} between cards

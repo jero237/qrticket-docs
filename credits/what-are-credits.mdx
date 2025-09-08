@@ -10,47 +10,56 @@ Los **créditos** son la moneda interna de qrTicket. Es un sistema simple que te
 
 ## Concepto básico
 
-<Card title="1 crédito = 1 entrada QR" icon="equation">
-  Cada vez que generás una entrada manual para un evento, se descuenta 1 crédito de tu balance.
+<Card title="1 crédito = 1 entrada o producto" icon="equation">
+  Cada vez que se genera una entrada o producto (manual o por MercadoPago), se
+  descuenta 1 crédito de tu balance.
 </Card>
 
-## ¿Para qué necesitás créditos?
+## Créditos de bienvenida
+
+<Card title="30 créditos gratuitos" icon="gift">
+  Al crear tu primera productora, recibís **30 créditos gratuitos** para que
+  puedas probar la plataforma y vender tus primeras entradas sin costo.
+</Card>
+
+## ¿Cuándo se usan los créditos?
+
+Los créditos se descuentan **automáticamente** cada vez que se genera una entrada o producto, sin importar el método de venta:
 
 <CardGroup cols={2}>
-  <Card title="Entradas manuales" icon="user-plus">
-    Para crear entradas personalizadas desde el dashboard
+  <Card title="Ventas por MercadoPago" icon="credit-card">
+    Cuando alguien compra online y paga automáticamente
+    
+    **Se descuenta:** 1 crédito por cada entrada/producto vendido
+  </Card>
+
+  <Card title="Ventas manuales" icon="user-plus">
+    Cuando vos creás entradas desde el dashboard
     
     **Ejemplos:**
     - Invitados VIP
     - Lista de cortesías  
     - Entradas de staff
-  </Card>
-
-  <Card title="Invitados gratuitos" icon="gift">
-    Para generar entradas sin costo para los asistentes
-    
-    **Ejemplos:**
-    - Prensa y medios
-    - Sponsors del evento
-    - Colaboradores
+    - Ventas presenciales
   </Card>
 </CardGroup>
 
-## ¿Cuándo NO necesitás créditos?
-
-Es importante entender que **no necesitás créditos** para:
+## ¿Cuándo NO se usan créditos?
 
 <AccordionGroup>
-  <Accordion title="Ventas por MercadoPago">
-    Las entradas vendidas a través de MercadoPago se generan automáticamente **sin usar créditos**. El cliente paga y recibe su entrada por email.
+  <Accordion title="Configurar eventos">
+    Podés crear eventos, definir tipos de entradas, precios y toda la configuración sin gastar créditos.
   </Accordion>
 
-  <Accordion title="Crear eventos">
-    Podés configurar todos los detalles de tu evento, tipos de entradas y precios sin necesidad de tener créditos.
-  </Accordion>
+{" "}
 
-  <Accordion title="Configurar la plataforma">
-    Crear productoras, invitar equipo, configurar scanner, etc. no requiere créditos.
+<Accordion title="Gestionar la productora">
+  Crear productoras, invitar equipo, configurar scanner, estadísticas, etc. no
+  requiere créditos.
+</Accordion>
+
+  <Accordion title="Navegación y consultas">
+    Ver listas de asistentes, estadísticas, exportar datos o usar el scanner no consume créditos.
   </Accordion>
 </AccordionGroup>
 
@@ -61,13 +70,17 @@ Es importante entender que **no necesitás créditos** para:
     Los créditos no expiran nunca. Podés comprarlos hoy y usarlos el año que viene.
   </Card>
 
-  <Card title="Acumulativos" icon="stack">
-    Si comprás múltiples paquetes, todos los créditos se suman a tu balance total.
-  </Card>
+{" "}
 
-  <Card title="Por productora" icon="building">
-    Cada productora tiene su propio balance de créditos independiente.
-  </Card>
+<Card title="Acumulativos" icon="stack">
+  Si comprás múltiples paquetes, todos los créditos se suman a tu balance total.
+</Card>
+
+{" "}
+
+<Card title="Por productora" icon="building">
+  Cada productora tiene su propio balance de créditos independiente.
+</Card>
 
   <Card title="No reembolsables" icon="ban">
     Una vez comprados, los créditos no se pueden devolver o transferir entre productoras.
@@ -87,13 +100,12 @@ La cantidad depende del tamaño de tu evento y tu estrategia de ventas:
     - Para estar seguro: Pack 100 completo
   </Accordion>
 
-  <Accordion title="Evento mediano (100-500 personas)">
-    **Recomendado: Pack 200-500**
-    
-    - Con 70% ventas MercadoPago: Pack 200
-    - Con 50% ventas MercadoPago: Pack 500
-    - Muchos invitados VIP: Pack 500
-  </Accordion>
+{" "}
+
+<Accordion title="Evento mediano (100-500 personas)">
+  **Recomendado: Pack 200-500** - Con 70% ventas MercadoPago: Pack 200 - Con 50%
+  ventas MercadoPago: Pack 500 - Muchos invitados VIP: Pack 500
+</Accordion>
 
   <Accordion title="Evento grande (500+ personas)">
     **Recomendado: Pack 1000+**
@@ -109,17 +121,18 @@ La cantidad depende del tamaño de tu evento y tu estrategia de ventas:
 ### Ejemplo: Evento de 200 personas
 
 **Configuración:**
-- Precio general: $500 (venta por MercadoPago)
-- Precio VIP: $800 (venta por MercadoPago)  
-- 20 invitados de prensa (cortesías)
-- 10 entradas para el staff
+
+- 150 entradas generales vendidas por MercadoPago
+- 30 entradas VIP vendidas por MercadoPago
+- 20 invitados de prensa (cortesías manuales)
 
 **Uso de créditos:**
-- Ventas por MercadoPago: **0 créditos** (automáticas)
-- 20 cortesías para prensa: **20 créditos**  
-- 10 entradas de staff: **10 créditos**
 
-**Total necesario: 30 créditos** (recomendamos Pack 100 para tener margen)
+- 150 entradas generales: **150 créditos**
+- 30 entradas VIP: **30 créditos**
+- 20 cortesías para prensa: **20 créditos**
+
+**Total necesario: 200 créditos** (perfecto para un Pack 200)
 
 ## Monitoreo del balance
 
@@ -130,9 +143,11 @@ Podés ver tu balance de créditos en tiempo real:
     Tu balance aparece siempre visible en el header junto al nombre de la productora
   </Step>
 
-  <Step title="En el menú de la productora">
-    Sección "Créditos" muestra balance actual y botones para comprar más
-  </Step>
+{" "}
+
+<Step title="En el menú de la productora">
+  Sección "Créditos" muestra balance actual y botones para comprar más
+</Step>
 
   <Step title="En la página de transacciones">
     Historial completo de compras y consumos de créditos
@@ -145,18 +160,25 @@ Podés ver tu balance de créditos en tiempo real:
 
 <AccordionGroup>
   <Accordion title="¿Qué pasa si me quedo sin créditos?">
-    - Las ventas por MercadoPago siguen funcionando normalmente
-    - No podrás crear más entradas manuales hasta que compres más créditos  
-    - Tu evento no se ve afectado, solo la capacidad de generar cortesías
+    - **Las ventas se pausan automáticamente** hasta que compres más créditos
+    - Los compradores no podrán adquirir entradas por MercadoPago
+    - No podrás crear entradas manuales
+    - Tu evento permanece activo, pero no se generan nuevas entradas
   </Accordion>
 
-  <Accordion title="¿Puedo transferir créditos entre productoras?">
-    No, cada productora maneja su balance de forma independiente. Si tenés múltiples productoras, cada una debe comprar sus propios créditos.
-  </Accordion>
+{" "}
 
-  <Accordion title="¿Los créditos se consumen al editar una entrada?">
-    No, solo se consume 1 crédito al **generar** la entrada por primera vez. Editarla después no consume créditos adicionales.
-  </Accordion>
+<Accordion title="¿Puedo transferir créditos entre productoras?">
+  No, cada productora maneja su balance de forma independiente. Si tenés
+  múltiples productoras, cada una debe comprar sus propios créditos.
+</Accordion>
+
+{" "}
+
+<Accordion title="¿Los créditos se consumen al editar una entrada?">
+  No, solo se consume 1 crédito al **generar** la entrada por primera vez.
+  Editarla después no consume créditos adicionales.
+</Accordion>
 
   <Accordion title="¿Qué pasa si elimino una entrada?">
     El crédito ya fue consumido y no se recupera. Esto evita abusos del sistema.
