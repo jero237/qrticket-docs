@@ -34,7 +34,7 @@
             "group": "Productoras",
             "pages": [
               "organizations/index",
-              "organizations/create",
+              "organizations/mercadopago",
               "organizations/team"
             ]
           },
@@ -42,7 +42,6 @@
             "group": "Eventos",
             "pages": [
               "events/index",
-              "events/create",
               "events/products",
               "events/sales",
               "events/scanner"
