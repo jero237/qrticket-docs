@@ -26,3 +26,5 @@ If a screenshot is suitable, add [image: image description] so I can manually ad
 Follow the structure given in docs.json, creating the .mdx corresponding files.
 
 It should be written in argentininan spanish tone, without over expressing.
+
+When creating new docs, grep the already existing ones to follow the same structure.
