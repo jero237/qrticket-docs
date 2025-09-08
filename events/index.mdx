@@ -1,0 +1,250 @@
+---
+title: "¿Qué son los eventos?"
+description: "Entendé cómo funcionan los eventos en qrTicket y cómo crearlos"
+icon: "calendar"
+---
+
+# ¿Qué son los eventos?
+
+Un **evento** es cualquier actividad que organizás: fiesta, conferencia, concierto, corporativo, etc. Cada evento pertenece a una productora y puede tener múltiples tipos de entradas y productos.
+
+<Card title="Concepto clave" icon="info">
+**Evento = Actividad específica**
+
+- Tiene fecha, lugar y descripción
+- Contiene productos (entradas, extras, combos)
+- Puede venderse online o manual
+- Se valida con códigos QR únicos
+  </Card>
+
+## Proceso de creación
+
+Los eventos se crean en **4 pasos simples**:
+
+<Steps>
+  <Step title="Detalles básicos">
+    Nombre, fecha, ubicación, imagen, descripción
+  </Step>
+
+<Step title="Productos">Tipos de entradas, extras y combos con precios</Step>
+
+<Step title="Configuración de ventas">
+  MercadoPago, WhatsApp, publicación del evento
+</Step>
+
+  <Step title="Equipo y validación">
+    Scanner, colaboradores, links de referidos
+  </Step>
+</Steps>
+
+## Tipos de productos en eventos
+
+<CardGroup cols={3}>
+  <Card title="🎫 Entradas" icon="ticket">
+    **Acceso al evento**
+    - General, VIP, Preventa
+    - Con o sin precio
+    - Diferentes estados
+  </Card>
+
+<Card title="🍺 Extras" icon="shopping-cart">
+  **Productos adicionales** - Comida, bebidas, merchandise - Se venden junto con
+  entradas - Códigos QR separados
+</Card>
+
+  <Card title="📦 Combos" icon="box">
+    **Paquetes combinados**
+    - Entrada + consumiciones
+    - Descuentos por comprar junto
+    - Simplifica la compra
+  </Card>
+</CardGroup>
+
+## Estados de productos
+
+Cada producto puede tener diferentes estados:
+
+<AccordionGroup>
+  <Accordion title="🟢 Activo - Visible para todos">
+    El producto aparece en la página pública y cualquiera puede comprarlo.
+  </Accordion>
+
+<Accordion title="🔴 Agotado - Sin disponibilidad">
+  Se muestra en la página pero no se puede comprar (límite alcanzado).
+</Accordion>
+
+<Accordion title="👁️ Oculto - Solo equipo de la productora">
+  Solo el equipo ve el producto. Útil para preparar lanzamientos.
+</Accordion>
+
+<Accordion title="⭐ Exclusivo - Solo administradores">
+  Solo administradores pueden crear entradas de este tipo.
+</Accordion>
+
+  <Accordion title="⏸️ Inactivo - Desactivado">
+    No aparece en ningún lado, pero no se elimina del sistema.
+  </Accordion>
+</AccordionGroup>
+
+## Métodos de venta
+
+Cada evento puede vender de **2 formas**:
+
+<CardGroup cols={2}>
+  <Card title="💳 MercadoPago (automático)" icon="credit-card">
+    - Pago online con tarjeta/transferencia
+    - Entradas se envían por email automáticamente
+    - Requiere tener MercadoPago conectado
+    - Para eventos públicos grandes
+  </Card>
+
+  <Card title="💬 WhatsApp (manual)" icon="message-circle">
+    - Compradores contactan por WhatsApp
+    - Vos manejás el pago (efectivo, transferencia)
+    - Creás las entradas manualmente
+    - Para eventos más personalizados
+  </Card>
+</CardGroup>
+
+### Ventas mixtas
+
+Podés habilitar **ambos métodos** al mismo tiempo:
+
+- Algunos compran automáticamente por MercadoPago
+- Otros te escriben por WhatsApp para coordinar
+
+## Página pública del evento
+
+Cada evento tiene su **página pública** donde los compradores pueden:
+
+- Ver detalles del evento (fecha, lugar, descripción)
+- Elegir productos y cantidades
+- Pagar con MercadoPago o contactarte por WhatsApp
+- Recibir entradas con códigos QR únicos
+
+[image: Ejemplo de página pública de evento]
+
+### Publicación del evento
+
+<AccordionGroup>
+  <Accordion title="Evento público">
+    Aparece en la página principal de qrTicket y puede ser promocionado en Instagram.
+    
+    **Requisito:** Tener MercadoPago y/o WhatsApp habilitado.
+  </Accordion>
+
+  <Accordion title="Evento privado">
+    Solo accesible por link directo. No aparece en listados públicos.
+    
+    **Ideal para:** Eventos corporativos, privados, beta testing.
+  </Accordion>
+</AccordionGroup>
+
+## Gestión de asistentes
+
+### Lista de invitados
+
+Todos los que tienen entradas aparecen en la "Lista de Invitados":
+
+- **Ventas manuales:** Entradas creadas por el equipo
+- **Ventas MercadoPago:** Compras automáticas online
+- **Filtros:** Por tipo de entrada, estado, fecha
+- **Acciones:** Editar, transferir, reimprimir códigos QR
+
+### Validación con QR
+
+<Steps>
+  <Step title="En la entrada del evento">
+    El personal usa el scanner de qrTicket en celular o tablet
+  </Step>
+
+<Step title="Escanear código QR">
+  Cada entrada tiene un código QR único e irrepetible
+</Step>
+
+  <Step title="Resultado instantáneo">
+    ✅ Verde: Entrada válida (se marca como escaneada)
+    ❌ Rojo: Entrada inválida, duplicada o ya usada
+  </Step>
+</Steps>
+
+## Estadísticas del evento
+
+Cada evento proporciona métricas detalladas:
+
+<CardGroup cols={2}>
+  <Card title="Ventas" icon="chart-line">
+    - Total vendido por tipo de producto
+    - Recaudación por método de pago
+    - Progreso de ventas en el tiempo
+  </Card>
+
+<Card title="Asistencia" icon="users">
+  - Porcentaje de entradas escaneadas - Horarios de mayor llegada - Tipos de
+  entrada más usados
+</Card>
+
+<Card title="Marketing" icon="megaphone">
+  - Vistas de la página del evento - Enlaces de referido más exitosos -
+  Conversión de visitas a ventas
+</Card>
+
+  <Card title="Equipo" icon="team">
+    - Ventas por cada colaborador
+    - Rendimiento individual
+    - Productos más vendidos por persona
+  </Card>
+</CardGroup>
+
+## Funciones avanzadas
+
+### Eventos de múltiples días
+
+Para festivales o conferencias:
+
+- Fecha de inicio y fin
+- Entradas válidas para todos los días
+- Productos específicos por día
+
+### Transferencia de entradas
+
+Los compradores pueden transferir sus entradas a otras personas:
+
+- Link único de transferencia
+- Nueva entrada QR para el receptor
+- Historial de transferencias
+
+### Enlaces de referidos
+
+Cada colaborador puede tener su link personalizado:
+
+- Seguimiento de ventas por referido
+- Reconocimiento en las compras
+- Estadísticas de rendimiento
+
+## Límites y consideraciones
+
+- **Sin límite** de productos por evento
+- **Sin límite** de entradas vendidas
+- **1 crédito por entrada/producto** generado
+- **Requiere balance suficiente** para ventas automáticas
+
+## Próximos pasos
+
+<CardGroup cols={3}>
+  <Card title="Crear productos" icon="package" href="/events/products">
+    Definí entradas, extras y combos
+  </Card>
+
+<Card title="Configurar ventas" icon="shopping-cart" href="/events/sales">
+  Habilitá MercadoPago y WhatsApp
+</Card>
+
+  <Card title="Preparar scanner" icon="qrcode" href="/events/scanner">
+    Configurá la validación de entradas
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda creando tu evento? Contactanos por [WhatsApp](https://wa.me/5491122503348)

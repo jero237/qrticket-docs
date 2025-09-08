@@ -1,0 +1,362 @@
+---
+title: "Scanner y validación"
+description: "Cómo validar entradas con códigos QR el día del evento"
+icon: "qrcode"
+---
+
+# Scanner y validación
+
+El **scanner** es la herramienta que usás el día del evento para **validar entradas** y controlar el acceso. Funciona escaneando los códigos QR únicos de cada entrada.
+
+<Card title="¿Cómo funciona?" icon="info">
+  Cada entrada tiene un **código QR único**. Al escanearlo, el sistema verifica
+  si es válido y lo marca como "usado" para evitar duplicaciones.
+</Card>
+
+## Conceptos básicos
+
+### Códigos QR únicos
+
+- **Cada entrada = 1 código QR único**
+- **Irrepetible:** No se puede duplicar ni falsificar
+- **Una sola validación:** Una vez escaneado, se marca como usado
+- **Instantáneo:** Verificación en tiempo real
+
+### Estados de validación
+
+<CardGroup cols={3}>
+  <Card title="✅ Válido" icon="check-circle">
+    **Verde - Permitir ingreso**
+    - Entrada auténtica
+    - Primera vez escaneada
+    - Producto habilitado
+  </Card>
+
+<Card title="❌ Inválido" icon="x-circle">
+  **Rojo - Denegar ingreso** - Código falso/inexistente - Entrada ya escaneada -
+  Producto no habilitado
+</Card>
+
+  <Card title="⚠️ Advertencia" icon="exclamation-triangle">
+    **Amarillo - Verificar**
+    - Producto diferente al esperado
+    - Fecha/hora fuera de rango
+    - Requiere verificación manual
+  </Card>
+</CardGroup>
+
+---
+
+## Configurar el scanner
+
+### Seleccionar productos a escanear
+
+Antes del evento, configurá **qué productos se van a validar**:
+
+<Steps>
+  <Step title="Ir al scanner del evento">
+    Dashboard → Tu evento → "Control de Acceso" → "Abrir scanner"
+  </Step>
+
+<Step title="Configurar productos">
+  Hacé clic en "Tipos de entrada" y seleccioná: **Entradas:** ✅ Tipos que dan
+  acceso al evento **Extras:** ❌ Normalmente no se escanean en la puerta
+</Step>
+
+  <Step title="Guardar configuración">
+    Solo los productos seleccionados serán válidos al escanear
+  </Step>
+</Steps>
+
+<Note>
+  Si escaneás un producto no seleccionado, aparecerá como **inválido** aunque
+  sea auténtico.
+</Note>
+
+### Ejemplo de configuración
+
+**Para un evento con estos productos:**
+
+- ✅ Entrada General - **SÍ escanear** (da acceso)
+- ✅ Entrada VIP - **SÍ escanear** (da acceso)
+- ❌ Cerveza - **NO escanear** (se entrega en el bar)
+- ❌ Remera - **NO escanear** (se entrega en merchandise)
+
+---
+
+## Usar el scanner el día del evento
+
+### Opción 1: Scanner integrado (recomendado)
+
+<Steps>
+  <Step title="Abrir scanner">
+    Dashboard → Evento → "Control de Acceso" → "Abrir scanner"
+  </Step>
+
+<Step title="Permitir acceso a cámara">
+  El navegador pedirá permisos para usar la cámara del celular/tablet
+</Step>
+
+<Step title="Escanear códigos QR">
+  Apuntá la cámara al código QR de la entrada
+</Step>
+
+  <Step title="Ver resultado">
+    ✅ Verde: permitir ingreso
+    ❌ Rojo: denegar ingreso
+  </Step>
+</Steps>
+
+### Opción 2: Link de scanner compartible
+
+Para personal que no tiene acceso al dashboard:
+
+<Steps>
+  <Step title="Generar link público">
+    Dashboard → Evento → "Control de Acceso" → "Link de scanner"
+  </Step>
+
+<Step title="Activar link">Switch "Link de scanner" → ON</Step>
+
+<Step title="Compartir link">
+  Copiá y enviá el link a tu personal de puerta
+</Step>
+
+  <Step title="El personal escanea">
+    Con el link pueden validar sin acceso al dashboard principal
+  </Step>
+</Steps>
+
+<Warning>
+  El link de scanner es **público**. Cualquiera con el link puede escanear
+  entradas. Usálo solo con personal de confianza.
+</Warning>
+
+---
+
+## Interpretación de resultados
+
+### Entrada válida ✅
+
+```
+✅ ENTRADA VÁLIDA
+Nombre: María González
+Tipo: Entrada General
+Hora: 20:45
+Permitir ingreso
+```
+
+**Qué hacer:** Dejar pasar. La entrada se marca automáticamente como escaneada.
+
+### Entrada inválida ❌
+
+```
+❌ ENTRADA INVÁLIDA
+Motivo: Ya fue escaneada
+Hora original: 20:30
+Denegar ingreso
+```
+
+**Posibles motivos:**
+
+- **Ya escaneada:** Entrada usada previamente
+- **Código inexistente:** Entrada falsa o mal impresa
+- **Producto no habilitado:** No configurado para validar
+
+### Casos especiales ⚠️
+
+```
+⚠️ VERIFICAR MANUALMENTE
+Nombre: Juan Pérez
+Tipo: Entrada VIP
+Problema: Evento diferente
+```
+
+**Qué hacer:** Verificar manualmente. Podría ser entrada de otro evento o configuración incorrecta.
+
+---
+
+## Personal de scanner
+
+### Roles que pueden escanear
+
+<CardGroup cols={2}>
+  <Card title="Con acceso al dashboard" icon="user-check">
+    - **Administradores:** Acceso completo
+    - **Sub-administradores:** Acceso completo  
+    - **Managers:** Pueden escanear
+    - **Vendedores:** Pueden escanear
+    - **Scanners:** Solo pueden escanear
+  </Card>
+
+  <Card title="Con link público" icon="link">
+    - **Personal de puerta:** Sin cuenta en qrTicket
+    - **Seguridad:** Personal externo
+    - **Voluntarios:** Ayuda temporal
+    - **Staff temporal:** Para eventos grandes
+  </Card>
+</CardGroup>
+
+### Mejores prácticas para personal
+
+<AccordionGroup>
+  <Accordion title="Entrenamiento básico">
+    **Enseñar al personal:**
+    - Verde = permitir ingreso
+    - Rojo = denegar ingreso  
+    - Amarillo = llamar al supervisor
+    - Qué hacer si el celular/tablet se queda sin batería
+  </Accordion>
+
+<Accordion title="Equipamiento recomendado">
+  - **Celular/tablet** con buena cámara - **Cargador portátil** (power bank) -
+  **Buena iluminación** en la zona de acceso - **Señalización** clara del
+  proceso
+</Accordion>
+
+  <Accordion title="Protocolo de problemas">
+    1. Entrada no escanea → verificar luz/enfoque
+    2. Resultado inválido → no permitir ingreso, llamar supervisor  
+    3. Problema técnico → registro manual temporal + resolver después
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Monitoreo en tiempo real
+
+### Estadísticas durante el evento
+
+En el dashboard podés ver:
+
+<CardGroup cols={2}>
+  <Card title="Ingresos actuales" icon="chart-line">
+    - **Total escaneado:** Cantidad de personas que ingresó
+    - **Por tipo de entrada:** VIP, General, etc.
+    - **Ritmo de ingreso:** Personas por minuto/hora
+  </Card>
+
+  <Card title="Estado del evento" icon="activity">
+    - **% de asistencia:** Escaneadas vs vendidas
+    - **Picos de llegada:** Horarios de mayor flujo
+    - **Entradas pendientes:** Aún no llegaron
+  </Card>
+</CardGroup>
+
+### Alertas importantes
+
+El sistema te avisa sobre:
+
+- **Entrada duplicada:** Alguien intenta ingresar dos veces
+- **Código inexistente:** Posible entrada falsa
+- **Evento equivocado:** Entrada de otro evento
+- **Límites superados:** Más gente de la esperada
+
+---
+
+## Resolución de problemas
+
+### Problemas técnicos comunes
+
+<AccordionGroup>
+  <Accordion title="La cámara no funciona">
+    **Verificar:**
+    - Permisos de cámara habilitados en el navegador
+    - Buena iluminación sobre el código QR
+    - Distancia correcta (15-30cm del código)
+    - Limpiar lente de la cámara
+  </Accordion>
+
+<Accordion title="'No se puede escanear' constantemente">
+  **Posibles causas:** - Códigos QR mal impresos (muy pequeños/pixelados) -
+  Problemas de conectividad a internet - Configuración de productos incorrecta
+  **Solución temporal:** Verificar manualmente con lista de invitados
+</Accordion>
+
+  <Accordion title="El link de scanner no funciona">
+    **Verificar:**
+    - Que esté activado en la configuración
+    - Que el personal esté usando el link correcto
+    - Que tengan conexión a internet
+  </Accordion>
+</AccordionGroup>
+
+### Situaciones de entrada
+
+<AccordionGroup>
+  <Accordion title="'Perdí mi entrada pero pagué'">
+    **Solución:**
+    1. Buscar en "Lista de Invitados" por nombre
+    2. Si aparece: reimprimir entrada
+    3. Si no aparece: verificar método de pago
+    4. Crear entrada manual si es necesario
+  </Accordion>
+
+<Accordion title="'Mi entrada dice inválida pero es real'">
+  **Verificar:** - Que el producto esté configurado para escanear - Que no haya
+  sido escaneada previamente - Que sea del evento correcto - Si es necesario,
+  permitir ingreso manual y resolver después
+</Accordion>
+
+  <Accordion title="'Quiero transferir mi entrada a otra persona'">
+    **Proceso:**
+    1. El comprador original inicia transferencia
+    2. Se genera nueva entrada para el receptor
+    3. La entrada original queda anulada
+    4. Solo la nueva entrada funciona para ingresar
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Análisis post-evento
+
+### Reportes de validación
+
+Después del evento podés generar reportes con:
+
+- **Total de asistentes reales** (entradas escaneadas)
+- **% de asistencia** por tipo de entrada
+- **Horarios de llegada** y picos de flujo
+- **Entradas no utilizadas** (no asistieron)
+- **Problemas de validación** detectados
+
+### Métricas útiles
+
+<CardGroup cols={2}>
+  <Card title="Tasa de asistencia" icon="percentage">
+    **Fórmula:** Escaneadas / Vendidas × 100
+    
+    **Típico:**
+    - Eventos gratuitos: 60-70%
+    - Eventos pagos: 80-90%
+    - Eventos premium: 95%+
+  </Card>
+
+  <Card title="Flujo de ingreso" icon="clock">
+    **Análisis:** Horarios pico vs capacidad de validación
+    
+    **Optimización:** 
+    - Más personal en horarios pico
+    - Múltiples puntos de acceso
+    - Pre-validación para VIPs
+  </Card>
+</CardGroup>
+
+---
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Ver estadísticas" icon="chart-bar" href="/analytics/index">
+    Analizá el rendimiento completo de tu evento
+  </Card>
+
+  <Card title="Gestión de equipo" icon="users" href="/organizations/team">
+    Configurá roles de scanner para tu personal
+  </Card>
+</CardGroup>
+
+---
+
+¿Problemas con la validación el día del evento? Contactanos urgente por [WhatsApp](https://wa.me/5491122503348)
