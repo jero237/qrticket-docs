@@ -1,0 +1,267 @@
+---
+title: "Transacciones y balance"
+description: "Consultá tu historial de créditos, compras realizadas y balance actual"
+icon: "list-tree"
+---
+
+# Transacciones y balance
+
+En esta sección podés monitorear todo el movimiento de créditos de tu productora: compras realizadas, créditos utilizados y tu balance actual.
+
+## Acceder al historial
+
+<Steps>
+  <Step title="Desde el menú de tu productora">
+    Andá a la sección **"Créditos"** → **"Ver balance"**
+  </Step>
+
+  <Step title="URL directa">
+    También podés ir a `/dashboard/org/[tu-productora]/credits/transactions`
+  </Step>
+</Steps>
+
+[image: Navegación hacia la página de transacciones desde el menú de la productora]
+
+## Balance actual
+
+Al ingresar, lo primero que ves es tu **balance actual**:
+
+<Card title="Balance de créditos" icon="wallet">
+  Mostra la cantidad exacta de créditos disponibles para usar en tu productora.
+  
+  **Ejemplo:** "30 Créditos disponibles"
+</Card>
+
+Este número se actualiza en tiempo real cada vez que:
+- ✅ Comprás un paquete de créditos (suma)
+- ✅ Creás una entrada manual (resta 1)  
+- ✅ Canjeás un cupón (suma)
+
+## Historial de transacciones
+
+### Tabla de movimientos
+
+El historial se presenta en una tabla con las siguientes columnas:
+
+<AccordionGroup>
+  <Accordion title="Fecha">
+    Cuándo se realizó la transacción
+    
+    **Formato:** DD/MM/AAAA HH:MM
+    **Ordenamiento:** Más recientes primero
+  </Accordion>
+
+  <Accordion title="Tipo">
+    Qué tipo de movimiento fue
+    
+    **Tipos posibles:**
+    - **Compra** - Paquete de créditos adquirido
+    - **Uso** - Créditos consumidos creando entradas
+    - **Cupón** - Créditos obtenidos por código promocional
+    - **Devolución** - Reintegro por problema técnico (raro)
+  </Accordion>
+
+  <Accordion title="Estado">
+    Estado actual de la transacción
+    
+    **Estados posibles:**
+    - **Completado** - Transacción exitosa  
+    - **Pendiente** - Esperando confirmación de pago
+    - **Fallido** - Problema en el procesamiento
+    - **Cancelado** - Operación cancelada
+  </Accordion>
+
+  <Accordion title="Cantidad">
+    Número de créditos involucrados
+    
+    **Formato:**
+    - **+500** (verde) - Créditos agregados
+    - **-1** (rojo) - Créditos consumidos
+  </Accordion>
+</AccordionGroup>
+
+### Ejemplo de tabla
+
+| Fecha | Tipo | Estado | Cantidad |
+|-------|------|--------|----------|
+| 15/01/2025 14:30 | Compra | Completado | +500 |
+| 14/01/2025 18:45 | Uso | Completado | -1 |
+| 14/01/2025 18:40 | Uso | Completado | -1 |
+| 10/01/2025 09:15 | Cupón | Completado | +50 |
+
+## Funciones disponibles
+
+### Filtros
+
+Podés filtrar las transacciones por:
+
+<CardGroup cols={2}>
+  <Card title="Por tipo" icon="filter">
+    - Solo compras
+    - Solo usos  
+    - Solo cupones
+    - Todos los tipos
+  </Card>
+
+  <Card title="Por fecha" icon="calendar">
+    - Último mes
+    - Últimos 3 meses
+    - Último año
+    - Rango personalizado
+  </Card>
+
+  <Card title="Por estado" icon="check-circle">
+    - Solo completadas
+    - Solo pendientes
+    - Todas
+  </Card>
+
+  <Card title="Por cantidad" icon="arrow-up-down">
+    - Mayor cantidad primero
+    - Menor cantidad primero
+    - Por fecha (default)
+  </Card>
+</CardGroup>
+
+[image: Interface de filtros en la página de transacciones]
+
+### Exportar datos
+
+<Steps>
+  <Step title="Hacer clic en 'Exportar'">
+    Botón ubicado en la parte inferior de la tabla
+  </Step>
+
+  <Step title="Seleccionar formato">
+    - **CSV** - Para Excel/Google Sheets
+    - **PDF** - Para imprimir o archivar
+  </Step>
+
+  <Step title="Descargar archivo">
+    El archivo incluye todas las transacciones visibles (respetando filtros aplicados)
+  </Step>
+</Steps>
+
+## Estados de transacciones
+
+<AccordionGroup>
+  <Accordion title="Completado ✅">
+    **Compras:** El pago fue aprobado y los créditos están disponibles
+    **Uso:** La entrada se creó exitosamente
+    **Cupones:** El código fue válido y los créditos se acreditaron
+  </Accordion>
+
+  <Accordion title="Pendiente ⏳">
+    **Solo compras:** El pago está siendo procesado por MercadoPago
+    
+    **¿Cuánto demora?** Normalmente 5-10 minutos para tarjetas, hasta 2 días hábiles para transferencias.
+    
+    **¿Qué hacer?** Esperar la confirmación. Si pasa más de 24hs, contactar soporte.
+  </Accordion>
+
+  <Accordion title="Fallido ❌">
+    **Compras:** El pago fue rechazado o hubo un error técnico
+    **Uso:** Error al crear la entrada (no se descontaron créditos)
+    
+    **¿Qué hacer?** Revisar el método de pago o reintentar. Si persiste, contactar soporte.
+  </Accordion>
+
+  <Accordion title="Cancelado ⭕">
+    **Solo compras:** El pago fue cancelado voluntariamente o por timeout
+    
+    **¿Qué hacer?** Nada, no se cobraron los créditos. Podés intentar comprar nuevamente.
+  </Accordion>
+</AccordionGroup>
+
+## Interpretación del balance
+
+### Balance positivo
+Si tenés créditos disponibles, podés crear entradas manuales normalmente.
+
+**Ejemplo:** Balance: 250 créditos
+- ✅ Podés crear hasta 250 entradas manuales
+- ✅ Las ventas por MercadoPago funcionan sin límite
+- ✅ Todo el sistema operativo normalmente
+
+### Balance cero o bajo
+Si tenés pocos o ningún crédito:
+
+<Warning>
+- ❌ No podés crear más entradas manuales
+- ✅ Las ventas por MercadoPago siguen funcionando
+- ✅ Los compradores pueden seguir comprando normalmente
+- ⚠️ Considerá comprar más créditos si necesitás crear cortesías
+</Warning>
+
+### Proyección de uso
+
+<Card title="Calcular cuántos necesitás" icon="calculator">
+  **Para eventos futuros, estimá:**
+  
+  - Invitados VIP o prensa: X créditos
+  - Entradas de staff: Y créditos  
+  - Lista de cortesías: Z créditos
+  - Buffer de seguridad: 20% extra
+  
+  **Total necesario:** X + Y + Z + 20%
+</Card>
+
+## Casos especiales
+
+<AccordionGroup>
+  <Accordion title="Transacción duplicada">
+    Si ves la misma compra aparece dos veces:
+    
+    1. Verificá que no hayas hecho clic doble al comprar
+    2. Revisá si ambas tienen estado "Completado"
+    3. Si solo una debería existir, contactanos con los detalles
+  </Accordion>
+
+  <Accordion title="Créditos faltantes">
+    Si compraste pero no ves los créditos reflejados:
+    
+    1. Verificá el estado de la transacción
+    2. Si está "Completado" pero no ves los créditos, actualizá la página
+    3. Si persiste, contactanos con el número de transacción
+  </Accordion>
+
+  <Accordion title="Uso sin registro">
+    Si falta el registro de créditos usados:
+    
+    Esto puede pasar por problemas técnicos menores. Los créditos se descuentan correctamente, pero puede faltar el registro. No afecta tu balance real.
+  </Accordion>
+</AccordionGroup>
+
+## Reconciliación con MercadoPago
+
+Para verificar tus compras:
+
+<Steps>
+  <Step title="Comparar con MercadoPago">
+    Revisá tu historial en MercadoPago y comparalo con qrTicket
+  </Step>
+
+  <Step title="Verificar importes">
+    Los montos deben coincidir exactamente entre ambas plataformas
+  </Step>
+
+  <Step title="Reportar diferencias">
+    Si encontrás discrepancias, contactanos con capturas de ambas plataformas
+  </Step>
+</Steps>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Comprar más créditos" icon="shopping-cart" href="/credits/credits-purchase">
+    Si necesitás más balance, revisá los paquetes disponibles
+  </Card>
+
+  <Card title="Usar un cupón" icon="ticket" href="/credits/coupons">
+    ¿Tenés un código promocional? Canjealo aquí
+  </Card>
+</CardGroup>
+
+---
+
+¿Tenés problemas con tu historial de transacciones? Contactanos por [WhatsApp](https://wa.me/5491122503348) con tu número de transacción y te ayudamos.
