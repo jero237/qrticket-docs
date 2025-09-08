@@ -14,15 +14,12 @@ Una **productora** en qrTicket es como una "carpeta" que contiene múltiples eve
   <Card title="Organización" icon="folder">
     Agrupá todos tus eventos en un solo lugar
   </Card>
-
   <Card title="Equipo compartido" icon="users">
     Los miembros pueden gestionar todos los eventos de la productora
   </Card>
-
   <Card title="Créditos unificados" icon="coins">
-    Usá el mismo pool de créditos para todos tus eventos
+    Usá los mismos créditos para todos tus eventos
   </Card>
-
   <Card title="Branding" icon="palette">
     Configurá logo y datos de contacto únicos
   </Card>
@@ -32,10 +29,15 @@ Una **productora** en qrTicket es como una "carpeta" que contiene múltiples eve
 
 Una vez que iniciaste sesión en qrTicket:
 
-1. Desde el **Dashboard**, hacé clic en **"Crear"** en la sección "Mis Productoras"
-2. También podés ir directamente a `/dashboard/organizations/create`
+1. Desde el [**Panel de Control**](https://qrticket.app/dashboard), hacé clic en **"Crear"** en la sección "Mis Productoras"
+2. También podés ir directamente a [**este link**](https://qrticket.app/dashboard/organizations/create)
 
-[image: Dashboard mostrando la sección "Mis Productoras" con el botón "Crear" resaltado]
+<img
+  src="/images/qrticket.app_dashboard.png"
+  alt="Qrticket App Dashboard Pn"
+  title="Qrticket App Dashboard Pn"
+  style={{ width:"51%" }}
+/>
 
 ## Paso 2: Completar la información básica
 
@@ -46,21 +48,22 @@ Vas a ver un formulario con los siguientes campos:
 <AccordionGroup>
   <Accordion title="Nombre de la productora">
     **Requerido** - Este será el nombre público de tu productora
-    
+
     **Ejemplos:**
+
     - "Eventos Increíbles"
     - "Producciones del Sur"
     - "Fiestas Premium"
-    
+
     **Tip:** Elegí un nombre que represente tu marca y sea fácil de recordar.
   </Accordion>
-
   <Accordion title="País">
     **Requerido** - Seleccioná tu país de operación
-    
+
     **Países disponibles:**
+
     - Argentina
-    - Brasil  
+    - Brasil
     - Chile
     - Colombia
     - Ecuador
@@ -68,16 +71,15 @@ Vas a ver un formulario con los siguientes campos:
     - Perú
     - Uruguay
     - Otros
-    
-    **Nota:** Esto afecta configuraciones regionales como moneda y formatos de fecha.
-  </Accordion>
 
+    **Nota:** Esto afecta configuraciones regionales como moneda, formatos de fecha y uso de MercadoPago.
+  </Accordion>
   <Accordion title="Teléfono de contacto">
     **Requerido** - Número para contactarte si es necesario
-    
-    **Formato:** Ej: +54 9 11 1234-5678
-    
-    **Importante:** Este número será utilizado por qrTicket para contactarte en caso de ser necesario, no se muestra públicamente a menos que lo configures en ventas por WhatsApp.
+
+    **Formato:** Ej: \+54 9 11 1234-5678
+
+    **Importante:** Este número será utilizado por qrTicket para contactarte en caso de ser necesario, no se mostrará públicamente.
   </Accordion>
 </AccordionGroup>
 
@@ -86,17 +88,23 @@ Vas a ver un formulario con los siguientes campos:
 <AccordionGroup>
   <Accordion title="Logo de la productora">
     **Opcional** - Subí el logo de tu productora
-    
+
     **Formatos aceptados:** PNG, JPEG, WebP
-    
+
     **Recomendaciones:**
+
     - Tamaño cuadrado (ej: 400x400px)
     - Fondo transparente si es posible
     - Buena calidad para que se vea bien en dispositivos móviles
   </Accordion>
 </AccordionGroup>
 
-[image: Formulario de creación de productora con todos los campos visibles]
+<img
+  src="/images/qrticket.app_dashboard.png"
+  alt="Qrticket App Dashboard Pn"
+  title="Qrticket App Dashboard Pn"
+  style={{ width:"58%" }}
+/>
 
 ## Paso 3: Crear la productora
 
@@ -105,7 +113,7 @@ Vas a ver un formulario con los siguientes campos:
 3. La productora se creará inmediatamente
 
 <Note>
-No necesitás verificación adicional. Una vez que hagas clic en "Crear productora", ya podrás empezar a usarla.
+  No necesitás verificación adicional. Una vez que hagas clic en "Crear productora", ya podrás empezar a usarla.
 </Note>
 
 ## Paso 4: Explorar tu nueva productora
@@ -116,21 +124,18 @@ Después de crearla, vas a ser redirigido al **menú de tu productora** donde po
   <Card title="Gestionar eventos" icon="calendar">
     Crear y administrar todos los eventos de la productora
   </Card>
-
   <Card title="Comprar créditos" icon="credit-card">
     Adquirir créditos para generar entradas QR
   </Card>
-
-  <Card title="Configurar MercadoPago" icon="building-bank">
+  <Card title="Configurar MercadoPago" icon="M">
     Vincular tu cuenta para ventas automáticas
   </Card>
-
   <Card title="Administrar equipo" icon="user-group">
     Invitar colaboradores y asignar roles
   </Card>
 </CardGroup>
 
-[image: Vista del menú principal de una productora nueva]
+![Menu de la Productora](/images/organization-menu.png)
 
 ## Configuraciones importantes después de crear
 
@@ -139,11 +144,9 @@ Después de crearla, vas a ser redirigido al **menú de tu productora** donde po
     Necesitás créditos para generar entradas. 1 crédito = 1 entrada QR.
     [Ver guía de compra de créditos →](/credits/credits-purchase)
   </Step>
-
   <Step title="Configurar MercadoPago (opcional)">
     Si querés vender entradas online automáticamente.
   </Step>
-
   <Step title="Invitar a tu equipo (opcional)">
     Podés invitar colaboradores para que te ayuden a gestionar eventos.
   </Step>
@@ -160,25 +163,21 @@ Cuando creás una productora, automáticamente tenés el rol de **Administrador*
     - Puede crear, editar y eliminar eventos
     - Puede ver todas las estadísticas
   </Accordion>
-
   <Accordion title="Sub-administrador">
     - Casi los mismos permisos que Administrador
     - No puede eliminar la productora
     - Puede gestionar la mayoría de configuraciones
   </Accordion>
-
   <Accordion title="Manager">
     - Puede crear y gestionar eventos
     - Puede ver estadísticas
     - No puede gestionar equipo ni comprar créditos
   </Accordion>
-
   <Accordion title="Vendedor">
     - Puede crear entradas para eventos
     - Puede ver sus propias estadísticas de ventas
     - Acceso limitado a configuraciones
   </Accordion>
-
   <Accordion title="Escáner">
     - Solo puede validar entradas en eventos
     - No puede crear entradas ni ver estadísticas completas
@@ -191,15 +190,12 @@ Cuando creás una productora, automáticamente tenés el rol de **Administrador*
   <Accordion title="¿Puedo cambiar el nombre de mi productora después?">
     Sí, podés modificar el nombre y otros datos desde la sección **"Configuración"** de tu productora.
   </Accordion>
-
   <Accordion title="¿Cuántas productoras puedo crear?">
     No hay límite. Podés crear tantas productoras como necesites para organizar diferentes tipos de eventos o marcas.
   </Accordion>
-
   <Accordion title="¿Puedo eliminar una productora?">
     Sí, pero solo si no tiene eventos activos ni créditos restantes. La eliminación es permanente.
   </Accordion>
-
   <Accordion title="¿Los créditos se comparten entre productoras?">
     No, cada productora tiene su propio balance de créditos independiente.
   </Accordion>
