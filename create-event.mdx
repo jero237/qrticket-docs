@@ -16,7 +16,6 @@ Asegurate de tener:
   <Card title="Productora creada" icon="building">
     Necesitás una productora para organizar tus eventos
   </Card>
-
   <Card title="Créditos disponibles" icon="coins">
     Para generar entradas más adelante (podés comprarlos después también)
   </Card>
@@ -38,22 +37,23 @@ qrTicket utiliza un wizard de **4 pasos**. El primer paso incluye la informació
 <AccordionGroup>
   <Accordion title="Nombre del evento">
     **Requerido** - El nombre que verán tus asistentes
-    
+
     **Ejemplos:**
+
     - "Fiesta de Fin de Año"
     - "Conferencia de Marketing Digital"
     - "Concierto Acústico"
-    
-    **Tip:** Elegí un nombre descriptivo y atractivo que genere interés.
-  </Accordion>
 
+    **Nota: **Podés cambiar el nombre después si es necesario, pero la url asociada a tu evento (ej: `qrticket.app/e/Concierto-Acustico` se genera automáticamente y no puede ser modificado en el futuro.
+  </Accordion>
   <Accordion title="Fecha del evento">
     **Requerido** - Seleccioná la fecha de tu evento
-    
+
     **Opciones:**
+
     - Fecha única para eventos de un día
     - Múltiples días: activá el checkbox "El evento dura múltiples días"
-    
+
     **Nota:** Podés cambiar la fecha después si es necesario.
   </Accordion>
 </AccordionGroup>
@@ -63,38 +63,39 @@ qrTicket utiliza un wizard de **4 pasos**. El primer paso incluye la informació
 <AccordionGroup>
   <Accordion title="Imagen del evento">
     **Opcional** - Una imagen promocional de tu evento
-    
+
     **Formatos aceptados:** PNG, JPEG, WebP
-    
+
     **Recomendaciones:**
-    - Resolución mínima: 800x400px
-    - Formato horizontal funciona mejor
+
+    - Formato cuadrado o vertical 3:4 funciona mejor
     - Imagen que represente tu evento
-    
+    - Evitá usar imagenes de baja resolución
+
     **Bonus:** qrTicket ofrece logos descargables si necesitás ayuda con el diseño.
   </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="Ubicación">
-  **Opcional** - Dónde se realiza tu evento **Ejemplos:** - "Salón El Arenas" -
-  "Centro de Convenciones Norte" - "Online - Link por email" **Tip:** Incluí la
-  dirección completa si es presencial.
-</Accordion>
+  <Accordion title="Ubicación">
+    **Opcional** - Dónde se realiza tu evento
 
+    **Ejemplos:** - "Salón El Arenas" - "Centro de Convenciones Norte"
+  </Accordion>
   <Accordion title="Descripción">
     **Opcional** - Información adicional sobre tu evento
-    
+
     **Ideas para incluir:**
+
     - Qué pueden esperar los asistentes
     - Horarios específicos
     - Dress code o requisitos
     - Artistas o speakers
-    
+
     **Ejemplo:** "Una noche única con los mejores DJ's locales. Dress code: elegante sport. Incluye welcome drink y zona VIP."
   </Accordion>
 </AccordionGroup>
 
-[image: Formulario de creación de evento con todos los campos completados]
+![Formulario de creación de evento](/images/qrticket.app_create_event.png)
 
 ### Vista previa en tiempo real
 
@@ -112,22 +113,21 @@ Después de los detalles básicos, necesitás crear los **tipos de entradas** pa
   <Card title="Entradas" icon="ticket">
     Acceso al evento (Ej: VIP, General, Preventa)
   </Card>
+  {" "}
 
-{" "}
-<Card title="Extras" icon="shopping-bag">
-  Productos adicionales (Ej: Bebidas, Comida, Merchandising)
-</Card>
-
+  <Card title="Extras" icon="shopping-bag">
+    Productos adicionales (Ej: Bebidas, Comida, Merchandising)
+  </Card>
   <Card title="Combos" icon="package">
-    Paquetes que incluyen entrada + extras
+    Paquetes que incluyen entrada \+ extras
   </Card>
 </CardGroup>
 
 **Ejemplo de configuración básica:**
 
-- **General**: $500 - Acceso completo al evento
-- **VIP**: $800 - Acceso + zona preferencial + welcome drink
-- **Preventa**: $350 - Precio especial por tiempo limitado
+- **General**: \$500 - Acceso completo al evento
+- **VIP**: \$800 - Acceso \+ zona preferencial \+ welcome drink
+- **Preventa**: \$350 - Precio especial por tiempo limitado
 
 ## Paso 4: Configurar ventas online
 
@@ -136,25 +136,25 @@ En este paso definís **cómo van a comprar** las entradas tus asistentes:
 <AccordionGroup>
   <Accordion title="MercadoPago">
     **Ventas automáticas** - Los compradores pagan y reciben entradas por email
-    
+
     **Requisitos:**
+
     - Conectar tu cuenta de MercadoPago
     - Configurar precios en tus productos
-    
+
     **Ventaja:** Completamente automático, no requiere intervención manual.
   </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="WhatsApp">
-  **Ventas asistidas** - Los compradores te contactan para coordinar el pago
-  **Configuración:** - Agregar número(s) de WhatsApp de tu equipo - Los
-  compradores eligen "Contactar vendedor" **Ventaja:** Más control sobre cada
-  venta, ideal para eventos pequeños.
-</Accordion>
-
+  <Accordion title="WhatsApp">
+    **Ventas asistidas** - Los compradores te contactan para coordinar el pago
+    **Configuración:** - Agregar número(s) de WhatsApp de tu equipo - Los
+    compradores eligen "Contactar vendedor" **Ventaja:** Más control sobre cada
+    venta, ideal para eventos pequeños.
+  </Accordion>
   <Accordion title="Ambos métodos">
     **Recomendado** - Ofrecé ambas opciones para llegar a más público
-    
+
     Algunos prefieren la comodidad de MercadoPago, otros prefieren hablar con una persona.
   </Accordion>
 </AccordionGroup>
@@ -180,17 +180,16 @@ Una vez creado, tendrás acceso al **Menú del Evento** donde podrás:
   <Card title="Gestionar entradas" icon="users">
     Crear entradas manuales, ver lista de asistentes y estadísticas
   </Card>
+  {" "}
 
-{" "}
-<Card title="Configurar productos" icon="tag">
-  Editar precios, crear nuevos tipos de entradas y extras
-</Card>
+  <Card title="Configurar productos" icon="tag">
+    Editar precios, crear nuevos tipos de entradas y extras
+  </Card>
+  {" "}
 
-{" "}
-<Card title="Control de acceso" icon="qrcode">
-  Scanner QR para validar entradas el día del evento
-</Card>
-
+  <Card title="Control de acceso" icon="qrcode">
+    Scanner QR para validar entradas el día del evento
+  </Card>
   <Card title="Estadísticas" icon="chart-bar">
     Ver ventas, asistencia y métricas del evento
   </Card>
@@ -204,17 +203,12 @@ Una vez creado, tendrás acceso al **Menú del Evento** donde podrás:
   <Step title="Configurar tipos de entradas">
     Define precios, límites y descripciones para cada tipo
   </Step>
-
-{" "}
-<Step title="Habilitar ventas online">
-  Conectá MercadoPago y/o configurá WhatsApp para ventas
-</Step>
-
-{" "}
-<Step title="Publicar tu evento">
-  Hacelo visible para que la gente pueda encontrarlo y comprar entradas
-</Step>
-
+  <Step title="Habilitar ventas online">
+    Conectá MercadoPago y/o configurá WhatsApp para ventas
+  </Step>
+  <Step title="Publicar tu evento">
+    Hacelo visible para que la gente pueda encontrarlo y comprar entradas
+  </Step>
   <Step title="Compartir el link">
     Difundí el link de tu evento en redes sociales
   </Step>
@@ -226,17 +220,16 @@ Una vez creado, tendrás acceso al **Menú del Evento** donde podrás:
   <Accordion title="Eventos de múltiples días">
     Perfecto para festivales, conferencias o retiros. Configurás fecha de inicio y fin.
   </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="Transferencia de entradas">
-  Permití que los asistentes puedan transferir sus entradas a otras personas.
-</Accordion>
+  <Accordion title="Transferencia de entradas">
+    Permití que los asistentes puedan transferir sus entradas a otras personas.
+  </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="Límites por tipo de entrada">
-  Controlá cuántas entradas VIP, General, etc. querés vender.
-</Accordion>
-
+  <Accordion title="Límites por tipo de entrada">
+    Controlá cuántas entradas VIP, General, etc. querés vender.
+  </Accordion>
   <Accordion title="Equipos de trabajo">
     Asigná diferentes roles a tu equipo para gestionar el evento.
   </Accordion>
@@ -248,19 +241,18 @@ Una vez creado, tendrás acceso al **Menú del Evento** donde podrás:
   <Accordion title="¿Puedo modificar el evento después de crearlo?">
     Sí, podés editar todos los detalles desde la sección "Configuración" del evento, excepto cambios que afecten entradas ya vendidas.
   </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="¿Cómo hago para que mi evento aparezca en la página principal?">
-  Activá la opción "Publicar evento" en la configuración de ventas y asegurate
-  de tener al menos un método de venta habilitado.
-</Accordion>
+  <Accordion title="¿Cómo hago para que mi evento aparezca en la página principal?">
+    Activá la opción "Publicar evento" en la configuración de ventas y asegurate
+    de tener al menos un método de venta habilitado.
+  </Accordion>
+  {" "}
 
-{" "}
-<Accordion title="¿Puedo crear un evento sin comprar créditos primero?">
-  Sí, podés crear el evento y comprar créditos cuando necesites generar entradas
-  manuales. Para ventas por MercadoPago no necesitás créditos previos.
-</Accordion>
-
+  <Accordion title="¿Puedo crear un evento sin comprar créditos primero?">
+    Sí, podés crear el evento y comprar créditos cuando necesites generar entradas
+    manuales. Para ventas por MercadoPago no necesitás créditos previos.
+  </Accordion>
   <Accordion title="¿Qué pasa si me equivoco con la fecha?">
     Podés cambiar la fecha desde configuración, pero si ya vendiste entradas, es recomendable avisar a los asistentes.
   </Accordion>
@@ -268,7 +260,7 @@ Una vez creado, tendrás acceso al **Menú del Evento** donde podrás:
 
 ## Próximo paso: Siguiente nivel
 
-¡Felicitaciones! Ya tenés tu primer evento creado. Ahora es momento de conocer las próximas funcionalidades.
+¡Felicitaciones\! Ya tenés tu primer evento creado. Ahora es momento de conocer las próximas funcionalidades.
 
 <Card title="Próximos pasos" icon="rocket" href="/next-steps">
   Descubre qué hacer después de crear tu evento
