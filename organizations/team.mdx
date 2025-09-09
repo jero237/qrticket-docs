@@ -10,8 +10,8 @@ Agregá colaboradores a tu productora y asigná roles específicos según las re
 
 <Card title="¿Por qué agregar un equipo?" icon="handshake">
   - Delegar tareas sin compartir tu cuenta principal - Controlar qué puede hacer
-  cada colaborador - Seguimiento individual de ventas y acciones - Trabajar en
-  equipo de forma organizada
+    cada colaborador - Seguimiento individual de ventas y acciones - Trabajar en
+    equipo de forma organizada
 </Card>
 
 ## Roles disponibles
@@ -21,24 +21,24 @@ Cada colaborador puede tener uno de estos roles:
 <CardGroup cols={2}>
   <Card title="👑 Administrador" icon="crown">
     **Acceso total**
+
     - Todas las funciones
     - Crear/eliminar eventos
     - Comprar créditos
     - Gestionar equipo
   </Card>
+  <Card title="⚙️ Sub-administrador" icon="gear">
+    **Casi todo, menos crítico** - Crear/editar eventos - Ver estadísticas
+    completas - Gestionar productos - No puede: eliminar, comprar créditos
+  </Card>
+  <Card title="📋 Manager" icon="clipboard">
+    **Gestión operativa** - Crear entradas manuales - Gestionar lista de invitados
 
-<Card title="⚙️ Sub-administrador" icon="gear">
-  **Casi todo, menos crítico** - Crear/editar eventos - Ver estadísticas
-  completas - Gestionar productos - No puede: eliminar, comprar créditos
-</Card>
-
-<Card title="📋 Manager" icon="clipboard">
-  **Gestión operativa** - Crear entradas manuales - Gestionar lista de invitados
-  - Ver estadísticas de eventos - Escanear entradas
-</Card>
-
+    - Ver estadísticas de eventos - Escanear entradas
+  </Card>
   <Card title="💰 Vendedor" icon="money-bills">
     **Solo ventas**
+
     - Crear entradas manuales
     - Ver sus propias ventas
     - Escanear entradas
@@ -49,12 +49,12 @@ Cada colaborador puede tener uno de estos roles:
 <CardGroup cols={2}>
   <Card title="📱 Scanner" icon="qrcode">
     **Solo validación**
+
     - Escanear códigos QR
     - Ver estado de entradas
     - Marcar ingresos
     - No puede crear entradas
   </Card>
-
   <Card title="Comparar roles" icon="table">
     Ver tabla detallada de permisos →
   </Card>
@@ -64,14 +64,14 @@ Cada colaborador puede tener uno de estos roles:
 
 | Función                        | Admin | Sub-admin | Manager | Vendedor | Scanner |
 | ------------------------------ | :---: | :-------: | :-----: | :------: | :-----: |
-| **Crear eventos**              |  ✅   |    ✅     |   ❌    |    ❌    |   ❌    |
-| **Eliminar eventos**           |  ✅   |    ❌     |   ❌    |    ❌    |   ❌    |
-| **Comprar créditos**           |  ✅   |    ❌     |   ❌    |    ❌    |   ❌    |
-| **Crear entradas manuales**    |  ✅   |    ✅     |   ✅    |    ✅    |   ❌    |
-| **Escanear entradas**          |  ✅   |    ✅     |   ✅    |    ✅    |   ✅    |
-| **Ver todas las estadísticas** |  ✅   |    ✅     |   ✅    |    ❌    |   ❌    |
-| **Gestionar equipo**           |  ✅   |    ❌     |   ❌    |    ❌    |   ❌    |
-| **Configurar MercadoPago**     |  ✅   |    ❌     |   ❌    |    ❌    |   ❌    |
+| **Crear eventos**              | ✅     | ✅         | ❌       | ❌        | ❌       |
+| **Eliminar eventos**           | ✅     | ✅         | ❌       | ❌        | ❌       |
+| **Comprar créditos**           | ✅     | ✅         | ❌       | ❌        | ❌       |
+| **Crear entradas manuales**    | ✅     | ✅         | ✅       | ✅        | ❌       |
+| **Escanear entradas**          | ✅     | ✅         | ✅       | ✅        | ✅       |
+| **Ver todas las estadísticas** | ✅     | ✅         | ✅       | ❌        | ❌       |
+| **Gestionar equipo**           | ✅     | ✅         | ❌       | ❌        | ❌       |
+| **Configurar MercadoPago**     | ✅     | ✅         | ❌       | ❌        | ❌       |
 
 ## Invitar colaboradores
 
@@ -81,17 +81,12 @@ Cada colaborador puede tener uno de estos roles:
   <Step title="Ir a gestión de equipo">
     Dashboard → Tu productora → "Equipo de Trabajo" → "Añadir miembro"
   </Step>
-
-<Step title="Seleccionar rol">
-  Elegí el rol apropiado según las responsabilidades
-</Step>
-
-<Step title="Ingresar email">Email de la persona que querés invitar</Step>
-
-<Step title="Enviar invitación">
-  qrTicket envía automáticamente un email con las instrucciones
-</Step>
-
+  <Step title="Seleccionar rol">
+    Elegí el rol apropiado según las responsabilidades
+  </Step>
+  <Step title="Enviar invitación">
+    qrTicket envía automáticamente un email con las instrucciones
+  </Step>
   <Step title="El invitado acepta">
     La persona hace clic en el link del email y se une al equipo
   </Step>
@@ -103,11 +98,9 @@ Cada colaborador puede tener uno de estos roles:
   <Step title="Generar link">
     En lugar de email, hacé clic en "Compartir enlace de invitación"
   </Step>
-
-<Step title="Compartir link">
-  Copiá y enviá el link por WhatsApp, Telegram, etc.
-</Step>
-
+  <Step title="Compartir link">
+    Copiá y enviá el link por WhatsApp, Telegram, etc.
+  </Step>
   <Step title="El invitado se registra">
     Al hacer clic en el link, se registra automáticamente en tu equipo
   </Step>
@@ -135,9 +128,6 @@ En "Equipo de la productora" podés ver:
   <Step title="Seleccionar colaborador">
     Hacé clic en el menú (⋮) del colaborador
   </Step>
-
-<Step title="Elegir 'Cambiar rol'">Seleccioná el nuevo rol de la lista</Step>
-
   <Step title="Confirmar cambio">
     El cambio es inmediato y el colaborador recibe notificación
   </Step>
@@ -153,9 +143,6 @@ En "Equipo de la productora" podés ver:
   <Step title="Ir al colaborador">
     En la lista del equipo, menú (⋮) → "Remover del equipo"
   </Step>
-
-<Step title="Confirmar acción">Esta acción no se puede deshacer</Step>
-
   <Step title="Resultado">
     El colaborador pierde acceso inmediatamente
   </Step>
@@ -168,28 +155,24 @@ En "Equipo de la productora" podés ver:
 <AccordionGroup>
   <Accordion title="👑 Administrador - Solo para socios">
     **Para:** Dueños, socios principales, personas de máxima confianza
-    
+
     **Ten cuidado:** Pueden eliminar toda la productora y comprar créditos con tu MercadoPago
   </Accordion>
-
-<Accordion title="⚙️ Sub-administrador - Managers de confianza">
-  **Para:** Gerentes, coordinadores principales, mano derecha **Ideal para:**
-  Personas que necesitan gestionar todo pero sin riesgos críticos
-</Accordion>
-
-<Accordion title="📋 Manager - Coordinadores de eventos">
-  **Para:** Personas que coordinan eventos específicos **Pueden:** Manejar
-  listas de invitados, crear entradas, ver estadísticas
-</Accordion>
-
-<Accordion title="💰 Vendedor - Equipo de ventas">
-  **Para:** Personal de ventas, promotores, vendedores de campo **Perfecto:**
-  Pueden vender entradas pero solo ven sus propios números
-</Accordion>
-
+  <Accordion title="⚙️ Sub-administrador - Managers de confianza">
+    **Para:** Gerentes, coordinadores principales, mano derecha **Ideal para:**
+    Personas que necesitan gestionar todo pero sin riesgos críticos
+  </Accordion>
+  <Accordion title="📋 Manager - Coordinadores de eventos">
+    **Para:** Personas que coordinan eventos específicos **Pueden:** Manejar
+    listas de invitados, crear entradas, ver estadísticas
+  </Accordion>
+  <Accordion title="💰 Vendedor - Equipo de ventas">
+    **Para:** Personal de ventas, promotores, vendedores de campo **Perfecto:**
+    Pueden vender entradas pero solo ven sus propios números
+  </Accordion>
   <Accordion title="📱 Scanner - Personal de ingreso">
     **Para:** Personal de puerta, seguridad, recepcionistas
-    
+
     **Solo pueden:** Validar entradas en el evento, nada más
   </Accordion>
 </AccordionGroup>
@@ -202,15 +185,12 @@ En "Equipo de la productora" podés ver:
   <Card title="Principio de menor privilegio" icon="shield">
     Asigná el rol mínimo necesario para cada función
   </Card>
-
-<Card title="Revisión periódica" icon="rotate">
-  Revisá el equipo cada 3-6 meses y removế personal inactivo
-</Card>
-
-<Card title="Cambio de roles graduales" icon="arrow-up">
-  Empezá con roles menores y ascendé según confianza
-</Card>
-
+  <Card title="Revisión periódica" icon="rotate">
+    Revisá el equipo cada 3-6 meses y removế personal inactivo
+  </Card>
+  <Card title="Cambio de roles graduales" icon="arrow-up">
+    Empezá con roles menores y ascendé según confianza
+  </Card>
   <Card title="Backup de administradores" icon="users">
     Tené al menos 2 administradores en productoras importantes
   </Card>
@@ -240,11 +220,9 @@ En cada evento podés ver:
   <Step title="Ir a estadísticas del evento">
     Dashboard → Evento → "Estadísticas"
   </Step>
-
-<Step title="Sección 'Equipo'">
-  Ver rendimiento individual de cada colaborador
-</Step>
-
+  <Step title="Sección 'Equipo'">
+    Ver rendimiento individual de cada colaborador
+  </Step>
   <Step title="Exportar datos">
     Descargá reportes en CSV para análisis detallado
   </Step>
@@ -255,22 +233,20 @@ En cada evento podés ver:
 <AccordionGroup>
   <Accordion title="La invitación por email no llega">
     **Revisá:**
+
     - Carpeta de spam del invitado
     - Que el email esté bien escrito
     - Que la persona tenga casilla activa
-    
+
     **Alternativa:** Usá el link de invitación por WhatsApp
   </Accordion>
-
-<Accordion title="Un colaborador no puede hacer algo que debería">
-  **Verificá:** - Que tenga el rol correcto asignado - Que esté conectado con el
-  usuario correcto - Que no haya restricciones específicas del evento
-</Accordion>
-
-<Accordion title="¿Puedo cambiar el rol del creador de la productora?">
-  No, el creador siempre es administrador y no se puede cambiar ni remover.
-</Accordion>
-
+  <Accordion title="Un colaborador no puede hacer algo que debería">
+    **Verificá:** - Que tenga el rol correcto asignado - Que esté conectado con el
+    usuario correcto - Que no haya restricciones específicas del evento
+  </Accordion>
+  <Accordion title="¿Puedo cambiar el rol del creador de la productora?">
+    No, el creador siempre es administrador y no se puede cambiar ni remover.
+  </Accordion>
   <Accordion title="¿Los colaboradores pueden ver los créditos?">
     Solo administradores y sub-administradores pueden ver el balance de créditos. Otros roles no.
   </Accordion>
@@ -282,11 +258,9 @@ En cada evento podés ver:
   <Card title="Crear eventos" icon="calendar" href="/events/index">
     Empezá a crear eventos con tu equipo
   </Card>
-
-<Card title="Configurar scanner" icon="qrcode" href="/events/scanner">
-  Preparar la validación de entradas
-</Card>
-
+  <Card title="Configurar scanner" icon="qrcode" href="/events/scanner">
+    Preparar la validación de entradas
+  </Card>
   <Card title="Ver estadísticas" icon="chart-line" href="/analytics/index">
     Monitorear el rendimiento del equipo
   </Card>
