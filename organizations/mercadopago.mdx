@@ -22,13 +22,14 @@ La integración funciona diferente según tu país:
 <CardGroup cols={2}>
   <Card title="🇦🇷 Argentina" icon="flag">
     **Proceso simple:**
+
     - Un solo clic para conectar
     - OAuth automático con MercadoPago
     - Sin configuraciones complejas
   </Card>
-
   <Card title="🌎 Otros países" icon="globe">
     **Proceso manual:**
+
     - Registrarse en MercadoPago Developers
     - Crear aplicación
     - Copiar tokens manualmente
@@ -55,18 +56,13 @@ Al hacer clic en el botón **"Conectar cuenta"**, serás redirigido a MercadoPag
   <Step title="Dirigite a la configuración">
     Dashboard → Tu productora → "MercadoPago" → "Configurar MercadoPago"
   </Step>
-
-<Step title="Conectar cuenta">
-  Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago
-</Step>
-
-<Step title="Iniciar sesión">Usá tus credenciales normales de MercadoPago</Step>
-
-<Step title="Autorizar permisos">
-  MercadoPago te pregunta si permitís que qrTicket procese pagos. **Hacé clic en
-  "Autorizar"**
-</Step>
-
+  <Step title="Conectar cuenta">
+    Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago
+  </Step>
+  <Step title="Autorizar permisos">
+    MercadoPago te pregunta si permitís que qrTicket procese pagos. **Hacé clic en
+    "Autorizar"**
+  </Step>
   <Step title="¡Listo!">
     Volvés automáticamente a qrTicket con la cuenta conectada
   </Step>
@@ -86,25 +82,22 @@ Al hacer clic en el botón **"Conectar cuenta"**, serás redirigido a MercadoPag
 
 <Steps>
   <Step title="Crear cuenta en MercadoPago Developers">
-    Andá a [developers.mercadopago.com](https://developers.mercadopago.com) y registrate
+    Ingresá a [developers.mercadopago.com](https://developers.mercadopago.com) e iniciá sesión con tu cuenta.
   </Step>
-
-<Step title="Crear una aplicación">
-  - Nombre: "qrTicket - [Tu productora]" - Modelo de negocio: Online payments -
-  URL de redirect: `https://qrticket.app/api/mp-webhook`
-</Step>
-
-<Step title="Obtener credenciales">
-  Copiá los siguientes datos de tu aplicación: - **Public Key** (pk_live_...) -
-  **Access Token** (APP_USR_...) - **Client ID** (número) - **Client Secret**
-  (texto largo)
-</Step>
-
-<Step title="Configurar en qrTicket">
-  Dashboard → Tu productora → "MercadoPago" → "Configuración manual" Pegá cada
-  credencial en su campo correspondiente
-</Step>
-
+  <Step title="Crear una aplicación">
+    - Hace click en la esquina superior derecha, donde dice "Tus Integraciones"
+    - Nombre: "qrTicket - [Tu productora]" - Modelo de negocio: Online payments -
+      URL de redirect: `https://qrticket.app/api/mp-webhook`
+  </Step>
+  <Step title="Obtener credenciales">
+    Copiá los siguientes datos de tu aplicación: - **Public Key** (pk_live\_...) -
+    **Access Token** (APP_USR\_...) - **Client ID** (número) - **Client Secret**
+    (texto largo)
+  </Step>
+  <Step title="Configurar en qrTicket">
+    Dashboard → Tu productora → "MercadoPago" → "Configuración manual" Pegá cada
+    credencial en su campo correspondiente
+  </Step>
   <Step title="Probar conexión">
     qrTicket valida automáticamente que las credenciales funcionen
   </Step>
@@ -129,9 +122,6 @@ Por defecto, la venta por MercadoPago estará desactivada para todos los eventos
   <Step title="Ir a tu evento">
     Dashboard → Seleccionar evento → "Configurar Ventas"
   </Step>
-
-<Step title="Activar MercadoPago">Activar el deslizador de "MercadoPago"</Step>
-
   <Step title="Configurar recargo (opcional)">
     Podés modificar el recargo que se aplica al cliente para cubrir las comisiones
   </Step>
@@ -202,24 +192,22 @@ Podés ver todas las ventas realizadas a través de MercadoPago en:
 <AccordionGroup>
   <Accordion title="Error 'No se pudo conectar la cuenta'">
     **Posibles causas:**
+
     - Cuenta MercadoPago suspendida o con problemas
     - Restricciones en tu cuenta por verificación pendiente
-    
+
     **Solución:** Verificá el estado de tu cuenta en MercadoPago directamente
   </Accordion>
-
-<Accordion title="Los pagos no aparecen en mi cuenta">
-  **Verificá:** - Que usaste las credenciales de producción (no test) - Que la
-  cuenta MercadoPago coincide con las credenciales - Que el webhook esté
-  configurado correctamente
-</Accordion>
-
-<Accordion title="'Credenciales inválidas' en configuración manual">
-  **Revisá:** - Que copiaste completas las credenciales (sin espacios) - Que
-  sean de producción (pk_live, APP_USR) - Que la aplicación esté activa en
-  MercadoPago Developers
-</Accordion>
-
+  <Accordion title="Los pagos no aparecen en mi cuenta">
+    **Verificá:** - Que usaste las credenciales de producción (no test) - Que la
+    cuenta MercadoPago coincide con las credenciales - Que el webhook esté
+    configurado correctamente
+  </Accordion>
+  <Accordion title="'Credenciales inválidas' en configuración manual">
+    **Revisá:** - Que copiaste completas las credenciales (sin espacios) - Que
+    sean de producción (pk_live, APP_USR) - Que la aplicación esté activa en
+    MercadoPago Developers
+  </Accordion>
   <Accordion title="¿Puedo desconectar MercadoPago?">
     Sí, podés desconectar en cualquier momento. Los eventos ya publicados dejarán de aceptar pagos online hasta que reconectes.
   </Accordion>
