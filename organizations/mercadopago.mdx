@@ -11,8 +11,7 @@ qrTicket permite la venta automatizada de entradas al vincular tu cuenta de Merc
 Recibís el dinero de cada venta según tu configuración en MercadoPago: puede ser de forma instantánea o en algunos días, dependiendo del tipo de cuenta y configuración que tengas.
 
 <Note>
-  **Importante:** Solo el creador de la productora (Administrador) puede
-  vincular su cuenta de MercadoPago.
+  **Importante:** Solo el creador de la productora (Administrador) puede vincular su cuenta de MercadoPago.
 </Note>
 
 ## Diferencias por país
@@ -69,34 +68,36 @@ Al hacer clic en el botón **"Conectar cuenta"**, serás redirigido a MercadoPag
 </Steps>
 
 <Note>
-  Si no tenés cuenta, podés crear una gratis en
-  [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
+  Si no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
 </Note>
 
 ### Para otros países 🌎
 
 <Note>
-  MercadoPago solo permite OAuth automático en Argentina. Para otros países
-  necesitás configuración manual a través de MercadoPago Developers.
+  MercadoPago solo permite OAuth automático en Argentina. Para otros países necesitás configuración manual a través de MercadoPago Developers.
 </Note>
 
 <Steps>
   <Step title="Crear cuenta en MercadoPago Developers">
-    Ingresá a [developers.mercadopago.com](https://developers.mercadopago.com) e iniciá sesión con tu cuenta.
+    Ingresá a [developers.mercadopago.com](https://developers.mercadopago.com). Una vez allí registrate o inicia sesión con tu cuenta.
   </Step>
   <Step title="Crear una aplicación">
-    - Hace click en la esquina superior derecha, donde dice "Tus Integraciones"
-    - Nombre: "qrTicket - [Tu productora]" - Modelo de negocio: Online payments -
-      URL de redirect: `https://qrticket.app/api/mp-webhook`
+    2. En la esquina superior derecha, clickea en "Crear aplicación". 
+    3. Completa los datos requeridos:
+       1. Nombre: "qrTicket - [Tu productora]"
+       2. ¿Qué tipo de solución de pago vas a integrar?: "Pagos Online"
+       3. ¿Estás usando una plataforma de e-commerce?: "No"
+       4. ¿Qué producto estás integrando?: "Checkout API"
+       5. ¿Qué API estás integrando?: "API Pagos"
+
+          ![image.png](/images/image.png)
   </Step>
   <Step title="Obtener credenciales">
-    Copiá los siguientes datos de tu aplicación: - **Public Key** (pk_live\_...) -
-    **Access Token** (APP_USR\_...) - **Client ID** (número) - **Client Secret**
-    (texto largo)
+    1. En el lateral izquierdo de la pantalla, clickea en "Credenciales de Producción".
+    2. asdfadsfdasf
   </Step>
   <Step title="Configurar en qrTicket">
-    Dashboard → Tu productora → "MercadoPago" → "Configuración manual" Pegá cada
-    credencial en su campo correspondiente
+    Dashboard → Tu productora → "MercadoPago" → "Configuración manual" Pegá cada credencial en su campo correspondiente
   </Step>
   <Step title="Probar conexión">
     qrTicket valida automáticamente que las credenciales funcionen
@@ -104,8 +105,7 @@ Al hacer clic en el botón **"Conectar cuenta"**, serás redirigido a MercadoPag
 </Steps>
 
 <Warning>
-  **Importante:** Usá las credenciales de **producción** (live), no las de
-  test/sandbox.
+  **Importante:** Usá las credenciales de **producción** (live), no las de test/sandbox.
 </Warning>
 
 ---
@@ -174,8 +174,7 @@ El dinero se acredita en tu cuenta de MercadoPago según la configuración que t
 - **Liquidación en 15-30 días:** Recibís el dinero más tarde (comisiones más bajas)
 
 <Warning>
-  Los tiempos de liquidación y las comisiones asociadas se configuran
-  directamente en tu cuenta de MercadoPago, no en qrTicket.
+  Los tiempos de liquidación y las comisiones asociadas se configuran directamente en tu cuenta de MercadoPago, no en qrTicket.
 </Warning>
 
 ---
@@ -199,14 +198,10 @@ Podés ver todas las ventas realizadas a través de MercadoPago en:
     **Solución:** Verificá el estado de tu cuenta en MercadoPago directamente
   </Accordion>
   <Accordion title="Los pagos no aparecen en mi cuenta">
-    **Verificá:** - Que usaste las credenciales de producción (no test) - Que la
-    cuenta MercadoPago coincide con las credenciales - Que el webhook esté
-    configurado correctamente
+    **Verificá:** - Que usaste las credenciales de producción (no test) - Que la cuenta MercadoPago coincide con las credenciales - Que el webhook esté configurado correctamente
   </Accordion>
   <Accordion title="'Credenciales inválidas' en configuración manual">
-    **Revisá:** - Que copiaste completas las credenciales (sin espacios) - Que
-    sean de producción (pk_live, APP_USR) - Que la aplicación esté activa en
-    MercadoPago Developers
+    **Revisá:** - Que copiaste completas las credenciales (sin espacios) - Que sean de producción (pk_live, APP_USR) - Que la aplicación esté activa en MercadoPago Developers
   </Accordion>
   <Accordion title="¿Puedo desconectar MercadoPago?">
     Sí, podés desconectar en cualquier momento. Los eventos ya publicados dejarán de aceptar pagos online hasta que reconectes.
