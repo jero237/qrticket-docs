@@ -1,12 +1,12 @@
 ---
 title: "Configuración de ventas"
-description: "Cómo habilitar ventas por MercadoPago y WhatsApp"
+description: "Cómo habilitar ventas por MercadoPago, transferencia bancaria y WhatsApp"
 icon: "gear"
 ---
 
 # Configuración de ventas
 
-Cada evento puede vender de **2 formas diferentes**: automáticamente por MercadoPago o manualmente por WhatsApp. Podés usar ambas al mismo tiempo.
+Cada evento puede vender de **3 formas diferentes**: automáticamente por MercadoPago, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés usar cualquier combinación al mismo tiempo.
 
 <Card title="Requisito previo" icon="info">
   Antes de configurar ventas, necesitás tener **productos creados** con precios
@@ -23,6 +23,14 @@ Cada evento puede vender de **2 formas diferentes**: automáticamente por Mercad
     - Entradas se envían por email automáticamente
     - Requiere MercadoPago conectado en la productora
     - Ideal para eventos grandes y públicos
+  </Card>
+  <Card title="Transferencia bancaria (semi-automático)" icon="building-columns">
+    **Ventas con aprobación manual**
+
+    - Compradores transfieren y suben el comprobante
+    - Vos aprobás o rechazás cada solicitud
+    - No requiere MercadoPago
+    - Ideal para quienes prefieren cobrar directo a su cuenta bancaria
   </Card>
   <Card title="WhatsApp (manual)" icon="message-dots">
     **Ventas coordinadas por chat**
@@ -53,7 +61,7 @@ Cada evento puede vender de **2 formas diferentes**: automáticamente por Mercad
 
 <Steps>
   <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Tienda Online" → "Configurar ventas"
+    Dashboard → Tu evento → "Canales de venta"
   </Step>
   <Step title="Tab 'MercadoPago'">
     Activar el switch "Ventas por MercadoPago"
@@ -75,13 +83,68 @@ Cada evento puede vender de **2 formas diferentes**: automáticamente por Mercad
 
 ---
 
+## Configurar ventas por transferencia bancaria
+
+### Cómo funciona
+
+El flujo de transferencia bancaria es semi-automático: el comprador completa la compra desde la página del evento, realiza la transferencia por su cuenta, sube el comprobante, y vos solo tenés que aprobar o rechazar la solicitud desde el dashboard.
+
+### Habilitar transferencia bancaria
+
+<Steps>
+  <Step title="Ir a configuración de ventas">
+    Dashboard → Tu evento → "Canales de venta" → "Configurar ventas"
+  </Step>
+  <Step title="Tab 'Transferencia bancaria'">
+    Activar el switch "Ventas por transferencia bancaria"
+  </Step>
+  <Step title="Configurar datos bancarios">
+    Ingresá los datos de la cuenta donde querés recibir las transferencias (CBU/CVU, alias, titular)
+  </Step>
+  <Step title="Verificar configuración">
+    Si todo está bien, aparece ✅ "Habilitado"
+  </Step>
+</Steps>
+
+### ¿Qué pasa cuando está habilitado?
+
+- Los compradores ven la opción de **transferencia bancaria** en la página del evento
+- Seleccionan los productos y cantidades que quieren comprar
+- Reciben los datos bancarios para realizar la transferencia
+- Suben el comprobante de pago desde la misma página
+- **Vos recibís la solicitud** en el dashboard y la aprobás o rechazás
+- Al aprobar, las entradas se generan y envían automáticamente
+- **Se consumen créditos** al aprobar cada solicitud
+
+### Gestión de solicitudes
+
+<Steps>
+  <Step title="Revisar solicitudes pendientes">
+    Dashboard → Evento → "Lista de Invitados" → Pestaña "Transferencia bancaria".
+    Vas a ver las solicitudes con estado **pendiente**, junto con el comprobante subido por el comprador.
+  </Step>
+  <Step title="Verificar el comprobante">
+    Revisá que el monto transferido coincida con el total de la compra y que el comprobante sea válido.
+  </Step>
+  <Step title="Aprobar o rechazar">
+    - **Aprobar:** Se generan las entradas automáticamente y se envían al comprador por email. Se descuentan créditos.
+    - **Rechazar:** La solicitud se cancela. No se consumen créditos. Podés indicar un motivo para que el comprador lo vea.
+  </Step>
+</Steps>
+
+<Warning>
+  Revisá los comprobantes con atención. Una vez aprobada la solicitud, las entradas se generan y los créditos se descuentan.
+</Warning>
+
+---
+
 ## Configurar ventas WhatsApp
 
 ### Agregar números de WhatsApp
 
 <Steps>
   <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Tienda Online" → "Configurar ventas"
+    Dashboard → Tu evento → "Canales de venta" → "Configurar ventas"
   </Step>
   <Step title="Agregar números">
     - Formato: "11 1234-5678" (sin \+54 9) - Podés agregar múltiples números - Cada
@@ -124,9 +187,9 @@ Una vez que alguien te escribe por WhatsApp:
 
 ---
 
-## Ventas mixtas (ambos métodos)
+## Ventas mixtas (múltiples métodos)
 
-Podés habilitar **MercadoPago Y WhatsApp** simultáneamente:
+Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancaria y WhatsApp simultáneamente:
 
 <CardGroup cols={2}>
   <Card title="Ventajas" icon="thumbs-up">
@@ -136,8 +199,8 @@ Podés habilitar **MercadoPago Y WhatsApp** simultáneamente:
     - Reduce barreras de compra
   </Card>
   <Card title="Consideraciones" icon="lightbulb">
-    - Más trabajo manual por ventas WhatsApp
-    - Control de stock entre ambos métodos
+    - Más trabajo manual por ventas WhatsApp y transferencias
+    - Control de stock entre todos los métodos
     - Múltiples canales de atención
   </Card>
 </CardGroup>
@@ -145,15 +208,16 @@ Podés habilitar **MercadoPago Y WhatsApp** simultáneamente:
 ### Gestión de inventario mixto
 
 <Warning>
-  Si tenés límites por producto, ambos métodos comparten el mismo stock.
+  Si tenés límites por producto, todos los métodos comparten el mismo stock.
   Controlá que no se sobrevenda.
 </Warning>
 
 **Ejemplo:**
 
 - Producto: "Entrada General" - Límite: 100
-- MercadoPago vendió: 60
-- WhatsApp vendiste: 35
+- MercadoPago vendió: 50
+- Transferencia bancaria aprobaste: 25
+- WhatsApp vendiste: 20
 - **Disponibles:** 5 restantes
 
 ---
@@ -164,7 +228,7 @@ Podés habilitar **MercadoPago Y WhatsApp** simultáneamente:
 
 <AccordionGroup>
   <Accordion title="🌍 Público - Aparece en qrTicket.app">
-    **Requisitos:** Tener MercadoPago o WhatsApp habilitado
+    **Requisitos:** Tener al menos un método de venta habilitado (MercadoPago, transferencia bancaria o WhatsApp)
 
     **Beneficios:**
 
@@ -189,7 +253,7 @@ Podés habilitar **MercadoPago Y WhatsApp** simultáneamente:
 
 <Steps>
   <Step title="Tener al menos 1 método habilitado">
-    MercadoPago o WhatsApp (o ambos)
+    MercadoPago, transferencia bancaria o WhatsApp (o cualquier combinación)
   </Step>
   <Step title="Activar publicación">
     En "Configuración de ventas" → Switch "Publicar evento"
@@ -212,14 +276,22 @@ Si necesitás pausar las ventas:
     Desactivar switch "Ventas por MercadoPago"
 
     - Los compradores siguen viendo la página
-    - Solo aparece opción de WhatsApp
+    - Solo aparecen las opciones de transferencia bancaria y/o WhatsApp
+  </Accordion>
+  <Accordion title="Pausar solo transferencia bancaria">
+    Desactivar switch "Ventas por transferencia bancaria"
+
+    - Las solicitudes pendientes se mantienen para que las revises
+    - Solo quedan disponibles MercadoPago y/o WhatsApp
   </Accordion>
   <Accordion title="Pausar solo WhatsApp">
-    Remover todos los números de WhatsApp - Solo queda disponible MercadoPago -
-    Útil si te saturaste de consultas manuales
+    Remover todos los números de WhatsApp
+
+    - Solo quedan disponibles MercadoPago y/o transferencia bancaria
+    - Útil si te saturaste de consultas manuales
   </Accordion>
   <Accordion title="Pausar todas las ventas">
-    Desactivar ambos switches
+    Desactivar todos los switches
 
     - Página sigue visible pero sin opciones de compra
     - Solo información del evento
@@ -240,7 +312,7 @@ Las ventas se pausan automáticamente si:
 
 ### Métricas disponibles
 
-En "Lista de Invitados" del evento ves 2 pestañas:
+En "Lista de Invitados" del evento ves 3 pestañas:
 
 <CardGroup cols={2}>
   <Card title="Manual" icon="user-plus">
@@ -249,6 +321,13 @@ En "Lista de Invitados" del evento ves 2 pestañas:
     - Entradas creadas por el equipo
     - Por colaborador
     - Método de pago personalizado
+  </Card>
+  <Card title="Transferencia bancaria" icon="building-columns">
+    **Ventas por transferencia**
+
+    - Solicitudes pendientes, aprobadas y rechazadas
+    - Comprobantes subidos
+    - Datos del comprador
   </Card>
   <Card title="MercadoPago" icon="credit-card">
     **Ventas automáticas online**
@@ -263,7 +342,7 @@ En "Lista de Invitados" del evento ves 2 pestañas:
 
 En "Estadísticas" del evento:
 
-- **Recaudación total:** Manual \+ MercadoPago
+- **Recaudación total:** Manual \+ Transferencia bancaria \+ MercadoPago
 - **Productos más vendidos** por cada canal
 - **Conversión:** Visitas vs ventas efectivas
 - **Tendencias:** Picos de venta por hora/día
@@ -278,17 +357,24 @@ En "Estadísticas" del evento:
 
     - Que la productora tenga MercadoPago conectado
     - Que todos los productos tengan precio (no gratuitos)
-    - Que el switch esté activado en "Tienda Online"
+    - Que el switch esté activado en "Canales de venta"
+  </Accordion>
+  <Accordion title="'No recibo solicitudes de transferencia bancaria'">
+    **Verificá:**
+
+    - Que el switch de transferencia bancaria esté activado
+    - Que los datos bancarios estén cargados correctamente
+    - Que los productos tengan precio definido
   </Accordion>
   <Accordion title="'Los compradores no me escriben por WhatsApp'">
     **Posibles causas:** - Números mal configurados (verificar formato) - WhatsApp
     no habilitado en el evento - Compradores prefieren pago automático
-    **Solución:** Verificar configuración y considerar ambos métodos
+    **Solución:** Verificar configuración y considerar habilitar más métodos
   </Accordion>
   <Accordion title="'Se vendieron más entradas que el límite'">
-    **Causa:** Ventas simultáneas por ambos canales **Prevención:** - Monitorear
-    stock regularmente - Ajustar límites con margen - Pausar un canal si el otro
-    está activo
+    **Causa:** Ventas simultáneas por múltiples canales **Prevención:** - Monitorear
+    stock regularmente - Ajustar límites con margen - Pausar canales si el stock
+    está por agotarse
   </Accordion>
   <Accordion title="'No recibo el dinero de MercadoPago'">
     **El dinero va directamente a tu cuenta MercadoPago**
@@ -296,6 +382,13 @@ En "Estadísticas" del evento:
     - Verificá tu panel de MercadoPago
     - Los tiempos dependen de tu tipo de cuenta
     - qrTicket no maneja ni retiene dinero
+  </Accordion>
+  <Accordion title="'Aprobé una transferencia por error'">
+    **Las entradas ya se generaron y los créditos se descontaron.**
+
+    - Podés anular las entradas desde la lista de invitados
+    - Los créditos consumidos no se recuperan automáticamente
+    - Contactá soporte si necesitás ayuda
   </Accordion>
 </AccordionGroup>
 
@@ -305,25 +398,30 @@ En "Estadísticas" del evento:
 
 ### Para eventos pequeños (hasta 100 personas)
 
-<Card title="Recomendación: Solo WhatsApp" icon="message-circle">
-  - **Más personal:** Conocés a cada comprador - **Flexibilidad:** Diferentes
-    métodos de pago - **Sin comisiones MercadoPago:** Ahorrás en costos -
-    **Control total:** Decidís a quién venderle
+<Card title="Recomendación: WhatsApp o transferencia bancaria" icon="message-circle">
+  - **Más personal:** Conocés a cada comprador
+  - **Flexibilidad:** Diferentes métodos de pago
+  - **Sin comisiones MercadoPago:** Ahorrás en costos
+  - **Control total:** Decidís a quién venderle
+  - **Transferencia bancaria:** Más ordenado que WhatsApp, el comprador sube el comprobante sin que tengas que pedirlo
 </Card>
 
 ### Para eventos medianos (100-500 personas)
 
-<Card title="Recomendación: Ambos métodos" icon="zap">
-  - **MercadoPago:** Para la mayoría de ventas automáticas - **WhatsApp:** Para
-    casos especiales, grupos, corporativos - **Mejor conversión:** Diferentes
-    preferencias de compra
+<Card title="Recomendación: MercadoPago + transferencia bancaria" icon="zap">
+  - **MercadoPago:** Para la mayoría de ventas automáticas
+  - **Transferencia bancaria:** Para quienes no usan MercadoPago o prefieren transferir
+  - **WhatsApp:** Para casos especiales, grupos, corporativos
+  - **Mejor conversión:** Diferentes preferencias de compra
 </Card>
 
 ### Para eventos grandes (500\+ personas)
 
 <Card title="Recomendación: MercadoPago principal" icon="credit-card">
-  - **Escalabilidad:** No podés atender 500 WhatsApps - **WhatsApp:** Solo para
-    casos excepcionales - **Automatización:** Libera tiempo para otras tareas
+  - **Escalabilidad:** No podés atender 500 WhatsApps ni revisar 500 comprobantes
+  - **Transferencia bancaria:** Solo para excepciones puntuales
+  - **WhatsApp:** Solo para casos excepcionales
+  - **Automatización:** Libera tiempo para otras tareas
 </Card>
 
 ---
