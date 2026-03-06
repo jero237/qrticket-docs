@@ -25,14 +25,11 @@ Los eventos se crean en **4 pasos simples**:
   <Step title="Detalles básicos">
     Nombre, fecha, ubicación, imagen, descripción
   </Step>
-  <Step title="Configuración de ventas">
-    MercadoPago, WhatsApp, publicación del evento
+  <Step title="Configurar canales de venta">
+    MercadoPago, transferencia bancaria, WhatsApp, publicación del evento
   </Step>
   <Step title="Equipo y validación">
     Scanner, colaboradores, links de referidos
-  </Step>
-  <Step title="New Step">
-    
   </Step>
 </Steps>
 
@@ -86,29 +83,29 @@ Cada producto puede tener diferentes estados:
 
 ## Métodos de venta
 
-Cada evento puede vender de **2 formas**:
+Cada evento puede vender de **3 formas**:
 
-<CardGroup cols={2}>
-  <Card title="MercadoPago (automático)" icon="credit-card">
-    - Pago online con tarjeta/transferencia
-    - Entradas se envían por email automáticamente
-    - Requiere tener MercadoPago conectado
-    - Para eventos públicos grandes
+<CardGroup cols={3}>
+  <Card title="MercadoPago" icon="credit-card">
+    - Pago online automático
+    - Entradas se envían por email
+    - Requiere MercadoPago conectado
   </Card>
-  <Card title="WhatsApp (manual)" icon="message-dots">
+  <Card title="Transferencia bancaria" icon="building-columns">
+    - Comprador transfiere y sube comprobante
+    - Vos aprobás o rechazás
+    - Cobro directo a tu cuenta
+  </Card>
+  <Card title="WhatsApp" icon="message-dots">
     - Compradores contactan por WhatsApp
-    - Vos manejás el pago (efectivo, transferencia)
-    - Creás las entradas manualmente
-    - Para eventos más personalizados
+    - Coordinás el pago manualmente
+    - Para eventos personalizados
   </Card>
 </CardGroup>
 
 ### Ventas mixtas
 
-Podés habilitar **ambos métodos** al mismo tiempo:
-
-- Algunos compran automáticamente por MercadoPago
-- Otros te escriben por WhatsApp para coordinar
+Podés habilitar **cualquier combinación** de métodos al mismo tiempo.
 
 ## Página pública del evento
 
@@ -229,8 +226,8 @@ Cada colaborador puede tener su link personalizado:
   <Card title="Crear productos" icon="box" href="/events/products">
     Definí entradas, extras y combos
   </Card>
-  <Card title="Configurar ventas" icon="gear" href="/events/sales">
-    Habilitá MercadoPago y WhatsApp
+  <Card title="Canales de venta" icon="gear" href="/events/sales">
+    Habilitá MercadoPago, transferencia y WhatsApp
   </Card>
   <Card title="Preparar scanner" icon="qrcode" href="/events/scanner">
     Configurá la validación de entradas

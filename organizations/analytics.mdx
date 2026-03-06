@@ -1,0 +1,67 @@
+---
+title: "Analytics y Pixel"
+description: "Configurá Google Analytics y Meta Pixel para rastrear visitas en tus eventos"
+icon: "chart-line"
+---
+
+# Analytics y Pixel
+
+Conectá tus herramientas de análisis para rastrear las visitas a las páginas públicas de tus eventos. Esto te permite medir el rendimiento de tus campañas publicitarias y entender el comportamiento de tus compradores.
+
+<Card title="¿Para qué sirve?" icon="info">
+  Al configurar Google Analytics o Meta Pixel en tu productora, se aplican automáticamente a **todos los eventos** de esa productora.
+</Card>
+
+## Google Analytics
+
+Rastrea visitas, conversiones y comportamiento de usuarios en las páginas de tus eventos.
+
+<Steps>
+  <Step title="Obtener tu ID de Google Analytics">
+    En tu cuenta de [Google Analytics](https://analytics.google.com), copiá tu ID de medición. Tiene el formato `G-XXXXXXXXXX`.
+  </Step>
+  <Step title="Configurar en qrTicket">
+    Dashboard → Tu productora → **"Analytics y Pixel"** → Pegá tu ID en el campo **"Google Analytics ID"**
+  </Step>
+  <Step title="Guardar">
+    Hacé clic en **"Guardar"** y listo. Las visitas a tus eventos empezarán a aparecer en tu panel de Google Analytics.
+  </Step>
+</Steps>
+
+## Meta Pixel
+
+Rastrea visitas y conversiones desde Facebook e Instagram para optimizar tus campañas publicitarias.
+
+<Steps>
+  <Step title="Obtener tu Meta Pixel">
+    En tu [Meta Business Suite](https://business.facebook.com), copiá el código completo de tu Meta Pixel o solo el ID de 15 dígitos.
+  </Step>
+  <Step title="Configurar en qrTicket">
+    Dashboard → Tu productora → **"Analytics y Pixel"** → Pegá el código completo o el ID en el campo **"Meta Pixel"**
+  </Step>
+  <Step title="Guardar">
+    Si pegás el código completo (que incluye `fbq('init', '...')`), qrTicket extrae automáticamente el ID.
+  </Step>
+</Steps>
+
+<Note>
+  Ambos campos son opcionales. Podés configurar uno, ambos o ninguno.
+</Note>
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Se aplica a todos mis eventos?">
+    Sí, la configuración es a nivel productora. Todos los eventos de esa productora tendrán el tracking configurado en sus páginas públicas.
+  </Accordion>
+  <Accordion title="¿Puedo tener diferentes pixels por evento?">
+    No, la configuración es por productora. Si necesitás tracking diferente, podés crear productoras separadas.
+  </Accordion>
+  <Accordion title="¿Afecta la velocidad de carga de mis eventos?">
+    El impacto es mínimo. Los scripts de Google Analytics y Meta Pixel se cargan de forma asíncrona.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+¿Necesitás ayuda configurando tus herramientas de análisis? Contactanos por [WhatsApp](https://wa.me/5491122503348)

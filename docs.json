@@ -35,16 +35,24 @@
             "pages": [
               "organizations/index",
               "organizations/mercadopago",
-              "organizations/team"
+              "organizations/team",
+              "organizations/analytics",
+              "organizations/settings"
             ]
           },
           {
             "group": "Eventos",
             "pages": [
               "events/index",
+              "events/create-tickets",
+              "events/guests",
+              "events/stats",
               "events/products",
               "events/sales",
-              "events/scanner"
+              "events/team",
+              "events/referral",
+              "events/scanner",
+              "events/settings"
             ]
           }
         ]

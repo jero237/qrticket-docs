@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "mintlify": {
+      "source": "mintlify/docs",
+      "sourceType": "github",
+      "computedHash": "89e9db8b19e15ae8611b12134b83a10ea29a4633be2cefcb4e78fa31e2284659"
+    }
+  }
+}
