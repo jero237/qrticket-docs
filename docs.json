@@ -23,6 +23,13 @@
             ]
           },
           {
+            "group": "Tu cuenta",
+            "pages": [
+              "account-settings",
+              "invitations"
+            ]
+          },
+          {
             "group": "Créditos",
             "pages": [
               "credits/what-are-credits",
