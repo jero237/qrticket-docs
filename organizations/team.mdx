@@ -14,64 +14,63 @@ Agregá colaboradores a tu productora y asigná roles específicos según las re
     equipo de forma organizada
 </Card>
 
-## Roles disponibles
+## Roles del sistema
 
-Cada colaborador puede tener uno de estos roles:
+qrTicket trae cinco roles predefinidos. No se pueden editar ni eliminar, y cada uno otorga un conjunto fijo de permisos (sobre un total de 21). El creador de la productora siempre es **Administrador**.
 
 <CardGroup cols={2}>
   <Card title="👑 Administrador" icon="crown">
-    **Acceso total**
+    **Acceso total (21 permisos)**
 
-    - Todas las funciones
-    - Crear/eliminar eventos
+    - Todas las funciones de la productora
+    - Crear, editar y eliminar eventos
     - Comprar créditos
-    - Gestionar equipo
+    - Gestionar equipo y roles
   </Card>
   <Card title="⚙️ Sub-administrador" icon="gear">
-    **Casi todo, menos crítico** - Crear/editar eventos - Ver estadísticas
-    completas - Gestionar productos - No puede: eliminar, comprar créditos
+    **Acceso total (21 permisos)**
+
+    - Mismos permisos que el Administrador
+    - Pensado como mano derecha del dueño
+    - Puede gestionar todo el equipo y los eventos
   </Card>
   <Card title="📋 Manager" icon="clipboard">
-    **Gestión operativa** - Crear entradas manuales - Gestionar lista de invitados
+    **Gestión operativa (13 permisos)**
 
-    - Ver estadísticas de eventos - Escanear entradas
+    - Gestionar invitados y crear entradas
+    - Gestionar productos y ver estadísticas
+    - Escanear entradas
+    - No puede comprar créditos
   </Card>
   <Card title="💰 Vendedor" icon="money-bills">
-    **Solo ventas**
+    **Solo ventas (3 permisos)**
 
-    - Crear entradas manuales
-    - Ver sus propias ventas
+    - Ver sus propios invitados
+    - Cargar invitados (con un límite)
     - Escanear entradas
-    - Ver lista básica de invitados
   </Card>
 </CardGroup>
 
-<CardGroup cols={2}>
-  <Card title="📱 Scanner" icon="qrcode">
-    **Solo validación**
+<Card title="📱 Escaner" icon="qrcode">
+  **Solo validación (1 permiso)**
 
-    - Escanear códigos QR
-    - Ver estado de entradas
-    - Marcar ingresos
-    - No puede crear entradas
-  </Card>
-  <Card title="Comparar roles" icon="table">
-    Ver tabla detallada de permisos →
-  </Card>
-</CardGroup>
+  - Escanear entradas en la puerta
+  - No puede crear entradas ni ver estadísticas
+</Card>
 
-## Tabla de permisos
+<Note>
+  Los permisos exactos de cada rol (el catálogo completo de los 21 permisos, agrupados por categoría) están en la página de [Roles](/organizations/roles).
+</Note>
 
-| Función                        | Admin | Sub-admin | Manager | Vendedor | Scanner |
-| ------------------------------ | :---: | :-------: | :-----: | :------: | :-----: |
-| **Crear eventos**              | ✅     | ✅         | ❌       | ❌        | ❌       |
-| **Eliminar eventos**           | ✅     | ✅         | ❌       | ❌        | ❌       |
-| **Comprar créditos**           | ✅     | ✅         | ❌       | ❌        | ❌       |
-| **Crear entradas manuales**    | ✅     | ✅         | ✅       | ✅        | ❌       |
-| **Escanear entradas**          | ✅     | ✅         | ✅       | ✅        | ✅       |
-| **Ver todas las estadísticas** | ✅     | ✅         | ✅       | ❌        | ❌       |
-| **Gestionar equipo**           | ✅     | ✅         | ✅       | ❌        | ❌       |
-| **Configurar MercadoPago**     | ✅     | ✅         | ❌       | ❌        | ❌       |
+## Roles personalizados
+
+Además de los roles del sistema, podés crear **roles personalizados** con permisos a medida. Es ideal cuando ninguno de los roles predefinidos se ajusta a lo que necesitás (por ejemplo, alguien que solo cargue invitados y vea estadísticas, sin tocar productos).
+
+En la sección **"Roles"** de tu productora, tocá **"Crear rol"**, ponele un nombre y elegí los permisos que querés otorgar.
+
+<Tip>
+  Solo podés otorgar permisos que vos tenés. Mirá cómo crear y administrar roles personalizados en [Roles](/organizations/roles).
+</Tip>
 
 ## Invitar colaboradores
 
@@ -82,10 +81,10 @@ Cada colaborador puede tener uno de estos roles:
     Dashboard → Tu productora → **"Equipo"** → **"Invitar"**
   </Step>
   <Step title="Seleccionar rol">
-    Elegí el rol apropiado según las responsabilidades
+    Elegí el **Rol** del menú. Las opciones son: **Manager**, **Escaner**, **Vendedor**, **Sub-administrador** y cualquier rol personalizado que hayas creado. (El rol Administrador no se asigna acá: lo tiene el creador de la productora.)
   </Step>
   <Step title="Enviar invitación">
-    qrTicket envía automáticamente un email con las instrucciones
+    Escribí el email de la persona y tocá **"Invitar por email"**. qrTicket le envía las instrucciones automáticamente.
   </Step>
   <Step title="El invitado acepta">
     La persona hace clic en el link del email y se une al equipo
@@ -119,12 +118,16 @@ La persona invitada puede ver y gestionar sus invitaciones pendientes desde la s
 
 ### Ver equipo actual
 
-En **"Equipo"** de la productora podés ver:
+En **"Equipo"** de la productora vas a ver la tabla **"Equipo de la productora"** con dos columnas:
 
-- **Nombre y email** de cada colaborador
-- **Rol asignado** actualmente
-- **Productos vendidos** por cada uno
-- **Estado** (activo, invitación pendiente)
+- **Nombre** de cada colaborador
+- **Rol** asignado actualmente
+
+Cada fila tiene un menú (⋮) para gestionar al colaborador. Arriba tenés un buscador (**"Buscar por nombre..."**) y **filtros** para encontrar gente rápido.
+
+<Tip>
+  En el equipo a nivel **evento** (sección "Equipo" dentro del evento) la tabla agrega la columna **"Vendidos"**, con la cantidad de entradas que vendió cada persona en ese evento.
+</Tip>
 
 ### Cambiar roles
 
@@ -172,9 +175,9 @@ En **"Equipo"** de la productora podés ver:
   </Accordion>
   <Accordion title="💰 Vendedor - Equipo de ventas">
     **Para:** Personal de ventas, promotores, vendedores de campo **Perfecto:**
-    Pueden vender entradas pero solo ven sus propios números
+    Pueden cargar invitados (con límite) y solo ven sus propios números
   </Accordion>
-  <Accordion title="📱 Scanner - Personal de ingreso">
+  <Accordion title="📱 Escaner - Personal de ingreso">
     **Para:** Personal de puerta, seguridad, recepcionistas
 
     **Solo pueden:** Validar entradas en el evento, nada más

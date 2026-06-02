@@ -6,34 +6,47 @@ icon: "calendar-plus"
 
 # Crear tu primer evento
 
-Crear un evento en qrTicket es simple y rápido. Solo necesitás seguir 4 pasos básicos.
+Crear un evento en qrTicket es simple y rápido. El asistente te lleva por 4 pasos y, mientras completás cada uno, vas viendo una **vista previa en vivo** de tu evento a la derecha (tipo pantalla de celular) para que sepas cómo lo van a ver tus compradores.
 
 ## Crear en 4 pasos
 
 <Steps>
   <Step title="Detalles básicos">
-    - **Nombre:** Ej: "Fiesta de Fin de Año"
-    - **Fecha:** Cuándo será el evento (con opción de múltiples días)
-    - **Imagen:** Flyer del evento, formato 3:4 vertical (opcional)
-    - **Ubicación:** Dónde será (opcional)
-    - **Instagram del evento:** Cuenta de Instagram asociada (opcional)
-    - **Descripción:** Detalles adicionales (opcional)
+    - **Nombre del evento:** Ej: "Fiesta de Fin de Año".
+    - **Fecha:** cuándo será el evento. Si dura más de un día, marcá el checkbox **"El evento dura múltiples días"**.
+    - **Imagen / flyer:** subí el flyer del evento (JPG, PNG o WebP, formato **3:4 vertical**). Podés usar el enlace **"Descargar logos de qrTicket"** para sumar el logo a tu flyer y aparecer en **Eventos Destacados**.
+    - **Ubicación:** buscá un lugar en Google Maps para mostrar un minimapa, o escribí el texto que prefieras.
+    - **Descripción:** detalles adicionales del evento (opcional).
+    - **Instagram del evento:** cuenta de Instagram asociada, ej: `@tuevento` (opcional).
+    - **Más opciones → Galería del evento:** sumá hasta **12 imágenes y/o videos** (fotos del lugar, line-up, ediciones anteriores o un trailer corto) (opcional).
   </Step>
-  <Step title="Crear productos">
-    - **Entradas:** General, VIP, Preventa
-    - **Extras:** Bebidas, comida, merchandise (opcional)
-    - **Combos:** Paquetes combinados (opcional)
+  <Step title="Productos">
+    Definí lo que vas a vender desde las pestañas **Entradas**, **Extras** y **Combos**. Por cada entrada cargás:
+
+    - **Nombre:** ej: General, VIP, Preventa.
+    - **Precio.**
+    - **Estado:** Activo (visible para todos), Oculto (equipo y link directo), Exclusivo (solo administradores), Agotado o Inactivo.
+    - **Cantidad:** límite total de unidades (opcional).
+    - **Límite por compra:** máximo por compra (opcional).
+    - **Descripción** (opcional).
+
+    Usá **"Agregar entrada"** para sumar más tipos.
   </Step>
-  <Step title="Configurar canales de venta">
-    - **MercadoPago:** Ventas automáticas online
-    - **Transferencia bancaria:** Ventas con aprobación manual
-    - **WhatsApp:** Ventas coordinadas por chat
-    - **Publicación:** Evento público o privado
+  <Step title="Venta Online">
+    Elegí y activá los métodos con los que querés vender:
+
+    - **MercadoPago:** pagos con tarjeta y otros medios.
+    - **Stripe:** tarjetas internacionales (ver [Stripe](/organizations/stripe)).
+    - **Transferencia bancaria:** transferencias directas a tu cuenta.
+    - **WhatsApp:** ventas coordinadas por chat.
+
+    La configuración detallada de cada método la ajustás luego en [Canales de venta](/events/sales) del evento.
   </Step>
-  <Step title="Preparar validación">
-    - **Scanner:** Para validar entradas el día del evento
-    - **Equipo:** Asignar colaboradores
-    - **Links de referido:** Para tracking (opcional)
+  <Step title="Configuración del evento">
+    - **Publicar evento:** activá este toggle para que tu evento aparezca en la página pública de qrTicket y se promocione en nuestro Instagram. Para publicar necesitás tener activada la venta por **MercadoPago y/o WhatsApp** y una imagen del evento.
+    - **Permitir transferencia de entradas:** dejá este toggle activo para que tus asistentes puedan transferir sus entradas a otros usuarios.
+
+    Tocá **"Finalizar"** para crear el evento.
   </Step>
 </Steps>
 
@@ -48,7 +61,7 @@ Una vez creado tu evento, configurá cada aspecto:
     Crear entradas, extras y combos con precios
   </Card>
   <Card title="Canales de venta" icon="cart-shopping" href="/events/sales">
-    Habilitar MercadoPago, transferencia y WhatsApp
+    Habilitar MercadoPago, Stripe, transferencia y WhatsApp
   </Card>
   <Card title="Scanner" icon="qrcode" href="/events/scanner">
     Preparar validación para el día del evento
@@ -75,14 +88,14 @@ Tu evento tendrá:
 
 **Evento:** "Fiesta de Cumpleaños"
 
-1. **Detalles:** Nombre, fecha sábado 20hs, ubicación "Mi casa"
+1. **Detalles:** nombre, fecha sábado 20hs y ubicación "Mi casa"
 2. **Productos:**
    - Entrada General (\$5000)
-   - Bebida incluida (\$2000)
-3. **Ventas:** WhatsApp habilitado para coordinar pagos
-4. **Scanner:** Configurado para validar solo "Entrada General"
+   - Bebida (\$2000) como extra
+3. **Venta Online:** WhatsApp activado para coordinar pagos
+4. **Configuración:** evento sin publicar (privado) y transferencia de entradas activada
 
-**Resultado:** Página pública lista para compartir y sistema completo funcionando.
+**Resultado:** página pública lista para compartir. Después podés sumar el [Scanner](/events/scanner) y tu [equipo](/organizations/team) desde el panel del evento.
 
 ## Próximo paso
 

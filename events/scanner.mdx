@@ -57,13 +57,13 @@ Antes del evento, configurá **qué productos se van a validar**:
     Dashboard → Tu evento → **"Scanner"**
   </Step>
   <Step title="Configurar productos">
-    Hacé clic en **"Tipos de entrada"** y seleccioná qué productos se validan:
+    Hacé clic en **"Tipos de entrada"**. Vas a ver el mensaje *"Selecciona los productos que se van a escanear. Si se escanea alguno no seleccionado, se mostrará un mensaje de error."* Tildá qué productos se validan:
 
     - **Entradas:** Tipos que dan acceso al evento
     - **Extras:** Normalmente no se escanean en la puerta
   </Step>
-  <Step title="Guardar configuración">
-    Solo los productos seleccionados serán válidos al escanear
+  <Step title="Aceptar">
+    Tocá **"Aceptar"**. Solo los productos seleccionados serán válidos al escanear.
   </Step>
 </Steps>
 
@@ -103,16 +103,20 @@ Antes del evento, configurá **qué productos se van a validar**:
   </Step>
 </Steps>
 
+<Tip>
+  Si una entrada no escanea (QR dañado, mala luz), usá el botón **"Buscar manualmente"** para encontrarla por nombre y validarla a mano. En la barra de **"Progreso"** vas viendo el porcentaje de entradas ya escaneadas en tiempo real.
+</Tip>
+
 ### Opción 2: Link de scanner compartible
 
 Para personal que no tiene acceso al dashboard ni cuenta en qrTicket:
 
 <Steps>
   <Step title="Ir a la página de link">
-    Dashboard → Tu evento → **"Scanner"** → **"Link de scanner"**
+    Dashboard → Tu evento → **"Scanner"** → **"Link de scanner"**. Vas a leer: *"Generá un link que podés compartir para escanear entradas sin necesidad de registrarse."*
   </Step>
   <Step title="Habilitar el link">
-    Activá el switch para generar un link compartible. El link se puede copiar o compartir directamente.
+    El toggle arranca en **Deshabilitado**. Activálo para pasarlo a **Habilitado** y generar el link compartible. El link se puede copiar o compartir directamente.
   </Step>
   <Step title="Compartir con tu personal">
     Usá los botones **"Copiar"** o **"Compartir"** para enviar el link a tu equipo de puerta.
@@ -185,7 +189,7 @@ Problema: Evento diferente
     - **Sub-administradores:** Acceso completo
     - **Managers:** Pueden escanear
     - **Vendedores:** Pueden escanear
-    - **Scanners:** Solo pueden escanear
+    - **Escaner:** Solo pueden escanear
   </Card>
   <Card title="Con link público" icon="link">
     - **Personal de puerta:** Sin cuenta en qrTicket
@@ -349,7 +353,7 @@ Después del evento podés generar reportes con:
     Analizá el rendimiento completo de tu evento
   </Card>
   <Card title="Gestión de equipo" icon="users" href="/organizations/team">
-    Configurá roles de scanner para tu personal
+    Configurá el rol **Escaner** para tu personal de puerta
   </Card>
 </CardGroup>
 

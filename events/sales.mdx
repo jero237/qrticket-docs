@@ -1,12 +1,14 @@
 ---
 title: "Canales de venta"
-description: "Cómo habilitar ventas por MercadoPago, transferencia bancaria y WhatsApp"
+description: "Cómo habilitar ventas por MercadoPago, Stripe, transferencia bancaria y WhatsApp"
 icon: "gear"
 ---
 
 # Canales de venta
 
-Cada evento puede vender de **3 formas diferentes**: automáticamente por MercadoPago, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés usar cualquier combinación al mismo tiempo.
+Cada evento puede vender de **4 formas diferentes**: automáticamente por MercadoPago, con tarjetas internacionales vía Stripe, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés combinar los que quieras al mismo tiempo.
+
+Cada evento tiene su propio link público de venta: **qrticket.app/e/{nombre-del-evento}**. Compartilo en redes, WhatsApp o donde quieras: cualquiera que entre puede ver el evento y comprar entradas.
 
 <Card title="Requisito previo" icon="info">
   Antes de configurar ventas, necesitás tener **productos creados** con precios
@@ -17,23 +19,31 @@ Cada evento puede vender de **3 formas diferentes**: automáticamente por Mercad
 
 <CardGroup cols={2}>
   <Card title="MercadoPago (automático)" icon="credit-card">
-    **Ventas automáticas online**
+    **Recibe pagos con tarjeta y otros medios**
 
     - Compradores pagan con tarjeta/transferencia
     - Entradas se envían por email automáticamente
     - Requiere MercadoPago conectado en la productora
-    - Ideal para eventos grandes y públicos
+    - Ideal para eventos grandes y públicos en Argentina
+  </Card>
+  <Card title="Stripe (automático)" icon="globe">
+    **Acepta tarjetas internacionales vía Stripe**
+
+    - Pensado para cobros internacionales
+    - Compradores pagan con tarjeta de cualquier país
+    - Requiere Stripe conectado en la productora → [Guía Stripe](/organizations/stripe)
+    - Ideal para audiencias fuera de Argentina
   </Card>
   <Card title="Transferencia bancaria (semi-automático)" icon="building-columns">
-    **Ventas con aprobación manual**
+    **Recibe transferencias directas a tu cuenta**
 
     - Compradores transfieren y suben el comprobante
     - Vos aprobás o rechazás cada solicitud
-    - No requiere MercadoPago
+    - No requiere MercadoPago ni Stripe
     - Ideal para quienes prefieren cobrar directo a su cuenta bancaria
   </Card>
   <Card title="WhatsApp (manual)" icon="message-dots">
-    **Ventas coordinadas por chat**
+    **Coordina ventas por chat directo**
 
     - Compradores te escriben por WhatsApp
     - Coordinás pago (efectivo, transferencia)
@@ -63,8 +73,58 @@ Cada evento puede vender de **3 formas diferentes**: automáticamente por Mercad
   <Step title="Ir a configuración de ventas">
     Dashboard → Tu evento → "Canales de venta"
   </Step>
-  <Step title="Tab 'MercadoPago'">
-    Activar el switch "Ventas por MercadoPago"
+  <Step title="Expandir 'MercadoPago'">
+    Activá el toggle **"Ventas con MercadoPago"** para habilitar las ventas con MercadoPago en este evento.
+  </Step>
+  <Step title="Verificar configuración">
+    Si todo está bien, aparece ✅ "Habilitado"
+  </Step>
+</Steps>
+
+### ¿Quién paga el cargo de MercadoPago?
+
+En la configuración de MercadoPago vas a encontrar el toggle **"Pasar cargos al comprador"**:
+
+- **Activado:** el comprador asume el cargo de MercadoPago (se suma al precio que ve al pagar).
+- **Apagado:** el costo lo absorbés vos como organizador.
+
+<Tip>
+  qrTicket es **partner oficial de MercadoPago**: por esa alianza, tus ventas tienen **liberación instantánea con tarifas preferenciales** por defecto, sin que tengas que configurar nada. Mirá el detalle de las tarifas en la [Guía MercadoPago](/organizations/mercadopago).
+</Tip>
+
+### ¿Qué pasa cuando está habilitado?
+
+- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
+- Pueden seleccionar cantidades de cada producto
+- Son redirigidos al checkout de MercadoPago
+- Tras el pago exitoso, reciben las entradas por email
+- **Se consumen créditos automáticamente** por cada entrada/producto vendido
+
+---
+
+## Configurar ventas con Stripe
+
+Stripe es el canal pensado para **cobros internacionales**: te permite aceptar tarjetas de crédito/débito de cualquier parte del mundo. Los fondos se depositan directamente en tu cuenta bancaria.
+
+### Requisitos previos
+
+<Steps>
+  <Step title="Conectar Stripe en la productora">
+    La productora debe tener Stripe conectado → [Guía Stripe](/organizations/stripe)
+  </Step>
+  <Step title="Productos con precio">
+    Todos los productos deben tener precio definido (no pueden ser gratuitos)
+  </Step>
+</Steps>
+
+### Habilitar ventas con Stripe
+
+<Steps>
+  <Step title="Ir a configuración de ventas">
+    Dashboard → Tu evento → "Canales de venta"
+  </Step>
+  <Step title="Expandir 'Stripe'">
+    Activá el toggle de ventas con Stripe para este evento.
   </Step>
   <Step title="Verificar configuración">
     Si todo está bien, aparece ✅ "Habilitado"
@@ -73,13 +133,14 @@ Cada evento puede vender de **3 formas diferentes**: automáticamente por Mercad
 
 ### ¿Qué pasa cuando está habilitado?
 
-- Los compradores ven botón **"Pagar ahora"** en tu página del evento
-- Pueden seleccionar cantidades de cada producto
-- Son redirigidos al checkout de MercadoPago
+- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
+- Pagan con tarjeta internacional a través del checkout de Stripe
 - Tras el pago exitoso, reciben las entradas por email
 - **Se consumen créditos automáticamente** por cada entrada/producto vendido
 
-[image: Página pública con botón "Pagar ahora"]
+<Note>
+  Stripe está pensado para audiencias internacionales. Si vendés principalmente en Argentina, usá MercadoPago. Podés tener ambos activos al mismo tiempo.
+</Note>
 
 ---
 
@@ -93,10 +154,10 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
 
 <Steps>
   <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta" → "Configurar ventas"
+    Dashboard → Tu evento → "Canales de venta"
   </Step>
-  <Step title="Tab 'Transferencia bancaria'">
-    Activar el switch "Ventas por transferencia bancaria"
+  <Step title="Expandir 'Transferencia bancaria'">
+    Activá el toggle **"Ventas por transferencia bancaria"**.
   </Step>
   <Step title="Configurar datos bancarios">
     Completá la información de tu cuenta bancaria:
@@ -108,6 +169,9 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
     - **Instrucciones adicionales** (opcional) - información extra que los compradores verán al momento de transferir
 
     Hacé clic en **"Guardar información bancaria"** para confirmar.
+  </Step>
+  <Step title="Activar notificación por email (opcional)">
+    Activá el toggle **"Notificación por email"** para recibir un email cada vez que un comprador realice una compra por transferencia bancaria.
   </Step>
   <Step title="Verificar configuración">
     Si todo está bien, aparece ✅ "Habilitado"
@@ -152,25 +216,24 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
 
 <Steps>
   <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta" → "Configurar ventas"
+    Dashboard → Tu evento → "Canales de venta"
   </Step>
   <Step title="Agregar números">
-    - Formato: "11 1234-5678" (sin \+54 9) - Podés agregar múltiples números - Cada
-      número debe confirmar por separado
+    En **"Números de WhatsApp para ventas"** ingresá cada número con el formato
+    **"11 1234-5678"** y tocá **"Añadir"**. Podés agregar varios: los compradores
+    que elijan "Contactar al vendedor" van a chatear con uno de estos números.
   </Step>
   <Step title="Activar ventas WhatsApp">
-    Una vez que tenés al menos 1 número, activar el switch
+    Una vez que tenés al menos 1 número, activá el toggle **"Ventas por WhatsApp"**.
   </Step>
 </Steps>
 
 ### ¿Qué pasa cuando está habilitado?
 
-- Los compradores ven botón **"Contactar vendedor"**
+- Los compradores ven el botón **"Contactar al vendedor"**
 - Son redirigidos a WhatsApp con mensaje prearmado
 - Vos coordinás el pago manualmente
 - **Creás las entradas desde el dashboard** consumiendo créditos
-
-[image: Página pública con botón "Contactar vendedor"]
 
 ### Gestión manual de ventas
 
@@ -195,7 +258,7 @@ Una vez que alguien te escribe por WhatsApp:
 
 ## Ventas mixtas (múltiples métodos)
 
-Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancaria y WhatsApp simultáneamente:
+Podés habilitar **cualquier combinación** de MercadoPago, Stripe, transferencia bancaria y WhatsApp simultáneamente:
 
 <CardGroup cols={2}>
   <Card title="Ventajas" icon="thumbs-up">
@@ -221,7 +284,8 @@ Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancar
 **Ejemplo:**
 
 - Producto: "Entrada General" - Límite: 100
-- MercadoPago vendió: 50
+- MercadoPago vendió: 40
+- Stripe vendió: 10
 - Transferencia bancaria aprobaste: 25
 - WhatsApp vendiste: 20
 - **Disponibles:** 5 restantes
@@ -234,7 +298,7 @@ Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancar
 
 <AccordionGroup>
   <Accordion title="🌍 Público - Aparece en qrTicket.app">
-    **Requisitos:** Tener al menos un método de venta habilitado (MercadoPago, transferencia bancaria o WhatsApp)
+    **Requisitos:** Tener activada la venta por **MercadoPago y/o WhatsApp** y haber agregado una **imagen** al evento.
 
     **Beneficios:**
 
@@ -249,7 +313,7 @@ Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancar
     **Características:**
 
     - No aparece en listados públicos
-    - Solo accesible por link directo
+    - Solo accesible por el link público de venta
     - Mismas funciones de venta
     - Control total de audiencia
   </Accordion>
@@ -258,16 +322,20 @@ Podés habilitar **cualquier combinación** de MercadoPago, transferencia bancar
 ### Hacer público tu evento
 
 <Steps>
-  <Step title="Tener al menos 1 método habilitado">
-    MercadoPago, transferencia bancaria o WhatsApp (o cualquier combinación)
+  <Step title="Cumplir los requisitos">
+    Tené activada la venta por **MercadoPago y/o WhatsApp** y subí una **imagen** al evento.
   </Step>
   <Step title="Activar publicación">
-    En **"Canales de venta"** → Switch **"Publicar evento"**
+    En **"Canales de venta"** → toggle **"Publicar evento"** (el badge pasa de "Privado" a "Público").
   </Step>
   <Step title="Verificar aparición">
     Tu evento aparecerá en la página principal en pocos minutos
   </Step>
 </Steps>
+
+<Tip>
+  El **link público de venta** (qrticket.app/e/{nombre}) y tu **link de referido** personal están en la sección [Link del evento](/events/referral). Compartilos para vender y para llevar el registro de a quién invitás.
+</Tip>
 
 ---
 
@@ -279,25 +347,31 @@ Si necesitás pausar las ventas:
 
 <AccordionGroup>
   <Accordion title="Pausar solo MercadoPago">
-    Desactivar switch "Ventas por MercadoPago"
+    Desactivá el toggle **"Ventas con MercadoPago"**
 
     - Los compradores siguen viendo la página
-    - Solo aparecen las opciones de transferencia bancaria y/o WhatsApp
+    - Quedan disponibles los demás canales que tengas activos
+  </Accordion>
+  <Accordion title="Pausar solo Stripe">
+    Desactivá el toggle de ventas con Stripe
+
+    - Los compradores siguen viendo la página
+    - Quedan disponibles los demás canales que tengas activos
   </Accordion>
   <Accordion title="Pausar solo transferencia bancaria">
-    Desactivar switch "Ventas por transferencia bancaria"
+    Desactivá el toggle **"Ventas por transferencia bancaria"**
 
     - Las solicitudes pendientes se mantienen para que las revises
-    - Solo quedan disponibles MercadoPago y/o WhatsApp
+    - Quedan disponibles los demás canales que tengas activos
   </Accordion>
   <Accordion title="Pausar solo WhatsApp">
-    Remover todos los números de WhatsApp
+    Desactivá el toggle **"Ventas por WhatsApp"** (o remové todos los números)
 
-    - Solo quedan disponibles MercadoPago y/o transferencia bancaria
+    - Quedan disponibles los demás canales que tengas activos
     - Útil si te saturaste de consultas manuales
   </Accordion>
   <Accordion title="Pausar todas las ventas">
-    Desactivar todos los switches
+    Desactivá todos los toggles
 
     - Página sigue visible pero sin opciones de compra
     - Solo información del evento
@@ -310,7 +384,7 @@ Las ventas se pausan automáticamente si:
 
 - **Se agotan los créditos** de la productora
 - **Se alcanzan los límites** de productos
-- **MercadoPago presenta problemas** técnicos
+- **MercadoPago o Stripe presentan problemas** técnicos
 
 ---
 
@@ -348,7 +422,7 @@ En **"Invitados y Transferencias"** del evento ves 3 pestañas:
 
 En "Estadísticas" del evento:
 
-- **Recaudación total:** Manual \+ Transferencia bancaria \+ MercadoPago
+- **Recaudación total:** suma de todos los canales activos (MercadoPago, Stripe, transferencia bancaria y manual)
 - **Productos más vendidos** por cada canal
 - **Conversión:** Visitas vs ventas efectivas
 - **Tendencias:** Picos de venta por hora/día
@@ -358,19 +432,20 @@ En "Estadísticas" del evento:
 ## Problemas comunes
 
 <AccordionGroup>
-  <Accordion title="'No aparece el botón de MercadoPago'">
+  <Accordion title="'No aparece el botón de compra'">
     **Verificá:**
 
-    - Que la productora tenga MercadoPago conectado
+    - Que la productora tenga MercadoPago (o Stripe) conectado
     - Que todos los productos tengan precio (no gratuitos)
-    - Que el switch esté activado en "Canales de venta"
+    - Que el toggle del canal esté activado en "Canales de venta"
   </Accordion>
   <Accordion title="'No recibo solicitudes de transferencia bancaria'">
     **Verificá:**
 
-    - Que el switch de transferencia bancaria esté activado
+    - Que el toggle de transferencia bancaria esté activado
     - Que los datos bancarios estén cargados correctamente
     - Que los productos tengan precio definido
+    - Si querés que te avisen por mail de cada compra, activá el toggle **"Notificación por email"**
   </Accordion>
   <Accordion title="'Los compradores no me escriben por WhatsApp'">
     **Posibles causas:** - Números mal configurados (verificar formato) - WhatsApp
@@ -386,7 +461,7 @@ En "Estadísticas" del evento:
     **El dinero va directamente a tu cuenta MercadoPago**
 
     - Verificá tu panel de MercadoPago
-    - Los tiempos dependen de tu tipo de cuenta
+    - Por ser partner oficial, tus ventas tienen liberación instantánea por defecto
     - qrTicket no maneja ni retiene dinero
   </Accordion>
   <Accordion title="'Aprobé una transferencia por error'">
@@ -407,7 +482,6 @@ En "Estadísticas" del evento:
 <Card title="Recomendación: WhatsApp o transferencia bancaria" icon="message-circle">
   - **Más personal:** Conocés a cada comprador
   - **Flexibilidad:** Diferentes métodos de pago
-  - **Sin comisiones MercadoPago:** Ahorrás en costos
   - **Control total:** Decidís a quién venderle
   - **Transferencia bancaria:** Más ordenado que WhatsApp, el comprador sube el comprobante sin que tengas que pedirlo
 </Card>
@@ -417,6 +491,7 @@ En "Estadísticas" del evento:
 <Card title="Recomendación: MercadoPago + transferencia bancaria" icon="zap">
   - **MercadoPago:** Para la mayoría de ventas automáticas
   - **Transferencia bancaria:** Para quienes no usan MercadoPago o prefieren transferir
+  - **Stripe:** Si esperás compradores del exterior
   - **WhatsApp:** Para casos especiales, grupos, corporativos
   - **Mejor conversión:** Diferentes preferencias de compra
 </Card>
@@ -425,6 +500,7 @@ En "Estadísticas" del evento:
 
 <Card title="Recomendación: MercadoPago principal" icon="credit-card">
   - **Escalabilidad:** No podés atender 500 WhatsApps ni revisar 500 comprobantes
+  - **MercadoPago / Stripe:** Cobros automáticos según el origen de tu público
   - **Transferencia bancaria:** Solo para excepciones puntuales
   - **WhatsApp:** Solo para casos excepcionales
   - **Automatización:** Libera tiempo para otras tareas

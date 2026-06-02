@@ -42,7 +42,9 @@
             "pages": [
               "organizations/index",
               "organizations/mercadopago",
+              "organizations/stripe",
               "organizations/team",
+              "organizations/roles",
               "organizations/analytics",
               "organizations/settings"
             ]
@@ -56,6 +58,7 @@
               "events/stats",
               "events/products",
               "events/sales",
+              "events/coupons",
               "events/team",
               "events/referral",
               "events/scanner",

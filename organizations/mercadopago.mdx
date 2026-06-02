@@ -1,267 +1,133 @@
 ---
 title: "MercadoPago"
-description: "Configurar MercadoPago para ventas automatizadas online"
+description: "Conectar tu cuenta de MercadoPago para vender entradas online"
 icon: "credit-card"
 ---
 
 # MercadoPago
 
-qrTicket permite la venta automatizada de entradas al vincular tu cuenta de MercadoPago a tu productora. Así, tus clientes pueden adquirir entradas directamente desde la página del evento de manera sencilla e intuitiva.
-
-Recibís el dinero de cada venta según tu configuración en MercadoPago: puede ser de forma instantánea o en algunos días, dependiendo del tipo de cuenta y configuración que tengas.
+Conectá tu cuenta de MercadoPago a tu productora para habilitar las ventas online en tus eventos. Una vez conectada, tus clientes pueden comprar entradas directamente desde la página del evento de forma simple e intuitiva.
 
 <Note>
-  **Importante:** Solo el creador de la productora (Administrador) puede vincular su cuenta de MercadoPago.
+  Solo el **Administrador** de la productora puede conectar la cuenta de MercadoPago.
 </Note>
 
-## Diferencias por país
+<Info>
+  MercadoPago es el medio de cobro para productoras de **Argentina**. Si tu productora es de **otro país**, no usás MercadoPago: conectás [Stripe](/organizations/stripe) para aceptar pagos con tarjeta internacional.
+</Info>
 
-La integración funciona diferente según tu país:
-
-<CardGroup cols={2}>
-  <Card title="🇦🇷 Argentina" icon="flag">
-    **Proceso simple:**
-
-    - Un solo clic para conectar
-    - OAuth automático con MercadoPago
-    - Sin configuraciones complejas
-  </Card>
-  <Card title="🌎 Otros países" icon="globe">
-    **Proceso manual:**
-
-    - Registrarse en MercadoPago Developers
-    - Crear aplicación
-    - Copiar tokens manualmente
-  </Card>
-</CardGroup>
-
----
-
-## Vincular tu cuenta de MercadoPago
-
-Lo primero que debes hacer es vincular tu cuenta de MercadoPago a tu productora.
-
-### Para Argentina 🇦🇷
-
-Para ello, dirigite a la sección de **MercadoPago** de tu productora y encontrarás la opción **"Configurar MercadoPago"**.
-
-Aquí verás un menú donde podrás vincular fácilmente tu cuenta de MercadoPago.
-
-[image: Vincular MercadoPago]
-
-Al hacer clic en el botón **"Conectar cuenta"**, serás redirigido a MercadoPago para que ingreses y vincules tu cuenta.
+## Conectar tu cuenta
 
 <Steps>
   <Step title="Dirigite a la configuración">
-    Dashboard → Tu productora → "MercadoPago" → "Configurar MercadoPago"
+    Dashboard → Tu productora → **"MercadoPago"**
+
+    Vas a ver el encabezado **"Conectar cuenta"** con el texto: *"Conecta tu cuenta de Mercado Pago a tu productora para poder habilitar ventas online en tus eventos."*
   </Step>
-  <Step title="Conectar cuenta">
-    Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago
+  <Step title="Conectá tu cuenta">
+    Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago para autorizar la conexión.
   </Step>
-  <Step title="Autorizar permisos">
-    MercadoPago te pregunta si permitís que qrTicket procese pagos. **Hacé clic en
-    "Autorizar"**
+  <Step title="Autorizá la conexión">
+    Iniciá sesión en MercadoPago (si no lo hiciste todavía) y autorizá que qrTicket procese los pagos de tu cuenta.
   </Step>
   <Step title="¡Listo!">
-    Volvés automáticamente a qrTicket con la cuenta conectada
+    Volvés automáticamente a qrTicket con la cuenta conectada.
   </Step>
 </Steps>
 
 <Note>
-  Si no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
+  Si todavía no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
 </Note>
 
-### Para otros países 🌎
+## Cuenta conectada
 
-<Note>
-  MercadoPago solo permite OAuth automático en Argentina. Para otros países necesitás configuración manual a través de MercadoPago Developers.
-</Note>
+Una vez conectada, en la sección **MercadoPago** vas a ver:
 
-<Steps>
-  <Step title="Crear cuenta en MercadoPago Developers">
-    Ingresá a [developers.mercadopago.com](https://developers.mercadopago.com). Una vez allí registrate o inicia sesión con tu cuenta.
-  </Step>
-  <Step title="Crear una aplicación">
-    2. En la esquina superior derecha, clickea en "Crear aplicación".
-    3. Completa los datos requeridos:
-       1. Nombre: "qrTicket - [Tu productora]"
+- El estado **"Conectado"**.
+- El campo **"Apodo de la cuenta"**, editable, para identificar fácilmente qué cuenta tenés vinculada (por ejemplo, "Cuenta de la productora").
+- Los botones **"Cambiar cuenta"** y **"Desconectar"**.
 
-          ![MercadoPago paso 1](/images/mp-1.png)
-       2. Elegí el tipo de pago que querés integrar: "Pagos Online"
-       3. ¿Cómo hiciste la tienda?: "Con un desarrollo propio"
-       4. URL de la tienda: "https://qrticket.app"
-
-          ![Mp 2](/images/mp-2.png)
-       3. Seleccioná cómo quieres recibir pagos en la tienda: "Checkout Pro"
-
-          ![Mp 3](/images/mp-3.png)
-       4. Confirma la creacion completando el captcha y clickeando "Confirmar" 
-
-          ![Mp 4](/images/mp-4.png)
-  </Step>
-  <Step title="Obtener credenciales">
-    1. En el lateral derecho de la pantalla, clickea en "Productivas" y luego "Activar credenciales"
-
-       <img
-         src="/images/mp-5.png"
-         alt="Mp 5"
-         title="Mp 5"
-         style={{ width:"53%" }}
-       />
-
-
-    2. En el formulario, completá lo siguiente:
-       1. Industria: "Otros"
-       2. Sitio web: "https://qrticket.app"
-
-       <img
-         src="/images/prod-form-mp.png"
-         alt="Prod Form Mp Pn"
-         title="Prod Form Mp Pn"
-         style={{ width:"42%" }}
-       />
-       3. Copia el "Access Token"
-
-          <img
-            src="/images/acess-token-mp.png"
-            alt="Acess Token Mp Pn"
-            style={{ width:"57%" }}
-          />
-  </Step>
-  <Step title="Configurar en qrTicket">
-    Dirigete a [Dashboard](https://qrticket.app/dashboard) → Tu productora → "MercadoPago"
-
-    <img
-      src="/images/mp-7.png"
-      alt="Mp 7"
-      title="Mp 7"
-      style={{ width:"63%" }}
-    />
-
-    <img
-      src="/images/mp-8.png"
-      alt="Mp 8"
-      title="Mp 8"
-      style={{ width:"63%" }}
-    />
-
-    \
-    Pegá el Access Token y clickeá en "Guardar".
-
-    <img
-      src="/images/mercadopago-form-qrticket.png"
-      alt="Mercadopago Form Qrticket Pn"
-      title="Mercadopago Form Qrticket Pn"
-      style={{ width:"58%" }}
-    />
-  </Step>
-  <Step title="Todo listo!">
-    Ya estas listo para vender entradas utilizando MercadoPago.
-  </Step>
-</Steps>
+### Cambiar de cuenta
 
 <Warning>
-  **Importante:** No compartas tu Acess Token con nadie.
+  Si querés cambiar de cuenta, primero **cerrá sesión en mercadopago.com.ar**; de lo contrario, se vinculará la cuenta que ya está abierta en tu navegador.
 </Warning>
 
----
+Después de cerrar sesión, hacé clic en **"Cambiar cuenta"** y conectá la cuenta que quieras.
 
 ## Activar la venta en tus eventos
 
-Al vincular tu cuenta de MercadoPago a tu productora, los eventos que tengan activada la venta por MercadoPago podrán recibir pagos desde la página del evento.
-
-Por defecto, la venta por MercadoPago estará desactivada para todos los eventos. Para activarla, en el menú del evento que quieras habilitar, encontrarás la opción **"Canales de venta"**, donde podrás activar o desactivar la venta haciendo clic en el deslizador.
+Por defecto, la venta por MercadoPago está desactivada en cada evento. Para activarla, entrá al evento que quieras habilitar y dirigite a **"Canales de venta"**, donde podés activar la venta con el deslizador.
 
 <Steps>
-  <Step title="Ir a tu evento">
-    Dashboard → Seleccionar evento → **"Canales de venta"**
+  <Step title="Tu producto debe tener precio">
+    Para vender con MercadoPago, el tipo de entrada debe tener un precio configurado. Más información en [Tipos de Entrada](/events/products).
   </Step>
-  <Step title="Configurar recargo (opcional)">
-    Podés modificar el recargo que se aplica al cliente para cubrir las comisiones
+  <Step title="Activá la venta en el evento">
+    Dashboard → Seleccionar evento → **"Canales de venta"** → activá las ventas con MercadoPago.
+
+    Más detalles en [Canales de venta](/events/sales).
   </Step>
 </Steps>
 
-## Precio de las entradas
-
-Para vender con MercadoPago, debés tener configurado un precio para las entradas.
-
-<Card title="Información importante" icon="info-circle">
-  Más información sobre cómo configurar precios en [Tipos de
-  Entrada](/events/products).
-</Card>
-
 ## Cargos por venta
 
-### qrTicket
+<Tip>
+  **qrTicket es partner oficial de MercadoPago.** Gracias a esta alianza, todas tus ventas tienen **liberación instantánea con tarifas preferenciales**. Ya viene activo en cada evento, sin que tengas que configurar nada.
+</Tip>
 
-Mientras que nosotros **solo te cobraremos 1 crédito** por cada venta realizada, MercadoPago tiene su propio cargo por venta.
+Por nuestra alianza, pagás menos comisión que vendiendo por tu cuenta. Estas son las tarifas de **liberación instantánea** (la que viene por defecto):
 
-### MercadoPago
+| Medio de pago | Con qrTicket | Sin qrTicket |
+| --- | --- | --- |
+| Dinero en cuenta / Mercado Crédito | 3,50% + IVA | 6,29% + IVA |
+| Tarjeta de débito | 4,20% + IVA | 6,29% + IVA |
+| Tarjeta de crédito | 6,20% + IVA | 6,29% + IVA |
 
-Los cargos de MercadoPago varían según:
+### Liberación a 10 días (opcional)
 
-- **Tu tipo de cuenta** (personal, vendedor, empresa)
-- **Tu configuración de liquidación** (instantánea, 1 día, 7 días, etc.)
-- **El método de pago** usado por el comprador
-- **Tu país** y volumen de transacciones
+Si preferís tarifas aún más bajas y no necesitás el dinero al instante, podés pedir la **liberación a 10 días corridos**. Coordinamos con MercadoPago el cambio de plazo en tu cuenta.
+
+| Medio de pago | Con qrTicket | Sin qrTicket |
+| --- | --- | --- |
+| Dinero en cuenta / Mercado Crédito | 1,60% + IVA | 4,39% + IVA |
+| Tarjeta de débito | 2,40% + IVA | 4,39% + IVA |
+| Tarjeta de crédito | 4,30% + IVA | 4,39% + IVA |
+
+### ¿Quién paga el cargo de MercadoPago?
+
+En cada evento, dentro de **"Canales de venta"**, vas a encontrar la opción **"Pasar cargos al comprador"**:
+
+- **Activada:** el comprador asume el cargo de MercadoPago.
+- **Apagada:** el cargo lo absorbe el organizador.
+
+Más información en [Canales de venta](/events/sales).
 
 <Note>
-  Más información sobre los cargos de MercadoPago en [su sitio
-  oficial](https://www.mercadopago.com.ar/ayuda/comisiones_21230).
+  qrTicket cobra solo **1 crédito por cada venta**. El cargo de MercadoPago es aparte y se rige por las tarifas de arriba.
 </Note>
-
-### Recargo al cliente
-
-Por defecto, tus clientes verán un recargo del **6.29%** al abonar con MercadoPago. De esta manera, a pesar de las comisiones de MercadoPago, vos no perdés dinero por la venta.
-
-Podés modificar este recargo en el mismo menú de configuración de ventas del evento.
-
-[image: Configurar recargo MercadoPago]
-
-### ¿Cuándo recibo el dinero?
-
-El dinero se acredita en tu cuenta de MercadoPago según la configuración que tengas:
-
-- **Liquidación inmediata:** Recibís el dinero al instante (mayor comisión)
-- **Liquidación en 1 día:** Recibís el dinero al día siguiente (comisión estándar)
-- **Liquidación en 7 días:** Recibís el dinero a la semana (menor comisión)
-- **Liquidación en 15-30 días:** Recibís el dinero más tarde (comisiones más bajas)
-
-<Warning>
-  Los tiempos de liquidación y las comisiones asociadas se configuran directamente en tu cuenta de MercadoPago, no en qrTicket.
-</Warning>
-
----
 
 ## Control de ventas
 
-Podés ver todas las ventas realizadas a través de MercadoPago en:
+Podés ver todas las ventas realizadas con MercadoPago en:
 
-- **En qrTicket:** Dashboard → Evento → **"Invitados y Transferencias"** → Tab **"MercadoPago"**
-- **En MercadoPago:** Tu panel de MercadoPago normal donde aparecen todas tus transacciones
+- **En qrTicket:** Dashboard → Evento → [**"Invitados y Transferencias"**](/events/guests) → pestaña **"MercadoPago"**.
+- **En MercadoPago:** tu panel habitual de MercadoPago, donde aparecen todas tus transacciones.
 
 ## Problemas comunes
 
 <AccordionGroup>
-  <Accordion title="Error 'No se pudo conectar la cuenta'">
-    **Posibles causas:**
-
-    - Cuenta MercadoPago suspendida o con problemas
-    - Restricciones en tu cuenta por verificación pendiente
-
-    **Solución:** Verificá el estado de tu cuenta en MercadoPago directamente
+  <Accordion title="No puedo conectar la cuenta">
+    Verificá el estado de tu cuenta directamente en MercadoPago. Una cuenta suspendida o con verificación pendiente puede impedir la conexión.
   </Accordion>
-  <Accordion title="Los pagos no aparecen en mi cuenta">
-    **Verificá:** - Que usaste las credenciales de producción (no test) - Que la cuenta MercadoPago coincide con las credenciales - Que el webhook esté configurado correctamente
-  </Accordion>
-  <Accordion title="'Credenciales inválidas' en configuración manual">
-    **Revisá:** - Que copiaste completas las credenciales (sin espacios) - Que sean de producción (pk_live, APP_USR) - Que la aplicación esté activa en MercadoPago Developers
+  <Accordion title="Se conectó la cuenta equivocada">
+    Esto pasa cuando ya tenías otra sesión abierta en el navegador. Cerrá sesión en [mercadopago.com.ar](https://www.mercadopago.com.ar), volvé a qrTicket y usá **"Cambiar cuenta"**.
   </Accordion>
   <Accordion title="¿Puedo desconectar MercadoPago?">
-    Sí, podés desconectar en cualquier momento. Los eventos ya publicados dejarán de aceptar pagos online hasta que reconectes.
+    Sí, podés desconectar en cualquier momento con el botón **"Desconectar"**. Los eventos que tengan la venta activada dejarán de aceptar pagos online hasta que vuelvas a conectar.
   </Accordion>
 </AccordionGroup>
 
 ---
 
-¿Problemas conectando MercadoPago? Contactanos por [WhatsApp](https://wa.me/5491122503348) con capturas de pantalla del error.
+¿Necesitás ayuda? Contactanos por [WhatsApp](https://wa.me/5491122503348).

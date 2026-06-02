@@ -70,8 +70,8 @@ Cada producto puede tener diferentes estados:
   <Accordion title="🔴 Agotado - Sin disponibilidad">
     Se muestra en la página pero no se puede comprar (límite alcanzado).
   </Accordion>
-  <Accordion title="👁️ Oculto - Solo equipo de la productora">
-    Solo el equipo ve el producto. Útil para preparar lanzamientos.
+  <Accordion title="👁️ Oculto - Equipo de la productora y link directo">
+    No aparece en la página pública, pero el equipo de la productora puede verlo y también es accesible por link directo. Útil para preparar lanzamientos o vender a un grupo puntual.
   </Accordion>
   <Accordion title="⭐ Exclusivo - Solo administradores">
     Solo administradores pueden crear entradas de este tipo.
@@ -83,13 +83,18 @@ Cada producto puede tener diferentes estados:
 
 ## Métodos de venta
 
-Cada evento puede vender de **3 formas**:
+Cada evento puede vender de **4 formas**:
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="MercadoPago" icon="credit-card">
     - Pago online automático
     - Entradas se envían por email
     - Requiere MercadoPago conectado
+  </Card>
+  <Card title="Stripe" icon="credit-card">
+    - Tarjeta de crédito/débito internacional
+    - Para productoras fuera de Argentina
+    - Requiere Stripe conectado
   </Card>
   <Card title="Transferencia bancaria" icon="building-columns">
     - Comprador transfiere y sube comprobante
@@ -112,11 +117,13 @@ Podés habilitar **cualquier combinación** de métodos al mismo tiempo.
 Cada evento tiene su **página pública** donde los compradores pueden:
 
 - Ver detalles del evento (fecha, lugar, descripción)
+- Recorrer la **galería** del evento (fotos y videos del lugar, line-up o ediciones anteriores)
+- Ver la **ubicación** con un minimapa
 - Elegir productos y cantidades
-- Pagar con MercadoPago o contactarte por WhatsApp
+- Pagar con MercadoPago, Stripe, transferencia bancaria o contactarte por WhatsApp
 - Recibir entradas con códigos QR únicos
 
-[image: Ejemplo de página pública de evento]
+El botón principal es **Comprar Entradas**, que muestra el precio más bajo disponible ("Desde $X"). Si tu productora está verificada, tu nombre aparece con un badge **Verificado** que les da más confianza a los compradores.
 
 ### Publicación del evento
 

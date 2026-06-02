@@ -8,8 +8,8 @@ icon: "box"
 
 Los **productos** son todo lo que podés vender en tu evento: entradas de acceso, extras (comida/bebida) y combos que combinan varios elementos.
 
-<Card title="1 crédito = 1 producto generado" icon="coins">
-  Cada vez que se vende o crea cualquier producto (entrada, o extra), se descuenta 1 crédito.
+<Card title="1 crédito = 1 producto" icon="coins">
+  Cada vez que se genera o vende cualquier producto (entrada o extra), se descuenta 1 crédito.
 </Card>
 
 ## Tipos de productos
@@ -38,9 +38,9 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
 
     Combinan entradas \+ extras:
 
-    - - Entrada \+ 2 cervezas
-    - - 2x1 entrada General
-      - - Entrada VIP \+ estacionamiento \+ consumo
+    - Entrada \+ 2 cervezas
+    - 2x1 entrada General
+    - Entrada VIP \+ estacionamiento \+ consumo
   </Card>
 </CardGroup>
 
@@ -61,40 +61,61 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
 
 ### Paso 2: Configurar el producto
 
-Independientemente del tipo, todos los productos tienen:
+Tomando una **Entrada** como ejemplo, estos son los campos del editor:
 
 <AccordionGroup>
   <Accordion title="Información básica">
     **Requerido:**
 
     - **Nombre:** Ej: "General", "Cerveza Artesanal", "VIP \+ Cena"
-    - **Estado:** Activo, Oculto, Exclusivo, etc.
+    - **Estado:** Activo, Oculto, Exclusivo, Agotado o Inactivo (ver más abajo)
 
     **Opcional:**
 
     - **Descripción:** Detalles adicionales para compradores
-    - **Imagen:** Visual del producto
   </Accordion>
-  <Accordion title="Precio y límites">
-    **Precio:**
+  <Accordion title="Precio">
+    - **Con precio:** Se cobra en las ventas por MercadoPago, Stripe o transferencia bancaria.
+    - **Sin precio (vacío):** El producto es gratuito. Cualquier persona con el link del evento podrá reclamarlo.
 
-    - **Sin precio:** Productos gratuitos (cortesías)
-    - **Con precio:** Necesario para ventas por MercadoPago y transferencia bancaria
-
-    **Límites:**
-
-    - **Límite total:** Máximo disponible (ej: 200 entradas VIP)
-    - **Límite por compra:** Máximo por transacción online
-    - **Limitar vigencia de uso:** Restringí en qué fechas o momentos se puede usar el producto
+    <Tip>
+      Si dejás el precio vacío, el editor te avisa: "Este producto es gratuito y está activo. Cualquier persona con el link del evento podrá reclamarlo."
+    </Tip>
+  </Accordion>
+  <Accordion title="Límites y vigencia (opcionales)">
+    - **Límite por Compra:** Máximo de unidades que alguien puede llevar en una misma compra.
+    - **Límite:** Total disponible del producto (ej: 200 entradas VIP). Cuando se alcanza, el producto pasa a "Agotado".
+    - **Limitar vigencia de uso:** Activá este checkbox para restringir en qué fechas o momentos se puede usar el producto.
   </Accordion>
   <Accordion title="Estados del producto">
-    - **Activo:** Visible para todos, se puede comprar
-    - **Agotado:** Automático cuando se alcanza el límite
-    - **Oculto:** Solo visible para el equipo
-    - **Exclusivo:** Solo administradores pueden crear
-    - **Inactivo:** Deshabilitado temporalmente
+    - **Activo:** Visible para todos.
+    - **Oculto:** Equipo de la productora y link directo.
+    - **Exclusivo:** Solo administradores.
+    - **Agotado:** Sin disponibilidad.
+    - **Inactivo:** Desactivado.
   </Accordion>
 </AccordionGroup>
+
+---
+
+## La lista de productos
+
+En **Productos** vas a ver tus productos organizados en pestañas: **Tipos de Entrada**, **Extras** y **Combos**.
+
+La tabla muestra estas columnas:
+
+| Columna | Qué muestra |
+| --- | --- |
+| **Nombre** | El nombre del producto |
+| **Estado** | Activo, Oculto, Exclusivo, Agotado o Inactivo (lo cambiás desde acá) |
+| **Precio** | El precio configurado (o gratuito si está vacío) |
+| **Límite** | Total disponible del producto |
+| **Vendidas** | Cuántas unidades se vendieron |
+| **Recaudado** | El total recaudado por ese producto |
+
+<Tip>
+  Con el botón **Exportar** descargás la lista de productos para revisarla por fuera de la plataforma.
+</Tip>
 
 ---
 
@@ -107,7 +128,7 @@ Independientemente del tipo, todos los productos tienen:
     Hacé clic en el nombre del producto que querés editar
   </Step>
   <Step title="Modificar configuración">
-    Podés cambiar: nombre, precio, límites, estado, descripción
+    Podés cambiar: nombre, descripción, estado, precio, límites y la vigencia de uso
   </Step>
   <Step title="Guardar cambios">
     Los cambios son inmediatos y afectan las ventas futuras
@@ -130,8 +151,11 @@ Independientemente del tipo, todos los productos tienen:
     **Solución:** Comprar más créditos antes de que se agoten las ventas
   </Accordion>
   <Accordion title="'Los compradores no ven un producto'">
-    **Verificá:** - Que el estado sea "Activo" - Que no esté agotado (límite
-    alcanzado) - Que tenga precio para ventas MercadoPago
+    **Verificá:**
+
+    - Que el estado sea **Activo** (Oculto solo es visible para el equipo y por link directo; Exclusivo solo para administradores)
+    - Que no esté **Agotado** (se alcanzó el límite)
+    - Que no esté **Inactivo**
   </Accordion>
   <Accordion title="'Quiero cambiar el precio pero ya se vendieron entradas'">
     **Opción 1:** Crear nuevo producto con precio actualizado

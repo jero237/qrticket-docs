@@ -14,22 +14,37 @@ Dashboard → Tu evento → **"Configuración"**
 
 ## Datos editables
 
-### Información básica
+### Información
 
-- **Nombre del evento:** El título que ven los compradores
-- **Fecha:** Cuándo se realiza el evento
-- **Eventos de múltiples días:** Activá esta opción si tu evento dura más de un día (festivales, conferencias, etc.)
-- **Descripción (opcional):** Detalles adicionales sobre el evento
-- **Imagen (opcional):** Flyer o imagen del evento (formato recomendado: 3:4 vertical)
-- **Ubicación (opcional):** Dónde se realiza el evento
-- **Instagram del evento (opcional):** Cuenta de Instagram asociada al evento
+- **Nombre del evento:** El título que ven los compradores.
+- **Link del evento:** El slug del link público es editable. Tu evento vive en `qrticket.app/e/{slug}` y podés personalizar la parte final para que sea más fácil de recordar y compartir.
+- **Fecha:** Cuándo se realiza el evento.
+- **El evento dura múltiples días:** Activá este checkbox si tu evento se extiende por más de un día (festivales, conferencias, etc.).
+- **Descripción (opcional):** Detalles adicionales sobre el evento.
 
-### Opciones avanzadas
+### Imagen principal
+
+Subí el flyer o imagen del evento en formato **JPG, PNG o WebP** (formato recomendado: 3:4 vertical).
+
+<Note>
+  Incluí el logo de qrTicket en tu flyer para aparecer en **Eventos Destacados**. Hacé clic en **"Descargar logos"** para obtenerlos.
+</Note>
+
+### Ubicación
+
+Buscá un lugar en Google Maps para mostrar un minimapa en la página del evento, o escribí el texto que prefieras.
+
+### Galería (opcional)
+
+Sumá hasta **12 archivos** entre imágenes y/o videos. Es ideal para mostrar fotos del lugar, de ediciones anteriores o un trailer corto del evento.
+
+### Configuración
+
+- **Instagram del evento:** Cuenta de Instagram asociada al evento.
+- **Permitir transferencia de entradas:** Al activar este toggle, los asistentes pueden transferir sus entradas a otros usuarios. Se genera una nueva entrada QR para el receptor y la original queda anulada.
+- **Datos del comprador:** Definí qué información se pide al momento de la compra.
 
 <AccordionGroup>
-  <Accordion title="Permitir transferencia de entradas">
-    Al activar esta opción, los asistentes pueden transferir sus entradas a otros usuarios. Se genera una nueva entrada QR para el receptor y la original queda anulada.
-  </Accordion>
   <Accordion title="Campos obligatorios">
     Seleccioná qué campos son obligatorios al momento de la compra de entradas (nombre, email, teléfono, etc.).
   </Accordion>
@@ -40,18 +55,21 @@ Dashboard → Tu evento → **"Configuración"**
 
 ## Eventos destacados
 
-Al descargar los logos de qrTicket e incluirlos en tu flyer, tu evento aparecerá en la sección de **"Eventos Destacados"**. Hacé clic en **"Descargar logos de QR Ticket"** para obtenerlos.
+Al descargar los logos de qrTicket e incluirlos en tu flyer, tu evento aparecerá en la sección de **"Eventos Destacados"**. Hacé clic en **"Descargar logos"** para obtenerlos.
 
 ## Vista previa
 
-En el lado derecho de la pantalla podés ver una vista previa de cómo se verá tu evento en la página pública, incluyendo la imagen, nombre, fecha, ubicación y los tipos de entrada disponibles.
+En el lado derecho de la pantalla podés ver una vista previa en vivo de cómo se verá tu evento en la página pública, incluyendo la imagen, nombre, fecha, ubicación y los tipos de entrada disponibles. Se actualiza a medida que vas editando.
 
-## Eliminar evento
+## Zona de peligro
 
-En la parte inferior de la configuración encontrás el botón **"Eliminar Evento"**.
+En la parte inferior de la configuración encontrás la **Zona de peligro**, con dos acciones:
+
+- **Duplicar:** Crea una copia del evento con su configuración, para que armes uno nuevo sin empezar de cero.
+- **Eliminar evento:** Borra el evento de forma permanente.
 
 <Warning>
-  Eliminar un evento es **irreversible**. Se borran todas las entradas, invitados y datos asociados. Los créditos ya consumidos no se recuperan.
+  Eliminar un evento es **irreversible**. Al eliminarlo, los créditos **no usados** se transfieren a tu cuenta. Esta acción no se puede deshacer.
 </Warning>
 
 ---
