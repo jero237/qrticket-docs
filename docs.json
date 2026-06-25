@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Guía qrTicket",
   "colors": {
-    "primary": "#7C3AED",
-    "light": "#7C3AED",
-    "dark": "#7C3AED"
+    "primary": "#A142FF",
+    "light": "#B66DFF",
+    "dark": "#8B2FE6"
   },
   "favicon": "/favicon.ico",
   "navigation": {
