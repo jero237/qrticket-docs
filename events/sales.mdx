@@ -92,6 +92,10 @@ En la configuración de MercadoPago vas a encontrar el toggle **"Pasar cargos al
   qrTicket es **partner oficial de MercadoPago**: por esa alianza, tus ventas tienen **liberación instantánea con tarifas preferenciales** por defecto, sin que tengas que configurar nada. Mirá el detalle de las tarifas en la [Guía MercadoPago](/organizations/mercadopago).
 </Tip>
 
+<Note>
+  Las tarifas preferenciales y la liberación instantánea/a 10 días aplican a productoras de **Argentina**. Si tu productora es de otro país, al activar "Pasar cargos al comprador" definís vos el **porcentaje** que se le suma al comprador para cubrir el cargo de MercadoPago.
+</Note>
+
 ### ¿Qué pasa cuando está habilitado?
 
 - Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
@@ -124,7 +128,7 @@ Stripe es el canal pensado para **cobros internacionales**: te permite aceptar t
     Dashboard → Tu evento → "Canales de venta"
   </Step>
   <Step title="Expandir 'Stripe'">
-    Activá el toggle de ventas con Stripe para este evento.
+    Activá el toggle **"Ventas con Stripe"** para este evento.
   </Step>
   <Step title="Verificar configuración">
     Si todo está bien, aparece ✅ "Habilitado"
@@ -192,7 +196,7 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
 
 <Steps>
   <Step title="Revisar solicitudes pendientes">
-    Dashboard → Evento → **"Invitados y Transferencias"** → Pestaña **"Transferencia"**.
+    Dashboard → Evento → **"Compras y transferencias"** → tarjeta **"Transferencias por aprobar"**.
     Vas a ver las solicitudes con estado **pendiente**, junto con el comprobante subido por el comprador.
   </Step>
   <Step title="Verificar el comprobante">
@@ -221,7 +225,7 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
   <Step title="Agregar números">
     En **"Números de WhatsApp para ventas"** ingresá cada número con el formato
     **"11 1234-5678"** y tocá **"Añadir"**. Podés agregar varios: los compradores
-    que elijan "Contactar al vendedor" van a chatear con uno de estos números.
+    que elijan "Contactar a vendedor" van a chatear con uno de estos números.
   </Step>
   <Step title="Activar ventas WhatsApp">
     Una vez que tenés al menos 1 número, activá el toggle **"Ventas por WhatsApp"**.
@@ -230,7 +234,7 @@ El flujo de transferencia bancaria es semi-automático: el comprador completa la
 
 ### ¿Qué pasa cuando está habilitado?
 
-- Los compradores ven el botón **"Contactar al vendedor"**
+- Los compradores ven el botón **"Contactar a vendedor"**
 - Son redirigidos a WhatsApp con mensaje prearmado
 - Vos coordinás el pago manualmente
 - **Creás las entradas desde el dashboard** consumiendo créditos
@@ -249,8 +253,7 @@ Una vez que alguien te escribe por WhatsApp:
     Dashboard → Evento → **"Crear entradas"** → Seleccioná el tipo de entrada, ingresá los nombres y confirmá.
   </Step>
   <Step title="Enviar entradas">
-    - Descargar PDFs con códigos QR
-    - Enviar por WhatsApp, email o imprimir
+    En el paso final de **"Crear entradas"** podés **"Compartir enlace"**, **"Copiar enlace"** o **"Enviar por email"** las entradas al comprador.
   </Step>
 </Steps>
 
@@ -298,11 +301,11 @@ Podés habilitar **cualquier combinación** de MercadoPago, Stripe, transferenci
 
 <AccordionGroup>
   <Accordion title="🌍 Público - Aparece en qrTicket.app">
-    **Requisitos:** Tener activada la venta por **MercadoPago y/o WhatsApp** y haber agregado una **imagen** al evento.
+    **Requisito:** tener activada la venta por **MercadoPago y/o WhatsApp** (al menos un canal de venta online). Te recomendamos también una **imagen/flyer**.
 
     **Beneficios:**
 
-    - Aparece en la página principal de qrTicket
+    - Aparece en la página principal de qrTicket (tras la aprobación del equipo)
     - Puede ser promocionado en Instagram de qrTicket
     - Mayor alcance y descubrimiento orgánico
     - SEO y posicionamiento
@@ -322,16 +325,20 @@ Podés habilitar **cualquier combinación** de MercadoPago, Stripe, transferenci
 ### Hacer público tu evento
 
 <Steps>
-  <Step title="Cumplir los requisitos">
-    Tené activada la venta por **MercadoPago y/o WhatsApp** y subí una **imagen** al evento.
+  <Step title="Cumplir el requisito">
+    Tené activada la venta por **MercadoPago y/o WhatsApp** (al menos un canal online). Sumá una **imagen/flyer** para que tu evento se vea bien.
   </Step>
   <Step title="Activar publicación">
-    En **"Canales de venta"** → toggle **"Publicar evento"** (el badge pasa de "Privado" a "Público").
+    En **"Canales de venta"** → toggle **"Publicar evento"**. Tu evento pasa a **"En revisión"** con el aviso *"Tu evento está en revisión. Te notificaremos cuando sea aprobado."*
   </Step>
-  <Step title="Verificar aparición">
-    Tu evento aparecerá en la página principal en pocos minutos
+  <Step title="Esperar la aprobación">
+    El equipo de qrTicket revisa tu evento. Una vez **aprobado**, queda **Público** y aparece en la página principal. Si fuera **Rechazado**, recibís el motivo para editarlo y reenviarlo.
   </Step>
 </Steps>
+
+<Card title="Difusión y descubrimiento" icon="bullhorn" href="/events/promotion">
+  Mirá cómo funciona la publicación, el video promocional y los Eventos Destacados.
+</Card>
 
 <Tip>
   El **link público de venta** (qrticket.app/e/{nombre}) y tu **link de referido** personal están en la sección [Link del evento](/events/referral). Compartilos para vender y para llevar el registro de a quién invitás.
@@ -392,31 +399,11 @@ Las ventas se pausan automáticamente si:
 
 ### Métricas disponibles
 
-En **"Invitados y Transferencias"** del evento ves 3 pestañas:
+En **"Compras y transferencias"** del evento ves todas las ventas en **una sola tabla**, con una columna **"Medio"** que indica el canal de cada compra (MercadoPago, Stripe, Transferencia, Gratis, WhatsApp o Manual). Podés filtrar por medio, tipo de entrada, vendedor, estado de escaneo y más. Las solicitudes de transferencia pendientes aparecen aparte, en la tarjeta **"Transferencias por aprobar"**.
 
-<CardGroup cols={2}>
-  <Card title="Manual" icon="user-plus">
-    **Ventas por WhatsApp/manual**
-
-    - Entradas creadas por el equipo
-    - Por colaborador
-    - Método de pago personalizado
-  </Card>
-  <Card title="Transferencia bancaria" icon="building-columns">
-    **Ventas por transferencia**
-
-    - Solicitudes pendientes, aprobadas y rechazadas
-    - Comprobantes subidos
-    - Datos del comprador
-  </Card>
-  <Card title="MercadoPago" icon="credit-card">
-    **Ventas automáticas online**
-
-    - Pagos procesados automáticamente
-    - Estado del pago
-    - Datos de facturación
-  </Card>
-</CardGroup>
+<Card title="Compras y transferencias" icon="users" href="/events/guests">
+  Mirá cómo gestionar invitados, filtrar por medio de pago y aprobar transferencias.
+</Card>
 
 ### Métricas combinadas
 
@@ -467,7 +454,7 @@ En "Estadísticas" del evento:
   <Accordion title="'Aprobé una transferencia por error'">
     **Las entradas ya se generaron y los créditos se descontaron.**
 
-    - Podés anular las entradas desde la lista de invitados
+    - Podés **eliminar** las entradas desde la lista de invitados (no emite reembolso al comprador)
     - Los créditos consumidos no se recuperan automáticamente
     - Contactá soporte si necesitás ayuda
   </Accordion>

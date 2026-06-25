@@ -1,106 +1,128 @@
 ---
-title: "Invitados y transferencias"
-description: "Gestioná la lista de invitados y las transferencias bancarias de tu evento"
+title: "Compras y transferencias"
+description: "Gestioná todas las compras de tu evento: invitados, medios de pago y aprobación de transferencias bancarias"
 icon: "users"
 ---
 
-# Invitados y transferencias
+# Compras y transferencias
 
-La sección **"Invitados y Transferencias"** es el centro de control de todas las entradas vendidas o creadas para tu evento. Desde acá podés ver, buscar, filtrar y gestionar a todos los asistentes.
+La sección **"Compras y transferencias"** es el centro de control de todas las entradas vendidas o creadas para tu evento. Desde acá ves, buscás, filtrás y gestionás a todos tus asistentes, y aprobás las compras por transferencia bancaria.
 
 ## Acceder
 
-Dashboard → Tu evento → **"Invitados y Transferencias"**
+Dashboard → Tu evento → **"Compras y transferencias"**
 
-## Resumen general
+Con el botón **"Crear entradas"** (arriba a la derecha) generás entradas manualmente. Ver [Crear entradas](/events/create-tickets).
 
-En la parte superior de la página vas a ver un resumen con:
+## Resumen
 
-- **Entradas vendidas:** Total de entradas y porcentaje de escaneadas
-- **Extras vendidos:** Total de extras y porcentaje de escaneados
+Arriba de la página hay un resumen con barras de progreso:
 
-Cada sección incluye una barra de progreso visual.
+- **Entradas vendidas:** total de entradas y porcentaje de escaneadas (`{x}% escaneadas`).
+- **Ventas de barra:** total de productos de barra y porcentaje de canjeados en la barra (`{x}% canjeados en barra`).
 
-## Pestañas por tipo de venta
+Desplegando **"Detalles"** ves el desglose por **Hombres** y **Mujeres**, y el detalle **"Por Producto"**.
 
-Las entradas se organizan en tres pestañas según cómo fueron vendidas:
+<Note>
+  Las entradas reembolsadas o transferidas no se cuentan en estas métricas.
+</Note>
 
-<CardGroup cols={3}>
-  <Card title="Manual" icon="user-plus">
-    Entradas creadas manualmente por el equipo. Incluye ventas por WhatsApp, efectivo y cortesías.
-  </Card>
-  <Card title="MercadoPago" icon="credit-card">
-    Ventas automáticas procesadas a través de MercadoPago. Incluye pagos con tarjeta y otros medios.
-  </Card>
-  <Card title="Transferencia" icon="building-columns">
-    Solicitudes de compra por transferencia bancaria. Pueden estar pendientes de aprobación.
-  </Card>
-</CardGroup>
+## Transferencias por aprobar
 
-## Tabla de invitados
+Si tenés ventas por transferencia bancaria, aparece una tarjeta **"Transferencias por aprobar"** con el número de solicitudes. Solo se muestra cuando hay solicitudes pendientes o rechazadas.
 
-Cada pestaña muestra una tabla con la siguiente información:
-
-- **Nombre** del asistente (con link al detalle)
-- **Tipo** de entrada (General, VIP, etc.)
-- **Cantidad** de entradas de esa carga o venta
-- **Género** del asistente
-- **Vendedor** que creó o gestionó la entrada
-- **Escaneado** (si la entrada ya fue validada, con fecha y hora)
-
-### Acciones disponibles
-
-- **Buscar:** Filtrá por nombre del asistente
-- **Filtros:** Filtrá por tipo de entrada, estado de escaneo y más
-- **Exportar:** Descargá la lista completa en formato CSV
-- **Acciones individuales:** Hacé clic en el menú (⋮) de cada fila para ver opciones adicionales
-
-## Herramientas de invitados
-
-Desde acá podés exportar la lista completa o detectar automáticamente el género de tus invitados.
-
-<CardGroup cols={2}>
-  <Card title="Reporte general" icon="file-arrow-down">
-    Exportá la lista completa de invitados para analizarla o compartirla con tu equipo.
-  </Card>
-  <Card title="Detectar géneros con IA" icon="wand-magic-sparkles">
-    Detectá automáticamente el género de tus invitados a partir de sus nombres, sin tener que cargarlo a mano.
-  </Card>
-</CardGroup>
-
-## Gestión de transferencias bancarias
-
-En la pestaña **"Transferencia"** vas a ver las solicitudes de compra por transferencia bancaria. El número junto a la pestaña indica cuántas solicitudes hay pendientes de revisión.
+> Revisá el comprobante de cada transferencia y aprobá o rechazá la compra. Al aprobarla se generan las entradas y se envían al comprador.
 
 <Steps>
-  <Step title="Revisar solicitudes pendientes">
-    Las solicitudes pendientes muestran el comprobante subido por el comprador.
-  </Step>
-  <Step title="Verificar el comprobante">
-    Revisá que el monto transferido coincida con el total de la compra.
+  <Step title="Verificar la solicitud">
+    Tocá **"Verificar"** en una solicitud pendiente. Se abre la ventana **"Transferencia de {nombre}"** con el comprobante que subió el comprador y sus datos (email, DNI, teléfono).
   </Step>
   <Step title="Aprobar o rechazar">
-    **Aprobar:** Se generan las entradas y se envían por email. Se descuentan créditos.
-
-    **Rechazar:** La solicitud se cancela. No se consumen créditos.
+    - **Aprobar:** se generan las entradas, se envían al comprador por email y se descuentan créditos.
+    - **Rechazar:** podés cargar un **"Motivo del rechazo (opcional)"** (ej: *"El comprobante no coincide con el monto de la compra"*) y el comprador recibe la notificación.
   </Step>
 </Steps>
 
 <Warning>
-  Una vez aprobada la solicitud, las entradas se generan y los créditos se descuentan. Esta acción no se puede deshacer fácilmente.
+  Revisá que el monto del comprobante coincida con el total de la compra antes de aprobar. Al aprobar, las entradas se generan y los créditos se descuentan.
 </Warning>
+
+Las solicitudes rechazadas quedan visibles pero atenuadas, con la etiqueta **"Rechazado"**.
+
+## Tabla de invitados
+
+Debajo del título **"Invitados"** vas a ver **una sola tabla** con todas las entradas (ya no hay pestañas separadas por canal). El canal de venta se muestra en la columna **"Medio"**, que también podés filtrar.
+
+| Columna | Qué muestra |
+| --- | --- |
+| **Nombre** | Nombre del asistente (con link al detalle) |
+| **Medio** | Canal de la venta: MercadoPago, Stripe, Transferencia, Gratis, WhatsApp, Manual o Desconocido |
+| **Tipo** | Producto y cantidad (ej: *2x VIP*) |
+| **Cantidad** | Cantidad de entradas |
+| **Género** | Masculino / Femenino |
+| **Vendedor** | Quién cargó o gestionó la venta |
+| **Escaneados** | Cuántos QR ya se validaron (sobre el total) |
+| **Monto** | Total de la compra |
+| **Cuenta** | Cuenta del comprador |
+| **Reembolsado** | Sí / No |
+
+<Note>
+  Las entradas reembolsadas, eliminadas o ya escaneadas quedan visibles pero atenuadas y ordenadas al final. Las entradas que llegaron por transferencia de otro asistente aparecen como **"Recibido de otro invitado"**.
+</Note>
+
+### Buscar y filtrar
+
+- **Buscar:** por nombre del asistente.
+- **Filtros:** por **Medio**, **Tipo**, **Cantidad**, **Género**, **Vendedor**, **Escaneados**, **Cuenta** y **Reembolsado**.
+
+### Acciones por fila
+
+En el menú **"Acciones"** (⋮) de cada fila:
+
+- **Ver detalles** — abre la ficha del asistente.
+- **Compartir QR** — comparte el QR de esa entrada.
+- **Marcar como escaneado** — valida la entrada a mano (necesitás permiso de escaneo).
+- **Reembolsar** — solo para ventas por MercadoPago o Stripe que todavía no se reembolsaron (necesitás permiso para eliminar invitados).
+- **Eliminar (sin reembolso)** / **Borrar** — saca la entrada de la lista.
+
+### Acciones en lote
+
+Al seleccionar varias filas aparece una barra flotante con **"Compartir QRs"**, **"Reembolsar"** (si alguna fila seleccionada es un pago online) y **"Eliminar"**. Cada acción pide confirmación.
+
+<Warning>
+  **Eliminar** quita las entradas de la lista **sin** emitir un reembolso al comprador. Esta acción no se puede deshacer.
+</Warning>
+
+## Herramientas de invitados
+
+En la tarjeta **"Herramientas de invitados"** podés exportar la lista o completar el género automáticamente.
+
+> Exportá la lista completa o detectá automáticamente el género de tus invitados.
+
+<CardGroup cols={2}>
+  <Card title="Reporte general" icon="file-arrow-down">
+    Descargá la lista completa con **"Exportar como CSV/Excel"** o usá **"Copiar al portapapeles"** para pegarla donde quieras.
+  </Card>
+  <Card title="Detectar géneros con IA" icon="wand-magic-sparkles">
+    Completa automáticamente el género de tus invitados a partir de su nombre, sin cargarlo a mano.
+  </Card>
+</CardGroup>
+
+<Note>
+  La detección de género infiere el género a partir del primer nombre del invitado. Es una estimación automática para tener una idea del público, no un dato declarado por la persona.
+</Note>
 
 ## Próximos pasos
 
 <CardGroup cols={2}>
   <Card title="Crear entradas" icon="ticket" href="/events/create-tickets">
-    Creá entradas manualmente para tu evento
+    Generá entradas manualmente o importá una lista de invitados.
   </Card>
   <Card title="Estadísticas" icon="chart-line" href="/events/stats">
-    Visualizá métricas detalladas de tu evento
+    Visualizá métricas detalladas de tu evento.
   </Card>
 </CardGroup>
 
 ---
 
-¿Necesitás ayuda gestionando invitados? Contactanos por [WhatsApp](https://wa.me/5491122503348)
+¿Necesitás ayuda gestionando tus compras? Contactanos por [WhatsApp](https://wa.me/5491122503348)

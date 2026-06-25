@@ -1,15 +1,15 @@
 ---
 title: "Productos del evento"
-description: "Cómo crear y gestionar entradas, extras y combos"
+description: "Cómo crear y gestionar entradas, barra y combos"
 icon: "box"
 ---
 
 # Productos del evento
 
-Los **productos** son todo lo que podés vender en tu evento: entradas de acceso, extras (comida/bebida) y combos que combinan varios elementos.
+Los **productos** son todo lo que podés vender en tu evento: entradas de acceso, **barra** (tragos y bebidas que se canjean con QR) y combos que combinan varios elementos.
 
 <Card title="1 crédito = 1 producto" icon="coins">
-  Cada vez que se genera o vende cualquier producto (entrada o extra), se descuenta 1 crédito.
+  Cada vez que se genera o vende cualquier producto (entrada o producto de barra), se descuenta 1 crédito.
 </Card>
 
 ## Tipos de productos
@@ -22,25 +22,25 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
 
     - General, VIP, Preventa
     - Estudiantes, Jubilados
-    - Early Bird, Last Minute
+    - Anticipada, En puerta
   </Card>
-  <Card title="Extras" icon="basket-shopping">
-    **Productos adicionales** Se venden junto con entradas:
+  <Card title="Barra" icon="martini-glass" href="/events/barra">
+    **Pre-venta de tragos y bebidas**
 
-    - Comida y bebidas
+    Tus clientes las compran online y las canjean en la barra con su QR:
 
-    - Merchandise (remeras, gorras)
-
-    - Servicios (estacionamiento)
+    - Cerveza, Fernet, Gin tonic
+    - Combos de tragos
+    - Agua, gaseosa, energizante
   </Card>
   <Card title="Combos" icon="box">
     **Paquetes combinados**
 
-    Combinan entradas \+ extras:
+    Combinan entradas \+ barra:
 
     - Entrada \+ 2 cervezas
     - 2x1 entrada General
-    - Entrada VIP \+ estacionamiento \+ consumo
+    - Entrada VIP \+ consumo
   </Card>
 </CardGroup>
 
@@ -55,7 +55,7 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
     Dashboard → Tu evento → "Productos" → "Crear"
   </Step>
   <Step title="Elegir tipo">
-    Seleccioná: Entrada, Extra o Combo
+    Seleccioná: **Entrada**, **Barra** o **Combo**
   </Step>
 </Steps>
 
@@ -67,7 +67,7 @@ Tomando una **Entrada** como ejemplo, estos son los campos del editor:
   <Accordion title="Información básica">
     **Requerido:**
 
-    - **Nombre:** Ej: "General", "Cerveza Artesanal", "VIP \+ Cena"
+    - **Nombre:** Ej: "General", "Cerveza", "VIP \+ Cena"
     - **Estado:** Activo, Oculto, Exclusivo, Agotado o Inactivo (ver más abajo)
 
     **Opcional:**
@@ -100,7 +100,11 @@ Tomando una **Entrada** como ejemplo, estos son los campos del editor:
 
 ## La lista de productos
 
-En **Productos** vas a ver tus productos organizados en pestañas: **Tipos de Entrada**, **Extras** y **Combos**.
+En **Productos** vas a ver tus productos organizados en pestañas: **Tipos de Entrada**, **Barra** y **Combos**.
+
+<Note>
+  La pestaña **Barra** tiene su propia guía, con presets de bebidas, link de barra y afiche QR. Mirá [Barra (pre-venta de tragos)](/events/barra).
+</Note>
 
 La tabla muestra estas columnas:
 
@@ -128,7 +132,7 @@ La tabla muestra estas columnas:
     Hacé clic en el nombre del producto que querés editar
   </Step>
   <Step title="Modificar configuración">
-    Podés cambiar: nombre, descripción, estado, precio, límites y la vigencia de uso
+    Podés cambiar: nombre, descripción, estado, límites y la vigencia de uso
   </Step>
   <Step title="Guardar cambios">
     Los cambios son inmediatos y afectan las ventas futuras
@@ -136,8 +140,7 @@ La tabla muestra estas columnas:
 </Steps>
 
 <Warning>
-  Los productos ya vendidos no se ven afectados por los cambios. Solo las ventas
-  futuras.
+  El **precio no se puede modificar** después de crear el producto: *"El precio no se puede modificar después de crear el producto. Creá uno nuevo para cambiarlo."* Los productos ya vendidos no se ven afectados por los demás cambios.
 </Warning>
 
 ---
@@ -157,9 +160,8 @@ La tabla muestra estas columnas:
     - Que no esté **Agotado** (se alcanzó el límite)
     - Que no esté **Inactivo**
   </Accordion>
-  <Accordion title="'Quiero cambiar el precio pero ya se vendieron entradas'">
-    **Opción 1:** Crear nuevo producto con precio actualizado
-    **Opción 2:** Cambiar precio (solo afecta ventas futuras)
+  <Accordion title="'Quiero cambiar el precio de un producto'">
+    El precio **no se puede editar** una vez creado el producto. Creá un **producto nuevo** con el precio actualizado y, si querés, pasá el viejo a estado **Inactivo** u **Oculto**.
   </Accordion>
 </AccordionGroup>
 

@@ -6,14 +6,14 @@ icon: "stripe"
 
 # Stripe
 
-Stripe es el medio de cobro online para productoras de **fuera de Argentina**. Al conectar tu cuenta de Stripe a tu productora, podés aceptar pagos con tarjeta de crédito/débito de cualquier parte del mundo, directamente desde la página de tu evento.
+Stripe te permite aceptar pagos con tarjeta de crédito/débito de cualquier parte del mundo, directamente desde la página de tu evento. Es el medio de cobro **recomendado para vender al exterior o en otras monedas**.
 
 <Note>
-  Si tu productora es de **Argentina**, el medio de cobro online es MercadoPago. Mirá la [guía de MercadoPago](/organizations/mercadopago).
+  Si tu productora es de **Argentina**, el medio de cobro principal es MercadoPago (con tarifas preferenciales). Mirá la [guía de MercadoPago](/organizations/mercadopago). Podés tener ambos activos.
 </Note>
 
 <Note>
-  **Importante:** Solo el creador de la productora (Administrador) puede conectar Stripe.
+  **Importante:** para conectar Stripe necesitás un rol con permiso para administrar la productora (por defecto, el **Administrador**). Mirá [Roles y permisos](/organizations/roles).
 </Note>
 
 ## Cómo acceder
@@ -29,7 +29,7 @@ Dirigite a la sección de **Stripe** de tu productora.
   </Step>
 </Steps>
 
-En esta pantalla vas a ver el encabezado **"Conectar Stripe"** y el estado de tu cuenta: **Conectado** o **Desconectado**.
+En esta pantalla vas a ver el encabezado **"Conectar Stripe"** y el estado de tu cuenta: **Conectado**, **Onboarding pendiente** o **Desconectado**.
 
 > Conecta tu cuenta de Stripe a tu productora para habilitar ventas online con tarjeta de crédito/débito internacional en tus eventos.
 
@@ -49,13 +49,17 @@ En esta pantalla vas a ver el encabezado **"Conectar Stripe"** y el estado de tu
     Serás redirigido a Stripe para vincular tu cuenta existente o crear una nueva. Completá los datos que te pida Stripe.
   </Step>
   <Step title="¡Listo!">
-    Al terminar, volvés automáticamente a qrTicket con la cuenta conectada. El estado pasa a **Conectado**.
+    Al terminar, volvés automáticamente a qrTicket. Si Stripe ya verificó tu cuenta, el estado pasa a **Conectado**.
   </Step>
 </Steps>
 
 <Note>
   Si todavía no tenés cuenta de Stripe, podés crearla durante el mismo flujo de conexión.
 </Note>
+
+<Warning>
+  Si Stripe te pide más datos de verificación, la cuenta queda en estado **"Onboarding pendiente"** con un botón **"Completar registro"**. Recién cuando Stripe **verifica** tu cuenta el estado pasa a **Conectado** y podés empezar a cobrar.
+</Warning>
 
 ## ¿Cuándo recibo el dinero?
 
@@ -85,6 +89,37 @@ Para hacerlo, en el menú del evento abrí la opción **"Canales de venta"** y a
 <Card title="Más sobre canales de venta" icon="gear">
   Mirá cómo configurar todos los métodos de cobro de un evento en [Canales de venta](/events/sales).
 </Card>
+
+## Monedas y países
+
+Stripe cobra en la **moneda de tu productora**, que queda definida por el **País** que elegís al crearla. Estas son las monedas soportadas:
+
+| País de la productora | Moneda |
+| --- | --- |
+| Argentina | ARS |
+| Brasil | BRL |
+| Chile | CLP |
+| Colombia | COP |
+| Ecuador | USD |
+| México | MXN |
+| Perú | PEN |
+| Uruguay | UYU |
+| Otros | USD |
+
+<Note>
+  La moneda se define **una sola vez** por la productora y la heredan todos sus eventos y ventas. No se elige por evento ni la elige el comprador. Para cambiar la moneda, tenés que cambiar el país de la productora.
+</Note>
+
+## Cargos de Stripe
+
+En cada evento, dentro de **"Canales de venta"**, vas a encontrar la opción **"Pasar cargos al comprador"** para Stripe:
+
+- **Apagada:** vos absorbés el cargo de procesamiento de Stripe; el comprador paga el precio base.
+- **Activada:** se le suma el cargo al comprador y vos recibís el precio base. Al activarla se aplica **4,5%** por defecto, y podés elegir un preset (**4,5% — Tarjeta internacional**, **3,5% — Tarjeta local**, **2,9% — Tarifa base**, **0% (sin recargo)**) u **"Otro porcentaje"**.
+
+<Note>
+  Stripe cobra un porcentaje variable según el país y la tarjeta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra comisión**: el único cargo adicional es del medio de pago.
+</Note>
 
 ## Precio de las entradas
 

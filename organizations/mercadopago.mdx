@@ -13,31 +13,54 @@ Conectá tu cuenta de MercadoPago a tu productora para habilitar las ventas onli
 </Note>
 
 <Info>
-  MercadoPago es el medio de cobro para productoras de **Argentina**. Si tu productora es de **otro país**, no usás MercadoPago: conectás [Stripe](/organizations/stripe) para aceptar pagos con tarjeta internacional.
+  MercadoPago es el medio de cobro principal en **Argentina**, y también está disponible en **Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay**. Si tu productora es de **"Otros"** países, no usás MercadoPago: conectás [Stripe](/organizations/stripe) para aceptar pagos con tarjeta internacional.
 </Info>
 
 ## Conectar tu cuenta
 
-<Steps>
-  <Step title="Dirigite a la configuración">
-    Dashboard → Tu productora → **"MercadoPago"**
+La forma de conectar MercadoPago depende del país de tu productora.
 
-    Vas a ver el encabezado **"Conectar cuenta"** con el texto: *"Conecta tu cuenta de Mercado Pago a tu productora para poder habilitar ventas online en tus eventos."*
-  </Step>
-  <Step title="Conectá tu cuenta">
-    Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago para autorizar la conexión.
-  </Step>
-  <Step title="Autorizá la conexión">
-    Iniciá sesión en MercadoPago (si no lo hiciste todavía) y autorizá que qrTicket procese los pagos de tu cuenta.
-  </Step>
-  <Step title="¡Listo!">
-    Volvés automáticamente a qrTicket con la cuenta conectada.
-  </Step>
-</Steps>
+<Tabs>
+  <Tab title="Argentina">
+    En Argentina la conexión es directa, con un clic, sin copiar credenciales.
 
-<Note>
-  Si todavía no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
-</Note>
+    <Steps>
+      <Step title="Dirigite a la configuración">
+        Dashboard → Tu productora → **"MercadoPago"**
+
+        Vas a ver el encabezado **"Conectar cuenta"** con el texto: *"Conecta tu cuenta de Mercado Pago a tu productora para poder habilitar ventas online en tus eventos."*
+      </Step>
+      <Step title="Conectá tu cuenta">
+        Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago para autorizar la conexión.
+      </Step>
+      <Step title="Autorizá la conexión">
+        Iniciá sesión en MercadoPago (si no lo hiciste todavía) y autorizá que qrTicket procese los pagos de tu cuenta.
+      </Step>
+      <Step title="¡Listo!">
+        Volvés automáticamente a qrTicket con la cuenta conectada.
+      </Step>
+    </Steps>
+
+    <Note>
+      Si todavía no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
+    </Note>
+  </Tab>
+  <Tab title="Otros países">
+    En Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay la conexión se hace con tu **Access Token** de MercadoPago.
+
+    <Steps>
+      <Step title="Dirigite a la configuración">
+        Dashboard → Tu productora → **"MercadoPago"**. Vas a ver el texto *"Ingresá tu Access Token de MercadoPago para habilitar ventas online en tus eventos."*
+      </Step>
+      <Step title="Pegá tu Access Token">
+        Copiá tu **Access Token** desde tu cuenta de MercadoPago (empieza con `APP_USR-...`) y pegalo en el campo **"Access Token"**. Si no sabés de dónde sacarlo, usá el tutorial **"¿No sabés cómo obtener tu Access Token?"**.
+      </Step>
+      <Step title="Guardar">
+        Hacé clic en **"Guardar"**. Para cambiarlo más adelante, editás el token y tocás **"Actualizar"**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
 ## Cuenta conectada
 
@@ -49,11 +72,17 @@ Una vez conectada, en la sección **MercadoPago** vas a ver:
 
 ### Cambiar de cuenta
 
+**En Argentina**, el botón **"Cambiar cuenta"** te deja vincular otra cuenta.
+
 <Warning>
-  Si querés cambiar de cuenta, primero **cerrá sesión en mercadopago.com.ar**; de lo contrario, se vinculará la cuenta que ya está abierta en tu navegador.
+  Antes de cambiar de cuenta, primero **cerrá sesión en mercadopago.com.ar**; de lo contrario, se vinculará la cuenta que ya está abierta en tu navegador.
 </Warning>
 
 Después de cerrar sesión, hacé clic en **"Cambiar cuenta"** y conectá la cuenta que quieras.
+
+<Note>
+  En los **demás países** no hay botón "Cambiar cuenta": para cambiar la cuenta, reemplazás el **Access Token** y tocás **"Actualizar"**.
+</Note>
 
 ## Activar la venta en tus eventos
 
@@ -75,6 +104,10 @@ Por defecto, la venta por MercadoPago está desactivada en cada evento. Para act
 <Tip>
   **qrTicket es partner oficial de MercadoPago.** Gracias a esta alianza, todas tus ventas tienen **liberación instantánea con tarifas preferenciales**. Ya viene activo en cada evento, sin que tengas que configurar nada.
 </Tip>
+
+<Note>
+  Las **tarifas preferenciales**, la liberación instantánea y la liberación a 10 días que se detallan abajo aplican a productoras de **Argentina**. En los demás países donde está disponible MercadoPago, al activar "Pasar cargos al comprador" definís vos el **porcentaje** que se le suma al comprador para cubrir el cargo del medio de pago.
+</Note>
 
 Por nuestra alianza, pagás menos comisión que vendiendo por tu cuenta. Estas son las tarifas de **liberación instantánea** (la que viene por defecto):
 
@@ -111,7 +144,7 @@ Más información en [Canales de venta](/events/sales).
 
 Podés ver todas las ventas realizadas con MercadoPago en:
 
-- **En qrTicket:** Dashboard → Evento → [**"Invitados y Transferencias"**](/events/guests) → pestaña **"MercadoPago"**.
+- **En qrTicket:** Dashboard → Evento → [**"Compras y transferencias"**](/events/guests) → filtrá la columna **"Medio"** por **MercadoPago**.
 - **En MercadoPago:** tu panel habitual de MercadoPago, donde aparecen todas tus transacciones.
 
 ## Problemas comunes
@@ -120,8 +153,8 @@ Podés ver todas las ventas realizadas con MercadoPago en:
   <Accordion title="No puedo conectar la cuenta">
     Verificá el estado de tu cuenta directamente en MercadoPago. Una cuenta suspendida o con verificación pendiente puede impedir la conexión.
   </Accordion>
-  <Accordion title="Se conectó la cuenta equivocada">
-    Esto pasa cuando ya tenías otra sesión abierta en el navegador. Cerrá sesión en [mercadopago.com.ar](https://www.mercadopago.com.ar), volvé a qrTicket y usá **"Cambiar cuenta"**.
+  <Accordion title="Se conectó la cuenta equivocada (Argentina)">
+    Esto pasa cuando ya tenías otra sesión abierta en el navegador. Cerrá sesión en [mercadopago.com.ar](https://www.mercadopago.com.ar), volvé a qrTicket y usá **"Cambiar cuenta"**. En los demás países, corregís la conexión reemplazando el **Access Token** con **"Actualizar"**.
   </Accordion>
   <Accordion title="¿Puedo desconectar MercadoPago?">
     Sí, podés desconectar en cualquier momento con el botón **"Desconectar"**. Los eventos que tengan la venta activada dejarán de aceptar pagos online hasta que vuelvas a conectar.

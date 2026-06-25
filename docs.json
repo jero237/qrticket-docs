@@ -41,6 +41,7 @@
             "group": "Productoras",
             "pages": [
               "organizations/index",
+              "organizations/catalogue",
               "organizations/mercadopago",
               "organizations/stripe",
               "organizations/team",
@@ -57,12 +58,23 @@
               "events/guests",
               "events/stats",
               "events/products",
+              "events/barra",
               "events/sales",
               "events/coupons",
+              "events/promotion",
               "events/team",
               "events/referral",
+              "events/mis-ventas",
               "events/scanner",
               "events/settings"
+            ]
+          },
+          {
+            "group": "Para tus compradores",
+            "pages": [
+              "buyers/my-tickets",
+              "buyers/apple-wallet",
+              "buyers/share-transfer"
             ]
           }
         ]

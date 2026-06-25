@@ -30,7 +30,20 @@ Cada entrada que generás consume **1 crédito** del balance de tu productora.
 
 ## Cómo crear entradas
 
-Entrá desde **Dashboard → Tu evento → "Crear entradas"** y seguí el asistente.
+Entrá desde **Dashboard → Tu evento → "Crear entradas"**. Vas a ver dos pestañas:
+
+<CardGroup cols={2}>
+  <Card title="Manual" icon="user-plus">
+    Cargás los invitados a mano, uno por uno o pegando una lista de nombres.
+  </Card>
+  <Card title="Importar lista" icon="file-arrow-up">
+    Subís un Excel o CSV con nombres y emails: se crea una entrada para cada uno y se le envía la invitación por email.
+  </Card>
+</CardGroup>
+
+## Manual
+
+La pestaña **"Manual"** es un asistente que te guía en cuatro pasos.
 
 <Steps>
   <Step title="Producto — Elegí qué crear">
@@ -63,6 +76,37 @@ Entrá desde **Dashboard → Tu evento → "Crear entradas"** y seguí el asiste
 ## Las entradas quedan a tu nombre
 
 Las entradas que generás manualmente quedan registradas **a tu nombre como vendedor**. Así podés llevar el registro de quién cargó cada entrada dentro de tu equipo.
+
+## Importar lista (Excel o CSV)
+
+La pestaña **"Importar lista"** sirve para cargar muchos invitados de una, con su email, y que cada uno reciba su invitación automáticamente.
+
+> Subí un Excel o CSV con los nombres y emails. Crearemos una entrada gratis para cada uno y les enviaremos su invitación por email.
+
+<Steps>
+  <Step title="Elegir el tipo de entrada">
+    Seleccioná el **tipo de entrada** que se va a generar para cada invitado de la lista. Si solo tenés un tipo activo, se elige solo. Si no tenés ninguno, vas a ver *"No hay entradas activas en este evento. Creá una entrada primero."*
+  </Step>
+  <Step title="Subir el archivo">
+    Arrastrá o hacé clic para subir tu archivo. Se aceptan **Excel (.xlsx, .xls) o CSV** con columnas de **nombre** y **email**. qrTicket detecta automáticamente los encabezados más comunes (Nombre, Email, Correo, etc.).
+  </Step>
+  <Step title="Revisar el resumen">
+    Después de leer el archivo vas a ver cuántos invitados encontró, cuántos emails válidos y cuántas filas quedan afuera por no tener un email válido. Abajo aparece cuántos créditos vas a usar y cuántos te quedan.
+  </Step>
+  <Step title="Importar y enviar">
+    Tocá **"Importar y enviar invitaciones"**. Se crean las entradas y se envían las invitaciones por email. No cierres ni recargues la ventana hasta que termine.
+  </Step>
+</Steps>
+
+Al terminar (**"¡Invitaciones enviadas!"**) vas a ver el resumen: **Entradas creadas**, **Invitaciones enviadas (emails)**, las que **Fallaron** (con la opción **"Reintentar fallidas"**) y las **Filas ignoradas (email inválido)**.
+
+<Note>
+  Cada entrada importada consume **1 crédito**. Las filas sin un email válido se saltean. Si el mismo email aparece repetido, cada fila igual genera su propia entrada y consume su crédito, pero comparten **un solo ticket (QR)** y reciben **una sola invitación** por email.
+</Note>
+
+<Tip>
+  ¿Solo querés cargar nombres sin enviar emails? Usá la pestaña **"Manual"** con **"Pegar lista"**: agrega los nombres de una, pero no pide emails ni envía invitaciones.
+</Tip>
 
 ## Próximo paso
 

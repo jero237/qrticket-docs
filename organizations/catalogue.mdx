@@ -1,0 +1,191 @@
+---
+title: "Catálogo"
+description: "Definí tus tipos de entrada y tu barra una vez y reutilizalos en todos tus eventos"
+icon: "box-archive"
+---
+
+# Catálogo
+
+El **Catálogo** es la lista de productos reutilizables de tu productora. La idea es simple: definís tus tipos de entrada y tu barra **una sola vez** y los reutilizás en cualquier evento, sin volver a cargarlos cada vez.
+
+En la pantalla vas a leer el subtítulo *"Productos reutilizables de tu productora"*. Si todavía no cargaste nada, aparece el mensaje:
+
+> Definí tus productos una vez y reutilizalos en todos tus eventos sin volver a cargarlos.
+
+<Note>
+  El Catálogo guarda los productos a nivel **productora**. Cuando los usás en un evento, se crean **copias independientes**: cambiar el catálogo no toca los eventos donde ya importaste, y cambiar la copia de un evento no toca el catálogo.
+</Note>
+
+## Cómo acceder
+
+<Steps>
+  <Step title="Abrí tu productora">
+    Dashboard → Tu productora
+  </Step>
+  <Step title="Entrá a Catálogo">
+    En la barra lateral de la productora, hacé clic en **"Catálogo"**
+  </Step>
+</Steps>
+
+El Catálogo tiene dos pestañas:
+
+<CardGroup cols={2}>
+  <Card title="Tipos de Entrada" icon="ticket">
+    Tus entradas reutilizables (General, VIP, etc.).
+  </Card>
+  <Card title="Barra" icon="martini-glass-citrus">
+    Tu pre-venta de tragos y bebidas que se canjean con QR.
+  </Card>
+</CardGroup>
+
+Si una pestaña está vacía, vas a ver **"Sin tipos de entrada en el catálogo"** o **"Sin productos de barra en el catálogo"** según corresponda.
+
+## Crear un producto
+
+El botón de arriba a la derecha cambia según la pestaña en la que estés:
+
+- En **Tipos de Entrada**: **"Agregar entrada"**
+- En **Barra**: **"Agregar a la barra"**
+
+El tipo del producto queda fijado por la pestaña desde la que entraste y **no se cambia dentro del formulario**.
+
+<Steps>
+  <Step title="Abrí el formulario">
+    Desde la pestaña que corresponda, hacé clic en **"Agregar entrada"** o **"Agregar a la barra"**. El formulario se titula **"Nuevo producto del catálogo"**.
+  </Step>
+  <Step title="Cargá el nombre">
+    Completá el campo **Nombre** (obligatorio, mínimo 3 caracteres).
+  </Step>
+  <Step title="Agregá una descripción (opcional)">
+    El campo **Descripción - opcional**. Si la completás, también necesita mínimo 3 caracteres.
+  </Step>
+  <Step title="Subí una foto (opcional)">
+    El campo **Foto - opcional** acepta archivos **PNG, JPG o WebP**.
+  </Step>
+  <Step title="Definí el precio">
+    Ingresá el **Precio** (obligatorio, número mayor o igual a 0).
+  </Step>
+  <Step title="Definí el límite por compra (opcional)">
+    El campo **Límite por compra - opcional** limita cuántas unidades puede llevar cada persona en una misma compra.
+  </Step>
+  <Step title="Creá el producto">
+    Hacé clic en **"Crear"**. Vas a ver la nota *"Queda guardado en el catálogo de tu productora para reutilizarlo en cualquier evento."*
+  </Step>
+</Steps>
+
+<Warning>
+  El **Precio** no se puede editar más adelante. Revisalo bien antes de crear el producto.
+</Warning>
+
+### Imágenes prearmadas de bebidas (solo en Barra)
+
+Cuando cargás la **Foto** de un producto de la **Barra**, debajo aparece la opción *"O elegí una de estas"* con 13 ilustraciones listas para usar:
+
+```text
+Fernet con coca · Cerveza · Gin tonic · Vodka · Cuba libre · Vino
+Aperol Spritz · Gancia · Espumante · Shots · Energizante · Gaseosa · Agua
+```
+
+Tocás una y se usa como imagen del producto. En **Tipos de Entrada** estas imágenes no aparecen.
+
+<Note>
+  El preset solo cambia la **ilustración** del producto. No crea la bebida solo: igual tenés que cargar el producto a mano (nombre, precio, etc.).
+</Note>
+
+## Editar un producto
+
+Hacé clic en el ícono de **lápiz** del producto para abrir **"Editar producto del catálogo"**.
+
+Podés cambiar:
+
+- **Nombre**
+- **Descripción**
+- **Foto**
+- **Límite por compra**
+
+<Warning>
+  El **Precio no se puede editar**: aparece deshabilitado con la nota *"El precio no se puede modificar. Creá un producto nuevo para cambiarlo."* Si necesitás otro precio, creá un producto nuevo.
+</Warning>
+
+Cuando termines, hacé clic en **"Guardar cambios"**.
+
+## Quitar un producto
+
+Hacé clic en el ícono de **tacho** del producto. Se abre el diálogo **"¿Quitar «{nombre}» del catálogo?"** con el texto:
+
+> Se quita de tu catálogo. Los eventos donde ya lo importaste no se ven afectados.
+
+Confirmá con **"Quitar"** o cancelá con **"Cancelar"**.
+
+<Note>
+  Quitar un producto del catálogo **no afecta** las copias que ya importaste a tus eventos. Solo deja de estar disponible para futuras importaciones.
+</Note>
+
+## Usar el catálogo en un evento
+
+Esta es la parte clave: el catálogo se aprovecha al **importar** sus productos hacia un evento.
+
+<Steps>
+  <Step title="Entrá a los productos del evento">
+    Desde el evento, abrí **"Productos"** (pestaña **Tipos de Entrada** o **Barra**), o usalo desde el asistente de creación de evento.
+  </Step>
+  <Step title="Importá del catálogo">
+    Hacé clic en **"Importar del catálogo"**. Se abre un panel lateral **"Importar del catálogo"** con la descripción *"Elegí qué tipos de entrada agregar a este evento."* o *"Elegí qué productos de barra agregar a este evento."* según la pestaña.
+  </Step>
+  <Step title="Elegí los productos">
+    El panel muestra solo los productos del **mismo tipo** que la pestaña. Cada uno aparece con un **checkbox**, su **foto** y su **precio**. Usá **"Seleccionar todo"** o **"Quitar selección"** para ir más rápido.
+  </Step>
+  <Step title="Confirmá la importación">
+    Hacé clic en **"Importar ({cantidad})"**. Se crean **copias independientes** de cada producto dentro del evento.
+  </Step>
+</Steps>
+
+<Note>
+  El **Límite por compra** que cargaste en el catálogo se aplica como valor por defecto en la copia importada. Después podés ajustarlo en el evento sin afectar el catálogo.
+</Note>
+
+Si el catálogo de ese tipo está vacío, el panel muestra *"Tu catálogo todavía no tiene tipos de entrada / productos de barra"* con un enlace **"Crear en el catálogo"** para cargarlos en el momento.
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Puedo importar un archivo o CSV al catálogo?">
+    No. **"Importar del catálogo"** importa **desde** el catálogo **hacia** un evento. No existe una importación por archivo o CSV hacia el catálogo: los productos se cargan a mano con el botón **"Agregar entrada"** o **"Agregar a la barra"**.
+  </Accordion>
+  <Accordion title="Si cambio un producto en el catálogo, ¿se actualizan mis eventos?">
+    No. Al importar se crean copias independientes. Editar o quitar un producto en el catálogo **no afecta** las copias ya importadas en eventos. Y editar la copia dentro de un evento **no afecta** el catálogo.
+  </Accordion>
+  <Accordion title="¿El catálogo maneja stock o inventario?">
+    No. El catálogo solo guarda el **Límite por compra** (cuántas unidades por compra). No lleva stock ni inventario.
+  </Accordion>
+  <Accordion title="¿Puedo crear Combos en el catálogo?">
+    No. Los **Combos** existen solo dentro de un evento, no en el catálogo.
+  </Accordion>
+  <Accordion title="¿Por qué no puedo cambiar el precio de un producto del catálogo?">
+    El precio queda fijo para mantener la consistencia. Si necesitás otro precio, creá un producto nuevo con el botón de agregar.
+  </Accordion>
+  <Accordion title="¿Qué permisos necesito?">
+    Ver, crear, editar, quitar e importar requieren los permisos de productos correspondientes. Revisalos en [Roles y permisos](/organizations/roles).
+  </Accordion>
+</AccordionGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Tipos de Entrada del evento" icon="ticket" href="/events/products">
+    Mirá cómo se gestionan los productos importados dentro de un evento.
+  </Card>
+  <Card title="Barra del evento" icon="martini-glass-citrus" href="/events/barra">
+    Configurá la pre-venta de tragos y bebidas de tu evento.
+  </Card>
+  <Card title="Cómo funcionan los créditos" icon="coins" href="/credits/what-are-credits">
+    Entendé qué son los créditos y cómo se usan al generar entradas.
+  </Card>
+  <Card title="Roles y permisos" icon="users" href="/organizations/roles">
+    Definí quién puede ver, crear, editar e importar productos del catálogo.
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda? Contactanos por [WhatsApp](https://wa.me/5491122503348)

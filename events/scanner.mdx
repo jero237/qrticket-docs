@@ -33,13 +33,15 @@ El **scanner** es la herramienta que usás el día del evento para **validar ent
     - Producto habilitado
   </Card>
   <Card title="❌ Inválido" icon="x-circle">
-    **Rojo - Denegar ingreso** - Código falso/inexistente - Entrada ya escaneada -
-    Producto no habilitado
+    **Rojo - Denegar ingreso**
+
+    - Código falso o inexistente (o de otro evento)
+    - Entrada ya escaneada
   </Card>
   <Card title="⚠️ Advertencia" icon="exclamation-triangle">
     **Amarillo - Verificar**
 
-    - Producto diferente al esperado
+    - El QR es de otra categoría o de un producto no habilitado en este puesto
     - Requiere verificación manual
   </Card>
 </CardGroup>
@@ -48,38 +50,34 @@ El **scanner** es la herramienta que usás el día del evento para **validar ent
 
 ## Configurar el scanner
 
-### Seleccionar productos a escanear
+### ¿Qué vas a escanear?
 
-Antes del evento, configurá **qué productos se van a validar**:
+Cada puesto de escaneo valida **una categoría a la vez**: **Entradas** (en la puerta) o **Barra** (los tragos que canjeás en la barra). Si tu evento tiene las dos, vas a poder elegir.
 
 <Steps>
   <Step title="Ir al scanner del evento">
     Dashboard → Tu evento → **"Scanner"**
   </Step>
-  <Step title="Configurar productos">
-    Hacé clic en **"Tipos de entrada"**. Vas a ver el mensaje *"Selecciona los productos que se van a escanear. Si se escanea alguno no seleccionado, se mostrará un mensaje de error."* Tildá qué productos se validan:
-
-    - **Entradas:** Tipos que dan acceso al evento
-    - **Extras:** Normalmente no se escanean en la puerta
+  <Step title="Elegir qué escanear">
+    En **"¿Qué vas a escanear?"** elegí **Entradas** o **Barra**. *"Elegí qué tipo de QR vas a validar en este puesto."*
   </Step>
-  <Step title="Aceptar">
-    Tocá **"Aceptar"**. Solo los productos seleccionados serán válidos al escanear.
+  <Step title="Elegir qué productos valida este puesto">
+    Tildá los productos de esa categoría que valida este puesto. Con **"Toda la barra"** (o todas las entradas) seleccionás todos de una. Así podés tener un puesto que solo valide "Cerveza" en la barra, por ejemplo.
   </Step>
 </Steps>
 
 <Note>
-  Si escaneás un producto no seleccionado, aparecerá como **inválido** aunque
-  sea auténtico.
+  El scanner valida solo la categoría elegida: si en modo **Barra** escaneás una entrada (o al revés), el QR se rechaza aunque sea auténtico. El botón te recuerda qué estás escaneando (por ejemplo, **"Escaneando: Barra"**).
 </Note>
 
 ### Ejemplo de configuración
 
-**Para un evento con estos productos:**
+**Para una fiesta con entradas y barra:**
 
-- ✅ Entrada General - **SÍ escanear** (da acceso)
-- ✅ Entrada VIP - **SÍ escanear** (da acceso)
-- ❌ Cerveza - **NO escanear** (se entrega en el bar)
-- ❌ Remera - **NO escanear** (se entrega en merchandise)
+- 🚪 **Puesto de puerta** → escaneá **Entradas** (General, VIP).
+- 🍺 **Puesto de barra** → escaneá **Barra** (Cerveza, Fernet) para canjear los tragos pre-vendidos.
+
+Más sobre la pre-venta de tragos en [Barra](/events/barra).
 
 ---
 
@@ -169,13 +167,16 @@ Denegar ingreso
 ### Casos especiales ⚠️
 
 ```
-⚠️ VERIFICAR MANUALMENTE
-Nombre: Juan Pérez
-Tipo: Entrada VIP
-Problema: Evento diferente
+⚠️ VERIFICAR
+Tipo: Cerveza (Barra)
+Problema: El tipo de entrada no es válido
 ```
 
-**Qué hacer:** Verificar manualmente. Podría ser entrada de otro evento o configuración incorrecta.
+**Qué hacer:** El QR pertenece a una categoría o producto que **este puesto no valida** (por ejemplo, escaneaste un QR de **Barra** en un puesto en modo **Entradas**). Revisá en **"¿Qué vas a escanear?"** que el puesto esté en el modo correcto y que el producto esté tildado.
+
+<Note>
+  Un QR de **otro evento** no aparece como advertencia: directamente da **inválido** (rojo), porque el scanner solo busca entradas de este evento.
+</Note>
 
 ---
 

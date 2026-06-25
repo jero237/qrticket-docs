@@ -12,6 +12,10 @@ Conectá tus herramientas de análisis para rastrear las visitas a las páginas 
   Al configurar Google Analytics o Meta Pixel en tu productora, se aplican automáticamente a **todos los eventos** de esa productora.
 </Card>
 
+<Note>
+  Solo quien tiene permiso para **editar la productora** (Administrador, Sub-administrador o un rol personalizado con ese permiso) ve y configura esta sección. Ambas herramientas son **tuyas**: los datos los ves en tus propias cuentas de Meta Events Manager y Google Analytics, no dentro de qrTicket.
+</Note>
+
 ## Google Analytics
 
 Rastrea visitas, conversiones y comportamiento de usuarios en las páginas de tus eventos.
@@ -46,6 +50,33 @@ Rastrea visitas y conversiones desde Facebook e Instagram para optimizar tus cam
 
 <Note>
   Ambos campos son opcionales. Podés configurar uno, ambos o ninguno.
+</Note>
+
+## Qué medís automáticamente
+
+Una vez configurados, qrTicket dispara el **embudo de compra completo** hacia tu propio Pixel y tu propia cuenta de Google Analytics, en las páginas públicas de tus eventos. No tenés que configurar nada más:
+
+<Steps>
+  <Step title="Vista del evento">
+    Cuando alguien abre la página de tu evento (`ViewContent` en Meta, `view_item` en GA).
+  </Step>
+  <Step title="Agregar al carrito">
+    Cuando suma entradas (`AddToCart`).
+  </Step>
+  <Step title="Iniciar compra">
+    Cuando arranca el checkout (`InitiateCheckout` / `begin_checkout`).
+  </Step>
+  <Step title="Compra">
+    Cuando se confirma la compra de entradas (`Purchase` / `purchase`), con el monto, la moneda y los productos.
+  </Step>
+</Steps>
+
+<Tip>
+  Tener el embudo completo te permite **optimizar tus campañas de Facebook, Instagram y Google**: medís conversiones reales, armás audiencias de quienes compran y calculás el retorno de tu inversión publicitaria. El Pixel usa **Advanced Matching** (mejora la coincidencia con datos del comprador, que el navegador envía **hasheados** —cifrados de forma irreversible— por el SDK del Pixel) y deduplica las compras para no contarlas dos veces.
+</Tip>
+
+<Note>
+  El Pixel y la GA de tu productora son **independientes** de los de qrTicket: los eventos de compra de tus entradas van **solo a tus cuentas**. Si tu comprador usa un bloqueador de anuncios, el Pixel puede no cargar.
 </Note>
 
 ## Preguntas frecuentes
