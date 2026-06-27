@@ -59,6 +59,72 @@ La forma de conectar MercadoPago depende del país de tu productora.
         Hacé clic en **"Guardar"**. Para cambiarlo más adelante, editás el token y tocás **"Actualizar"**.
       </Step>
     </Steps>
+
+    <Accordion title="¿No sabés cómo obtener tu Access Token?">
+      Tu **Access Token** se genera desde el panel de **MercadoPago Developers**. Seguí estos pasos:
+
+      <Steps>
+        <Step title="Entrá a MercadoPago Developers">
+          Ingresá a [developers.mercadopago.com](https://developers.mercadopago.com) y registrate o iniciá sesión con tu cuenta de MercadoPago.
+        </Step>
+        <Step title="Creá una aplicación">
+          Arriba a la derecha, hacé clic en **"Crear aplicación"** y completá los datos:
+
+          - **Nombre:** "qrTicket - [Tu productora]"
+
+          <Frame>
+            <img src="/images/mp-1.png" alt="Formulario de creación de aplicación en MercadoPago Developers con el nombre de la aplicación" />
+          </Frame>
+
+          - **Tipo de pago que querés integrar:** "Pagos Online"
+          - **¿Cómo hiciste la tienda?:** "Con un desarrollo propio"
+          - **URL de la tienda:** "https://qrticket.app"
+
+          <Frame>
+            <img src="/images/mp-2.png" alt="Configuración del tipo de pago y la URL de la tienda en la aplicación de MercadoPago" />
+          </Frame>
+
+          - **Cómo querés recibir pagos:** "Checkout Pro"
+
+          <Frame>
+            <img src="/images/mp-3.png" alt="Selección de Checkout Pro como método para recibir pagos" />
+          </Frame>
+
+          Completá el captcha y hacé clic en **"Confirmar"** para crear la aplicación.
+
+          <Frame>
+            <img src="/images/mp-4.png" alt="Confirmación de la creación de la aplicación de MercadoPago con captcha" />
+          </Frame>
+        </Step>
+        <Step title="Activá las credenciales productivas">
+          En el lateral derecho, hacé clic en **"Productivas"** y luego en **"Activar credenciales"**.
+
+          <Frame>
+            <img src="/images/mp-5.png" alt="Activar credenciales productivas en MercadoPago Developers" />
+          </Frame>
+
+          Completá el formulario:
+
+          - **Industria:** "Otros"
+          - **Sitio web:** "https://qrticket.app"
+
+          <Frame>
+            <img src="/images/prod-form-mp.png" alt="Formulario de credenciales productivas con industria y sitio web" />
+          </Frame>
+        </Step>
+        <Step title="Copiá tu Access Token">
+          Copiá el **Access Token** (empieza con `APP_USR-...`). Volvé a qrTicket y pegalo en el campo **"Access Token"** del paso anterior.
+
+          <Frame>
+            <img src="/images/acess-token-mp.png" alt="Access Token productivo listo para copiar en MercadoPago Developers" />
+          </Frame>
+        </Step>
+      </Steps>
+
+      <Warning>
+        Tu **Access Token** es secreto: no lo compartas con nadie ni lo publiques.
+      </Warning>
+    </Accordion>
   </Tab>
 </Tabs>
 
