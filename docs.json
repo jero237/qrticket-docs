@@ -47,6 +47,7 @@
               "organizations/team",
               "organizations/roles",
               "organizations/analytics",
+              "organizations/white-label",
               "organizations/settings"
             ]
           },

@@ -1,0 +1,114 @@
+---
+title: "Marca blanca"
+description: "Vendé con tu logo y tu propio dominio: tus compradores no ven qrTicket"
+icon: "palette"
+---
+
+# Marca blanca
+
+La marca blanca hace que tus páginas públicas sean **tuyas**: tu logo en lugar del de qrTicket, y tus entradas servidas desde tu propio dominio (por ejemplo `entradas.tumarca.com`). Tus compradores nunca ven que usás qrTicket por detrás.
+
+<Card title="¿Para qué sirve?" icon="info">
+  Es la opción para productoras y agencias que revenden entradas bajo su propia marca. Se activa a nivel **productora**: aplica a todos sus eventos de una sola vez.
+</Card>
+
+<Note>
+  Solo quien tiene permiso para **editar la productora** (Administrador, Sub-administrador o un rol personalizado con ese permiso) ve y configura esta sección.
+</Note>
+
+## Qué cambia al activarla
+
+<Steps>
+  <Step title="Tu logo reemplaza al de qrTicket">
+    En la página de compra, en la página de la entrada y en tu cartelera pública. Se van también los links a Instagram y "Más info" de qrTicket.
+  </Step>
+  <Step title="Se habilita tu dominio propio">
+    Podés conectar `entradas.tumarca.com` (o el dominio que quieras) y servir tus eventos desde ahí.
+  </Step>
+  <Step title="Cada entrada pasa a costar 2 créditos">
+    En lugar de 1. Los productos de **barra/tragos siguen costando 1 crédito**. El cambio no es retroactivo: solo afecta a las entradas que emitas de ahí en adelante.
+  </Step>
+</Steps>
+
+<Note>
+  Se mantiene una línea discreta de **"generado por qrTicket"** al pie de las páginas.
+</Note>
+
+## Activarla
+
+<Steps>
+  <Step title="Entrá a la sección">
+    Dashboard → Tu productora → **"Marca blanca"**
+  </Step>
+  <Step title="Prendé el switch">
+    Activá **"Activar marca blanca"**.
+  </Step>
+  <Step title="Subí tu logo">
+    Lo ideal es un **logo horizontal (wordmark)** en PNG o WEBP **con fondo transparente**: se muestra chico y alargado en el encabezado, así que un logo cuadrado o con fondo blanco se ve mal. Si no subís ninguno, usamos la imagen de tu productora.
+  </Step>
+  <Step title="Guardá">
+    Listo. Tus páginas públicas ya muestran tu marca.
+  </Step>
+</Steps>
+
+## Conectar tu dominio
+
+Una vez activada la marca blanca aparece la sección **"Dominio personalizado"**.
+
+<Steps>
+  <Step title="Escribí tu dominio">
+    Por ejemplo `entradas.tumarca.com`. Recomendamos un subdominio: es más fácil de configurar y no toca tu sitio web principal.
+  </Step>
+  <Step title="Agregá el registro DNS">
+    Te detectamos automáticamente dónde está el DNS de tu dominio (Cloudflare, GoDaddy, Namecheap, DonWeb…) y te damos un link directo al panel más los registros exactos, con botón para copiarlos.
+  </Step>
+  <Step title="Esperá la verificación">
+    Chequeamos solos cada 10 segundos. Cuando el DNS está bien, el estado pasa a **Activo** y el certificado SSL (HTTPS) se emite automáticamente.
+  </Step>
+</Steps>
+
+<Warning>
+  **Si usás Cloudflare**, el registro tiene que quedar en modo **"DNS only"** (nube gris, sin proxy). Con el proxy naranja activado no se puede emitir el certificado y el dominio nunca se activa.
+</Warning>
+
+<Tip>
+  La propagación DNS puede tardar hasta 48 horas, aunque normalmente son minutos. Si cerrás la página, la configuración sigue igual: volvé cuando quieras y tocá **"Verificar"**.
+</Tip>
+
+## Qué se sirve desde tu dominio
+
+<AccordionGroup>
+  <Accordion title="Tu cartelera y tus eventos">
+    La raíz de tu dominio (`entradas.tumarca.com`) muestra tu cartelera con todos tus eventos. También funcionan las páginas de evento, de compra, de entradas y del escáner.
+  </Accordion>
+  <Accordion title="El panel sigue en qrticket.app">
+    Tu equipo entra a administrar desde `qrticket.app/dashboard` como siempre. El dominio propio es solo para tus compradores.
+  </Accordion>
+  <Accordion title="Los links que compartís">
+    Una vez que el dominio está **Activo**, todos los links del panel (link del evento, link de barra, links de referido de tu equipo, QR para imprimir) pasan a usar tu dominio automáticamente. No tenés que cambiar nada.
+  </Accordion>
+</AccordionGroup>
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Puedo usar mi dominio principal en vez de un subdominio?">
+    Sí, pero solo si ese dominio no está siendo usado por otro sitio: pasaría a mostrar tu cartelera de qrTicket. Por eso recomendamos un subdominio como `entradas.tumarca.com`.
+  </Accordion>
+  <Accordion title="¿Qué pasa si desactivo la marca blanca?">
+    Volvés al logo de qrTicket y **tu dominio se desconecta automáticamente**. Las entradas vuelven a costar 1 crédito. Podés volver a activarla y reconectar el dominio cuando quieras.
+  </Accordion>
+  <Accordion title="¿Las entradas ya emitidas cambian de precio?">
+    No. El costo de 2 créditos se aplica solo a las entradas que emitas mientras la marca blanca está activa.
+  </Accordion>
+  <Accordion title="¿Los combos también cuestan 2 créditos?">
+    Cada entrada dentro de un combo cuesta 2 créditos; los productos de barra/tragos dentro del mismo combo siguen costando 1.
+  </Accordion>
+  <Accordion title="¿Puedo tener más de un dominio?">
+    Un dominio por productora. Si necesitás varios, podés crear productoras separadas.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+¿Necesitás ayuda para conectar tu dominio? Contactanos por [WhatsApp](https://wa.me/5491122503348)
