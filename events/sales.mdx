@@ -1,12 +1,12 @@
 ---
 title: "Canales de venta"
-description: "Cómo habilitar ventas por MercadoPago, Stripe, transferencia bancaria y WhatsApp"
+description: "Cómo habilitar ventas por MercadoPago, Stripe, Recurrente, transferencia bancaria y WhatsApp"
 icon: "gear"
 ---
 
 # Canales de venta
 
-Cada evento puede vender de **4 formas diferentes**: automáticamente por MercadoPago, con tarjetas internacionales vía Stripe, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés combinar los que quieras al mismo tiempo.
+Cada evento puede vender de **varias formas diferentes**: automáticamente por MercadoPago, con tarjetas internacionales vía Stripe, con Recurrente si tu productora es de Centroamérica, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés combinar los que quieras al mismo tiempo.
 
 Cada evento tiene su propio link público de venta: **qrticket.app/e/{nombre-del-evento}**. Compartilo en redes, WhatsApp o donde quieras: cualquiera que entre puede ver el evento y comprar entradas.
 
@@ -33,6 +33,14 @@ Cada evento tiene su propio link público de venta: **qrticket.app/e/{nombre-del
     - Compradores pagan con tarjeta de cualquier país
     - Requiere Stripe conectado en la productora → [Guía Stripe](/organizations/stripe)
     - Ideal para audiencias fuera de Argentina
+  </Card>
+  <Card title="Recurrente (automático)" icon="money-bill-transfer">
+    **Cobrá en Guatemala, El Salvador y Honduras**
+
+    - Tarjeta, transferencia y dólares digitales
+    - Solo para productoras de esos 3 países
+    - Requiere Recurrente conectado en la productora → [Guía Recurrente](/organizations/recurrente)
+    - Ideal para audiencias centroamericanas
   </Card>
   <Card title="Transferencia bancaria (semi-automático)" icon="building-columns">
     **Recibe transferencias directas a tu cuenta**
@@ -145,6 +153,52 @@ Stripe es el canal pensado para **cobros internacionales**: te permite aceptar t
 <Note>
   Stripe está pensado para audiencias internacionales. Si vendés principalmente en Argentina, usá MercadoPago. Podés tener ambos activos al mismo tiempo.
 </Note>
+
+---
+
+## Configurar ventas con Recurrente
+
+Recurrente es el canal de cobro para productoras de **Guatemala, El Salvador y Honduras**, donde no opera MercadoPago. Acepta tarjeta, transferencia bancaria y dólares digitales, y el dinero entra directo a tu balance de Recurrente.
+
+<Note>
+  La opción de Recurrente aparece en "Canales de venta" **solo si tu productora es de Guatemala, El Salvador u Honduras**.
+</Note>
+
+### Requisitos previos
+
+<Steps>
+  <Step title="Conectar Recurrente en la productora">
+    La productora debe tener Recurrente conectado con una clave de producción → [Guía Recurrente](/organizations/recurrente)
+  </Step>
+  <Step title="Productos con precio">
+    Todos los productos deben tener precio definido (no pueden ser gratuitos)
+  </Step>
+</Steps>
+
+### Habilitar ventas con Recurrente
+
+<Steps>
+  <Step title="Ir a configuración de ventas">
+    Dashboard → Tu evento → "Canales de venta"
+  </Step>
+  <Step title="Expandir 'Recurrente'">
+    Activá el toggle **"Ventas con Recurrente"** para este evento.
+  </Step>
+  <Step title="Verificar configuración">
+    Si todo está bien, aparece ✅ "Habilitado"
+  </Step>
+</Steps>
+
+### ¿Qué pasa cuando está habilitado?
+
+- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
+- Eligen **"Tarjeta (Recurrente)"** y pagan en el checkout de Recurrente
+- Tras el pago exitoso, reciben las entradas por email
+- **Se consumen créditos automáticamente** por cada entrada/producto vendido
+
+<Warning>
+  Si la conexión está en **modo de prueba** o el webhook no quedó registrado, el toggle aparece deshabilitado: sin eso los pagos se cobrarían pero las entradas no se emitirían solas. Revisá la [guía de Recurrente](/organizations/recurrente).
+</Warning>
 
 ---
 
@@ -261,7 +315,7 @@ Una vez que alguien te escribe por WhatsApp:
 
 ## Ventas mixtas (múltiples métodos)
 
-Podés habilitar **cualquier combinación** de MercadoPago, Stripe, transferencia bancaria y WhatsApp simultáneamente:
+Podés habilitar **cualquier combinación** de MercadoPago, Stripe, Recurrente, transferencia bancaria y WhatsApp simultáneamente:
 
 <CardGroup cols={2}>
   <Card title="Ventajas" icon="thumbs-up">
@@ -365,6 +419,12 @@ Si necesitás pausar las ventas:
     - Los compradores siguen viendo la página
     - Quedan disponibles los demás canales que tengas activos
   </Accordion>
+  <Accordion title="Pausar solo Recurrente">
+    Desactivá el toggle **"Ventas con Recurrente"**
+
+    - Los compradores siguen viendo la página
+    - Quedan disponibles los demás canales que tengas activos
+  </Accordion>
   <Accordion title="Pausar solo transferencia bancaria">
     Desactivá el toggle **"Ventas por transferencia bancaria"**
 
@@ -391,7 +451,7 @@ Las ventas se pausan automáticamente si:
 
 - **Se agotan los créditos** de la productora
 - **Se alcanzan los límites** de productos
-- **MercadoPago o Stripe presentan problemas** técnicos
+- **El medio de pago online presenta problemas** técnicos
 
 ---
 
@@ -399,7 +459,7 @@ Las ventas se pausan automáticamente si:
 
 ### Métricas disponibles
 
-En **"Compras y transferencias"** del evento ves todas las ventas en **una sola tabla**, con una columna **"Medio"** que indica el canal de cada compra (MercadoPago, Stripe, Transferencia, Gratis, WhatsApp o Manual). Podés filtrar por medio, tipo de entrada, vendedor, estado de escaneo y más. Las solicitudes de transferencia pendientes aparecen aparte, en la tarjeta **"Transferencias por aprobar"**.
+En **"Compras y transferencias"** del evento ves todas las ventas en **una sola tabla**, con una columna **"Medio"** que indica el canal de cada compra (MercadoPago, Stripe, Recurrente, Transferencia, Gratis, WhatsApp o Manual). Podés filtrar por medio, tipo de entrada, vendedor, estado de escaneo y más. Las solicitudes de transferencia pendientes aparecen aparte, en la tarjeta **"Transferencias por aprobar"**.
 
 <Card title="Compras y transferencias" icon="users" href="/events/guests">
   Mirá cómo gestionar invitados, filtrar por medio de pago y aprobar transferencias.

@@ -1,0 +1,260 @@
+---
+title: "Recurrente"
+description: "Cobrá online en Guatemala, El Salvador y Honduras conectando Recurrente a tu productora"
+icon: "money-bill-transfer"
+---
+
+# Recurrente
+
+Recurrente es el medio de cobro para productoras de **Guatemala, El Salvador y Honduras**. Con una sola conexión, tus compradores pueden pagar con **tarjeta de crédito/débito, transferencia bancaria y dólares digitales**, directamente desde la página de tu evento.
+
+El dinero de cada venta entra **directamente a tu cuenta de Recurrente**. qrTicket no retiene ni maneja tu plata.
+
+<Note>
+  Recurrente aparece en el menú **solo si tu productora es de Guatemala, El Salvador u Honduras**. En el resto de los países usá [MercadoPago](/organizations/mercadopago) o [Stripe](/organizations/stripe).
+</Note>
+
+<Note>
+  **Importante:** para conectar Recurrente necesitás un rol con permiso para administrar la productora (por defecto, el **Administrador**). Mirá [Roles y permisos](/organizations/roles).
+</Note>
+
+## Antes de empezar
+
+<Steps>
+  <Step title="Tené tu cuenta de Recurrente">
+    Si todavía no tenés, creala en [recurrente.com](https://recurrente.com). Los requisitos de verificación para empezar a cobrar los define Recurrente.
+  </Step>
+  <Step title="Configurá tu país en qrTicket">
+    La productora tiene que estar creada con el país correcto: **Guatemala**, **El Salvador** u **Honduras**. Podés cambiarlo en [Configuración](/organizations/settings).
+  </Step>
+</Steps>
+
+---
+
+## Cómo acceder
+
+<Steps>
+  <Step title="Abrí tu productora">
+    Dashboard → Tu productora
+  </Step>
+  <Step title="Entrá a Recurrente">
+    En el menú lateral, hacé clic en **"Recurrente"**
+  </Step>
+</Steps>
+
+En esta pantalla vas a ver el encabezado **"Conectar Recurrente"** y el estado de tu cuenta: **Conectado** o **Desconectado**.
+
+---
+
+## Conectar tu cuenta
+
+La conexión se hace pegando tu **clave secreta de API** de Recurrente. Es la misma clave que usa Recurrente para identificar tu cuenta, así que los cobros salen a tu nombre y el dinero cae en tu balance.
+
+<Steps>
+  <Step title="Dirigite a la configuración">
+    Dashboard → Tu productora → **"Recurrente"**
+  </Step>
+  <Step title="Pegá tu clave secreta">
+    Copiá la clave desde tu panel de Recurrente y pegala en el campo **"Clave secreta de API"**. Empieza con `sk_live_...`. Si no sabés de dónde sacarla, mirá el instructivo de abajo.
+  </Step>
+  <Step title="Conectar">
+    Hacé clic en **"Conectar Recurrente"**. Verificamos la clave contra Recurrente y, si es válida, el estado pasa a **Conectado** y te mostramos el nombre de la cuenta vinculada.
+  </Step>
+</Steps>
+
+<Accordion title="¿No sabés dónde encontrar tu clave secreta?">
+  Tu clave se genera desde tu propio panel de Recurrente:
+
+  <Steps>
+    <Step title="Entrá a tu cuenta">
+      Ingresá a [app.recurrente.com](https://app.recurrente.com) con tu usuario.
+    </Step>
+    <Step title="Abrí la configuración de API">
+      Andá a **Configuración → API Keys**.
+    </Step>
+    <Step title="Copiá la clave secreta">
+      Copiá la clave que empieza con `sk_live_...`. Recurrente la muestra completa **solo cuando la generás o la rotás**, así que copiala en ese momento.
+    </Step>
+  </Steps>
+
+  <Warning>
+    Tu clave secreta es **privada**: no la compartas ni la publiques. Cualquiera que la tenga puede cobrar en tu nombre. Si creés que se filtró, rotala desde Recurrente y volvé a conectarla acá.
+  </Warning>
+</Accordion>
+
+### Qué pasa cuando conectás
+
+Al guardar la clave, qrTicket registra automáticamente un **webhook** en tu cuenta de Recurrente. Ese webhook es lo que nos avisa cuando un comprador te paga, para poder emitir la entrada y mandársela por email al instante.
+
+<Warning>
+  Si el registro del webhook falla, vas a ver el aviso *"No pudimos registrar el webhook en Recurrente"* y **las ventas quedan deshabilitadas**. Sin webhook los pagos se cobrarían pero las entradas no se emitirían solas. Volvé a pegar la clave para reintentar.
+</Warning>
+
+### Claves de prueba
+
+Recurrente también te da una clave de prueba (`sk_test_...`), que **no mueve dinero real**.
+
+Si conectás una clave de prueba vas a ver la etiqueta **"Modo de prueba"** y las ventas con Recurrente quedan deshabilitadas en todos tus eventos. Para vender de verdad, cargá la clave de producción (`sk_live_...`).
+
+---
+
+## Cuenta conectada
+
+Una vez conectada, en la sección **Recurrente** vas a ver:
+
+- El estado **"Conectado"** y el nombre de la cuenta vinculada.
+- El campo **"Apodo de la cuenta"**, editable, para identificar fácilmente qué cuenta tenés vinculada (por ejemplo, "Cuenta de la productora"). Aparece en la columna **"Cuenta"** de tus ventas.
+- El campo **"Reemplazar la clave secreta"**, por si rotaste la clave en Recurrente.
+- El botón **"Desconectar"**.
+
+<Note>
+  Por seguridad **no mostramos la clave guardada**. Si la perdiste, generá una nueva en Recurrente y pegala en "Reemplazar la clave secreta".
+</Note>
+
+### Cambiar de cuenta
+
+Para vincular otra cuenta de Recurrente, pegá la clave secreta de esa cuenta en **"Reemplazar la clave secreta"** y tocá **"Actualizar"**. Damos de baja el webhook anterior y registramos uno nuevo automáticamente.
+
+### Desconectar
+
+Al tocar **"Desconectar"** se elimina la conexión y **se apagan las ventas con Recurrente en todos tus eventos**, para que ninguna página siga ofreciendo un medio de pago que ya no puede cobrar.
+
+---
+
+## Activar la venta en tus eventos
+
+Conectar Recurrente a tu productora habilita el cobro, pero todavía tenés que activarlo en cada evento que quieras vender online.
+
+<Steps>
+  <Step title="Tu producto debe tener precio">
+    Para vender con Recurrente, el tipo de entrada debe tener un precio configurado. Más información en [Tipos de Entrada](/events/products).
+  </Step>
+  <Step title="Activá la venta en el evento">
+    Dashboard → Seleccionar evento → **"Canales de venta"** → **Recurrente** → activá el deslizador **"Ventas con Recurrente"**.
+  </Step>
+  <Step title="Verificar configuración">
+    Si todo está bien, aparece ✅ **"Habilitado"**.
+  </Step>
+</Steps>
+
+<Card title="Más sobre canales de venta" icon="gear">
+  Mirá cómo configurar todos los métodos de cobro de un evento en [Canales de venta](/events/sales).
+</Card>
+
+### ¿Qué pasa cuando está habilitado?
+
+- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
+- Eligen **"Tarjeta (Recurrente)"** y pagan en el checkout de Recurrente
+- Tras el pago exitoso, reciben las entradas por email
+- **Se consumen créditos automáticamente** por cada entrada vendida
+
+---
+
+## Monedas
+
+Recurrente cobra en la **moneda de tu productora**, que queda definida por el **País** que elegís al crearla:
+
+| País de la productora | Moneda |
+| --- | --- |
+| Guatemala | GTQ (quetzales) |
+| El Salvador | USD (dólares) |
+| Honduras | USD (dólares) |
+
+<Note>
+  La moneda se define **una sola vez** por la productora y la heredan todos sus eventos y ventas. No se elige por evento ni la elige el comprador. Para cambiarla, tenés que cambiar el país de la productora.
+</Note>
+
+### Monto mínimo de cobro
+
+Recurrente no procesa cobros por debajo de un mínimo:
+
+- **Guatemala:** Q5
+- **El Salvador y Honduras:** US$1
+
+Si el total del carrito queda por debajo de ese monto, el comprador ve un aviso pidiéndole que sume más entradas o elija otro medio de pago.
+
+---
+
+## Cargos de Recurrente
+
+En cada evento, dentro de **"Canales de venta" → Recurrente**, vas a encontrar la opción **"Pasar cargos al comprador"**:
+
+- **Apagada:** vos absorbés el cargo de procesamiento; el comprador paga el precio base.
+- **Activada:** se le suma el cargo al comprador y vos recibís el precio base. Al activarla se aplica **5,5%** por defecto, y podés elegir un preset (**5,5% — Tarjeta internacional**, **4,5% — Tarjeta local**, **3,5% — Tarifa base**, **0% (sin recargo)**) u **"Otro porcentaje"**.
+
+<Note>
+  El cargo real de Recurrente varía según el medio de pago que elija el comprador y según las condiciones de tu cuenta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra comisión por venta**: el único cargo adicional es del medio de pago.
+</Note>
+
+---
+
+## ¿Cuándo recibo el dinero?
+
+El dinero de cada venta entra **directamente a tu balance de Recurrente**, y de ahí seguís el flujo de retiros que tengas configurado en tu cuenta.
+
+<Warning>
+  Los tiempos de liquidación, los retiros a tu banco y las comisiones se manejan directamente en tu cuenta de Recurrente, no en qrTicket.
+</Warning>
+
+## Reembolsos
+
+Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hace **por la compra completa** (no por entrada suelta): se devuelve la plata al comprador y las entradas de esa compra quedan marcadas como reembolsadas.
+
+<Warning>
+  Los **créditos** consumidos por esas entradas **no se recuperan**. Si el reembolso lo hacés desde el panel de Recurrente en vez de qrTicket, igual lo detectamos y la compra se marca como reembolsada acá.
+</Warning>
+
+---
+
+## Problemas comunes
+
+<AccordionGroup>
+  <Accordion title="'No veo Recurrente en el menú de mi productora'">
+    Recurrente solo está disponible para productoras de **Guatemala, El Salvador y Honduras**. Revisá el país en [Configuración](/organizations/settings).
+
+    También necesitás un rol con permiso para administrar la productora. Mirá [Roles y permisos](/organizations/roles).
+  </Accordion>
+  <Accordion title="'Recurrente rechazó la clave'">
+    **Verificá:**
+
+    - Que sea la **clave secreta** (empieza con `sk_live_`), no la pública
+    - Que no la hayas rotado o revocado en Recurrente después de copiarla
+    - Que la hayas copiado completa, sin espacios al principio o al final
+  </Accordion>
+  <Accordion title="'Dice Modo de prueba y no puedo vender'">
+    Conectaste una clave `sk_test_...`, que no mueve dinero real. Generá la clave de producción (`sk_live_...`) en Recurrente y cargala en **"Reemplazar la clave secreta"**.
+  </Accordion>
+  <Accordion title="'No pudimos registrar el webhook'">
+    El webhook es lo que nos avisa que te pagaron. Sin él las entradas no se emiten solas, así que las ventas quedan deshabilitadas.
+
+    Volvé a pegar la clave y tocá **"Actualizar"** para reintentar. Si sigue fallando, escribinos por WhatsApp.
+  </Accordion>
+  <Accordion title="'No aparece el botón de compra'">
+    **Verificá:**
+
+    - Que la productora tenga Recurrente conectado y **no** en modo de prueba
+    - Que todos los productos tengan precio (no gratuitos)
+    - Que el deslizador **"Ventas con Recurrente"** esté activado en "Canales de venta"
+    - Que a la productora le queden créditos disponibles
+  </Accordion>
+  <Accordion title="'El comprador pagó pero no le llegó la entrada'">
+    Revisá primero la carpeta de spam del comprador. Si el pago figura como acreditado en Recurrente y la compra sigue pendiente en qrTicket, escribinos por WhatsApp con el link del evento y el email del comprador.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Canales de venta" icon="gear" href="/events/sales">
+    Combiná Recurrente con transferencia bancaria y WhatsApp
+  </Card>
+  <Card title="Tipos de entrada" icon="ticket" href="/events/products">
+    Configurá precios y límites de tus entradas
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda? Contactanos por [WhatsApp](https://wa.me/5491122503348).
