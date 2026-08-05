@@ -58,6 +58,7 @@
               "events/index",
               "events/create-tickets",
               "events/guests",
+              "events/print-tickets",
               "events/stats",
               "events/products",
               "events/barra",

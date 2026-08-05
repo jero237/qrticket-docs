@@ -1,0 +1,154 @@
+---
+title: "Imprimir entradas"
+description: "Generá un PDF imprimible con los códigos QR de un invitado: tamaño de hoja, entradas por hoja y consejos para que escaneen bien"
+icon: "print"
+---
+
+# Imprimir entradas
+
+Tus compradores no necesitan imprimir nada: reciben su entrada por email y muestran el QR desde el celular. Pero cuando sí necesitás la entrada en papel —cortesías para prensa, venta en la puerta, invitados que no usan celular o un evento donde querés entregar el ticket en mano— podés generar un **PDF imprimible** con los códigos QR desde el panel.
+
+<Note>
+  El PDF se genera **por invitado**: incluye todas las entradas de esa ficha. No hay una exportación de todas las entradas del evento en un solo archivo.
+</Note>
+
+## Antes de empezar
+
+- La entrada ya tiene que existir. Si todavía no la generaste, mirá [Crear entradas](/events/create-tickets).
+- Necesitás el permiso **"Ver todos los invitados"** o **"Ver invitados propios"**. Con el segundo solo podés exportar las entradas que cargaste vos. Ver [Roles y permisos](/organizations/roles).
+
+## Acceder
+
+<Steps>
+  <Step title="Abrí la ficha del invitado">
+    Dashboard → Tu evento → **"Compras y transferencias"** → tocá el **nombre** del invitado en la tabla (o usá **Acciones (⋮) → "Ver detalles"**).
+  </Step>
+  <Step title="Tocá «Exportar PDF»">
+    El botón está arriba a la derecha de la ficha. Se abre la ventana **"Exportar entradas en PDF"** con la vista previa a la derecha y las opciones a la izquierda.
+  </Step>
+  <Step title="Imprimí o descargá">
+    Ajustá las opciones y usá **"Imprimir"** o **"Descargar PDF"**.
+  </Step>
+</Steps>
+
+<Note>
+  Si el invitado no tiene ningún QR imprimible, el botón **"Exportar PDF"** aparece desactivado y la ventana muestra *"Este invitado no tiene códigos QR para imprimir."*
+</Note>
+
+## Opciones del PDF
+
+La vista previa se actualiza sola cada vez que cambiás una opción, así que podés ver cómo queda antes de imprimir.
+
+### Tamaño de hoja
+
+| Opción | Para qué sirve |
+| --- | --- |
+| **A4** | El tamaño estándar. Es el que viene por defecto. |
+| **Carta (Letter)** | Si tu impresora usa papel carta (común en México y Centroamérica). |
+| **A5** | Media hoja. Entran menos entradas por página y salen más chicas que en A4. |
+| **Tira 80 × 210 mm** | Una tira angosta, pensada para impresoras térmicas o de rollo de 80 mm. Las entradas salen con el QR **abajo** del texto en lugar de al costado. |
+
+### Entradas por hoja
+
+Cuántas entradas entran en cada página. Las opciones cambian según el tamaño de hoja, porque una entrada muy chica deja de ser legible y el QR puede fallar al escanear:
+
+- **A4 y Carta:** 3, 4 o 5
+- **A5:** 3 o 4
+- **Tira 80 × 210 mm:** 1 o 2
+
+La opción más chica aparece como **"(más grandes)"** y la más alta como **"(más compactas)"**.
+
+### Qué mostrar en la entrada
+
+Cinco interruptores para decidir qué datos se imprimen:
+
+| Interruptor | Por defecto | Detalle |
+| --- | --- | --- |
+| **Imagen del evento** | Activado | Usa el flyer del evento como fondo. Si el evento no tiene imagen queda desactivado con el aviso *"El evento no tiene imagen"*. |
+| **Lugar / dirección** | Activado | El lugar y la dirección del evento. |
+| **Organizador** | Activado | El nombre de tu productora, arriba de todo. |
+| **Nombre del invitado** | Activado | El nombre de la persona en la entrada. |
+| **Documento (DNI)** | Desactivado | Suma el DNI al lado del nombre. Si el invitado no lo tiene cargado queda desactivado con el aviso *"El invitado no tiene documento"*. |
+
+## Cómo queda la entrada
+
+Cada entrada impresa tiene dos partes:
+
+- **El panel del evento:** el nombre de tu productora, el nombre del evento, la fecha, el lugar, el nombre y DNI del invitado (según lo que hayas activado) y la leyenda **"VÁLIDA POR UNA PERSONA"**.
+- **El panel del QR**, siempre sobre fondo blanco: el código QR, el nombre del producto (ej: *General*, *VIP*, *Cerveza*) y el código de la entrada escrito abajo.
+
+<Tip>
+  Con **"Imagen del evento"** activado el fondo es oscuro; al apagarlo la entrada se imprime blanca con texto negro. Es la forma más simple de gastar mucha menos tinta.
+</Tip>
+
+## Imprimir o descargar
+
+En el pie de la ventana ves cuántas entradas trae el PDF y dos botones:
+
+- **Imprimir** — abre el PDF en una pestaña nueva para que lo mandes a la impresora desde ahí. Si el navegador bloquea las ventanas emergentes vas a ver el aviso *"No se pudo abrir la ventana de impresión. Usá «Descargar PDF» para guardar e imprimir."*
+- **Descargar PDF** — guarda el archivo como `entradas-{nombre-del-invitado}.pdf`.
+
+## Qué entradas entran en el PDF
+
+- **Todos los QR de esa ficha**, incluidos los productos de **barra**: cada QR sale como una entrada con el nombre de su producto.
+- **Las entradas ya escaneadas también salen**, y el PDF no las distingue de las demás. Si se escanean de nuevo, el scanner las va a rechazar como ya utilizadas.
+- **Las entradas transferidas a otra persona no se incluyen**: ese QR ahora es de quien lo recibió, y lo exporta desde su propia ficha.
+- Las entradas eliminadas no se pueden exportar.
+
+<Tip>
+  **¿Querés imprimir muchas entradas de una?** Al [crear entradas](/events/create-tickets) manualmente, en lugar de cargar 50 nombres distintos, cargá **un solo invitado** (ej: *"Puerta"*) y subí la **cantidad** con el botón **+** hasta 50. Queda una sola ficha con 50 QR, y salen todos juntos en un mismo PDF. Si cargás 50 nombres, son 50 fichas y 50 PDF distintos.
+</Tip>
+
+## Consejos para que escaneen bien
+
+<AccordionGroup>
+  <Accordion title="Imprimí a tamaño real" icon="ruler">
+    En el diálogo de impresión del navegador elegí **escala 100%** o "Tamaño real", y evitá la opción de "varias páginas por hoja". Si el QR se achica de más, el scanner puede tardar o no leerlo.
+  </Accordion>
+  <Accordion title="Blanco y negro está bien" icon="print">
+    El QR siempre se imprime negro sobre blanco, así que no necesitás color. Si además apagás **"Imagen del evento"**, la entrada entera sale en blanco y negro sin perder nada importante.
+  </Accordion>
+  <Accordion title="Cortá sin tocar el QR" icon="scissors">
+    Cortá por el borde de cada entrada y dejá el margen blanco alrededor del QR. Un QR recortado, doblado por el medio o arrugado puede no leerse.
+  </Accordion>
+  <Accordion title="Papel mate mejor que brillante" icon="file">
+    El papel muy brillante genera reflejos con la luz de la puerta y le cuesta más a la cámara. Papel común anda perfecto.
+  </Accordion>
+  <Accordion title="Probá una antes de imprimir todo" icon="qrcode">
+    Imprimí una sola hoja y escaneala con el [scanner](/events/scanner) para confirmar que la impresora la deja legible.
+
+    <Warning>
+      Escanear una entrada la marca como **usada**. Para la prueba generá una entrada de cortesía tuya y usá esa, no la de un invitado real.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  El QR impreso y el QR del celular son **la misma entrada**, no dos. El primero que se escanea entra; el segundo intento va a aparecer como ya utilizada. No entregues la versión impresa y la digital a personas distintas.
+</Warning>
+
+## Otras cosas imprimibles
+
+<CardGroup cols={2}>
+  <Card title="Afiche QR del evento" icon="qrcode" href="/events/referral">
+    Un afiche A4 con el QR de tu evento para pegar donde quieras: la gente lo escanea y compra desde el celular.
+  </Card>
+  <Card title="Afiche QR de la barra" icon="martini-glass" href="/events/barra">
+    Un afiche A4 para poner en la barra: tus clientes piden y pagan las bebidas online.
+  </Card>
+</CardGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Compras y transferencias" icon="users" href="/events/guests">
+    Volvé a la lista de invitados para gestionar el resto de las entradas.
+  </Card>
+  <Card title="Scanner" icon="qrcode" href="/events/scanner">
+    Validá las entradas —impresas o digitales— el día del evento.
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda para imprimir tus entradas? Contactanos por [WhatsApp](https://wa.me/5491122503348)
