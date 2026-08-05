@@ -13,6 +13,10 @@ Stripe te permite aceptar pagos con tarjeta de crédito/débito de cualquier par
 </Note>
 
 <Note>
+  Si tu productora es de **Guatemala, El Salvador u Honduras**, tu medio de cobro es [Recurrente](/organizations/recurrente). Stripe no habilita cuentas de comercio en esos países — mirá [¿En qué países puedo abrir una cuenta de Stripe?](#en-qué-países-puedo-abrir-una-cuenta-de-stripe).
+</Note>
+
+<Note>
   **Importante:** para conectar Stripe necesitás un rol con permiso para administrar la productora (por defecto, el **Administrador**). Mirá [Roles y permisos](/organizations/roles).
 </Note>
 
@@ -61,6 +65,23 @@ En esta pantalla vas a ver el encabezado **"Conectar Stripe"** y el estado de tu
   Si Stripe te pide más datos de verificación, la cuenta queda en estado **"Onboarding pendiente"** con un botón **"Completar registro"**. Recién cuando Stripe **verifica** tu cuenta el estado pasa a **Conectado** y podés empezar a cobrar.
 </Warning>
 
+## Cuenta conectada
+
+Una vez conectada, en la sección **Stripe** vas a ver:
+
+- El estado **"Conectado"**.
+- El campo **"Apodo de la cuenta"**, editable, para identificar fácilmente qué cuenta tenés vinculada (por ejemplo, "Cuenta principal"). Aparece en la columna **"Cuenta"** de tus ventas.
+- El botón **"Dashboard de Stripe"**, que abre el panel de Stripe donde ves los cobros, los retiros y las comisiones.
+- El botón **"Desconectar"**.
+
+<Note>
+  Tu cuenta de Stripe es tuya: entrás a su panel con **tus propias credenciales de Stripe**, no desde qrTicket.
+</Note>
+
+### Desconectar
+
+Al tocar **"Desconectar"** se elimina la conexión y **se apagan las ventas con Stripe en todos tus eventos**, para que ninguna página siga ofreciendo un medio de pago que ya no puede cobrar.
+
 ## ¿Cuándo recibo el dinero?
 
 Los fondos de cada venta se depositan **directamente en tu cuenta bancaria**, según los tiempos de liquidación que tengas configurados en Stripe.
@@ -101,6 +122,9 @@ Stripe cobra en la **moneda de tu productora**, que queda definida por el **Paí
 | Chile | CLP |
 | Colombia | COP |
 | Ecuador | USD |
+| El Salvador | USD |
+| Guatemala | GTQ |
+| Honduras | USD |
 | México | MXN |
 | Perú | PEN |
 | Uruguay | UYU |
@@ -108,6 +132,24 @@ Stripe cobra en la **moneda de tu productora**, que queda definida por el **Paí
 
 <Note>
   La moneda se define **una sola vez** por la productora y la heredan todos sus eventos y ventas. No se elige por evento ni la elige el comprador. Para cambiar la moneda, tenés que cambiar el país de la productora.
+</Note>
+
+### ¿En qué países puedo abrir una cuenta de Stripe?
+
+La tabla de arriba dice **en qué moneda cobrás**, no en qué países Stripe habilita cuentas. Stripe solo permite abrir una cuenta de comercio en los [países que tiene habilitados](https://stripe.com/global), y en Latinoamérica hoy son **Brasil y México**.
+
+Si tu productora es de otro país, para usar Stripe necesitás una cuenta de Stripe de una entidad radicada en alguno de esos países. Es lo que hacen varios organizadores que venden al exterior.
+
+<Note>
+  Si tu productora es de **Guatemala, El Salvador u Honduras**, el medio de cobro pensado para vos es [Recurrente](/organizations/recurrente): acepta tarjeta, transferencia y dólares digitales sin necesidad de una entidad en el exterior.
+</Note>
+
+### Monto mínimo de cobro
+
+Los medios de pago online no procesan cobros por montos muy chicos. Si el total del carrito queda por debajo del mínimo de tu moneda, el comprador ve un aviso pidiéndole que sume más entradas o elija otro medio de pago.
+
+<Note>
+  El mínimo ronda el equivalente a **US$0,50** (por ejemplo, $10 MXN). Nunca bloquea el precio de una entrada real.
 </Note>
 
 ## Cargos de Stripe
@@ -128,6 +170,66 @@ Para vender con Stripe, las entradas deben tener un **precio configurado**.
 <Card title="Información importante" icon="circle-info">
   Más información sobre cómo configurar precios en [Tipos de Entrada](/events/products).
 </Card>
+
+## Reembolsos
+
+Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hace **por la compra completa** (no por entrada suelta): se devuelve la plata al comprador a través de Stripe y las entradas de esa compra quedan marcadas como reembolsadas.
+
+<Warning>
+  Los **créditos** consumidos por esas entradas **no se recuperan**. Tampoco podés reembolsar una compra si alguna de sus entradas ya fue **transferida** a otra persona.
+</Warning>
+
+<Note>
+  Si el reembolso lo hacés desde el panel de Stripe en vez de qrTicket, igual lo detectamos y la compra se marca como reembolsada acá. Lo mismo pasa con un contracargo.
+</Note>
+
+---
+
+## Problemas comunes
+
+<AccordionGroup>
+  <Accordion title="'Mi cuenta quedó en Onboarding pendiente'">
+    Stripe todavía no terminó de verificarte. Entrá a **"Completar registro"** y cargá los datos que te pida.
+
+    Hasta que Stripe verifique la cuenta no podés cobrar, y el deslizador de ventas del evento aparece deshabilitado.
+  </Accordion>
+  <Accordion title="'No aparece el botón de compra'">
+    **Verificá:**
+
+    - Que la cuenta de Stripe figure como **Conectado** (no "Onboarding pendiente")
+    - Que todos los productos tengan precio (no gratuitos)
+    - Que el deslizador **"Ventas con Stripe"** esté activado en "Canales de venta"
+    - Que a la productora le queden créditos disponibles
+  </Accordion>
+  <Accordion title="'Stripe no me deja crear la cuenta desde mi país'">
+    Stripe habilita cuentas de comercio solo en [ciertos países](https://stripe.com/global). Si el tuyo no está en la lista, necesitás una entidad radicada en un país habilitado.
+
+    Si tu productora es de Guatemala, El Salvador u Honduras, usá [Recurrente](/organizations/recurrente) en su lugar.
+  </Accordion>
+  <Accordion title="'No recibo el dinero de Stripe'">
+    **El dinero va directamente a tu cuenta de Stripe.**
+
+    - Revisá tu panel en [dashboard.stripe.com](https://dashboard.stripe.com)
+    - Los tiempos de liquidación y los retiros los configurás en Stripe
+    - qrTicket no maneja ni retiene dinero
+  </Accordion>
+  <Accordion title="'El comprador pagó pero no le llegó la entrada'">
+    Revisá primero la carpeta de spam del comprador. Si el pago figura como acreditado en Stripe y la compra sigue pendiente en qrTicket, escribinos por WhatsApp con el link del evento y el email del comprador.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Canales de venta" icon="gear" href="/events/sales">
+    Combiná Stripe con MercadoPago, transferencia bancaria y WhatsApp
+  </Card>
+  <Card title="Tipos de entrada" icon="ticket" href="/events/products">
+    Configurá precios y límites de tus entradas
+  </Card>
+</CardGroup>
 
 ---
 
