@@ -1,0 +1,122 @@
+---
+title: "API de qrTicket"
+description: "Leé tus eventos, ventas, entradas e ingresos desde tus propios sistemas, y recibí avisos automáticos cuando algo cambia"
+icon: "plug"
+---
+
+# API de qrTicket
+
+La API te deja **leer** los datos de tu productora desde cualquier herramienta: un CRM, una planilla, un panel interno, una automatización. Y los **webhooks** te avisan en el momento en que algo pasa, sin tener que estar consultando.
+
+<Note>
+  La API es de **solo lectura**. No se puede crear, modificar ni borrar nada de qrTicket desde ella. Todo lo que se toca sigue tocándose desde el dashboard.
+</Note>
+
+## Qué podés leer
+
+<CardGroup cols={2}>
+  <Card title="Eventos" icon="calendar" href="/api/events">
+    Nombre, fecha, lugar, estado, link público, imagen y canales de venta activos.
+  </Card>
+  <Card title="Tipos de entrada" icon="ticket" href="/api/ticket-types">
+    Entradas, combos y productos de barra con precio, estado, límite y cuánto se vendió.
+  </Card>
+  <Card title="Ventas" icon="cart-shopping" href="/api/orders">
+    Fecha, evento, comprador, contacto, ítems, importe, vendedor y estado.
+  </Card>
+  <Card title="Entradas e ingresos" icon="qrcode" href="/api/tickets">
+    Cada credencial con su estado (válida, escaneada, transferida, anulada, reembolsada) y la hora de ingreso.
+  </Card>
+</CardGroup>
+
+## Qué te avisamos
+
+Los [webhooks](/api/webhooks) te mandan un POST cuando:
+
+- se **aprueba**, **rechaza** o **reembolsa** una compra;
+- se **emite**, **transfiere** o **anula** una entrada;
+- se **escanea** una entrada en la puerta;
+- cambia algún dato del **evento** o de los **tipos de entrada**.
+
+## URL base
+
+```http
+https://qrticket.app/api/v1
+```
+
+Todas las respuestas son JSON en UTF-8. Las fechas son **ISO-8601 en UTC** (`2026-08-15T23:30:00.000Z`).
+
+## Tu primera llamada
+
+Creá una clave en **Dashboard → Tu productora → API y Webhooks** y probá:
+
+```bash
+curl https://qrticket.app/api/v1/me \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+```json
+{
+  "data": {
+    "organization": {
+      "id": "tWyMqk8a",
+      "name": "Mi Productora",
+      "slug": "mi-productora",
+      "country": "AR",
+      "currency": "ARS"
+    },
+    "scopes": ["EVENTS_READ", "ORDERS_READ", "TICKETS_READ"]
+  }
+}
+```
+
+`GET /me` es la llamada que conviene hacer primero: te dice si la clave es válida, a qué productora corresponde y qué permisos tiene, todo de una.
+
+## Forma de las respuestas
+
+Un recurso individual viene en `data`:
+
+```json
+{ "data": { "id": "m94K1zLU8S", "name": "EUFORIA" } }
+```
+
+Una lista viene con el cursor para pedir la página siguiente:
+
+```json
+{
+  "data": [{ "id": "m94K1zLU8S" }],
+  "has_more": true,
+  "next_cursor": "eyJ0IjoiMjAyNi0wNS0zMVQwNzowNzozNC40NTJaIn0"
+}
+```
+
+Ver [paginación](/api/pagination).
+
+## Errores
+
+Los errores llegan con el código HTTP correspondiente y un cuerpo estable:
+
+```json
+{
+  "error": {
+    "code": "insufficient_scope",
+    "message": "This API key does not have the `ORDERS_READ` scope."
+  }
+}
+```
+
+| Código HTTP | `code`                | Qué pasó |
+| ----------- | --------------------- | -------- |
+| 400         | `invalid_request`     | Un parámetro está mal formado o tiene un valor que no existe. |
+| 401         | `unauthorized`        | Falta la clave, es inválida, está revocada o venció. |
+| 403         | `insufficient_scope`  | La clave es válida pero no tiene el permiso que ese endpoint pide. |
+| 404         | `not_found`           | No existe, o no pertenece a tu productora. |
+| 500         | `internal_error`      | Error nuestro. Reintentá; si persiste, escribinos. |
+
+<Note>
+  Un recurso de **otra** productora responde `404`, no `403`. Es a propósito: así la API no sirve para averiguar qué ids existen fuera de la tuya.
+</Note>
+
+## Compatibilidad
+
+La versión está en la URL (`/api/v1`). Dentro de `v1` **agregamos** campos, pero no renombramos ni eliminamos los que ya existen. Escribí tu integración ignorando los campos que no conozcas y no se te va a romper cuando sumemos algo.

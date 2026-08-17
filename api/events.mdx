@@ -1,0 +1,113 @@
+---
+title: "Eventos"
+description: "Listar y consultar los eventos de tu productora"
+icon: "calendar"
+---
+
+# Eventos
+
+Requiere el permiso `EVENTS_READ`.
+
+## Listar eventos
+
+```http
+GET /api/v1/events
+```
+
+```bash
+curl "https://qrticket.app/api/v1/events?status=public&limit=50" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+### Parámetros
+
+| Parámetro        | Tipo   | Descripción |
+| ---------------- | ------ | ----------- |
+| `limit`          | número | 1 a 200. Default 50. |
+| `cursor`         | texto  | Cursor de la página anterior. |
+| `status`         | texto  | Filtra por estado. Repetible o separado por comas: `?status=public,featured`. |
+| `starts_after`   | fecha  | Eventos que arrancan a partir de esta fecha (ISO-8601). |
+| `starts_before`  | fecha  | Eventos que arrancan hasta esta fecha. |
+| `updated_after`  | fecha  | Eventos modificados después de esta fecha. |
+
+Los eventos eliminados no aparecen nunca.
+
+## Consultar un evento
+
+```http
+GET /api/v1/events/{event_id}
+```
+
+## El objeto Evento
+
+```json
+{
+  "id": "m94K1zLU8S",
+  "slug": "euforia",
+  "name": "EUFORIA",
+  "description": "La fiesta más grande del año",
+  "starts_at": "2026-08-15T23:30:00.000Z",
+  "ends_at": null,
+  "status": "public",
+  "is_published": true,
+  "url": "https://qrticket.app/e/euforia",
+  "image_url": "https://cdn.qrticket.app/...jpg",
+  "media": [],
+  "transferable": true,
+  "venue": {
+    "name": "Club Paraíso",
+    "address": "Av. Siempre Viva 742",
+    "city": "Rosario",
+    "province": "Santa Fe",
+    "country": "Argentina",
+    "latitude": -32.94,
+    "longitude": -60.65
+  },
+  "sales_channels": {
+    "mercadopago": true,
+    "stripe": false,
+    "recurrente": false,
+    "bank_transfer": true,
+    "whatsapp": false
+  },
+  "currency": "ARS",
+  "created_at": "2026-06-01T14:22:10.000Z",
+  "updated_at": "2026-08-01T09:14:55.000Z"
+}
+```
+
+### Campos
+
+<ResponseField name="id" type="string">
+  Identificador del evento. Es el que usás en `event_id` en el resto de los endpoints.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  Uno de `public`, `featured`, `pending_approval`, `rejected`, `private`.
+
+  - `public` — publicado y a la venta.
+  - `featured` — publicado y además destacado por nosotros en la home de qrTicket. A los fines de tu integración es equivalente a `public`.
+  - `pending_approval` — esperando que lo revisemos.
+  - `rejected` — lo rechazamos; el organizador tiene el motivo en el dashboard.
+  - `private` — no está listado; se vende solo por link directo.
+</ResponseField>
+
+<ResponseField name="is_published" type="boolean">
+  Atajo: `true` cuando el estado es `public` o `featured`. Si solo te importa "¿está a la venta?", usá esto y olvidate de la diferencia entre los dos.
+</ResponseField>
+
+<ResponseField name="url" type="string">
+  Link público del evento. Si la productora tiene [dominio propio](/organizations/white-label) verificado, la URL sale con **ese** dominio, no con qrticket.app.
+</ResponseField>
+
+<ResponseField name="sales_channels" type="object">
+  Qué medios de pago están habilitados **en este evento**. Las entradas gratis no son un canal: son un precio de `0` en un tipo de entrada, y las ves en [tipos de entrada](/api/ticket-types).
+</ResponseField>
+
+<ResponseField name="currency" type="string">
+  Moneda de la productora (`ARS`, `USD`, `GTQ`, `MXN`…). Los precios en `ticket_types` son números pelados, así que esta es la moneda en la que hay que leerlos.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  Se mueve con cualquier edición del evento. Es el campo para `updated_after`.
+</ResponseField>

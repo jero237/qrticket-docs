@@ -1,0 +1,129 @@
+---
+title: "Entradas e ingresos"
+description: "Cada credencial con su estado y la hora en que entró por la puerta"
+icon: "qrcode"
+---
+
+# Entradas e ingresos
+
+Una **entrada** acá es una credencial: el QR concreto que una persona presenta en la puerta. Es la unidad que se escanea, se transfiere y se anula.
+
+Requiere el permiso `TICKETS_READ`.
+
+## Listar entradas
+
+```http
+GET /api/v1/tickets
+```
+
+```bash
+curl "https://qrticket.app/api/v1/tickets?event_id=m94K1zLU8S&status=scanned" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+### Parámetros
+
+| Parámetro         | Tipo   | Descripción |
+| ----------------- | ------ | ----------- |
+| `limit`           | número | 1 a 200. Default 50. |
+| `cursor`          | texto  | Cursor de la página anterior. |
+| `event_id`        | texto  | Solo las de ese evento. |
+| `order_id`        | texto  | Solo las de esa orden. |
+| `status`          | texto  | `valid`, `scanned`, `transferred`, `cancelled`, `refunded`. Repetible o separado por comas. |
+| `issued_after`    | fecha  | Emitidas después de esta fecha. |
+| `scanned_after`   | fecha  | Escaneadas después de esta fecha. **Es el parámetro para un feed de ingresos.** |
+| `scanned_before`  | fecha  | Escaneadas hasta esta fecha. |
+
+<Note>
+  Las credenciales inválidas **se devuelven** con su estado, no se esconden. Es a propósito: un sistema que pierde en silencio las anuladas y las reembolsadas no puede conciliar contra ellas.
+</Note>
+
+## Consultar una entrada
+
+```http
+GET /api/v1/tickets/{ticket_id}
+```
+
+El `ticket_id` es **el valor que está codificado en el QR**, así que este endpoint también sirve para "leí este código, decime qué es".
+
+<Warning>
+  Consultar acá **no hace entrar a nadie**: la API es de solo lectura y no marca la credencial como usada. El ingreso lo registra únicamente el [escáner](/events/scanner) de qrTicket.
+</Warning>
+
+## El objeto Entrada
+
+```json
+{
+  "id": "2vLwQ8GE135z",
+  "event_id": "m94K1zLU8S",
+  "order_id": "OwcEMGo0jm",
+  "status": "scanned",
+  "ticket_type": { "id": "TvEPjMm1rx", "name": "PREVENTA", "category": "ticket" },
+  "from_bundle": false,
+  "attendee": {
+    "id": "qtRD9AfcaF",
+    "name": "Camila Ríos",
+    "email": "camila@example.com",
+    "phone": null,
+    "identity_document": "38123456"
+  },
+  "issued_at": "2026-08-01T18:05:02.000Z",
+  "checked_in_at": "2026-08-15T23:47:10.000Z",
+  "checked_in_by": "Puerta 1",
+  "transferred_at": null,
+  "transferred_to_ticket_id": null
+}
+```
+
+### Campos
+
+<ResponseField name="status" type="string">
+  - `valid` — sin usar, lista para entrar.
+  - `scanned` — ya entró. La hora está en `checked_in_at`.
+  - `transferred` — la persona se la pasó a otra. **Esta credencial ya no sirve**; la buena es la que apunta `transferred_to_ticket_id`.
+  - `cancelled` — la eliminaron desde el dashboard.
+  - `refunded` — se reembolsó la orden.
+
+  El orden de precedencia es el mismo que aplica la puerta: anulada y reembolsada pesan más que un escaneo, y una transferencia pesa más que las dos.
+</ResponseField>
+
+<ResponseField name="checked_in_by" type="string | null">
+  El nombre de la estación que escaneó ("Puerta 1", "Barra"), no una persona. La mayoría del escaneo se hace con el link compartible, donde no hay cuenta detrás — por eso la etiqueta de la estación es la atribución que realmente existe.
+</ResponseField>
+
+<ResponseField name="from_bundle" type="boolean">
+  `true` cuando la credencial salió de un combo y no de una venta directa. Útil para no contar dos veces al comparar contra `sold` de un tipo de entrada.
+</ResponseField>
+
+<ResponseField name="order_id" type="string | null">
+  La orden que la originó. Puede ser `null` en credenciales muy viejas cargadas a mano.
+</ResponseField>
+
+<ResponseField name="issued_at" type="string">
+  Cuándo se generó la credencial. Todo lo emitido **antes del 11 de agosto de 2026** trae la misma fecha (el día que sumamos el campo); para ubicar en el tiempo una venta anterior a eso, usá `created_at` de la orden.
+</ResponseField>
+
+## Recetas
+
+<AccordionGroup>
+  <Accordion title="Cuánta gente entró">
+    ```http
+    GET /api/v1/tickets?event_id=...&status=scanned
+    ```
+    Contá las filas. Si querés solo entradas y no consumiciones de barra, filtrá por `ticket_type.category === "ticket"`.
+  </Accordion>
+
+  <Accordion title="Feed de ingresos en vivo">
+    Suscribite a [`ticket.scanned`](/api/webhook-events) y, cada tantos minutos, reconciliá con `scanned_after` usando el `checked_in_at` más alto que hayas visto.
+  </Accordion>
+
+  <Accordion title="Quién está por entrar todavía">
+    ```http
+    GET /api/v1/tickets?event_id=...&status=valid
+    ```
+  </Accordion>
+
+  <Accordion title="Seguir una transferencia">
+    Cuando `status` es `transferred`, `transferred_to_ticket_id` te da la credencial nueva. Encadenando ese campo llegás al titular actual — una entrada puede pasar de mano varias veces.
+  </Accordion>
+</AccordionGroup>

@@ -81,6 +81,36 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API",
+        "groups": [
+          {
+            "group": "Empezar",
+            "pages": [
+              "api/introduction",
+              "api/authentication",
+              "api/pagination"
+            ]
+          },
+          {
+            "group": "Referencia",
+            "pages": [
+              "api/events",
+              "api/ticket-types",
+              "api/orders",
+              "api/tickets"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "api/webhooks",
+              "api/webhook-events",
+              "api/webhook-signatures"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -102,7 +132,9 @@
     }
   },
   "contextual": {
-    "options": ["copy"]
+    "options": [
+      "copy"
+    ]
   },
   "footer": {
     "socials": {

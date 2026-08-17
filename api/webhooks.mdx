@@ -1,0 +1,109 @@
+---
+title: "Webhooks"
+description: "Recibí un aviso automático en el momento en que algo cambia"
+icon: "bell"
+---
+
+# Webhooks
+
+En vez de consultar la API cada tanto para ver si pasó algo, decinos a qué URL avisarte y te mandamos un `POST` en el momento.
+
+## Configurar un endpoint
+
+<Steps>
+  <Step title="Abrí API y Webhooks">
+    Dashboard → Tu productora → **API y Webhooks** → *Agregar endpoint*.
+  </Step>
+  <Step title="Pegá tu URL">
+    Tiene que ser `https://` y pública. No aceptamos direcciones internas ni IPs privadas.
+  </Step>
+  <Step title="Elegí qué querés recibir">
+    Marcá solo los eventos que vas a procesar. Ver la [lista completa](/api/webhook-events).
+  </Step>
+  <Step title="Guardá el secreto de firma">
+    Te lo mostramos una vez. Lo necesitás para [verificar la firma](/api/webhook-signatures) de cada envío.
+  </Step>
+  <Step title="Probá">
+    El botón **Enviar prueba** manda un `ping` real, con la misma firma y las mismas cabeceras que los avisos de verdad. Si eso pasa, los eventos reales también van a pasar.
+  </Step>
+</Steps>
+
+Podés tener hasta **10 endpoints** por productora, y limitar cada uno a eventos puntuales.
+
+## Cómo llega
+
+```http
+POST /tu-endpoint HTTP/1.1
+Content-Type: application/json
+User-Agent: qrTicket-Webhooks/1.0
+X-QRT-Signature: t=1755031234,v1=5a3f...
+X-QRT-Event-Type: order.completed
+X-QRT-Event-Id: evt_UsOLyg2IUjwjksglqUJr
+X-QRT-Delivery-Id: cmsp2cavn0000l41hrw31cyu7
+X-QRT-Attempt: 1
+```
+
+```json
+{
+  "id": "evt_UsOLyg2IUjwjksglqUJr",
+  "type": "order.completed",
+  "created_at": "2026-08-11T19:38:23.073Z",
+  "organization_id": "tWyMqk8a",
+  "data": { "order": { "...": "..." } }
+}
+```
+
+El contenido de `data` es **el mismo objeto que devuelve la API REST**. Un `order.completed` trae exactamente lo que te daría `GET /api/v1/orders/{id}`, así que escribís un solo parser para las dos cosas.
+
+### Cabeceras
+
+| Cabecera | Para qué |
+| -------- | -------- |
+| `X-QRT-Signature`  | Firma HMAC del cuerpo. Ver [verificación](/api/webhook-signatures). |
+| `X-QRT-Event-Type` | El tipo, también presente en el cuerpo. |
+| `X-QRT-Event-Id`   | Identificador del hecho. **Es la clave de deduplicación.** |
+| `X-QRT-Delivery-Id`| Identificador de este intento de envío puntual. |
+| `X-QRT-Attempt`    | Número de intento, arrancando en 1. |
+
+## Qué tenés que responder
+
+Cualquier **2xx**. No miramos el cuerpo.
+
+Respondé **rápido** — el envío corta a los 10 segundos. Si tu procesamiento demora, guardá el evento en una cola y contestá 200 enseguida; si lo procesás antes de responder, te vamos a marcar como caído aunque hayas hecho el trabajo.
+
+Cualquier otra cosa (3xx, 4xx, 5xx, timeout, error de conexión) cuenta como fallo y entra en la escalera de reintentos.
+
+## Reintentos
+
+Reintentamos hasta **7 veces** con espera creciente:
+
+| Intento | Cuándo |
+| ------- | ------ |
+| 1 | inmediato |
+| 2 | +1 minuto |
+| 3 | +5 minutos |
+| 4 | +30 minutos |
+| 5 | +2 horas |
+| 6 | +6 horas |
+| 7 | +12 horas |
+
+En total cubre unas **21 horas**. Después de eso el envío queda como *Falló* y podés reenviarlo a mano desde **Últimos envíos**.
+
+<Warning>
+  **Escribí tu receptor de forma idempotente.** Un reintento repite el mismo `X-QRT-Event-Id`. Guardá los ids que ya procesaste y descartá los repetidos, o vas a duplicar filas cada vez que tu servidor tarde en contestar y nosotros reintentemos igual.
+</Warning>
+
+### Desactivación automática
+
+Si un endpoint falla **50 envíos seguidos**, lo apagamos y te lo mostramos en el dashboard con el último error. Arreglá tu servidor y volvé a activarlo con el switch: eso reinicia el contador.
+
+## Entrega al menos una vez
+
+Garantizamos que el aviso llega **al menos una vez**, no exactamente una vez. En la práctica:
+
+- puede llegar **repetido** (por eso `X-QRT-Event-Id`);
+- puede llegar **fuera de orden** — un `ticket.scanned` puede adelantarse a un `order.completed` si el primero se entregó al primer intento y el segundo tuvo que reintentar. No asumas orden: usá los timestamps del cuerpo.
+
+## Webhooks + polling
+
+Los webhooks son para reaccionar en el momento. Sumales una [sincronización incremental](/api/pagination) cada tanto para reconciliar: si tu servidor estuvo caído más que la ventana de reintentos, el polling es lo que te recupera lo perdido.

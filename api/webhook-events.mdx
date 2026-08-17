@@ -1,0 +1,174 @@
+---
+title: "Eventos de webhook"
+description: "Los nueve avisos que podés recibir y qué trae cada uno"
+icon: "list"
+---
+
+# Eventos de webhook
+
+Todos comparten el mismo sobre; lo que cambia es `type` y el contenido de `data`.
+
+```json
+{
+  "id": "evt_...",
+  "type": "order.completed",
+  "created_at": "2026-08-11T19:38:23.073Z",
+  "organization_id": "tWyMqk8a",
+  "data": { }
+}
+```
+
+## Compras
+
+### `order.completed`
+
+Se acreditó el pago (o el equipo aprobó una transferencia / un pedido de WhatsApp) y las entradas ya están emitidas.
+
+```json
+{ "data": { "order": { "id": "OwcEMGo0jm", "status": "completed", "...": "..." } } }
+```
+
+`order` es idéntico a lo que devuelve `GET /api/v1/orders/{id}`. Ver [Ventas](/api/orders).
+
+<Note>
+  Junto con este aviso sale un `ticket.issued` con las credenciales de esa misma orden. Si suscribís los dos, vas a recibir ambos.
+</Note>
+
+### `order.rejected`
+
+Se rechazó un comprobante de transferencia, se rechazó un pedido por WhatsApp, o se anuló la orden desde el dashboard. La orden queda en `cancelled`.
+
+### `order.refunded`
+
+Se devolvió la plata, desde el dashboard o desde el procesador (incluye contracargos). La orden queda en `refunded` y sus credenciales dejan de servir.
+
+<Note>
+  En qrTicket **la unidad de reembolso es la orden completa**. Un reembolso parcial en MercadoPago se interpreta como reversión total, porque el flujo habitual es "total menos la comisión".
+</Note>
+
+## Entradas
+
+Los avisos de entrada siempre traen un **arreglo** `tickets`, aunque tenga un solo elemento. Así una importación de 500 asistentes es un aviso y no 500.
+
+### `ticket.issued`
+
+Se generaron credenciales nuevas.
+
+```json
+{
+  "data": {
+    "event_id": "m94K1zLU8S",
+    "order_id": "OwcEMGo0jm",
+    "reason": "purchase",
+    "tickets": [ { "id": "2vLwQ8GE135z", "status": "valid", "...": "..." } ]
+  }
+}
+```
+
+`reason` puede ser:
+
+| `reason` | Cuándo |
+| -------- | ------ |
+| `purchase` | Venta online pagada. |
+| `manual`   | Carga manual desde el dashboard (cortesías, RRPP). |
+| `import`   | Importación de una planilla. |
+| `transfer` | Recibida por transferencia de otra persona. |
+
+### `ticket.transferred`
+
+Alguien le pasó su entrada a otra persona. Trae **las dos puntas**, porque sin las dos no sabés quién va a estar en la puerta:
+
+```json
+{
+  "data": {
+    "event_id": "m94K1zLU8S",
+    "from_ticket": { "id": "2vLwQ8GE135z", "status": "transferred", "...": "..." },
+    "to_ticket":   { "id": "9kQmT4Xz88aa", "status": "valid",       "...": "..." },
+    "tickets": [ { "id": "9kQmT4Xz88aa", "...": "..." } ]
+  }
+}
+```
+
+`from_ticket` queda anulada; `to_ticket` es la que vale. `tickets` trae la nueva, para que puedas procesar todos los `ticket.*` con el mismo código.
+
+### `ticket.cancelled`
+
+Una credencial dejó de valer.
+
+```json
+{
+  "data": {
+    "event_id": "m94K1zLU8S",
+    "order_id": "OwcEMGo0jm",
+    "reason": "refunded",
+    "tickets": [ { "id": "2vLwQ8GE135z", "status": "cancelled", "...": "..." } ]
+  }
+}
+```
+
+`reason` es `deleted` (la borraron desde el dashboard) o `refunded` (se reembolsó la orden).
+
+### `ticket.scanned`
+
+Ingreso en la puerta. Siempre una sola credencial.
+
+```json
+{
+  "data": {
+    "event_id": "m94K1zLU8S",
+    "order_id": "OwcEMGo0jm",
+    "checked_in_at": "2026-08-15T23:47:10.000Z",
+    "checked_in_by": "Puerta 1",
+    "tickets": [ { "id": "2vLwQ8GE135z", "status": "scanned", "...": "..." } ]
+  }
+}
+```
+
+Solo se emite cuando la persona **efectivamente entró**. Un QR rechazado en la puerta (repetido, anulado, del tipo equivocado) no genera aviso: nadie pasó.
+
+## Catálogo
+
+### `event.updated`
+
+Cambió algo del evento: nombre, fecha, lugar, estado, canales de venta, campos personalizados.
+
+```json
+{ "data": { "event": { "id": "m94K1zLU8S", "...": "..." }, "deleted": false } }
+```
+
+`event` es idéntico a `GET /api/v1/events/{id}`. Cuando `deleted` es `true`, el evento se eliminó y la API deja de devolverlo.
+
+### `ticket_type.updated`
+
+Se creó, editó, agotó o eliminó un tipo de entrada, un combo o un producto de barra.
+
+```json
+{
+  "data": {
+    "event_id": "m94K1zLU8S",
+    "ticket_type_id": "TvEPjMm1rx",
+    "kind": "ticket_type",
+    "action": "updated"
+  }
+}
+```
+
+`action` es `created`, `updated` o `deleted`.
+
+<Note>
+  Este aviso es una **referencia**, no una foto: no trae precio ni vendidos. Es a propósito — el `sold` se mueve con cada venta, así que cualquier número que mandáramos acá ya estaría viejo cuando lo leas. Pedí [`/events/{id}/ticket-types`](/api/ticket-types) cuando lo recibas.
+</Note>
+
+## Tabla resumen
+
+| `type` | Cuándo | `data` |
+| ------ | ------ | ------ |
+| `order.completed`     | Compra aprobada y emitida | `order` |
+| `order.rejected`      | Compra rechazada o anulada | `order` |
+| `order.refunded`      | Compra reembolsada | `order` |
+| `ticket.issued`       | Credenciales nuevas | `tickets[]`, `reason` |
+| `ticket.transferred`  | Entrada pasada a otra persona | `from_ticket`, `to_ticket`, `tickets[]` |
+| `ticket.cancelled`    | Credencial anulada | `tickets[]`, `reason` |
+| `ticket.scanned`      | Ingreso en la puerta | `tickets[]`, `checked_in_at`, `checked_in_by` |
+| `event.updated`       | Cambió el evento | `event`, `deleted` |
+| `ticket_type.updated` | Cambió un tipo de entrada | `ticket_type_id`, `kind`, `action` |

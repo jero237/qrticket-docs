@@ -1,0 +1,161 @@
+---
+title: "Verificar la firma"
+description: "Cómo comprobar que un aviso salió realmente de qrTicket"
+icon: "shield-check"
+---
+
+# Verificar la firma
+
+Tu endpoint es una URL pública: cualquiera que la descubra puede mandarle un JSON que diga "esta compra se aprobó". La firma es lo que te deja distinguir un aviso nuestro de uno inventado.
+
+<Warning>
+  Verificá **siempre** antes de hacer nada con el contenido. Sin verificación, cualquiera puede crear entradas falsas en tu sistema con un `curl`.
+</Warning>
+
+## La cabecera
+
+```text
+X-QRT-Signature: t=1755031234,v1=5a3f9c...
+```
+
+- `t` — el momento del envío, en segundos Unix.
+- `v1` — HMAC-SHA256 en hexadecimal de `{t}.{cuerpo}`, usando el secreto de tu endpoint.
+
+Durante una rotación puede venir más de un `v1`, separados por espacio. Aceptá el mensaje si **alguno** coincide.
+
+## Los tres pasos
+
+<Steps>
+  <Step title="Leé el cuerpo SIN parsear">
+    La firma se calcula sobre los bytes exactos que te llegaron. Si serializás de nuevo el JSON ya parseado, cambian los espacios o el orden de las claves y la firma nunca va a coincidir.
+  </Step>
+  <Step title="Recalculá el HMAC">
+    `HMAC-SHA256(secreto, "{t}.{cuerpo}")` y comparalo con `v1` en **tiempo constante**.
+  </Step>
+  <Step title="Chequeá el timestamp">
+    Rechazá si `t` está a más de unos minutos de tu reloj. Sin esto, quien haya capturado un envío viejo puede reproducirlo tal cual para siempre.
+  </Step>
+</Steps>
+
+## Node.js / Express
+
+```javascript
+import express from "express";
+import { createHmac, timingSafeEqual } from "node:crypto";
+
+const app = express();
+const SECRET = process.env.QRTICKET_WEBHOOK_SECRET;
+const TOLERANCE_SECONDS = 300;
+
+// `express.raw` — NO `express.json`: necesitamos los bytes originales.
+app.post("/qrticket", express.raw({ type: "application/json" }), (req, res) => {
+  const header = req.get("X-QRT-Signature") ?? "";
+  const timestamp = /t=(\d+)/.exec(header)?.[1];
+  const signatures = [...header.matchAll(/v1=([a-f0-9]+)/g)].map((m) => m[1]);
+
+  if (!timestamp || signatures.length === 0) return res.sendStatus(400);
+
+  if (Math.abs(Date.now() / 1000 - Number(timestamp)) > TOLERANCE_SECONDS) {
+    return res.sendStatus(400); // demasiado viejo: posible replay
+  }
+
+  const raw = req.body.toString("utf8");
+  const expected = createHmac("sha256", SECRET)
+    .update(`${timestamp}.${raw}`, "utf8")
+    .digest("hex");
+
+  const valid = signatures.some(
+    (sig) =>
+      sig.length === expected.length &&
+      timingSafeEqual(Buffer.from(sig), Buffer.from(expected)),
+  );
+  if (!valid) return res.sendStatus(401);
+
+  const event = JSON.parse(raw);
+
+  // Respondé YA y procesá después: el envío corta a los 10 segundos.
+  res.sendStatus(200);
+
+  // Idempotencia: un reintento repite el mismo event.id.
+  void handle(event).catch(console.error);
+});
+```
+
+## Python / Flask
+
+```python
+import hmac, hashlib, re, time
+from flask import Flask, request, abort
+
+app = Flask(__name__)
+SECRET = os.environ["QRTICKET_WEBHOOK_SECRET"].encode()
+TOLERANCE = 300
+
+@app.post("/qrticket")
+def qrticket():
+    header = request.headers.get("X-QRT-Signature", "")
+    ts = re.search(r"t=(\d+)", header)
+    sigs = re.findall(r"v1=([a-f0-9]+)", header)
+    if not ts or not sigs:
+        abort(400)
+
+    if abs(time.time() - int(ts.group(1))) > TOLERANCE:
+        abort(400)
+
+    raw = request.get_data()  # bytes originales, no request.json
+    expected = hmac.new(
+        SECRET, f"{ts.group(1)}.".encode() + raw, hashlib.sha256
+    ).hexdigest()
+
+    if not any(hmac.compare_digest(sig, expected) for sig in sigs):
+        abort(401)
+
+    event = request.get_json()
+    # ... encolar y responder rápido
+    return "", 200
+```
+
+## PHP
+
+```php
+<?php
+$secret = getenv('QRTICKET_WEBHOOK_SECRET');
+$raw    = file_get_contents('php://input');
+$header = $_SERVER['HTTP_X_QRT_SIGNATURE'] ?? '';
+
+preg_match('/t=(\d+)/', $header, $t);
+preg_match_all('/v1=([a-f0-9]+)/', $header, $v);
+
+if (empty($t[1]) || empty($v[1])) { http_response_code(400); exit; }
+if (abs(time() - (int)$t[1]) > 300) { http_response_code(400); exit; }
+
+$expected = hash_hmac('sha256', $t[1] . '.' . $raw, $secret);
+
+$valid = false;
+foreach ($v[1] as $sig) { if (hash_equals($expected, $sig)) { $valid = true; break; } }
+if (!$valid) { http_response_code(401); exit; }
+
+$event = json_decode($raw, true);
+http_response_code(200);
+```
+
+## Rotar el secreto
+
+Desde **API y Webhooks**, botón *Rotar*. Los envíos nuevos se firman con el secreto nuevo, así que actualizá tu servidor **en el momento** de rotar. Rotá si el secreto se filtró o si cambió el equipo que lo tenía.
+
+## Errores frecuentes
+
+<AccordionGroup>
+  <Accordion title="La firma nunca coincide">
+    Casi siempre es que estás firmando el JSON re-serializado en vez del cuerpo crudo. Un middleware de body-parsing antes de tu handler es suficiente para romperlo. En Express usá `express.raw`, en Flask `request.get_data()`.
+  </Accordion>
+  <Accordion title="Funcionaba y de golpe todo da 401">
+    ¿Rotaste el secreto? Los envíos posteriores van firmados con el nuevo.
+  </Accordion>
+  <Accordion title="Nos marcan como caídos pero recibimos todo">
+    Estás procesando antes de responder y te pasás de los 10 segundos. Contestá 200 primero, procesá después.
+  </Accordion>
+  <Accordion title="Nos llegan eventos repetidos">
+    Es esperable: la entrega es *al menos una vez*. Guardá los `id` procesados y descartá los repetidos.
+  </Accordion>
+</AccordionGroup>

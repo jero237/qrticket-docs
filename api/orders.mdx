@@ -1,0 +1,160 @@
+---
+title: "Ventas"
+description: "Las compras de tu productora: comprador, ítems, importe, canal, vendedor y estado"
+icon: "cart-shopping"
+---
+
+# Ventas
+
+Una **orden** es una compra: quién compró, qué se llevó, cuánto pagó, por qué canal y en qué estado quedó.
+
+Requiere el permiso `ORDERS_READ`.
+
+<Warning>
+  Este endpoint devuelve datos personales de tus compradores (nombre, email, teléfono, documento). Tratalos con el mismo cuidado con el que los tratás en el dashboard.
+</Warning>
+
+## Listar ventas
+
+```http
+GET /api/v1/orders
+```
+
+```bash
+curl "https://qrticket.app/api/v1/orders?event_id=m94K1zLU8S&status=completed&limit=200" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+### Parámetros
+
+| Parámetro         | Tipo   | Descripción |
+| ----------------- | ------ | ----------- |
+| `limit`           | número | 1 a 200. Default 50. |
+| `cursor`          | texto  | Cursor de la página anterior. |
+| `event_id`        | texto  | Solo las ventas de ese evento. |
+| `status`          | texto  | `pending`, `completed`, `failed`, `refunded`, `cancelled`. Repetible o separado por comas. |
+| `created_after`   | fecha  | Creadas a partir de esta fecha. |
+| `created_before`  | fecha  | Creadas hasta esta fecha. |
+| `updated_after`   | fecha  | Modificadas después de esta fecha. **Es el parámetro para sincronizar.** |
+
+<Note>
+  Las compras de **créditos** (lo que la productora nos paga a nosotros) no aparecen acá. Este feed son tus ventas de entradas, nada más.
+</Note>
+
+## Consultar una venta
+
+```http
+GET /api/v1/orders/{order_id}
+```
+
+Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de cada asistente.
+
+## El objeto Orden
+
+```json
+{
+  "id": "OwcEMGo0jm",
+  "event_id": "m94K1zLU8S",
+  "event": { "id": "m94K1zLU8S", "name": "EUFORIA", "slug": "euforia" },
+  "status": "completed",
+  "channel": "mercadopago",
+  "provider": "mercadopago",
+  "amount": 28000,
+  "currency": "ARS",
+  "discount_amount": 2000,
+  "coupon_code": "AMIGOS",
+  "buyer": {
+    "name": "Camila Ríos",
+    "email": "camila@example.com",
+    "phone": "+5493411234567",
+    "identity_document": "38123456"
+  },
+  "seller": {
+    "id": "cm11286mg...",
+    "name": "Josué",
+    "email": "josue@example.com",
+    "referral_id": "aB3dE5fG7h"
+  },
+  "items": [
+    {
+      "id": "cmptftf3v0002",
+      "kind": "ticket_type",
+      "ticket_type_id": "TvEPjMm1rx",
+      "name": "PREVENTA",
+      "unit_price": 14000,
+      "quantity": 2,
+      "total_price": 28000
+    }
+  ],
+  "attendee_count": 2,
+  "payment": {
+    "external_id": "1234567890",
+    "transfer_proof_url": null,
+    "rejection_reason": null
+  },
+  "utm": { "source": "instagram", "medium": "cpc", "campaign": "euforia", "content": null, "term": null },
+  "created_at": "2026-08-01T18:04:11.000Z",
+  "updated_at": "2026-08-01T18:05:02.000Z",
+  "refunded_at": null
+}
+```
+
+### Campos
+
+<ResponseField name="status" type="string">
+  - `pending` — esperando el pago, o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp. **Todavía no hay entradas emitidas.**
+  - `completed` — pagada y con las entradas emitidas.
+  - `failed` — el pago fue rechazado.
+  - `refunded` — se devolvió la plata; las credenciales quedaron anuladas.
+  - `cancelled` — se rechazó o se anuló antes de emitir.
+</ResponseField>
+
+<ResponseField name="channel" type="string">
+  Cómo se vendió: `mercadopago`, `stripe`, `recurrente`, `bank_transfer`, `whatsapp`, `free`, `staff`.
+
+  `staff` es una carga manual del equipo (o una importación), `free` es una entrada gratuita reclamada online. Este es el campo para agrupar por canal — es el mismo criterio que usa el dashboard.
+</ResponseField>
+
+<ResponseField name="amount" type="number">
+  Lo que efectivamente pagó el comprador, ya con el descuento aplicado y, si el evento traslada la comisión del procesador, con ese recargo incluido.
+</ResponseField>
+
+<ResponseField name="seller" type="object | null">
+  El RRPP o vendedor al que se le atribuye la venta, cuando entró por su link de referido o la generó él mismo. `null` si fue una venta directa.
+</ResponseField>
+
+<ResponseField name="items" type="array">
+  Las líneas de la compra, con el precio que se cobró en ese momento. `kind` es `ticket_type` o `bundle`, y `ticket_type_id` apunta al ítem correspondiente en [tipos de entrada](/api/ticket-types).
+</ResponseField>
+
+<ResponseField name="attendee_count" type="number">
+  Cuántas **personas** trae la orden, que no es lo mismo que cuántos QRs: un combo emite varias credenciales para el mismo asistente. Para contar credenciales, mirá [entradas](/api/tickets).
+</ResponseField>
+
+<ResponseField name="payment.external_id" type="string | null">
+  La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente). Sirve para conciliar contra el extracto del procesador. Nunca devolvemos tokens ni credenciales de cobro.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  Se mueve cada vez que la orden cambia de estado. Es el campo para `updated_after`.
+</ResponseField>
+
+## `attendees[]` (solo en el detalle)
+
+```json
+{
+  "attendees": [
+    {
+      "id": "qtRD9AfcaF",
+      "name": "Camila Ríos",
+      "email": "camila@example.com",
+      "phone": null,
+      "identity_document": "38123456",
+      "created_at": "2026-08-01T18:05:02.000Z",
+      "tickets": [ { "id": "2vLwQ8GE135z", "status": "valid", "...": "..." } ]
+    }
+  ]
+}
+```
+
+Cada elemento de `tickets` tiene la misma forma que en [entradas](/api/tickets).

@@ -1,0 +1,120 @@
+---
+title: "Tipos de entrada"
+description: "Entradas, combos y productos de barra con precio, estado, límite y vendidos"
+icon: "ticket"
+---
+
+# Tipos de entrada
+
+Todo lo que se puede comprar en un evento, en una sola lista: entradas, **combos** y productos de **barra**.
+
+Requiere el permiso `EVENTS_READ`.
+
+```http
+GET /api/v1/events/{event_id}/ticket-types
+```
+
+```bash
+curl "https://qrticket.app/api/v1/events/m94K1zLU8S/ticket-types" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+### Parámetros
+
+| Parámetro         | Tipo    | Descripción |
+| ----------------- | ------- | ----------- |
+| `include_deleted` | boolean | `true` para incluir los eliminados. Ver la nota más abajo. |
+
+Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los devolvemos todos (`has_more` siempre es `false`).
+
+## Respuesta
+
+```json
+{
+  "data": [
+    {
+      "id": "TvEPjMm1rx",
+      "kind": "ticket_type",
+      "event_id": "m94K1zLU8S",
+      "category": "ticket",
+      "name": "PREVENTA",
+      "description": null,
+      "image_url": null,
+      "price": 14000,
+      "currency": "ARS",
+      "status": "active",
+      "deleted": false,
+      "limit": 162,
+      "sold": 146,
+      "available": 16,
+      "max_per_order": 4,
+      "expires_at": null,
+      "sort_order": 0,
+      "includes": null
+    },
+    {
+      "id": "b7KqmXz1",
+      "kind": "bundle",
+      "event_id": "m94K1zLU8S",
+      "category": "bundle",
+      "name": "COMBO PREVIA",
+      "price": 25000,
+      "currency": "ARS",
+      "status": "active",
+      "limit": 50,
+      "sold": 12,
+      "available": 38,
+      "includes": [
+        { "ticket_type_id": "TvEPjMm1rx", "name": "PREVENTA", "category": "ticket", "quantity": 1 },
+        { "ticket_type_id": "c9Lm2Qp",    "name": "Fernet",   "category": "merchandise", "quantity": 2 }
+      ]
+    }
+  ],
+  "has_more": false,
+  "next_cursor": null
+}
+```
+
+### Campos
+
+<ResponseField name="kind" type="string">
+  `ticket_type` para un ítem suelto, `bundle` para un combo. Es el campo por el que conviene ramificar.
+</ResponseField>
+
+<ResponseField name="category" type="string">
+  `ticket` (entrada), `merchandise` (barra: tragos, consumiciones) o `bundle`.
+</ResponseField>
+
+<ResponseField name="price" type="number">
+  Precio en la moneda de `currency`, sin decimales implícitos: `14000` son catorce mil pesos, no ciento cuarenta. Un `0` es un ítem **gratis** (igual emite credencial).
+
+  Este es el precio de lista. Lo que efectivamente pagó cada comprador está en los ítems de la [orden](/api/orders), porque puede llevar cupón o recargo del procesador.
+</ResponseField>
+
+<ResponseField name="status" type="string">
+  `active`, `hidden`, `exclusive`, `sold_out` o `inactive`.
+
+  - `active` — visible y a la venta.
+  - `hidden` — solo se compra con un link de acceso especial.
+  - `exclusive` — reservado para el equipo (RRPP, cortesías).
+  - `sold_out` — agotado.
+  - `inactive` — apagado por el organizador.
+</ResponseField>
+
+<ResponseField name="sold" type="number">
+  Credenciales vivas emitidas bajo este ítem. Excluye las eliminadas, las ocultas y las que se regalaron en una transferencia — es exactamente el número contra el que se controla el `limit` al vender, así que coincide con lo que ve el comprador.
+</ResponseField>
+
+<ResponseField name="available" type="number | null">
+  `limit - sold`, o `null` cuando no hay límite (stock infinito).
+</ResponseField>
+
+<ResponseField name="includes" type="array | null">
+  Solo en los combos: qué trae adentro y cuántas unidades de cada cosa. `null` en los ítems sueltos.
+
+  Un combo emite **una credencial por unidad incluida**. El combo del ejemplo genera 3 QRs por unidad vendida: una entrada y dos fernets.
+</ResponseField>
+
+<Note>
+  **`include_deleted`.** Eliminar un tipo de entrada no invalida las credenciales ya vendidas bajo él: la gente igual entra. Si estás reconciliando órdenes viejas y te aparece un `ticket_type_id` que no está en la lista, volvé a pedirla con `include_deleted=true` para resolver el nombre.
+</Note>

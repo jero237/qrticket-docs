@@ -1,0 +1,107 @@
+---
+title: "Paginación y sincronización"
+description: "Cómo recorrer listas largas y cómo traer solo lo que cambió desde la última vez"
+icon: "arrow-right-arrow-left"
+---
+
+# Paginación y sincronización
+
+## Paginación por cursor
+
+Las listas devuelven hasta `limit` resultados **del más nuevo al más viejo**, más un cursor para seguir:
+
+```json
+{
+  "data": [ ... ],
+  "has_more": true,
+  "next_cursor": "eyJ0IjoiMjAyNi0wNS0zMVQwNzowNzozNC40NTJaIn0"
+}
+```
+
+Para la página siguiente, pasá ese valor **tal cual** en `cursor`:
+
+```bash
+curl "https://qrticket.app/api/v1/orders?limit=100&cursor=eyJ0IjoiMjAyNi0wNS0zMVQwNzowNzozNC40NTJaIn0" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+Cuando `has_more` es `false`, terminaste.
+
+| Parámetro | Default | Máximo |
+| --------- | ------- | ------ |
+| `limit`   | 50      | 200    |
+
+<Note>
+  **Por qué cursor y no `page=2`.** Si alguien compra mientras vos estás paginando, un `offset` te haría saltear o repetir filas: la ventana se corre bajo tus pies. El cursor apunta a una fila concreta, así que sigue exactamente donde quedaste pase lo que pase.
+</Note>
+
+### Recorrer todo
+
+```javascript
+async function fetchAll(path) {
+  const results = [];
+  let cursor = null;
+
+  do {
+    const url = new URL(`https://qrticket.app/api/v1/${path}`);
+    url.searchParams.set("limit", "200");
+    if (cursor) url.searchParams.set("cursor", cursor);
+
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${process.env.QRTICKET_API_KEY}` },
+    });
+    if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+
+    const body = await res.json();
+    results.push(...body.data);
+    cursor = body.has_more ? body.next_cursor : null;
+  } while (cursor);
+
+  return results;
+}
+```
+
+## Sincronización incremental
+
+Después de la primera carga completa no hace falta volver a traer todo.
+
+### Ventas
+
+Filtrá por `updated_after` con el `updated_at` más alto que tengas guardado:
+
+```bash
+curl "https://qrticket.app/api/v1/orders?updated_after=2026-08-11T19:00:00Z&limit=200" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+`updated_at` se mueve cuando la orden **cambia de estado** (se aprueba, se rechaza, se reembolsa), no solo cuando se crea. Por eso `updated_after` te trae tanto las ventas nuevas como las que cambiaron — que es justo lo que un sistema espejo necesita.
+
+<Warning>
+  No uses `created_after` para sincronizar: una compra creada ayer y reembolsada hoy no aparecería, y tu copia quedaría mostrándola como válida para siempre.
+</Warning>
+
+### Ingresos en la puerta
+
+```bash
+curl "https://qrticket.app/api/v1/tickets?event_id=m94K1zLU8S&scanned_after=2026-08-15T23:00:00Z" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+Guardá el `checked_in_at` más alto que viste y usalo como próximo `scanned_after`.
+
+### Entradas emitidas
+
+```bash
+curl "https://qrticket.app/api/v1/tickets?issued_after=2026-08-11T00:00:00Z" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+<Note>
+  Las credenciales emitidas **antes del 11 de agosto de 2026** tienen todas la misma fecha de `issued_at` (el momento en que agregamos ese campo). Para ubicar en el tiempo una venta vieja, usá `created_at` de la orden, que sí es la fecha real.
+</Note>
+
+## ¿Webhooks o polling?
+
+Los [webhooks](/api/webhooks) son la forma correcta de enterarte de que algo pasó: llegan en el momento y no gastás llamadas.
+
+El polling incremental es el complemento: corré una sincronización cada tanto (cada 15 minutos, o una vez por día) para **reconciliar**. Si tu servidor estuvo caído más de las ~21 horas que dura nuestra escalera de reintentos, el polling es lo que te recupera lo que te perdiste.

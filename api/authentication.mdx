@@ -1,0 +1,84 @@
+---
+title: "Autenticación"
+description: "Cómo crear, usar y revocar las claves de API de tu productora"
+icon: "key"
+---
+
+# Autenticación
+
+Cada llamada tiene que mandar una clave de API en la cabecera `Authorization`:
+
+```bash
+curl https://qrticket.app/api/v1/events \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+La clave identifica **una productora**. No hace falta pasar el id de la productora en ningún lado: la API solo devuelve datos de la que corresponde a la clave.
+
+## Crear una clave
+
+<Steps>
+  <Step title="Abrí API y Webhooks">
+    Dashboard → Tu productora → **API y Webhooks**
+  </Step>
+  <Step title="Crear clave">
+    Ponele un nombre que te diga para qué es (`CRM interno`, `Panel de Josué`).
+  </Step>
+  <Step title="Elegí los permisos">
+    Marcá solo lo que la integración necesite. Ver [permisos](#permisos) abajo.
+  </Step>
+  <Step title="Copiala en ese momento">
+    Guardamos solo un hash de la clave, así que **es la única vez que podemos mostrártela**. Si la perdés, revocala y creá otra.
+  </Step>
+</Steps>
+
+<Note>
+  Para crear o revocar claves necesitás un rol con permiso para administrar la productora (por defecto, el **Administrador**). Mirá [Roles y permisos](/organizations/roles).
+</Note>
+
+## Permisos
+
+Una clave lee **toda** la productora: los permisos no se restringen por evento ni por vendedor. Por eso conviene crear una clave por integración y darle lo mínimo.
+
+| Permiso | Qué habilita | ¿Datos personales? |
+| ------- | ------------ | ------------------ |
+| `EVENTS_READ`  | `GET /events`, `GET /events/{id}`, `GET /events/{id}/ticket-types`, `GET /me` | No |
+| `ORDERS_READ`  | `GET /orders`, `GET /orders/{id}` | **Sí** — nombre, email, teléfono y documento del comprador |
+| `TICKETS_READ` | `GET /tickets`, `GET /tickets/{id}` | **Sí** — nombre y datos del asistente |
+
+Si una clave llega a un endpoint para el que no tiene permiso, la respuesta es `403 insufficient_scope`.
+
+<Warning>
+  `ORDERS_READ` y `TICKETS_READ` exponen datos personales de tus compradores. Compartí esas claves solo con quien realmente los necesite y revocalas cuando la integración termine.
+</Warning>
+
+## Revocar
+
+Desde la misma pantalla, el ícono de tacho al lado de la clave. La revocación es **inmediata**: la llamada siguiente que use esa clave recibe `401`. Las demás claves siguen funcionando.
+
+Revocá cuando:
+
+- terminó el trabajo con un proveedor externo;
+- la clave se filtró (quedó en un repo, en un chat, en una captura);
+- rota el equipo que la usaba.
+
+## Buenas prácticas
+
+<AccordionGroup>
+  <Accordion title="Guardala como variable de entorno, nunca en el código">
+    Una clave pegada en un repositorio es una clave publicada, aunque el repo sea privado hoy.
+  </Accordion>
+  <Accordion title="Una clave por integración">
+    Si una se filtra, revocás esa sola y el resto sigue andando. Además, la columna **Usada** te muestra cuál está viva y cuál quedó abandonada.
+  </Accordion>
+  <Accordion title="Nunca la pongas en el navegador">
+    Cualquiera puede abrir las herramientas de desarrollo y copiarla. La clave va en tu servidor; el navegador le habla a tu servidor, no a nosotros.
+  </Accordion>
+  <Accordion title="No la mandes por query string">
+    Solo se acepta la cabecera `Authorization`. Las URLs quedan en logs y en historiales.
+  </Accordion>
+</AccordionGroup>
+
+## "Usada"
+
+Al lado de cada clave mostramos cuándo se usó por última vez. Se actualiza como máximo una vez por minuto, así que sirve para saber si una integración sigue viva — no como registro de auditoría llamada por llamada.

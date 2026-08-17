@@ -1,0 +1,5 @@
+# Herramienta interna, no documentación: es un proyecto Bun/TypeScript que vive
+# en este repo por comodidad. Mintlify intenta parsear su tsconfig.json, que
+# usa comentarios (JSONC) y no es JSON válido — eso hacía fallar `mint validate`
+# con "Invalid JSON or YAML syntax".
+crawler/
