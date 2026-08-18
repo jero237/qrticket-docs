@@ -49,9 +49,20 @@ Si tenés ventas por transferencia bancaria, aparece una tarjeta **"Transferenci
 
 Las solicitudes rechazadas quedan visibles pero atenuadas, con la etiqueta **"Rechazado"**.
 
+## Dos vistas: por invitado y por compra
+
+Sobre la tabla hay dos pestañas:
+
+- **Por invitado** *(default)*: una fila por persona que entra por la puerta — la vista de siempre.
+- **Por compra**: una fila por orden — quién pagó, por qué medio, cuántas personas y el total. Es la vista natural cuando alguien te escribe *"compré 4 entradas"*. Cada compra se **expande** para ver a sus personas con la misma tabla y las mismas acciones de siempre, y el número de **Orden** abre la [página de detalle de la compra](#detalle-de-una-compra).
+
+<Note>
+  Si tu evento pide [datos por entrada](/events/settings#configuración), una compra de 4 corredores son 4 invitados y **un** pago — la vista por compra es donde eso se ve junto.
+</Note>
+
 ## Tabla de invitados
 
-Debajo del título **"Invitados"** vas a ver **una sola tabla** con todas las entradas (ya no hay pestañas separadas por canal). El canal de venta se muestra en la columna **"Medio"**, que también podés filtrar.
+En la pestaña **"Por invitado"** vas a ver **una sola tabla** con todas las entradas (ya no hay pestañas separadas por canal). El canal de venta se muestra en la columna **"Medio"**, que también podés filtrar.
 
 | Columna | Qué muestra |
 | --- | --- |
@@ -93,6 +104,10 @@ Al seleccionar varias filas aparece una barra flotante con **"Compartir QRs"**, 
   **Eliminar** quita las entradas de la lista **sin** emitir un reembolso al comprador. Esta acción no se puede deshacer.
 </Warning>
 
+## Detalle de una compra
+
+Tocando el número de **Orden** en la vista por compra se abre la ficha de la orden: comprador, medio y estado, total cobrado (y neto de la productora cuando difiere), qué compró ítem por ítem, las **personas** de la orden (cada una con link a su propio detalle) y el comprobante si fue por transferencia. Desde la ficha de un invitado también podés saltar a su compra con **"Ver compra completa"**.
+
 ## Herramientas de invitados
 
 En la tarjeta **"Herramientas de invitados"** podés exportar la lista o completar el género automáticamente.
@@ -101,7 +116,7 @@ En la tarjeta **"Herramientas de invitados"** podés exportar la lista o complet
 
 <CardGroup cols={2}>
   <Card title="Reporte general" icon="file-arrow-down">
-    Descargá la lista completa con **"Exportar como CSV/Excel"** o usá **"Copiar al portapapeles"** para pegarla donde quieras.
+    Descargá la lista completa con **"Exportar como CSV/Excel"** o usá **"Copiar al portapapeles"** para pegarla donde quieras. Las filas de una misma compra salen juntas con su columna **Orden**, y el importe va una sola vez por orden — una compra de 4 personas no cuadruplica la recaudación. Los campos personalizados (talle, fecha de nacimiento…) salen como columnas.
   </Card>
   <Card title="Detectar géneros con IA" icon="wand-magic-sparkles">
     Completa automáticamente el género de tus invitados a partir de su nombre, sin cargarlo a mano.

@@ -49,7 +49,20 @@ Sumá hasta **12 archivos** entre imágenes y/o videos. Es ideal para mostrar fo
     Seleccioná qué campos son obligatorios al momento de la compra de entradas (nombre, email, teléfono, etc.).
   </Accordion>
   <Accordion title="Campos personalizados">
-    Configurá campos adicionales para recopilar información de los compradores. Por ejemplo: empresa, DNI, alergias alimentarias, etc.
+    Configurá campos adicionales para recopilar de los compradores. Por ejemplo: talle, fecha de nacimiento, empresa, alergias alimentarias.
+
+    - **Tipos de campo:** Texto, **Fecha** (ideal para fecha de nacimiento), Opción única (radio) y Múltiples opciones (checkbox).
+    - **¿A qué productos aplica?:** por defecto el campo se pregunta en toda la compra. Si elegís productos, se pregunta **solo cuando alguno está en el carrito** — un campo *Talle* que aplica a la remera no se le pide a quien compra únicamente una botellita. Un combo que contiene el producto también lo activa.
+    - **Momento de recolección:** al momento de la compra, o al abrir el ticket (el comprador completa los datos antes de ver sus QRs).
+  </Accordion>
+  <Accordion title="Datos de los asistentes">
+    Elegí de quién se piden los datos en cada compra:
+
+    - **Solo los del comprador** *(default)*: se piden una vez por compra. Quien compra 4 entradas figura como un solo invitado.
+    - **Uno por entrada — opcional**: el comprador puede ponerle nombre y email a cada entrada para repartirlas, o dejarlas todas a su nombre. Cada entrada con nombre figura como un invitado propio **y recibe su entrada en su propio email**.
+    - **Uno por entrada — obligatorio**: se piden el nombre y los campos de cada entrada. Recomendado cuando necesitás el dato de cada asistente (una carrera, una acreditación con DNI); agrega un paso a la compra.
+
+    La unidad es la **entrada o el combo**: un combo "entrada + remera" es una persona con sus credenciales. Los productos sueltos sin entrada quedan a nombre del comprador — si querés merchandising por persona, armalo como combo.
   </Accordion>
 </AccordionGroup>
 
