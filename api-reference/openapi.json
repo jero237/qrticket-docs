@@ -1,0 +1,1593 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "qrTicket API",
+    "version": "1.0.0",
+    "summary": "API pública de solo lectura de qrTicket, más los webhooks salientes.",
+    "description": "La API pública de qrTicket te deja **leer** los datos de tu productora desde tus propios sistemas (un CRM, una planilla, un panel interno), y los **webhooks** te avisan con un POST en el momento en que algo pasa.\n\n## Solo lectura\n\nLa API es de **solo lectura**: todos los endpoints son `GET`. No se puede crear, modificar ni borrar nada de qrTicket desde acá — consultar una entrada no la marca como usada, el ingreso lo registra únicamente el escáner de qrTicket.\n\n## Autenticación y alcance\n\nCada llamada manda una clave de API en la cabecera `Authorization: Bearer qrt_live_…`. La clave se crea en **Dashboard → Tu productora → API y Webhooks**, identifica **una productora** y solo devuelve datos de ella: el id de la productora nunca se pasa como parámetro. Un recurso de **otra** productora responde `404`, no `403` — así la API no sirve para averiguar qué ids existen fuera de la tuya.\n\nCada clave tiene permisos (scopes): `EVENTS_READ` (catálogo, sin datos personales), `ORDERS_READ` (ventas, con datos del comprador) y `TICKETS_READ` (credenciales, con datos del asistente). Cada operación indica cuál pide; si la clave no lo tiene, la respuesta es `403 insufficient_scope`.\n\n## Formato\n\nTodas las respuestas son JSON en UTF-8 con `Cache-Control: no-store`. Las fechas son **ISO-8601 en UTC** (`2026-08-15T23:30:00.000Z`). Un recurso individual viene en `data`; una lista viene con `data`, `has_more` y `next_cursor` (paginación por cursor sobre `(created_at, id)`, del más nuevo al más viejo — nunca `offset`). Los errores llegan con el código HTTP correspondiente y un cuerpo estable `{ \"error\": { \"code\", \"message\" } }`.\n\n## Webhooks\n\nLos webhooks (sección `webhooks` de este documento) son POST firmados que salen de qrTicket hacia la URL que configures. El contenido de `data` reutiliza los mismos objetos que la API REST, así escribís un solo parser. Entrega **al menos una vez**: puede llegar repetido (deduplicá por el `id` del sobre, que también viaja en `X-QRT-Event-Id`) y fuera de orden (usá los timestamps del cuerpo). Cada envío corta a los **10 segundos**; cualquier respuesta que no sea 2xx (3xx incluido — no seguimos redirecciones), un timeout o un error de conexión cuenta como fallo y entra en la escalera de reintentos: hasta **7 intentos** en total (inmediato, +1 min, +5 min, +30 min, +2 h, +6 h y +12 h — unas 21 horas). Un endpoint que falla **50 envíos seguidos** se desactiva automáticamente y se muestra en el dashboard con el último error. La firma va en `X-QRT-Signature` (formato Stripe: `t=<unix>,v1=<HMAC-SHA256 hex de \"{t}.{cuerpo crudo}\">`); verificala siempre antes de procesar — ver el parámetro `X-QRT-Signature` de cada webhook.\n\n## Compatibilidad\n\nLa versión está en la URL (`/api/v1`). Dentro de `v1` **agregamos** campos, pero no renombramos ni eliminamos los que ya existen: escribí tu integración ignorando los campos que no conozcas.",
+    "contact": {
+      "name": "Soporte qrTicket",
+      "url": "https://wa.me/5491122503348"
+    }
+  },
+  "externalDocs": {
+    "description": "Guía completa de la API (autenticación, paginación, webhooks, recetas)",
+    "url": "https://docs.qrticket.app/api/introduction"
+  },
+  "servers": [
+    {
+      "url": "https://qrticket.app/api/v1",
+      "description": "Producción"
+    }
+  ],
+  "security": [{ "bearerAuth": [] }],
+  "tags": [
+    { "name": "Clave", "description": "Introspección de la clave de API en uso." },
+    { "name": "Eventos", "description": "Los eventos de tu productora. Requieren el permiso `EVENTS_READ`." },
+    { "name": "Tipos de entrada", "description": "Entradas, combos y productos de barra de un evento. Requieren el permiso `EVENTS_READ`." },
+    { "name": "Ventas", "description": "Las órdenes (compras) de tu productora. Requieren el permiso `ORDERS_READ` y devuelven datos personales del comprador." },
+    { "name": "Entradas", "description": "Las credenciales individuales (el QR que cada persona presenta en la puerta). Requieren el permiso `TICKETS_READ` y devuelven datos personales del asistente." }
+  ],
+  "paths": {
+    "/me": {
+      "get": {
+        "operationId": "getMe",
+        "tags": ["Clave"],
+        "summary": "Introspección de la clave",
+        "description": "Requiere el permiso `EVENTS_READ` (el más chico, así una clave de solo catálogo también puede verificarse — una clave sin `EVENTS_READ` recibe `403`).\n\nLa llamada que conviene hacer primero: te dice si la clave es válida, a qué productora corresponde y qué permisos tiene, todo de una.",
+        "responses": {
+          "200": {
+            "description": "La productora de la clave y sus permisos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data"],
+                  "properties": {
+                    "data": { "$ref": "#/components/schemas/Me" }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "organization": {
+                      "id": "tWyMqk8a",
+                      "name": "Mi Productora",
+                      "slug": "mi-productora",
+                      "country": "AR",
+                      "currency": "ARS"
+                    },
+                    "scopes": ["EVENTS_READ", "ORDERS_READ", "TICKETS_READ"]
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "operationId": "listEvents",
+        "tags": ["Eventos"],
+        "summary": "Listar eventos",
+        "description": "Requiere el permiso `EVENTS_READ`.\n\nLos eventos de tu productora, del más nuevo al más viejo. Los eventos eliminados no aparecen nunca (para enterarte de una eliminación, suscribí el webhook `event.updated`, que la avisa con `deleted: true`).",
+        "parameters": [
+          { "$ref": "#/components/parameters/Limit" },
+          { "$ref": "#/components/parameters/Cursor" },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "description": "Filtra por estado. Repetible (`?status=public&status=featured`) o separado por comas (`?status=public,featured`). Insensible a mayúsculas. Un valor desconocido responde `400 invalid_request`.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["featured", "public", "pending_approval", "rejected", "private"]
+              }
+            }
+          },
+          {
+            "name": "starts_after",
+            "in": "query",
+            "required": false,
+            "description": "Eventos que arrancan a partir de esta fecha, inclusive (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "starts_before",
+            "in": "query",
+            "required": false,
+            "description": "Eventos que arrancan hasta esta fecha, inclusive (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "updated_after",
+            "in": "query",
+            "required": false,
+            "description": "Eventos modificados estrictamente después de esta fecha (ISO-8601). Es el parámetro para una sincronización incremental: pasá el `updated_at` más alto que tengas guardado.",
+            "schema": { "type": "string", "format": "date-time" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Página de eventos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "has_more", "next_cursor"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Event" }
+                    },
+                    "has_more": { "type": "boolean" },
+                    "next_cursor": {
+                      "type": ["string", "null"],
+                      "description": "Pasalo tal cual en `cursor` para la página siguiente. `null` cuando no hay más."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/events/{event_id}": {
+      "get": {
+        "operationId": "getEvent",
+        "tags": ["Eventos"],
+        "summary": "Consultar un evento",
+        "description": "Requiere el permiso `EVENTS_READ`.\n\nUn evento de tu productora por id. Un id que no existe, que pertenece a otra productora o cuyo evento fue eliminado responde `404`.",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "description": "Id del evento (el campo `id` del objeto Evento).",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El evento.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data"],
+                  "properties": {
+                    "data": { "$ref": "#/components/schemas/Event" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/events/{event_id}/ticket-types": {
+      "get": {
+        "operationId": "listTicketTypes",
+        "tags": ["Tipos de entrada"],
+        "summary": "Tipos de entrada de un evento",
+        "description": "Requiere el permiso `EVENTS_READ`.\n\nTodo lo que se puede comprar en el evento, en una sola lista: entradas, productos de barra y combos, cada uno con su precio, estado, límite y vendidos en vivo. `kind` distingue un combo (`bundle`) de un ítem suelto (`ticket_type`).\n\nEsta lista **no se pagina**: un evento tiene pocos tipos de entrada y se devuelven todos (`has_more` siempre es `false`, `next_cursor` siempre `null`).\n\nEliminar un tipo de entrada no invalida las credenciales ya vendidas bajo él — si al reconciliar órdenes viejas te aparece un `ticket_type_id` que no está en la lista, volvé a pedirla con `include_deleted=true` para resolver el nombre.",
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "required": true,
+            "description": "Id del evento. Un id de otra productora responde `404`.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "include_deleted",
+            "in": "query",
+            "required": false,
+            "description": "Pasá exactamente `true` para incluir también los tipos de entrada eliminados (vienen con `deleted: true`). Cualquier otro valor cuenta como `false`.",
+            "schema": { "type": "boolean", "default": false }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Todos los tipos de entrada del evento.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "has_more", "next_cursor"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/TicketType" }
+                    },
+                    "has_more": { "type": "boolean", "const": false },
+                    "next_cursor": { "type": "null" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "operationId": "listOrders",
+        "tags": ["Ventas"],
+        "summary": "Listar ventas",
+        "description": "Requiere el permiso `ORDERS_READ` — este es el feed que carga nombre, email, teléfono y documento del comprador; tratá esos datos con el mismo cuidado que en el dashboard.\n\nLas ventas de entradas de tu productora, de la más nueva a la más vieja. Las compras de **créditos** (lo que la productora le paga a qrTicket) no aparecen nunca en este feed.\n\nPara una sincronización incremental usá `updated_after` con el `updated_at` más alto que tengas guardado: ese campo se mueve cuando la orden cambia de estado (se aprueba, se rechaza, se reembolsa), así te llegan tanto las ventas nuevas como las que cambiaron. No sincronices con `created_after`: una compra creada ayer y reembolsada hoy no aparecería.",
+        "parameters": [
+          { "$ref": "#/components/parameters/Limit" },
+          { "$ref": "#/components/parameters/Cursor" },
+          {
+            "name": "event_id",
+            "in": "query",
+            "required": false,
+            "description": "Solo las ventas de ese evento. Un id de evento de otra productora responde `404`.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "description": "Filtra por estado. Repetible o separado por comas. Insensible a mayúsculas. Un valor desconocido responde `400 invalid_request`.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["pending", "completed", "failed", "refunded", "cancelled"]
+              }
+            }
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "description": "Órdenes creadas a partir de esta fecha, inclusive (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "description": "Órdenes creadas hasta esta fecha, inclusive (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "updated_after",
+            "in": "query",
+            "required": false,
+            "description": "Órdenes modificadas estrictamente después de esta fecha (ISO-8601). **Es el parámetro para sincronizar.**",
+            "schema": { "type": "string", "format": "date-time" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Página de ventas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "has_more", "next_cursor"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Order" }
+                    },
+                    "has_more": { "type": "boolean" },
+                    "next_cursor": {
+                      "type": ["string", "null"],
+                      "description": "Pasalo tal cual en `cursor` para la página siguiente. `null` cuando no hay más."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/orders/{order_id}": {
+      "get": {
+        "operationId": "getOrder",
+        "tags": ["Ventas"],
+        "summary": "Consultar una venta",
+        "description": "Requiere el permiso `ORDERS_READ`.\n\nDevuelve lo mismo que la lista **más `attendees[]`**: cada asistente de la orden con sus credenciales. Un asistente puede tener varias credenciales (un combo emite una por producto incluido), así que `attendee_count` y la cantidad de tickets son números distintos.\n\nSi el evento pide datos por entrada, la orden trae un elemento de `attendees[]` por persona; en eventos que solo piden los datos del comprador, trae un único asistente con todas las credenciales.\n\nUn id que no existe o pertenece a otra productora responde `404`.",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la orden.",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La orden con sus asistentes y credenciales.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data"],
+                  "properties": {
+                    "data": { "$ref": "#/components/schemas/OrderDetail" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/tickets": {
+      "get": {
+        "operationId": "listTickets",
+        "tags": ["Entradas"],
+        "summary": "Listar entradas (credenciales)",
+        "description": "Requiere el permiso `TICKETS_READ`.\n\nCada credencial — el QR concreto que una persona presenta en la puerta — con su estado y la hora de ingreso. Las credenciales inválidas **se devuelven** con su estado (`cancelled`, `refunded`, `transferred`), no se esconden: un sistema que las pierde en silencio no puede conciliar.\n\nPara un feed de ingresos en la puerta, encuestá `scanned_after` con el `checked_in_at` más alto que hayas visto. Ojo con `issued_after`: todas las credenciales emitidas antes del 11 de agosto de 2026 comparten la misma fecha de `issued_at` (el día en que se agregó el campo); para fechar una venta vieja usá el `created_at` de la orden.",
+        "parameters": [
+          { "$ref": "#/components/parameters/Limit" },
+          { "$ref": "#/components/parameters/Cursor" },
+          {
+            "name": "event_id",
+            "in": "query",
+            "required": false,
+            "description": "Solo las credenciales de ese evento. Un id de evento de otra productora responde `404`.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "required": false,
+            "description": "Solo las credenciales de esa orden. Un id de orden que no pertenece a tu productora devuelve una lista vacía.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "description": "Filtra por estado. Repetible o separado por comas. Insensible a mayúsculas. Un valor desconocido responde `400 invalid_request`.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["valid", "scanned", "transferred", "cancelled", "refunded"]
+              }
+            }
+          },
+          {
+            "name": "issued_after",
+            "in": "query",
+            "required": false,
+            "description": "Credenciales emitidas estrictamente después de esta fecha (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "scanned_after",
+            "in": "query",
+            "required": false,
+            "description": "Credenciales escaneadas estrictamente después de esta fecha (ISO-8601). **Es el parámetro para un feed de ingresos.**",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "scanned_before",
+            "in": "query",
+            "required": false,
+            "description": "Credenciales escaneadas hasta esta fecha, inclusive (ISO-8601).",
+            "schema": { "type": "string", "format": "date-time" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Página de credenciales.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "has_more", "next_cursor"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Ticket" }
+                    },
+                    "has_more": { "type": "boolean" },
+                    "next_cursor": {
+                      "type": ["string", "null"],
+                      "description": "Pasalo tal cual en `cursor` para la página siguiente. `null` cuando no hay más."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    },
+    "/tickets/{ticket_id}": {
+      "get": {
+        "operationId": "getTicket",
+        "tags": ["Entradas"],
+        "summary": "Consultar una entrada",
+        "description": "Requiere el permiso `TICKETS_READ`.\n\nEl `ticket_id` es **el valor codificado en el QR**, así que este endpoint también sirve para «leí este código, decime qué es». Consultar acá **no hace entrar a nadie**: la API es de solo lectura y no marca la credencial como usada — el ingreso lo registra únicamente el escáner de qrTicket.\n\nUn id que no existe o pertenece a otra productora responde `404`.",
+        "parameters": [
+          {
+            "name": "ticket_id",
+            "in": "path",
+            "required": true,
+            "description": "Id de la credencial (el contenido del QR).",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "La credencial.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data"],
+                  "properties": {
+                    "data": { "$ref": "#/components/schemas/Ticket" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "500": { "$ref": "#/components/responses/InternalError" }
+        }
+      }
+    }
+  },
+  "webhooks": {
+    "order.completed": {
+      "post": {
+        "operationId": "webhookOrderCompleted",
+        "summary": "Compra aprobada",
+        "description": "El pago se acreditó (o el staff aprobó la transferencia bancaria / el pedido por WhatsApp) y las entradas se emitieron. `data.order` tiene la misma forma que un elemento de `GET /orders` (sin `attendees[]` — para las credenciales, suscribí también `ticket.issued`, que sale junto con este aviso, o pedí `GET /orders/{id}`).\n\nNota de serialización: los campos monetarios de la orden (`amount`, `discount_amount`, `unit_price`, `total_price`) pueden llegar como string decimal (`\"28000\"`) en el cuerpo del webhook en lugar de número; convertilos con `Number()` al recibirlos.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "order.completed" },
+                      "data": { "$ref": "#/components/schemas/WebhookOrderData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "order.rejected": {
+      "post": {
+        "operationId": "webhookOrderRejected",
+        "summary": "Compra rechazada o anulada",
+        "description": "Se rechazó un comprobante de transferencia, se rechazó un pedido por WhatsApp, o se anuló la orden desde el dashboard. La orden queda en `cancelled`. Si había credenciales emitidas, sale además un `ticket.cancelled` con ellas.\n\nNota de serialización: los campos monetarios de la orden pueden llegar como string decimal; convertilos con `Number()`.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "order.rejected" },
+                      "data": { "$ref": "#/components/schemas/WebhookOrderData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "order.refunded": {
+      "post": {
+        "operationId": "webhookOrderRefunded",
+        "summary": "Compra reembolsada",
+        "description": "Se devolvió la plata, desde el dashboard o desde el procesador de pagos (contracargos incluidos). La orden queda en `refunded` y sus credenciales dejan de servir (sale además un `ticket.cancelled` con ellas). En qrTicket la unidad de reembolso es la **orden completa**.\n\nNota de serialización: los campos monetarios de la orden pueden llegar como string decimal; convertilos con `Number()`.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "order.refunded" },
+                      "data": { "$ref": "#/components/schemas/WebhookOrderData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ticket.issued": {
+      "post": {
+        "operationId": "webhookTicketIssued",
+        "summary": "Credenciales emitidas",
+        "description": "Se generaron credenciales nuevas: venta online pagada (`purchase`), carga manual desde el dashboard (`manual`) o importación de una planilla (`import`). `tickets` es **siempre un arreglo**, aunque tenga un solo elemento — una importación de 500 asistentes es un aviso, no 500. Cada elemento tiene la misma forma que `GET /tickets/{id}`.\n\nLa credencial que alguien recibe por transferencia no viaja acá: viaja en `ticket.transferred` (como `to_ticket` y dentro de `tickets[]`).",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ticket.issued" },
+                      "data": { "$ref": "#/components/schemas/WebhookTicketsIssuedData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ticket.transferred": {
+      "post": {
+        "operationId": "webhookTicketTransferred",
+        "summary": "Entrada transferida",
+        "description": "El titular le pasó la entrada a otra persona. Trae **las dos puntas**: `from_ticket` queda con estado `transferred` (ya no sirve) y `to_ticket` es la credencial nueva que vale en la puerta. `tickets` repite la nueva, para que puedas procesar todos los `ticket.*` con el mismo código.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ticket.transferred" },
+                      "data": { "$ref": "#/components/schemas/WebhookTicketTransferredData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ticket.cancelled": {
+      "post": {
+        "operationId": "webhookTicketCancelled",
+        "summary": "Credenciales anuladas",
+        "description": "Una o más credenciales dejaron de valer: las borraron desde el dashboard (`deleted`) o se reembolsó su orden (`refunded`). Las filas se leen **después** de la anulación, así que su `status` ya dice `cancelled`/`refunded` — guardarlas tal cual te deja el mismo estado que la API REST.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ticket.cancelled" },
+                      "data": { "$ref": "#/components/schemas/WebhookTicketsCancelledData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ticket.scanned": {
+      "post": {
+        "operationId": "webhookTicketScanned",
+        "summary": "Ingreso en la puerta",
+        "description": "Alguien entró: la puerta escaneó y aceptó la credencial. Siempre una sola credencial por aviso. Solo se emite cuando la persona **efectivamente entró** — un QR rechazado (repetido, anulado, del tipo equivocado) no genera aviso. `checked_in_by` es el nombre de la estación que escaneó («Puerta 1»), no una persona.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ticket.scanned" },
+                      "data": { "$ref": "#/components/schemas/WebhookTicketScannedData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "event.updated": {
+      "post": {
+        "operationId": "webhookEventUpdated",
+        "summary": "Cambió el evento",
+        "description": "Cambió algún dato del evento: nombre, fecha, lugar, estado o canales de venta. `data.event` es el objeto completo, idéntico a `GET /events/{id}`. Cuando `deleted` es `true`, el evento se eliminó y la API REST deja de devolverlo — este aviso es la única forma de enterarte.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "event.updated" },
+                      "data": { "$ref": "#/components/schemas/WebhookEventUpdatedData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ticket_type.updated": {
+      "post": {
+        "operationId": "webhookTicketTypeUpdated",
+        "summary": "Cambió un tipo de entrada",
+        "description": "Se creó, editó, agotó o eliminó un tipo de entrada, un combo o un producto de barra. Es una **referencia**, no una foto: no trae precio ni vendidos, porque el `sold` se mueve con cada venta y cualquier número ya estaría viejo al leerlo. Cuando lo recibas, pedí `GET /events/{event_id}/ticket-types`.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ticket_type.updated" },
+                      "data": { "$ref": "#/components/schemas/WebhookTicketTypeUpdatedData" }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    },
+    "ping": {
+      "post": {
+        "operationId": "webhookPing",
+        "summary": "Prueba de conexión",
+        "description": "El envío de prueba que dispara el botón «Enviar prueba» del dashboard. Usa la misma firma, las mismas cabeceras y la misma maquinaria que los avisos reales, así que si tu verificación pasa acá, pasa con todo. El `type` del cuerpo es `ping`; la cabecera `X-QRT-Event-Type` trae uno de los tipos a los que el endpoint está suscripto (no `ping`) — ramificá por el `type` del cuerpo. El `id` del sobre tiene la forma `evt_test_…`.",
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/WebhookSignature" },
+          { "$ref": "#/components/parameters/WebhookEventType" },
+          { "$ref": "#/components/parameters/WebhookEventId" },
+          { "$ref": "#/components/parameters/WebhookDeliveryId" },
+          { "$ref": "#/components/parameters/WebhookAttempt" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  { "$ref": "#/components/schemas/WebhookEnvelope" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": { "const": "ping" },
+                      "data": { "$ref": "#/components/schemas/WebhookPingData" }
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "id": "evt_test_m0abc123",
+                "type": "ping",
+                "created_at": "2026-08-11T19:38:23.073Z",
+                "organization_id": "tWyMqk8a",
+                "data": {
+                  "message": "Prueba de qrTicket. Si recibiste esto, tu endpoint está listo."
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "2XX": { "$ref": "#/components/responses/WebhookAck" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "qrt_live_…",
+        "description": "Clave de API de la productora, creada en **Dashboard → Tu productora → API y Webhooks**. Formato `qrt_live_` seguido de 43 caracteres base64url (52 en total). Se muestra una única vez al crearla — solo guardamos su hash. Va **únicamente** en la cabecera `Authorization: Bearer …`, nunca por query string. Una clave revocada, vencida o desconocida responde `401` sin distinguir el caso. La clave identifica una productora y define qué permisos (`EVENTS_READ`, `ORDERS_READ`, `TICKETS_READ`) tiene cada llamada."
+      }
+    },
+    "parameters": {
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "description": "Cantidad máxima de resultados por página. Entero entre 1 y 200; fuera de rango responde `400 invalid_request`.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": 50
+        }
+      },
+      "Cursor": {
+        "name": "cursor",
+        "in": "query",
+        "required": false,
+        "description": "El `next_cursor` de la página anterior, **tal cual** — es un valor opaco (cursor keyset sobre `(created_at, id)`). Un cursor que no salió de esta API responde `400 invalid_request`.",
+        "schema": { "type": "string" }
+      },
+      "WebhookSignature": {
+        "name": "X-QRT-Signature",
+        "in": "header",
+        "required": true,
+        "description": "Firma del envío, formato Stripe: `t=<segundos unix>,v1=<HMAC-SHA256 en hexadecimal de \"{t}.{cuerpo}\">`, calculada con el secreto (`whsec_…`) de tu endpoint.\n\nPara verificarla: (1) leé el **cuerpo crudo, sin parsear** — la firma cubre los bytes exactos, re-serializar el JSON la rompe; (2) recalculá `HMAC-SHA256(secreto, \"{t}.{cuerpo}\")` y comparalo con `v1` en **tiempo constante**; (3) rechazá si `t` está a más de unos minutos de tu reloj (recomendado: 300 segundos) — el timestamp está adentro de la cadena firmada justamente para que un envío capturado no se pueda reproducir para siempre. Durante una rotación del secreto puede venir más de un `v1`, separados por espacio: aceptá si **alguno** coincide.",
+        "schema": {
+          "type": "string",
+          "pattern": "^t=\\d+,v1=[a-f0-9]{64}( v1=[a-f0-9]{64})*$"
+        },
+        "example": "t=1755031234,v1=5a3f9c1b2e4d6f8a0c2e4a6b8d0f2a4c6e8a0b2c4d6e8f0a2b4c6d8e0f2a4b6c"
+      },
+      "WebhookEventType": {
+        "name": "X-QRT-Event-Type",
+        "in": "header",
+        "required": true,
+        "description": "El tipo del aviso (también presente como `type` en el cuerpo). En el envío de prueba trae uno de los tipos suscriptos mientras el cuerpo dice `ping` — ramificá por el `type` del cuerpo.",
+        "schema": { "type": "string" }
+      },
+      "WebhookEventId": {
+        "name": "X-QRT-Event-Id",
+        "in": "header",
+        "required": true,
+        "description": "Identificador del hecho (`evt_…`), repetido verbatim en cada reintento y compartido entre todos tus endpoints. **Es la clave de deduplicación**: la entrega es al menos una vez, guardá los ids procesados y descartá los repetidos.",
+        "schema": { "type": "string" }
+      },
+      "WebhookDeliveryId": {
+        "name": "X-QRT-Delivery-Id",
+        "in": "header",
+        "required": true,
+        "description": "Identificador de este envío puntual (uno por endpoint), útil para cruzar con el registro «Últimos envíos» del dashboard.",
+        "schema": { "type": "string" }
+      },
+      "WebhookAttempt": {
+        "name": "X-QRT-Attempt",
+        "in": "header",
+        "required": true,
+        "description": "Número de intento, arrancando en 1. Máximo 7: inmediato y reintentos a +1 min, +5 min, +30 min, +2 h, +6 h y +12 h del fallo anterior (~21 horas en total).",
+        "schema": { "type": "string" },
+        "example": "1"
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Un parámetro está mal formado o tiene un valor que no existe (límite fuera de rango, cursor ajeno, estado desconocido, fecha inválida).",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "error": {
+                "code": "invalid_request",
+                "message": "`limit` must be an integer between 1 and 200."
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Falta la clave, es inválida, está revocada o venció. La respuesta trae `WWW-Authenticate: Bearer`.",
+        "headers": {
+          "WWW-Authenticate": {
+            "schema": { "type": "string" },
+            "description": "Siempre `Bearer`."
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "error": {
+                "code": "unauthorized",
+                "message": "Missing or invalid API key. Send it as `Authorization: Bearer qrt_live_…`."
+              }
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "La clave es válida pero no tiene el permiso que este endpoint pide.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "error": {
+                "code": "insufficient_scope",
+                "message": "This API key does not have the `ORDERS_READ` scope."
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "El recurso no existe, fue eliminado, o pertenece a otra productora. Es a propósito que un id ajeno responda `404` y no `403`: así la API no sirve para averiguar qué ids existen fuera de la tuya.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "error": {
+                "code": "not_found",
+                "message": "No event matches that id."
+              }
+            }
+          }
+        }
+      },
+      "InternalError": {
+        "description": "Error de qrTicket. Reintentá; si persiste, escribinos. Nunca devolvemos stack traces ni detalles internos.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" },
+            "example": {
+              "error": {
+                "code": "internal_error",
+                "message": "The request could not be completed."
+              }
+            }
+          }
+        }
+      },
+      "WebhookAck": {
+        "description": "Cualquier **2xx** cuenta como entregado; el cuerpo de tu respuesta no se lee. Respondé rápido — el envío corta a los 10 segundos; si tu procesamiento demora, encolá y contestá 200 enseguida. Cualquier otra cosa (3xx, 4xx, 5xx, timeout, error de conexión) cuenta como fallo y entra en la escalera de reintentos."
+      }
+    },
+    "schemas": {
+      "Currency": {
+        "title": "Moneda",
+        "type": "string",
+        "description": "Moneda de la productora, derivada de su país. Los importes son números «pelados» en esta moneda, sin decimales implícitos: `14000` en ARS son catorce mil pesos.",
+        "enum": ["ARS", "BRL", "CLP", "COP", "EUR", "GTQ", "HNL", "MXN", "PEN", "UYU", "USD"]
+      },
+      "Country": {
+        "title": "País",
+        "type": "string",
+        "description": "País de la productora (ISO-3166-1 alfa-2, más `OTHER`).",
+        "enum": ["AR", "BR", "CL", "CO", "EC", "ES", "GT", "HN", "MX", "PE", "SV", "US", "UY", "OTHER"]
+      },
+      "ApiScope": {
+        "title": "Permiso de la clave",
+        "type": "string",
+        "description": "`EVENTS_READ` habilita el catálogo (eventos y tipos de entrada, sin datos personales); `ORDERS_READ` las ventas (con datos del comprador); `TICKETS_READ` las credenciales (con datos del asistente).",
+        "enum": ["EVENTS_READ", "ORDERS_READ", "TICKETS_READ"]
+      },
+      "Me": {
+        "title": "Clave (introspección)",
+        "type": "object",
+        "required": ["organization", "scopes"],
+        "properties": {
+          "organization": {
+            "type": "object",
+            "required": ["id", "name", "slug", "country", "currency"],
+            "properties": {
+              "id": { "type": "string", "description": "Id de la productora." },
+              "name": { "type": "string" },
+              "slug": { "type": "string" },
+              "country": { "$ref": "#/components/schemas/Country" },
+              "currency": { "$ref": "#/components/schemas/Currency" }
+            }
+          },
+          "scopes": {
+            "type": "array",
+            "description": "Los permisos de la clave en uso.",
+            "items": { "$ref": "#/components/schemas/ApiScope" }
+          }
+        }
+      },
+      "Event": {
+        "title": "Evento",
+        "type": "object",
+        "required": ["id", "slug", "name", "description", "starts_at", "ends_at", "status", "is_published", "url", "image_url", "media", "transferable", "venue", "sales_channels", "currency", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "string", "description": "Identificador del evento. Es el que usás como `event_id` en el resto de los endpoints." },
+          "slug": { "type": "string", "description": "Slug de la URL pública." },
+          "name": { "type": "string" },
+          "description": { "type": ["string", "null"] },
+          "starts_at": { "type": "string", "format": "date-time", "description": "Comienzo del evento, ISO-8601 en UTC." },
+          "ends_at": { "type": ["string", "null"], "format": "date-time", "description": "Fin del evento, si el organizador lo cargó." },
+          "status": {
+            "type": "string",
+            "enum": ["featured", "public", "pending_approval", "rejected", "private"],
+            "description": "`public` — publicado y a la venta. `featured` — publicado y además destacado en la home de qrTicket (para tu integración, equivalente a `public`). `pending_approval` — esperando revisión. `rejected` — rechazado. `private` — no listado, se vende solo por link directo."
+          },
+          "is_published": { "type": "boolean", "description": "Atajo: `true` cuando el estado es `public` o `featured`." },
+          "url": { "type": "string", "format": "uri", "description": "Link público del evento. Si la productora tiene dominio propio verificado, la URL sale con ese dominio, no con qrticket.app." },
+          "image_url": { "type": ["string", "null"], "format": "uri", "description": "Flyer principal." },
+          "media": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "Imágenes adicionales del evento." },
+          "transferable": { "type": "boolean", "description": "Si los compradores pueden transferir sus entradas a otra persona." },
+          "venue": {
+            "type": "object",
+            "required": ["name", "address", "city", "province", "country", "latitude", "longitude"],
+            "properties": {
+              "name": { "type": ["string", "null"], "description": "Nombre del lugar." },
+              "address": { "type": ["string", "null"] },
+              "city": { "type": ["string", "null"] },
+              "province": { "type": ["string", "null"] },
+              "country": { "type": ["string", "null"] },
+              "latitude": { "type": ["number", "null"] },
+              "longitude": { "type": ["number", "null"] }
+            }
+          },
+          "sales_channels": {
+            "type": "object",
+            "description": "Qué medios de pago están habilitados en este evento. Las entradas gratis no son un canal: son un precio de `0` en un tipo de entrada.",
+            "required": ["mercadopago", "stripe", "recurrente", "bank_transfer", "whatsapp"],
+            "properties": {
+              "mercadopago": { "type": "boolean" },
+              "stripe": { "type": "boolean" },
+              "recurrente": { "type": "boolean" },
+              "bank_transfer": { "type": "boolean" },
+              "whatsapp": { "type": "boolean" }
+            }
+          },
+          "currency": { "$ref": "#/components/schemas/Currency" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "updated_at": { "type": "string", "format": "date-time", "description": "Se mueve con cualquier edición del evento. Es el campo para `updated_after`." }
+        },
+        "example": {
+          "id": "m94K1zLU8S",
+          "slug": "euforia",
+          "name": "EUFORIA",
+          "description": "La fiesta más grande del año",
+          "starts_at": "2026-08-15T23:30:00.000Z",
+          "ends_at": null,
+          "status": "public",
+          "is_published": true,
+          "url": "https://qrticket.app/e/euforia",
+          "image_url": "https://cdn.qrticket.app/flyer.jpg",
+          "media": [],
+          "transferable": true,
+          "venue": {
+            "name": "Club Paraíso",
+            "address": "Av. Siempre Viva 742",
+            "city": "Rosario",
+            "province": "Santa Fe",
+            "country": "Argentina",
+            "latitude": -32.94,
+            "longitude": -60.65
+          },
+          "sales_channels": {
+            "mercadopago": true,
+            "stripe": false,
+            "recurrente": false,
+            "bank_transfer": true,
+            "whatsapp": false
+          },
+          "currency": "ARS",
+          "created_at": "2026-06-01T14:22:10.000Z",
+          "updated_at": "2026-08-01T09:14:55.000Z"
+        }
+      },
+      "TicketType": {
+        "title": "Tipo de entrada",
+        "type": "object",
+        "description": "Un ítem vendible del evento: una entrada, un producto de barra o un combo. Ramificá por `kind`.",
+        "required": ["id", "kind", "event_id", "category", "name", "description", "image_url", "price", "currency", "status", "deleted", "limit", "sold", "available", "max_per_order", "expires_at", "sort_order", "includes"],
+        "properties": {
+          "id": { "type": "string", "description": "Es el id al que apunta `ticket_type_id` en los ítems de una orden." },
+          "kind": {
+            "type": "string",
+            "enum": ["ticket_type", "bundle"],
+            "description": "`ticket_type` para un ítem suelto, `bundle` para un combo."
+          },
+          "event_id": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": ["ticket", "merchandise", "bundle"],
+            "description": "`ticket` (entrada), `merchandise` (barra: tragos, consumiciones, productos) o `bundle` (combo)."
+          },
+          "name": { "type": "string" },
+          "description": { "type": ["string", "null"] },
+          "image_url": { "type": ["string", "null"], "format": "uri", "description": "Siempre `null` en los combos." },
+          "price": { "type": "integer", "description": "Precio de lista en la moneda de `currency`, sin decimales implícitos. Un `0` es un ítem gratis (igual emite credencial). Lo que efectivamente pagó cada comprador está en los ítems de la orden, porque puede llevar cupón o recargo del procesador." },
+          "currency": { "$ref": "#/components/schemas/Currency" },
+          "status": {
+            "type": "string",
+            "enum": ["active", "hidden", "exclusive", "sold_out", "inactive"],
+            "description": "`active` — visible y a la venta. `hidden` — solo se compra con un link de acceso especial. `exclusive` — reservado para el equipo (RRPP, cortesías). `sold_out` — agotado. `inactive` — apagado por el organizador."
+          },
+          "deleted": { "type": "boolean", "description": "Solo puede ser `true` cuando pediste la lista con `include_deleted=true`." },
+          "limit": { "type": ["integer", "null"], "description": "Cupo total, o `null` si no hay límite." },
+          "sold": { "type": "integer", "description": "Credenciales vivas emitidas bajo este ítem. Excluye las eliminadas, las ocultas y las regaladas en una transferencia — es el mismo número contra el que se controla el `limit` al vender. Los combos usan su propio contador de unidades vendidas." },
+          "available": { "type": ["integer", "null"], "description": "`limit - sold` (nunca negativo), o `null` cuando no hay límite." },
+          "max_per_order": { "type": ["integer", "null"], "description": "Máximo por compra, o `null` sin tope." },
+          "expires_at": { "type": ["string", "null"], "format": "date-time", "description": "Cuándo deja de venderse. Siempre `null` en los combos." },
+          "sort_order": { "type": "integer", "description": "Orden de presentación en la página de compra." },
+          "includes": {
+            "type": ["array", "null"],
+            "description": "Solo en los combos: qué trae adentro y cuántas unidades de cada cosa. `null` en los ítems sueltos. Un combo emite una credencial por unidad incluida.",
+            "items": {
+              "type": "object",
+              "required": ["ticket_type_id", "name", "category", "quantity"],
+              "properties": {
+                "ticket_type_id": { "type": "string" },
+                "name": { "type": "string" },
+                "category": { "type": "string", "enum": ["ticket", "merchandise"] },
+                "quantity": { "type": "integer" }
+              }
+            }
+          }
+        },
+        "example": {
+          "id": "TvEPjMm1rx",
+          "kind": "ticket_type",
+          "event_id": "m94K1zLU8S",
+          "category": "ticket",
+          "name": "PREVENTA",
+          "description": null,
+          "image_url": null,
+          "price": 14000,
+          "currency": "ARS",
+          "status": "active",
+          "deleted": false,
+          "limit": 162,
+          "sold": 146,
+          "available": 16,
+          "max_per_order": 4,
+          "expires_at": null,
+          "sort_order": 0,
+          "includes": null
+        }
+      },
+      "Order": {
+        "title": "Orden (venta)",
+        "type": "object",
+        "description": "Una compra: quién compró, qué se llevó, cuánto pagó, por qué canal y en qué estado quedó. Contiene datos personales del comprador.",
+        "required": ["id", "event_id", "event", "status", "channel", "provider", "amount", "currency", "discount_amount", "coupon_code", "buyer", "seller", "items", "attendee_count", "payment", "utm", "created_at", "updated_at", "refunded_at"],
+        "properties": {
+          "id": { "type": "string" },
+          "event_id": { "type": ["string", "null"] },
+          "event": {
+            "type": ["object", "null"],
+            "required": ["id", "name", "slug"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "slug": { "type": "string" }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "completed", "failed", "refunded", "cancelled"],
+            "description": "`pending` — esperando el pago, o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp (todavía no hay entradas emitidas). `completed` — pagada y con las entradas emitidas. `failed` — el pago fue rechazado. `refunded` — se devolvió la plata; las credenciales quedaron anuladas. `cancelled` — se rechazó o se anuló antes de emitir."
+          },
+          "channel": {
+            "type": "string",
+            "enum": ["mercadopago", "stripe", "recurrente", "bank_transfer", "free", "whatsapp", "staff"],
+            "description": "Cómo se vendió, con el mismo criterio que agrupa el dashboard. `staff` es una carga manual del equipo (o una importación), `free` una entrada gratuita reclamada online. Es el campo para agrupar por canal."
+          },
+          "provider": {
+            "type": "string",
+            "enum": ["mercadopago", "stripe", "recurrente", "staff", "bank_transfer", "free", "whatsapp"],
+            "description": "El procesador/origen crudo del cobro."
+          },
+          "amount": { "type": "number", "description": "Lo que efectivamente pagó el comprador, en la moneda de `currency`: ya con el descuento aplicado y, si el evento traslada la comisión del procesador, con ese recargo incluido." },
+          "currency": { "$ref": "#/components/schemas/Currency" },
+          "discount_amount": { "type": ["number", "null"], "description": "Descuento aplicado por cupón, si hubo." },
+          "coupon_code": { "type": ["string", "null"] },
+          "buyer": {
+            "type": "object",
+            "description": "Datos del comprador. Datos personales — tratalos con cuidado.",
+            "required": ["name", "email", "phone", "identity_document"],
+            "properties": {
+              "name": { "type": ["string", "null"] },
+              "email": { "type": ["string", "null"] },
+              "phone": { "type": ["string", "null"] },
+              "identity_document": { "type": ["string", "null"] }
+            }
+          },
+          "seller": {
+            "type": ["object", "null"],
+            "description": "El RRPP o vendedor al que se le atribuye la venta, cuando entró por su link de referido o la generó él mismo. `null` si fue una venta directa.",
+            "required": ["id", "name", "email", "referral_id"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": ["string", "null"] },
+              "email": { "type": ["string", "null"] },
+              "referral_id": { "type": "string" }
+            }
+          },
+          "items": {
+            "type": "array",
+            "description": "Las líneas de la compra, con el precio que se cobró en ese momento.",
+            "items": { "$ref": "#/components/schemas/OrderItem" }
+          },
+          "attendee_count": { "type": "integer", "description": "Cuántas personas trae la orden — no es lo mismo que cuántos QRs: un combo emite varias credenciales para el mismo asistente." },
+          "payment": {
+            "type": "object",
+            "required": ["external_id", "transfer_proof_url", "rejection_reason"],
+            "properties": {
+              "external_id": { "type": ["string", "null"], "description": "La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente), para conciliar contra su extracto. Nunca se devuelven tokens ni credenciales de cobro." },
+              "transfer_proof_url": { "type": ["string", "null"], "description": "Comprobante subido por el comprador, en ventas por transferencia bancaria." },
+              "rejection_reason": { "type": ["string", "null"], "description": "Motivo del rechazo del comprobante, si lo hubo." }
+            }
+          },
+          "utm": {
+            "type": "object",
+            "description": "Atribución de campaña capturada al momento de la compra.",
+            "required": ["source", "medium", "campaign", "content", "term"],
+            "properties": {
+              "source": { "type": ["string", "null"] },
+              "medium": { "type": ["string", "null"] },
+              "campaign": { "type": ["string", "null"] },
+              "content": { "type": ["string", "null"] },
+              "term": { "type": ["string", "null"] }
+            }
+          },
+          "created_at": { "type": "string", "format": "date-time" },
+          "updated_at": { "type": "string", "format": "date-time", "description": "Se mueve cada vez que la orden cambia de estado. Es el campo para `updated_after`." },
+          "refunded_at": { "type": ["string", "null"], "format": "date-time" }
+        },
+        "example": {
+          "id": "OwcEMGo0jm",
+          "event_id": "m94K1zLU8S",
+          "event": { "id": "m94K1zLU8S", "name": "EUFORIA", "slug": "euforia" },
+          "status": "completed",
+          "channel": "mercadopago",
+          "provider": "mercadopago",
+          "amount": 28000,
+          "currency": "ARS",
+          "discount_amount": 2000,
+          "coupon_code": "AMIGOS",
+          "buyer": {
+            "name": "Camila Ríos",
+            "email": "camila@example.com",
+            "phone": "+5493411234567",
+            "identity_document": "38123456"
+          },
+          "seller": null,
+          "items": [
+            {
+              "id": "cmptftf3v0002",
+              "kind": "ticket_type",
+              "ticket_type_id": "TvEPjMm1rx",
+              "name": "PREVENTA",
+              "unit_price": 14000,
+              "quantity": 2,
+              "total_price": 28000
+            }
+          ],
+          "attendee_count": 2,
+          "payment": {
+            "external_id": "1234567890",
+            "transfer_proof_url": null,
+            "rejection_reason": null
+          },
+          "utm": { "source": "instagram", "medium": "cpc", "campaign": "euforia", "content": null, "term": null },
+          "created_at": "2026-08-01T18:04:11.000Z",
+          "updated_at": "2026-08-01T18:05:02.000Z",
+          "refunded_at": null
+        }
+      },
+      "OrderItem": {
+        "title": "Ítem de una orden",
+        "type": "object",
+        "required": ["id", "kind", "ticket_type_id", "name", "unit_price", "quantity", "total_price"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string", "enum": ["ticket_type", "bundle"] },
+          "ticket_type_id": { "type": ["string", "null"], "description": "Apunta al ítem correspondiente en `GET /events/{event_id}/ticket-types` (un tipo de entrada o un combo, según `kind`)." },
+          "name": { "type": "string", "description": "Nombre del ítem al momento de la compra." },
+          "unit_price": { "type": "number", "description": "Precio unitario efectivamente cobrado." },
+          "quantity": { "type": "integer" },
+          "total_price": { "type": "number" }
+        }
+      },
+      "OrderDetail": {
+        "title": "Orden con asistentes",
+        "description": "Lo que devuelve `GET /orders/{order_id}`: la orden de la lista más `attendees[]`, cada asistente con sus credenciales.",
+        "allOf": [
+          { "$ref": "#/components/schemas/Order" },
+          {
+            "type": "object",
+            "required": ["attendees"],
+            "properties": {
+              "attendees": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/OrderAttendee" }
+              }
+            }
+          }
+        ]
+      },
+      "OrderAttendee": {
+        "title": "Asistente de una orden",
+        "type": "object",
+        "required": ["id", "name", "email", "phone", "identity_document", "created_at", "tickets"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "email": { "type": ["string", "null"] },
+          "phone": { "type": ["string", "null"] },
+          "identity_document": { "type": ["string", "null"] },
+          "created_at": { "type": "string", "format": "date-time" },
+          "tickets": {
+            "type": "array",
+            "description": "Las credenciales de este asistente, con la misma forma que `GET /tickets/{id}`.",
+            "items": { "$ref": "#/components/schemas/Ticket" }
+          }
+        }
+      },
+      "Ticket": {
+        "title": "Entrada (credencial)",
+        "type": "object",
+        "description": "Una credencial: el QR concreto que una persona presenta en la puerta. Es la unidad que se escanea, se transfiere y se anula. Contiene datos personales del asistente.",
+        "required": ["id", "event_id", "order_id", "status", "ticket_type", "from_bundle", "attendee", "issued_at", "checked_in_at", "checked_in_by", "transferred_at", "transferred_to_ticket_id"],
+        "properties": {
+          "id": { "type": "string", "description": "El valor codificado en el QR." },
+          "event_id": { "type": "string" },
+          "order_id": { "type": ["string", "null"], "description": "La orden que la originó. Puede ser `null` en credenciales viejas cargadas a mano." },
+          "status": {
+            "type": "string",
+            "enum": ["valid", "scanned", "transferred", "cancelled", "refunded"],
+            "description": "`valid` — sin usar, lista para entrar. `scanned` — ya entró (la hora está en `checked_in_at`). `transferred` — la persona se la pasó a otra; esta credencial ya no sirve, la buena es la que apunta `transferred_to_ticket_id`. `cancelled` — la eliminaron desde el dashboard. `refunded` — se reembolsó la orden. La precedencia es la misma que aplica la puerta: anulada y reembolsada pesan más que un escaneo, y una transferencia pesa más que las dos."
+          },
+          "ticket_type": {
+            "type": "object",
+            "required": ["id", "name", "category"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "category": { "type": "string", "enum": ["ticket", "merchandise"] }
+            }
+          },
+          "from_bundle": { "type": "boolean", "description": "`true` cuando la credencial salió de un combo y no de una venta directa. Útil para no contar dos veces al comparar contra el `sold` de un tipo de entrada." },
+          "attendee": {
+            "type": "object",
+            "description": "Datos del asistente. Datos personales — tratalos con cuidado.",
+            "required": ["id", "name", "email", "phone", "identity_document"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "email": { "type": ["string", "null"] },
+              "phone": { "type": ["string", "null"] },
+              "identity_document": { "type": ["string", "null"] }
+            }
+          },
+          "issued_at": { "type": "string", "format": "date-time", "description": "Cuándo se generó la credencial. Todo lo emitido antes del 11 de agosto de 2026 comparte esta fecha (el día en que se agregó el campo); para fechar una venta anterior, usá el `created_at` de la orden." },
+          "checked_in_at": { "type": ["string", "null"], "format": "date-time", "description": "Hora de ingreso por la puerta, o `null` si todavía no entró." },
+          "checked_in_by": { "type": ["string", "null"], "description": "El nombre de la estación que escaneó («Puerta 1», «Barra»), no una persona: la mayoría del escaneo se hace con el link compartible, sin cuenta detrás." },
+          "transferred_at": { "type": ["string", "null"], "format": "date-time" },
+          "transferred_to_ticket_id": { "type": ["string", "null"], "description": "Id de la credencial que reemplazó a esta al transferirse. Encadenando este campo llegás al titular actual." }
+        },
+        "example": {
+          "id": "2vLwQ8GE135z",
+          "event_id": "m94K1zLU8S",
+          "order_id": "OwcEMGo0jm",
+          "status": "scanned",
+          "ticket_type": { "id": "TvEPjMm1rx", "name": "PREVENTA", "category": "ticket" },
+          "from_bundle": false,
+          "attendee": {
+            "id": "qtRD9AfcaF",
+            "name": "Camila Ríos",
+            "email": "camila@example.com",
+            "phone": null,
+            "identity_document": "38123456"
+          },
+          "issued_at": "2026-08-01T18:05:02.000Z",
+          "checked_in_at": "2026-08-15T23:47:10.000Z",
+          "checked_in_by": "Puerta 1",
+          "transferred_at": null,
+          "transferred_to_ticket_id": null
+        }
+      },
+      "Error": {
+        "title": "Error",
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message"],
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": ["invalid_request", "unauthorized", "insufficient_scope", "not_found", "internal_error"],
+                "description": "Código estable para ramificar. `invalid_request` (400), `unauthorized` (401), `insufficient_scope` (403), `not_found` (404), `internal_error` (500)."
+              },
+              "message": { "type": "string", "description": "Explicación legible (en inglés). Puede cambiar; ramificá por `code`." }
+            }
+          }
+        }
+      },
+      "WebhookEnvelope": {
+        "title": "Sobre de webhook",
+        "type": "object",
+        "description": "Todos los webhooks comparten este sobre; lo que cambia es `type` y el contenido de `data`.",
+        "required": ["id", "type", "created_at", "organization_id", "data"],
+        "properties": {
+          "id": { "type": "string", "description": "Identificador del hecho (`evt_…`). Estable entre reintentos y compartido entre todos tus endpoints — **es la clave de deduplicación** (también viaja en la cabecera `X-QRT-Event-Id`)." },
+          "type": { "type": "string", "description": "El tipo de aviso en forma punteada (`order.completed`, `ticket.scanned`, …), o `ping` en el envío de prueba." },
+          "created_at": { "type": "string", "format": "date-time", "description": "Cuándo ocurrió el hecho. Los avisos pueden llegar fuera de orden: ordená por este campo, no por orden de llegada." },
+          "organization_id": { "type": "string", "description": "La productora a la que pertenece el hecho." },
+          "data": { "type": "object", "description": "El contenido, específico de cada `type`. Reutiliza los mismos objetos que la API REST." }
+        }
+      },
+      "WebhookOrderData": {
+        "title": "data de order.*",
+        "type": "object",
+        "required": ["order"],
+        "properties": {
+          "order": { "$ref": "#/components/schemas/Order" }
+        }
+      },
+      "WebhookTicketsIssuedData": {
+        "title": "data de ticket.issued",
+        "type": "object",
+        "required": ["event_id", "order_id", "reason", "tickets"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "order_id": { "type": ["string", "null"], "description": "`null` cuando las credenciales no salieron de una orden (p. ej. una carga manual)." },
+          "reason": {
+            "type": "string",
+            "enum": ["purchase", "manual", "import", "transfer"],
+            "description": "`purchase` — venta online pagada. `manual` — carga manual desde el dashboard (cortesías, RRPP). `import` — importación de una planilla. `transfer` — reservado; hoy la credencial recibida por transferencia se avisa por `ticket.transferred`."
+          },
+          "tickets": {
+            "type": "array",
+            "description": "Siempre un arreglo, aunque tenga un solo elemento.",
+            "items": { "$ref": "#/components/schemas/Ticket" }
+          }
+        }
+      },
+      "WebhookTicketsCancelledData": {
+        "title": "data de ticket.cancelled",
+        "type": "object",
+        "required": ["event_id", "order_id", "reason", "tickets"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "order_id": { "type": ["string", "null"] },
+          "reason": {
+            "type": "string",
+            "enum": ["deleted", "refunded", "transferred"],
+            "description": "`deleted` — la borraron desde el dashboard. `refunded` — se reembolsó la orden. `transferred` — reservado; hoy una transferencia se avisa por `ticket.transferred`."
+          },
+          "tickets": {
+            "type": "array",
+            "description": "Siempre un arreglo. El `status` de cada credencial ya refleja la anulación.",
+            "items": { "$ref": "#/components/schemas/Ticket" }
+          }
+        }
+      },
+      "WebhookTicketTransferredData": {
+        "title": "data de ticket.transferred",
+        "type": "object",
+        "required": ["event_id", "from_ticket", "to_ticket", "tickets"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "from_ticket": { "$ref": "#/components/schemas/Ticket" },
+          "to_ticket": { "$ref": "#/components/schemas/Ticket" },
+          "tickets": {
+            "type": "array",
+            "description": "Repite la credencial nueva (`to_ticket`), para procesar todos los `ticket.*` con el mismo código.",
+            "items": { "$ref": "#/components/schemas/Ticket" }
+          }
+        }
+      },
+      "WebhookTicketScannedData": {
+        "title": "data de ticket.scanned",
+        "type": "object",
+        "required": ["event_id", "order_id", "checked_in_at", "checked_in_by", "tickets"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "order_id": { "type": ["string", "null"] },
+          "checked_in_at": { "type": ["string", "null"], "format": "date-time" },
+          "checked_in_by": { "type": ["string", "null"], "description": "El nombre de la estación que escaneó." },
+          "tickets": {
+            "type": "array",
+            "description": "Siempre una sola credencial en este aviso, igual en forma de arreglo.",
+            "items": { "$ref": "#/components/schemas/Ticket" }
+          }
+        }
+      },
+      "WebhookEventUpdatedData": {
+        "title": "data de event.updated",
+        "type": "object",
+        "required": ["event", "deleted"],
+        "properties": {
+          "event": { "$ref": "#/components/schemas/Event" },
+          "deleted": { "type": "boolean", "description": "`true` cuando el evento se eliminó — la API REST deja de devolverlo, así que este aviso es la única forma de enterarte." }
+        }
+      },
+      "WebhookTicketTypeUpdatedData": {
+        "title": "data de ticket_type.updated",
+        "type": "object",
+        "required": ["event_id", "ticket_type_id", "kind", "action"],
+        "properties": {
+          "event_id": { "type": "string" },
+          "ticket_type_id": { "type": "string" },
+          "kind": { "type": "string", "enum": ["ticket_type", "bundle"] },
+          "action": { "type": "string", "enum": ["created", "updated", "deleted"] }
+        }
+      },
+      "WebhookPingData": {
+        "title": "data de ping",
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": { "type": "string" }
+        }
+      }
+    }
+  }
+}
