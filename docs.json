@@ -61,7 +61,7 @@
               "events/print-tickets",
               "events/stats",
               "events/products",
-              "events/barra",
+              "events/adicionales",
               "events/sales",
               "events/coupons",
               "events/promotion",
@@ -140,5 +140,8 @@
     "socials": {
       "instagram": "https://www.instagram.com/qrticket.app"
     }
-  }
+  },
+  "redirects": [
+    { "source": "/events/barra", "destination": "/events/adicionales" }
+  ]
 }

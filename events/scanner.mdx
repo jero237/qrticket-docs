@@ -52,32 +52,33 @@ El **scanner** es la herramienta que usás el día del evento para **validar ent
 
 ### ¿Qué vas a escanear?
 
-Cada puesto de escaneo valida **una categoría a la vez**: **Entradas** (en la puerta) o **Barra** (los tragos que canjeás en la barra). Si tu evento tiene las dos, vas a poder elegir.
+Cada puesto de escaneo valida **una categoría a la vez**: **Entradas** (en la puerta) o **Adicionales** (bebidas, estacionamiento, merchandising… que se canjean en el evento). Si tu evento tiene las dos, vas a poder elegir.
 
 <Steps>
   <Step title="Ir al scanner del evento">
     Dashboard → Tu evento → **"Scanner"**
   </Step>
   <Step title="Elegir qué escanear">
-    En **"¿Qué vas a escanear?"** elegí **Entradas** o **Barra**. *"Elegí qué tipo de QR vas a validar en este puesto."*
+    En **"¿Qué vas a escanear?"** elegí **Entradas** o **Adicionales**. *"Elegí qué tipo de QR vas a validar en este puesto."*
   </Step>
   <Step title="Elegir qué productos valida este puesto">
-    Tildá los productos de esa categoría que valida este puesto. Con **"Toda la barra"** (o todas las entradas) seleccionás todos de una. Así podés tener un puesto que solo valide "Cerveza" en la barra, por ejemplo.
+    Tildá los productos de esa categoría que valida este puesto. Con **"Todos los adicionales"** (o todas las entradas) seleccionás todos de una. Así podés tener un puesto que solo valide "Cerveza" en la barra, por ejemplo.
   </Step>
 </Steps>
 
 <Note>
-  El scanner valida solo la categoría elegida: si en modo **Barra** escaneás una entrada (o al revés), el QR se rechaza aunque sea auténtico. El botón te recuerda qué estás escaneando (por ejemplo, **"Escaneando: Barra"**).
+  El scanner valida solo la categoría elegida: si en modo **Adicionales** escaneás una entrada (o al revés), el QR se rechaza aunque sea auténtico. El botón te recuerda qué estás escaneando (por ejemplo, **"Escaneando: Adicionales"**).
 </Note>
 
 ### Ejemplo de configuración
 
-**Para una fiesta con entradas y barra:**
+**Para una fiesta con entradas y adicionales:**
 
 - 🚪 **Puesto de puerta** → escaneá **Entradas** (General, VIP).
-- 🍺 **Puesto de barra** → escaneá **Barra** (Cerveza, Fernet) para canjear los tragos pre-vendidos.
+- 🍺 **Puesto de barra** → escaneá **Adicionales** (Cerveza, Fernet) para canjear las bebidas pre-vendidas.
+- 🚗 **Entrada del estacionamiento** → escaneá **Adicionales** con solo "Estacionamiento" tildado.
 
-Más sobre la pre-venta de tragos en [Barra](/events/barra).
+Más sobre la pre-venta de adicionales en [Adicionales](/events/adicionales).
 
 ---
 
@@ -168,11 +169,11 @@ Denegar ingreso
 
 ```
 ⚠️ VERIFICAR
-Tipo: Cerveza (Barra)
+Tipo: Cerveza (Adicionales)
 Problema: El tipo de entrada no es válido
 ```
 
-**Qué hacer:** El QR pertenece a una categoría o producto que **este puesto no valida** (por ejemplo, escaneaste un QR de **Barra** en un puesto en modo **Entradas**). Revisá en **"¿Qué vas a escanear?"** que el puesto esté en el modo correcto y que el producto esté tildado.
+**Qué hacer:** El QR pertenece a una categoría o producto que **este puesto no valida** (por ejemplo, escaneaste un QR de **Adicionales** en un puesto en modo **Entradas**). Revisá en **"¿Qué vas a escanear?"** que el puesto esté en el modo correcto y que el producto esté tildado.
 
 <Note>
   Un QR de **otro evento** no aparece como advertencia: directamente da **inválido** (rojo), porque el scanner solo busca entradas de este evento.
