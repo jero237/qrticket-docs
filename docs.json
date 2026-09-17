@@ -61,6 +61,7 @@
               "events/print-tickets",
               "events/stats",
               "events/products",
+              "events/tandas",
               "events/adicionales",
               "events/sales",
               "events/coupons",

@@ -1,0 +1,140 @@
+---
+title: "Tandas y ventana de venta"
+description: "Programá cuándo empieza y termina la venta de cada tipo de entrada, y encadená tandas que se abren solas"
+icon: "layer-group"
+---
+
+# Tandas y ventana de venta
+
+Cada tipo de entrada puede tener una **ventana de venta**: desde cuándo se vende y hasta cuándo. Con eso armás **tandas** — "Preventa hasta el 30/9 o hasta agotar 100, después Tanda 2" — sin tener que estar pendiente de cambiar estados a mano.
+
+<Card title="Se abre y se cierra sola" icon="wand-magic-sparkles">
+  qrTicket resuelve la ventana en el momento: cuando llega la fecha o se agota la tanda anterior, la siguiente empieza a venderse al instante. No hay nada que activar.
+</Card>
+
+## Prerrequisitos
+
+- Un evento con al menos un tipo de entrada (ver [Productos del evento](/events/products)).
+- Permiso para crear o editar productos en la productora.
+
+---
+
+## Programar la venta de un producto
+
+Al crear o editar una entrada o un adicional, activá **Programar venta** al final del formulario. Aparecen tres decisiones:
+
+<AccordionGroup>
+  <Accordion title="Empieza">
+    - **Ahora:** se vende desde que el producto está Activo (es el comportamiento de siempre).
+    - **En una fecha:** elegís día y hora. Hasta ese momento el producto se ve en la página de compra como **Próximamente**, con su precio, pero no se puede agregar al carrito.
+    - **Después de otra:** elegís otro tipo de entrada del mismo evento. Este empieza a venderse cuando aquel **termina**: se agota (llegó a su límite), pasó su fecha de fin, o lo pusiste en Inactivo.
+  </Accordion>
+  <Accordion title="Termina">
+    - **Con el evento:** se vende hasta que el evento termina.
+    - **En una fecha:** elegís día y hora. Pasado ese momento, el producto deja de venderse aunque siga Activo.
+  </Accordion>
+  <Accordion title="Después (solo si termina en una fecha)">
+    Qué ve el comprador una vez que la tanda cerró:
+
+    - **Agotada:** el producto sigue en la lista, tachado y marcado como agotado. Sirve de referencia: el comprador ve que la tanda barata ya pasó.
+    - **Oculta:** el producto desaparece de la página de compra.
+  </Accordion>
+</AccordionGroup>
+
+Debajo de las opciones, una línea te resume lo que estás configurando, por ejemplo: *"Sale a la venta el 1 oct 10:00 · hasta el 15 oct 23:59 · después se muestra agotada"*.
+
+<Tip>
+  Las horas se toman en tu zona horaria (la del navegador donde configurás el evento). El comprador las ve en la suya.
+</Tip>
+
+---
+
+## Encadenar tandas
+
+La forma más rápida de armar una cadena es desde la lista de productos:
+
+<Steps>
+  <Step title="Configurá la primera tanda">
+    Creá "Tanda 1" con un **Límite** (por ejemplo 100), una fecha de fin, o las dos cosas. Lo que ocurra primero la cierra.
+  </Step>
+  <Step title="Crear siguiente tanda">
+    En la lista de productos, abrí el menú **⋯** de Tanda 1 y elegí **Crear siguiente tanda**. El formulario ya viene con **Empieza → Después de otra → Tanda 1** y el nombre sugerido ("Tanda 2").
+  </Step>
+  <Step title="Repetí">
+    Podés encadenar tantas tandas como quieras: Tanda 2 → Tanda 3 → … Cada una se abre cuando termina la anterior.
+  </Step>
+</Steps>
+
+<Note>
+  El selector de **Después de otra** te muestra cómo termina cada producto ("hasta agotar 100", "hasta 30 sep 23:59" o "sin fecha ni límite"). Si la tanda anterior no tiene ni fecha ni límite, la siguiente solo se abre cuando la pongas en **Agotado** o **Inactivo** a mano.
+</Note>
+
+---
+
+## Qué ve el comprador
+
+| Situación | En la página de compra |
+| --- | --- |
+| La tanda todavía no abrió | El producto aparece atenuado con la etiqueta **Próximamente** y la fecha: *"Disponible el 1 oct 10:00"* o *"Disponible cuando se agote Tanda 1"* |
+| La tanda está abierta | Se compra normalmente |
+| La tanda cerró como **Agotada** | Aparece tachada con la etiqueta **Agotadas** |
+| La tanda cerró como **Oculta** | No aparece |
+
+El precio **"desde $X"** de la página del evento cuenta solo lo que se puede comprar en ese momento.
+
+<Warning>
+  Un comprador que dejó la página abierta desde antes del cambio puede intentar comprar una tanda que ya cerró. qrTicket lo rechaza en el momento del pago con el mensaje *"La venta de «Tanda 1» terminó. Actualizá la página para ver qué queda disponible."* y lo devuelve a la lista.
+</Warning>
+
+---
+
+## En la lista de productos
+
+Debajo del estado de cada producto vas a ver un indicador con su ventana:
+
+- **Desde 1 oct 10:00** — todavía no abrió.
+- **Tras «Tanda 1»** — espera a que termine otra.
+- **Hasta 30 sep 23:59** — está abierta y tiene fecha de cierre.
+- **Terminó 30 sep 23:59** — ya cerró.
+
+El **Estado** sigue siendo el que vos elegiste (normalmente **Activo**); la ventana lo complementa, no lo reemplaza. Si querés reabrir una tanda cerrada, editala y cambiale la fecha de fin.
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Tengo que estar pendiente para activar la siguiente tanda?">
+    No. El cambio es automático y exacto: en cuanto se vende la última entrada de Tanda 1 (o llega su fecha de fin), Tanda 2 pasa a estar disponible.
+  </Accordion>
+  <Accordion title="¿Puedo combinar límite y fecha en la misma tanda?">
+    Sí. Ponele un **Límite** y una fecha de **Termina**. Lo que ocurra primero cierra la tanda y abre la siguiente.
+  </Accordion>
+  <Accordion title="¿Y si quiero que la siguiente tanda no se vea hasta que abra?">
+    Hoy la tanda que espera se muestra como **Próximamente** con su precio: es lo que empuja a comprar la tanda actual. Si necesitás que no se vea, escribinos.
+  </Accordion>
+  <Accordion title="¿Los combos tienen ventana de venta?">
+    No. La ventana es de entradas y adicionales. Un combo se maneja con su propio estado y límite.
+  </Accordion>
+  <Accordion title="¿Afecta a las entradas que genera mi equipo a mano?">
+    No. La ventana rige la **venta pública**. Desde **Crear entradas** tu equipo puede emitir cualquier producto, esté o no en ventana.
+  </Accordion>
+  <Accordion title="¿Qué pasa si duplico el evento?">
+    La copia conserva las cadenas ("Tanda 2 después de Tanda 1") y qué hace cada tanda al cerrar, pero **no** las fechas: son del calendario del evento original.
+  </Accordion>
+</AccordionGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Productos del evento" icon="box" href="/events/products">
+    Límites, estados y todo lo demás del editor de productos
+  </Card>
+  <Card title="Estadísticas" icon="chart-line" href="/events/stats">
+    Mirá cómo vendió cada tanda
+  </Card>
+</CardGroup>
+
+---
+
+¿Dudas con tus tandas? Contactanos por [WhatsApp](https://wa.me/5491122503348)

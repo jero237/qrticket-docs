@@ -85,7 +85,8 @@ Tomando una **Entrada** como ejemplo, estos son los campos del editor:
   <Accordion title="Límites y vigencia (opcionales)">
     - **Límite por Compra:** Máximo de unidades que alguien puede llevar en una misma compra.
     - **Límite:** Total disponible del producto (ej: 200 entradas VIP). Cuando se alcanza, el producto pasa a "Agotado".
-    - **Limitar vigencia de uso:** Activá este checkbox para restringir en qué fechas o momentos se puede usar el producto.
+    - **Programar venta:** Desde cuándo y hasta cuándo se vende, o que empiece cuando termine otra entrada. Es la base de las **tandas** — mirá [Tandas y ventana de venta](/events/tandas).
+    - **Limitar vigencia de uso:** Hora a partir de la cual el QR ya no se puede escanear en la puerta.
   </Accordion>
   <Accordion title="Estados del producto">
     - **Activo:** Visible para todos.
@@ -111,7 +112,7 @@ La tabla muestra estas columnas:
 | Columna | Qué muestra |
 | --- | --- |
 | **Nombre** | El nombre del producto |
-| **Estado** | Activo, Oculto, Exclusivo, Agotado o Inactivo (lo cambiás desde acá) |
+| **Estado** | Activo, Oculto, Exclusivo, Agotado o Inactivo (lo cambiás desde acá). Si el producto tiene ventana de venta, debajo aparece cuándo abre o cierra ("Desde…", "Hasta…", "Tras «Tanda 1»") |
 | **Precio** | El precio configurado (o gratuito si está vacío) |
 | **Límite** | Total disponible del producto |
 | **Vendidas** | Cuántas unidades se vendieron |
@@ -120,6 +121,8 @@ La tabla muestra estas columnas:
 <Tip>
   Con el botón **Exportar** descargás la lista de productos para revisarla por fuera de la plataforma.
 </Tip>
+
+Desde el menú **⋯** de cada fila también podés **Crear siguiente tanda**: abre el alta de un producto nuevo que empieza a venderse cuando este termine. Ver [Tandas y ventana de venta](/events/tandas).
 
 ---
 
@@ -132,7 +135,7 @@ La tabla muestra estas columnas:
     Hacé clic en el nombre del producto que querés editar
   </Step>
   <Step title="Modificar configuración">
-    Podés cambiar: nombre, descripción, estado, límites y la vigencia de uso
+    Podés cambiar: nombre, descripción, estado, límites, la ventana de venta y la vigencia de uso
   </Step>
   <Step title="Guardar cambios">
     Los cambios son inmediatos y afectan las ventas futuras
@@ -159,6 +162,7 @@ La tabla muestra estas columnas:
     - Que el estado sea **Activo** (Oculto solo es visible para el equipo y por link directo; Exclusivo solo para administradores)
     - Que no esté **Agotado** (se alcanzó el límite)
     - Que no esté **Inactivo**
+    - Que su **ventana de venta** esté abierta: si todavía no llegó la fecha de inicio o espera a que termine otra tanda, se ve como **Próximamente**; si ya cerró como **Oculta**, no se ve. Lo ves en la lista de productos, debajo del estado.
   </Accordion>
   <Accordion title="'Quiero cambiar el precio de un producto'">
     El precio **no se puede editar** una vez creado el producto. Creá un **producto nuevo** con el precio actualizado y, si querés, pasá el viejo a estado **Inactivo** u **Oculto**.

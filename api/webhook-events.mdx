@@ -159,6 +159,10 @@ Se creó, editó, agotó o eliminó un tipo de entrada, un combo o un adicional.
   Este aviso es una **referencia**, no una foto: no trae precio ni vendidos. Es a propósito — el `sold` se mueve con cada venta, así que cualquier número que mandáramos acá ya estaría viejo cuando lo leas. Pedí [`/events/{id}/ticket-types`](/api/ticket-types) cuando lo recibas.
 </Note>
 
+<Note>
+  La **ventana de venta** (tandas) no dispara este aviso por sí sola: una tanda que abre o cierra por fecha, o que se abre porque la anterior se agotó, no escribe nada en el tipo de entrada — se resuelve al leer. (La tanda que se **agota** sí te avisa, como cualquier agotado.) Si te importa "¿se puede comprar ahora?", consultá `on_sale` en [Tipos de entrada](/api/ticket-types).
+</Note>
+
 ## Tabla resumen
 
 | `type` | Cuándo | `data` |

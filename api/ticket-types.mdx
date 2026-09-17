@@ -49,6 +49,11 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
       "available": 16,
       "max_per_order": 4,
       "expires_at": null,
+      "sales_start_at": null,
+      "sales_end_at": "2026-10-01T02:59:00.000Z",
+      "sales_start_after_id": null,
+      "sales_end_status": "sold_out",
+      "on_sale": true,
       "sort_order": 0,
       "includes": null
     },
@@ -99,6 +104,26 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
   - `exclusive` — reservado para el equipo (RRPP, cortesías).
   - `sold_out` — agotado.
   - `inactive` — apagado por el organizador.
+</ResponseField>
+
+<ResponseField name="on_sale" type="boolean">
+  Si alguien puede comprarlo **ahora mismo** desde la página pública. Combina `status` con la ventana de venta: un ítem `active` cuya tanda todavía no abrió, o cuya fecha de fin ya pasó, viene en `false`. Si vas a mostrar "disponible / no disponible", este es el campo.
+</ResponseField>
+
+<ResponseField name="sales_start_at" type="string | null">
+  Inicio programado de la venta (ISO 8601), o `null` si vende desde que está activo. Solo en ítems sueltos.
+</ResponseField>
+
+<ResponseField name="sales_end_at" type="string | null">
+  Fin programado de la venta (ISO 8601), o `null` si vende hasta el evento. Después de este instante el ítem deja de venderse aunque siga `active`; `sales_end_status` dice cómo se muestra.
+</ResponseField>
+
+<ResponseField name="sales_start_after_id" type="string | null">
+  Tandas encadenadas: el `id` del tipo de entrada que tiene que terminar (agotarse, vencer o desactivarse) para que este empiece a venderse. `null` si no está encadenado.
+</ResponseField>
+
+<ResponseField name="sales_end_status" type="string">
+  Cómo se ve el ítem una vez que pasó `sales_end_at`: `sold_out` (sigue listado como agotado) o `inactive` (desaparece de la página). El `status` guardado no cambia — por eso conviene leer `on_sale`.
 </ResponseField>
 
 <ResponseField name="sold" type="number">
