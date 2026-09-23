@@ -1142,7 +1142,7 @@
         "title": "Tipo de entrada",
         "type": "object",
         "description": "Un ítem vendible del evento: una entrada, un producto de barra o un combo. Ramificá por `kind`.",
-        "required": ["id", "kind", "event_id", "category", "name", "description", "image_url", "price", "currency", "status", "deleted", "limit", "sold", "available", "max_per_order", "expires_at", "sort_order", "includes"],
+        "required": ["id", "kind", "event_id", "category", "name", "description", "image_url", "price", "currency", "status", "deleted", "limit", "sold", "available", "max_per_order", "expires_at", "sales_start_at", "sales_end_at", "sales_start_after_id", "sales_end_status", "on_sale", "sort_order", "includes"],
         "properties": {
           "id": { "type": "string", "description": "Es el id al que apunta `ticket_type_id` en los ítems de una orden." },
           "kind": {
@@ -1171,7 +1171,12 @@
           "sold": { "type": "integer", "description": "Credenciales vivas emitidas bajo este ítem. Excluye las eliminadas, las ocultas y las regaladas en una transferencia — es el mismo número contra el que se controla el `limit` al vender. Los combos usan su propio contador de unidades vendidas." },
           "available": { "type": ["integer", "null"], "description": "`limit - sold` (nunca negativo), o `null` cuando no hay límite." },
           "max_per_order": { "type": ["integer", "null"], "description": "Máximo por compra, o `null` sin tope." },
-          "expires_at": { "type": ["string", "null"], "format": "date-time", "description": "Cuándo deja de venderse. Siempre `null` en los combos." },
+          "expires_at": { "type": ["string", "null"], "format": "date-time", "description": "Hora a partir de la cual la credencial ya no se puede escanear en la puerta (no es el fin de la venta: eso es `sales_end_at`). Siempre `null` en los combos." },
+          "sales_start_at": { "type": ["string", "null"], "format": "date-time", "description": "Inicio programado de la venta, o `null` si vende desde que está activo." },
+          "sales_end_at": { "type": ["string", "null"], "format": "date-time", "description": "Fin programado de la venta, o `null` si vende hasta el evento. Pasado este instante deja de venderse aunque siga `active`." },
+          "sales_start_after_id": { "type": ["string", "null"], "description": "Tandas encadenadas: el `id` del ítem que tiene que terminar (agotarse, vencer o desactivarse) para que este empiece a venderse. En un combo apunta siempre a otro combo." },
+          "sales_end_status": { "type": "string", "enum": ["sold_out", "inactive"], "description": "Cómo se ve una vez pasado `sales_end_at`: `sold_out` (sigue listado como agotado) o `inactive` (desaparece de la página). El `status` guardado no cambia." },
+          "on_sale": { "type": "boolean", "description": "Si se puede comprar ahora mismo desde la página pública: combina `status` con la ventana de venta." },
           "sort_order": { "type": "integer", "description": "Orden de presentación en la página de compra." },
           "includes": {
             "type": ["array", "null"],
@@ -1205,6 +1210,11 @@
           "available": 16,
           "max_per_order": 4,
           "expires_at": null,
+          "sales_start_at": null,
+          "sales_end_at": "2026-10-01T02:59:00.000Z",
+          "sales_start_after_id": null,
+          "sales_end_status": "sold_out",
+          "on_sale": true,
           "sort_order": 0,
           "includes": null
         }

@@ -1,12 +1,12 @@
 ---
 title: "Tandas y ventana de venta"
-description: "Programá cuándo empieza y termina la venta de cada tipo de entrada, y encadená tandas que se abren solas"
+description: "Programá cuándo empieza y termina la venta de cada entrada, adicional o combo, y encadená tandas que se abren solas"
 icon: "layer-group"
 ---
 
 # Tandas y ventana de venta
 
-Cada tipo de entrada puede tener una **ventana de venta**: desde cuándo se vende y hasta cuándo. Con eso armás **tandas** — "Preventa hasta el 30/9 o hasta agotar 100, después Tanda 2" — sin tener que estar pendiente de cambiar estados a mano.
+Cada tipo de entrada, adicional o combo puede tener una **ventana de venta**: desde cuándo se vende y hasta cuándo. Con eso armás **tandas** — "Preventa hasta el 30/9 o hasta agotar 100, después Tanda 2" — sin tener que estar pendiente de cambiar estados a mano.
 
 <Card title="Se abre y se cierra sola" icon="wand-magic-sparkles">
   qrTicket resuelve la ventana en el momento: cuando llega la fecha o se agota la tanda anterior, la siguiente empieza a venderse al instante. No hay nada que activar.
@@ -21,13 +21,13 @@ Cada tipo de entrada puede tener una **ventana de venta**: desde cuándo se vend
 
 ## Programar la venta de un producto
 
-Al crear o editar una entrada o un adicional, activá **Programar venta** al final del formulario. Aparecen tres decisiones:
+Al crear o editar una entrada, un adicional o un combo, activá **Programar venta** al final del formulario. Aparecen tres decisiones:
 
 <AccordionGroup>
   <Accordion title="Empieza">
     - **Ahora:** se vende desde que el producto está Activo (es el comportamiento de siempre).
     - **En una fecha:** elegís día y hora. Hasta ese momento el producto se ve en la página de compra como **Próximamente**, con su precio, pero no se puede agregar al carrito.
-    - **Después de otra:** elegís otro tipo de entrada del mismo evento. Este empieza a venderse cuando aquel **termina**: se agota (llegó a su límite), pasó su fecha de fin, o lo pusiste en Inactivo.
+    - **Después de otra:** elegís otro tipo de entrada del mismo evento. Este empieza a venderse cuando aquel **termina**: se agota (llegó a su límite), pasó su fecha de fin, o lo pusiste en Inactivo. En un combo la opción se llama **Después de otro** y elegís otro combo: un combo se encadena con combos, no con entradas sueltas.
   </Accordion>
   <Accordion title="Termina">
     - **Con el evento:** se vende hasta que el evento termina.
@@ -38,6 +38,8 @@ Al crear o editar una entrada o un adicional, activá **Programar venta** al fin
 
     - **Agotada:** el producto sigue en la lista, tachado y marcado como agotado. Sirve de referencia: el comprador ve que la tanda barata ya pasó.
     - **Oculta:** el producto desaparece de la página de compra.
+
+    En un combo las opciones son **Agotado** y **Oculto**, con el mismo efecto.
   </Accordion>
 </AccordionGroup>
 
@@ -59,6 +61,8 @@ La forma más rápida de armar una cadena es desde la lista de productos:
   </Step>
   <Step title="Crear siguiente tanda">
     En la lista de productos, abrí el menú **⋯** de Tanda 1 y elegí **Crear siguiente tanda**. El formulario ya viene con **Empieza → Después de otra → Tanda 1** y el nombre sugerido ("Tanda 2").
+
+    En un combo, la siguiente tanda además viene con la misma descripción y los mismos productos incluidos: solo le ponés el precio nuevo.
   </Step>
   <Step title="Repetí">
     Podés encadenar tantas tandas como quieras: Tanda 2 → Tanda 3 → … Cada una se abre cuando termina la anterior.
@@ -114,7 +118,7 @@ El **Estado** sigue siendo el que vos elegiste (normalmente **Activo**); la vent
     Hoy la tanda que espera se muestra como **Próximamente** con su precio: es lo que empuja a comprar la tanda actual. Si necesitás que no se vea, escribinos.
   </Accordion>
   <Accordion title="¿Los combos tienen ventana de venta?">
-    No. La ventana es de entradas y adicionales. Un combo se maneja con su propio estado y límite.
+    Sí, igual que las entradas: fecha de inicio, fecha de fin y tandas encadenadas ("Combo Tanda 2" después de "Combo Tanda 1"). Un combo solo se puede encadenar con otro combo. La ventana es del combo en sí: no depende de la ventana de las entradas que trae adentro.
   </Accordion>
   <Accordion title="¿Afecta a las entradas que genera mi equipo a mano?">
     No. La ventana rige la **venta pública**. Desde **Crear entradas** tu equipo puede emitir cualquier producto, esté o no en ventana.

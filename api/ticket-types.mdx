@@ -69,6 +69,11 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
       "limit": 50,
       "sold": 12,
       "available": 38,
+      "sales_start_at": null,
+      "sales_end_at": null,
+      "sales_start_after_id": null,
+      "sales_end_status": "sold_out",
+      "on_sale": true,
       "includes": [
         { "ticket_type_id": "TvEPjMm1rx", "name": "PREVENTA", "category": "ticket", "quantity": 1 },
         { "ticket_type_id": "c9Lm2Qp",    "name": "Fernet",   "category": "merchandise", "quantity": 2 }
@@ -111,7 +116,7 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
 </ResponseField>
 
 <ResponseField name="sales_start_at" type="string | null">
-  Inicio programado de la venta (ISO 8601), o `null` si vende desde que está activo. Solo en ítems sueltos.
+  Inicio programado de la venta (ISO 8601), o `null` si vende desde que está activo.
 </ResponseField>
 
 <ResponseField name="sales_end_at" type="string | null">
@@ -119,7 +124,7 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
 </ResponseField>
 
 <ResponseField name="sales_start_after_id" type="string | null">
-  Tandas encadenadas: el `id` del tipo de entrada que tiene que terminar (agotarse, vencer o desactivarse) para que este empiece a venderse. `null` si no está encadenado.
+  Tandas encadenadas: el `id` del tipo de entrada que tiene que terminar (agotarse, vencer o desactivarse) para que este empiece a venderse. `null` si no está encadenado. En un combo apunta siempre a otro combo (`kind: "bundle"`).
 </ResponseField>
 
 <ResponseField name="sales_end_status" type="string">
