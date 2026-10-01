@@ -46,8 +46,10 @@ GET /api/v1/events/{event_id}
   "slug": "euforia",
   "name": "EUFORIA",
   "description": "La fiesta más grande del año",
-  "starts_at": "2026-08-15T23:30:00.000Z",
+  "starts_at": "2026-08-15T12:00:00.000Z",
   "ends_at": null,
+  "start_time": "23:30",
+  "end_time": "06:00",
   "status": "public",
   "is_published": true,
   "url": "https://qrticket.app/e/euforia",
@@ -80,6 +82,18 @@ GET /api/v1/events/{event_id}
 
 <ResponseField name="id" type="string">
   Identificador del evento. Es el que usás en `event_id` en el resto de los endpoints.
+</ResponseField>
+
+<ResponseField name="starts_at" type="string">
+  El **día** del evento (ISO-8601). Es una fecha de calendario: la hora que trae (siempre las 12:00 UTC) no significa nada; usá `date` de ese valor en UTC, sin pasarlo a tu zona horaria. `ends_at` es igual, y solo viene en eventos de varios días.
+</ResponseField>
+
+<ResponseField name="start_time" type="string | null">
+  Hora de inicio, `"HH:mm"` en 24 horas, en la hora local del lugar del evento, tal como la cargó el organizador. Sin zona horaria a propósito: mostrala tal cual. Opcional: `null` si el evento no tiene hora o dura varios días.
+</ResponseField>
+
+<ResponseField name="end_time" type="string | null">
+  Hora de fin, mismo formato. Opcional, y puede venir sin `start_time` (el organizador cargó solo a qué hora termina). Si es menor que `start_time`, termina al día siguiente (`"23:30"` a `"06:00"`).
 </ResponseField>
 
 <ResponseField name="status" type="string">
