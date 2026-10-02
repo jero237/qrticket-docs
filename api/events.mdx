@@ -69,6 +69,7 @@ GET /api/v1/events/{event_id}
     "mercadopago": true,
     "stripe": false,
     "recurrente": false,
+    "automatic_transfer": false,
     "bank_transfer": true,
     "whatsapp": false
   },
@@ -116,6 +117,8 @@ GET /api/v1/events/{event_id}
 
 <ResponseField name="sales_channels" type="object">
   Qué medios de pago están habilitados **en este evento**. Las entradas gratis no son un canal: son un precio de `0` en un tipo de entrada, y las ves en [tipos de entrada](/api/ticket-types).
+
+  `automatic_transfer` es la transferencia automática (Argentina): cada compra recibe su propio alias y se aprueba sola cuando la plata se acredita. `bank_transfer` es la transferencia con comprobante, que aprueba el organizador.
 </ResponseField>
 
 <ResponseField name="currency" type="string">

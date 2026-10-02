@@ -1091,12 +1091,13 @@
           "sales_channels": {
             "type": "object",
             "description": "Qué medios de pago están habilitados en este evento. Las entradas gratis no son un canal: son un precio de `0` en un tipo de entrada.",
-            "required": ["mercadopago", "stripe", "recurrente", "bank_transfer", "whatsapp"],
+            "required": ["mercadopago", "stripe", "recurrente", "automatic_transfer", "bank_transfer", "whatsapp"],
             "properties": {
               "mercadopago": { "type": "boolean" },
               "stripe": { "type": "boolean" },
               "recurrente": { "type": "boolean" },
-              "bank_transfer": { "type": "boolean" },
+              "automatic_transfer": { "type": "boolean", "description": "Transferencia automática (Argentina): alias propio por compra, se aprueba sola al acreditarse." },
+              "bank_transfer": { "type": "boolean", "description": "Transferencia con comprobante, que aprueba el organizador." },
               "whatsapp": { "type": "boolean" }
             }
           },
@@ -1130,6 +1131,7 @@
             "mercadopago": true,
             "stripe": false,
             "recurrente": false,
+            "automatic_transfer": false,
             "bank_transfer": true,
             "whatsapp": false
           },
@@ -1239,16 +1241,16 @@
           "status": {
             "type": "string",
             "enum": ["pending", "completed", "failed", "refunded", "cancelled"],
-            "description": "`pending` — esperando el pago, o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp (todavía no hay entradas emitidas). `completed` — pagada y con las entradas emitidas. `failed` — el pago fue rechazado. `refunded` — se devolvió la plata; las credenciales quedaron anuladas. `cancelled` — se rechazó o se anuló antes de emitir."
+            "description": "`pending` — esperando el pago (en una transferencia automática, que el comprador transfiera al alias de la compra), o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp (todavía no hay entradas emitidas). `completed` — pagada y con las entradas emitidas. `failed` — el pago fue rechazado. `refunded` — se devolvió la plata; las credenciales quedaron anuladas. `cancelled` — se rechazó o se anuló antes de emitir (también una transferencia automática cuyo alias venció sin recibir el pago)."
           },
           "channel": {
             "type": "string",
-            "enum": ["mercadopago", "stripe", "recurrente", "bank_transfer", "free", "whatsapp", "staff"],
-            "description": "Cómo se vendió, con el mismo criterio que agrupa el dashboard. `staff` es una carga manual del equipo (o una importación), `free` una entrada gratuita reclamada online. Es el campo para agrupar por canal."
+            "enum": ["mercadopago", "stripe", "recurrente", "automatic_transfer", "bank_transfer", "free", "whatsapp", "staff"],
+            "description": "Cómo se vendió, con el mismo criterio que agrupa el dashboard. `automatic_transfer` es la transferencia automática (alias propio por compra, se aprueba sola); `bank_transfer` la transferencia con comprobante que aprueba el organizador. `staff` es una carga manual del equipo (o una importación), `free` una entrada gratuita reclamada online. Es el campo para agrupar por canal."
           },
           "provider": {
             "type": "string",
-            "enum": ["mercadopago", "stripe", "recurrente", "staff", "bank_transfer", "free", "whatsapp"],
+            "enum": ["mercadopago", "stripe", "recurrente", "automatic_transfer", "staff", "bank_transfer", "free", "whatsapp"],
             "description": "El procesador/origen crudo del cobro."
           },
           "amount": { "type": "number", "description": "Lo que efectivamente pagó el comprador, en la moneda de `currency`: ya con el descuento aplicado y, si el evento traslada la comisión del procesador, con ese recargo incluido." },
@@ -1287,7 +1289,7 @@
             "type": "object",
             "required": ["external_id", "transfer_proof_url", "rejection_reason"],
             "properties": {
-              "external_id": { "type": ["string", "null"], "description": "La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente), para conciliar contra su extracto. Nunca se devuelven tokens ni credenciales de cobro." },
+              "external_id": { "type": ["string", "null"], "description": "La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente, id del pago de la transferencia automática), para conciliar contra su extracto. Nunca se devuelven tokens ni credenciales de cobro." },
               "transfer_proof_url": { "type": ["string", "null"], "description": "Comprobante subido por el comprador, en ventas por transferencia bancaria." },
               "rejection_reason": { "type": ["string", "null"], "description": "Motivo del rechazo del comprobante, si lo hubo." }
             }

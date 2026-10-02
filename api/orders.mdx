@@ -102,17 +102,17 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
 ### Campos
 
 <ResponseField name="status" type="string">
-  - `pending` — esperando el pago, o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp. **Todavía no hay entradas emitidas.**
+  - `pending` — esperando el pago (en una transferencia automática, que el comprador transfiera al alias de la compra), o esperando que el organizador apruebe una transferencia / un pedido por WhatsApp. **Todavía no hay entradas emitidas.**
   - `completed` — pagada y con las entradas emitidas.
   - `failed` — el pago fue rechazado.
   - `refunded` — se devolvió la plata; las credenciales quedaron anuladas.
-  - `cancelled` — se rechazó o se anuló antes de emitir.
+  - `cancelled` — se rechazó o se anuló antes de emitir (también una transferencia automática cuyo alias venció sin recibir el pago).
 </ResponseField>
 
 <ResponseField name="channel" type="string">
-  Cómo se vendió: `mercadopago`, `stripe`, `recurrente`, `bank_transfer`, `whatsapp`, `free`, `staff`.
+  Cómo se vendió: `mercadopago`, `stripe`, `recurrente`, `automatic_transfer`, `bank_transfer`, `whatsapp`, `free`, `staff`.
 
-  `staff` es una carga manual del equipo (o una importación), `free` es una entrada gratuita reclamada online. Este es el campo para agrupar por canal — es el mismo criterio que usa el dashboard.
+  `automatic_transfer` es la transferencia automática (alias propio por compra, se aprueba sola al acreditarse); `bank_transfer` la transferencia con comprobante que aprueba el organizador. `staff` es una carga manual del equipo (o una importación), `free` es una entrada gratuita reclamada online. Este es el campo para agrupar por canal — es el mismo criterio que usa el dashboard.
 </ResponseField>
 
 <ResponseField name="amount" type="number">
@@ -132,7 +132,7 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
 </ResponseField>
 
 <ResponseField name="payment.external_id" type="string | null">
-  La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente). Sirve para conciliar contra el extracto del procesador. Nunca devolvemos tokens ni credenciales de cobro.
+  La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente, id del pago de la transferencia automática). Sirve para conciliar contra el extracto del procesador. Nunca devolvemos tokens ni credenciales de cobro.
 </ResponseField>
 
 <ResponseField name="updated_at" type="string">
