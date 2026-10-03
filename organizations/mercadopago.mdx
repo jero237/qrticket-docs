@@ -9,12 +9,16 @@ icon: "credit-card"
 Conectá tu cuenta de MercadoPago a tu productora para habilitar las ventas online en tus eventos. Una vez conectada, tus clientes pueden comprar entradas directamente desde la página del evento de forma simple e intuitiva.
 
 <Note>
-  Solo el **Administrador** de la productora puede conectar la cuenta de MercadoPago.
+  Para conectar MercadoPago necesitás un rol con permiso para administrar la productora (por defecto, el **Administrador**). Mirá [Roles y permisos](/organizations/roles).
 </Note>
 
 <Info>
-  MercadoPago es el medio de cobro principal en **Argentina**, y también está disponible en **Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay**. Si tu productora es de **"Otros"** países, no usás MercadoPago: conectás [Stripe](/organizations/stripe) para aceptar pagos con tarjeta internacional.
+  MercadoPago es el medio de cobro principal en **Argentina**, y también está disponible en **Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay**. En los demás países (España, Estados Unidos, Guatemala, El Salvador, Honduras y "Otros") no aparece: usás [Stripe](/organizations/stripe) o, en Centroamérica, [Recurrente](/organizations/recurrente).
 </Info>
+
+## Cómo acceder
+
+Dashboard → Tu productora → sección **"Cuentas de cobro"** → **"MercadoPago"** (en el menú lateral o en el inicio de la productora). En el inicio, la tarjeta te muestra el estado de la conexión: por ejemplo **"Conectada"**, o **"Vencida"** si hay que volver a conectarla.
 
 ## Conectar tu cuenta
 
@@ -28,22 +32,30 @@ La forma de conectar MercadoPago depende del país de tu productora.
       <Step title="Dirigite a la configuración">
         Dashboard → Tu productora → **"MercadoPago"**
 
-        Vas a ver el encabezado **"Conectar cuenta"** con el texto: *"Conecta tu cuenta de Mercado Pago a tu productora para poder habilitar ventas online en tus eventos."*
+        Vas a ver el encabezado **"Conectar cuenta"** con el texto: *"Conectá tu cuenta de MercadoPago para cobrar online en tus eventos."*
       </Step>
       <Step title="Conectá tu cuenta">
         Hacé clic en **"Conectar cuenta"** y serás redirigido a MercadoPago para autorizar la conexión.
       </Step>
       <Step title="Autorizá la conexión">
-        Iniciá sesión en MercadoPago (si no lo hiciste todavía) y autorizá que qrTicket procese los pagos de tu cuenta.
+        Iniciá sesión en MercadoPago **con la cuenta titular del negocio** y autorizá que qrTicket procese los pagos de tu cuenta.
       </Step>
       <Step title="¡Listo!">
         Volvés automáticamente a qrTicket con la cuenta conectada.
       </Step>
     </Steps>
 
+    <Warning>
+      **Conectá con la cuenta titular.** Se vincula la cuenta que tengas abierta en el navegador, y un colaborador no puede autorizar la conexión. Si hace falta, cerrá sesión en [mercadopago.com.ar](https://www.mercadopago.com.ar) e ingresá con la cuenta titular antes de conectar.
+    </Warning>
+
     <Note>
       Si todavía no tenés cuenta, podés crear una gratis en [mercadopago.com.ar](https://www.mercadopago.com.ar) antes de conectar.
     </Note>
+
+    <Tip>
+      También podés conectar MercadoPago directo desde **Cobros** de cualquier evento: el botón **"Conectar"** del panel de MercadoPago abre la misma autorización y, al terminar, deja la venta activada en ese evento.
+    </Tip>
   </Tab>
   <Tab title="Otros países">
     En Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay la conexión se hace con tu **Access Token** de MercadoPago.
@@ -132,9 +144,13 @@ La forma de conectar MercadoPago depende del país de tu productora.
 
 Una vez conectada, en la sección **MercadoPago** vas a ver:
 
-- El estado **"Conectado"**.
-- El campo **"Apodo de la cuenta"**, editable, para identificar fácilmente qué cuenta tenés vinculada (por ejemplo, "Cuenta de la productora").
-- Los botones **"Cambiar cuenta"** y **"Desconectar"**.
+- El estado **"Conectado"** y la **"Cuenta vinculada"** (el nombre de tu cuenta de MercadoPago).
+- El campo **"Apodo de la cuenta"**, editable, para identificar fácilmente qué cuenta tenés vinculada.
+- Los botones **"Cambiar cuenta"** (solo Argentina) y **"Desconectar"**.
+
+### Conexión expirada
+
+En Argentina, qrTicket renueva la conexión con MercadoPago automáticamente. Si aun así se vence (por ejemplo, porque quitaste el permiso desde tu cuenta de MercadoPago), vas a ver el estado **"Conexión expirada"** y el botón **"Volver a conectar"**. Mientras esté vencida, tus eventos no ofrecen MercadoPago.
 
 ### Cambiar de cuenta
 
@@ -152,16 +168,16 @@ Después de cerrar sesión, hacé clic en **"Cambiar cuenta"** y conectá la cue
 
 ## Activar la venta en tus eventos
 
-Por defecto, la venta por MercadoPago está desactivada en cada evento. Para activarla, entrá al evento que quieras habilitar y dirigite a **"Canales de venta"**, donde podés activar la venta con el deslizador.
+Conectar MercadoPago a tu productora habilita el cobro, pero todavía tenés que activarlo en cada evento.
 
 <Steps>
   <Step title="Tu producto debe tener precio">
     Para vender con MercadoPago, el tipo de entrada debe tener un precio configurado. Más información en [Tipos de Entrada](/events/products).
   </Step>
   <Step title="Activá la venta en el evento">
-    Dashboard → Seleccionar evento → **"Canales de venta"** → activá las ventas con MercadoPago.
+    Dashboard → Tu evento → **"Cobros"** → tocá la tarjeta **MercadoPago** → encendé **"Vender con MercadoPago"**.
 
-    Más detalles en [Canales de venta](/events/sales).
+    Más detalles en [Cobros](/events/sales).
   </Step>
 </Steps>
 
@@ -172,7 +188,7 @@ Por defecto, la venta por MercadoPago está desactivada en cada evento. Para act
 </Tip>
 
 <Note>
-  Las **tarifas preferenciales**, la liberación instantánea y la liberación a 10 días que se detallan abajo aplican a productoras de **Argentina**. En los demás países donde está disponible MercadoPago, al activar "Pasar cargos al comprador" definís vos el **porcentaje** que se le suma al comprador para cubrir el cargo del medio de pago.
+  Las **tarifas preferenciales** que se detallan abajo aplican a productoras de **Argentina**. En los demás países se usan las tarifas que publica MercadoPago en cada país, y los días de la liberación diferida cambian (por ejemplo, 7 días en México y Colombia, 21 en Uruguay, 30 en Brasil).
 </Note>
 
 Por nuestra alianza, pagás menos comisión que vendiendo por tu cuenta. Estas son las tarifas de **liberación instantánea** (la que viene por defecto):
@@ -185,7 +201,7 @@ Por nuestra alianza, pagás menos comisión que vendiendo por tu cuenta. Estas s
 
 ### Liberación a 10 días (opcional)
 
-Si preferís tarifas aún más bajas y no necesitás el dinero al instante, podés pedir la **liberación a 10 días corridos**. Coordinamos con MercadoPago el cambio de plazo en tu cuenta.
+Si preferís tarifas aún más bajas y no necesitás el dinero al instante, podés pedir la **liberación a 10 días corridos**. Coordinamos con MercadoPago el cambio de plazo en tu cuenta: **escribinos antes de elegirla** en el evento, porque si tu cuenta sigue cobrando al instante, MercadoPago te descuenta más de lo que se le sumó al comprador.
 
 | Medio de pago | Con qrTicket | Sin qrTicket |
 | --- | --- | --- |
@@ -193,14 +209,16 @@ Si preferís tarifas aún más bajas y no necesitás el dinero al instante, pod�
 | Tarjeta de débito | 2,40% + IVA | 4,39% + IVA |
 | Tarjeta de crédito | 4,30% + IVA | 4,39% + IVA |
 
-### ¿Quién paga el cargo de MercadoPago?
+### ¿Quién paga la comisión?
 
-En cada evento, dentro de **"Canales de venta"**, vas a encontrar la opción **"Pasar cargos al comprador"**:
+En cada evento, en **"Cobros"** → **MercadoPago**, respondés **"¿Quién paga la comisión?"**:
 
-- **Activada:** el comprador asume el cargo de MercadoPago.
-- **Apagada:** el cargo lo absorbe el organizador.
+- **Vos** (recomendado): la comisión sale de lo que cobrás. Te conviene incluirla en el precio de la entrada.
+- **El comprador**: se le suma como recargo al pagar. Por defecto se suma la tarifa de MercadoPago de tu país; en **"¿Cuándo cobrás?"** elegís **"Al instante"** o la liberación diferida, y con **"Usar otro porcentaje"** podés poner el tuyo.
 
-Más información en [Canales de venta](/events/sales).
+En **Ecuador** no hay tarifa cargada: si elegís **El comprador**, escribís vos el porcentaje en **"Cuánto se suma"**.
+
+Más información en [Cobros](/events/sales#mercadopago).
 
 <Note>
   qrTicket cobra solo **1 crédito por cada venta**. El cargo de MercadoPago es aparte y se rige por las tarifas de arriba.
@@ -223,7 +241,7 @@ Podés ver todas las ventas realizadas con MercadoPago en:
     Esto pasa cuando ya tenías otra sesión abierta en el navegador. Cerrá sesión en [mercadopago.com.ar](https://www.mercadopago.com.ar), volvé a qrTicket y usá **"Cambiar cuenta"**. En los demás países, corregís la conexión reemplazando el **Access Token** con **"Actualizar"**.
   </Accordion>
   <Accordion title="¿Puedo desconectar MercadoPago?">
-    Sí, podés desconectar en cualquier momento con el botón **"Desconectar"**. Los eventos que tengan la venta activada dejarán de aceptar pagos online hasta que vuelvas a conectar.
+    Sí, podés desconectar en cualquier momento con el botón **"Desconectar"**. Se apaga la venta con MercadoPago en todos tus eventos; al volver a conectar, la activás de nuevo en **Cobros** de cada evento.
   </Accordion>
 </AccordionGroup>
 

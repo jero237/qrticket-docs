@@ -16,50 +16,50 @@ Agregá colaboradores a tu productora y asigná roles específicos según las re
 
 ## Roles del sistema
 
-qrTicket trae cinco roles predefinidos. No se pueden editar ni eliminar, y cada uno otorga un conjunto fijo de permisos (sobre un total de 21). El creador de la productora siempre es **Administrador**.
+qrTicket trae seis roles predefinidos. No se pueden editar ni eliminar. El creador de la productora siempre es **Administrador**.
 
 <CardGroup cols={2}>
   <Card title="👑 Administrador" icon="crown">
-    **Acceso total (21 permisos)**
+    **Acceso total**
 
     - Todas las funciones de la productora
-    - Crear, editar y eliminar eventos
-    - Comprar créditos
-    - Gestionar equipo y roles
+    - Es el único que puede eliminar la productora
   </Card>
   <Card title="⚙️ Sub-administrador" icon="gear">
-    **Acceso total (21 permisos)**
+    **Casi todo**
 
-    - Mismos permisos que el Administrador
+    - Lo mismo que el Administrador, menos eliminar la productora
     - Pensado como mano derecha del dueño
-    - Puede gestionar todo el equipo y los eventos
   </Card>
   <Card title="📋 Manager" icon="clipboard">
-    **Gestión operativa (13 permisos)**
+    **Gestión operativa**
 
-    - Gestionar invitados y crear entradas
+    - Ver, cargar, editar y eliminar invitados
     - Gestionar productos y ver estadísticas
-    - Escanear entradas
-    - No puede comprar créditos
+    - Escanear entradas y comprar créditos
   </Card>
   <Card title="💰 Vendedor" icon="money-bills">
-    **Solo ventas (3 permisos)**
+    **Equipo de ventas**
 
     - Ver sus propios invitados
     - Cargar invitados (con un límite)
     - Escanear entradas
   </Card>
+  <Card title="🔗 Vendedor (solo link)" icon="link">
+    **Vende con su link**
+
+    - Vende solo con su link personal
+    - Ve sus propias ventas y escanea en la puerta
+  </Card>
+  <Card title="📱 Escaner" icon="qrcode">
+    **Solo validación**
+
+    - Escanear entradas en la puerta
+  </Card>
 </CardGroup>
 
-<Card title="📱 Escaner" icon="qrcode">
-  **Solo validación (1 permiso)**
-
-  - Escanear entradas en la puerta
-  - No puede crear entradas ni ver estadísticas
-</Card>
-
 <Note>
-  Los permisos exactos de cada rol (el catálogo completo de los 21 permisos, agrupados por categoría) están en la página de [Roles](/organizations/roles).
+  Los permisos exactos de cada rol y el catálogo completo de permisos están en la página de [Roles](/organizations/roles).
 </Note>
 
 ## Roles personalizados
@@ -81,7 +81,7 @@ En la sección **"Roles"** de tu productora, tocá **"Crear rol"**, ponele un no
     Dashboard → Tu productora → **"Equipo"** → **"Invitar"**
   </Step>
   <Step title="Seleccionar rol">
-    Elegí el **Rol** del menú. Las opciones son: **Manager**, **Escaner**, **Vendedor**, **Sub-administrador** y cualquier rol personalizado que hayas creado. (El rol Administrador no se asigna acá: lo tiene el creador de la productora.)
+    Elegí el **Rol** del menú. Las opciones son: **Sub-administrador**, **Manager**, **Vendedor**, **Vendedor (solo link)**, **Escaner** y cualquier rol personalizado que hayas creado. (El rol Administrador no se asigna acá: lo tiene el creador de la productora.)
   </Step>
   <Step title="Enviar invitación">
     Escribí el email de la persona y tocá **"Invitar por email"**. qrTicket le envía las instrucciones automáticamente.
@@ -148,27 +148,25 @@ Cada fila tiene un menú (⋮) para gestionar al colaborador. Arriba tenés un b
 
 ### Cambiar roles
 
-<Steps>
-  <Step title="Seleccionar colaborador">
-    Hacé clic en el menú (⋮) del colaborador
-  </Step>
-  <Step title="Confirmar cambio">
-    El cambio es inmediato y el colaborador recibe notificación
-  </Step>
-</Steps>
+En el menú del colaborador, tocá **"Actualizar Rol"**, elegí el nuevo rol y tocá **"Guardar cambios"**.
 
-### Remover colaboradores
+### Restringir a eventos
 
-<Warning>
-  Solo los administradores pueden remover colaboradores del equipo.
-</Warning>
+Con **"Restringir eventos"** (en el menú del colaborador) o con **"Restringir a eventos específicos"** al invitar, la persona solo puede ver y operar los eventos que elijas. Sirve, por ejemplo, para un vendedor que trabaja un solo evento.
+
+### Eliminar colaboradores
+
+Necesitás el permiso **Eliminar miembros** (lo tienen Administrador y Sub-administrador).
 
 <Steps>
-  <Step title="Ir al colaborador">
-    En la lista del equipo, menú (⋮) → "Remover del equipo"
+  <Step title="Seleccionar">
+    En la tabla del equipo, tildá a las personas que querés sacar.
+  </Step>
+  <Step title="Eliminar">
+    En la barra que aparece abajo, tocá **"Eliminar"** y confirmá con **"Sí, eliminar"**.
   </Step>
   <Step title="Resultado">
-    El colaborador pierde acceso inmediatamente. Si tenía invitaciones abiertas (por ejemplo un enlace multiuso que compartió), se **revocan automáticamente**.
+    La persona pierde acceso inmediatamente. Si tenía invitaciones abiertas (por ejemplo un enlace multiuso que compartió), se **revocan automáticamente**.
   </Step>
 </Steps>
 
@@ -180,19 +178,27 @@ Cada fila tiene un menú (⋮) para gestionar al colaborador. Arriba tenés un b
   <Accordion title="👑 Administrador - Solo para socios">
     **Para:** Dueños, socios principales, personas de máxima confianza
 
-    **Ten cuidado:** Pueden eliminar toda la productora y comprar créditos con tu MercadoPago
+    **Tené cuidado:** puede eliminar toda la productora y comprar créditos
   </Accordion>
   <Accordion title="⚙️ Sub-administrador - Managers de confianza">
-    **Para:** Gerentes, coordinadores principales, mano derecha **Ideal para:**
-    Personas que necesitan gestionar todo pero sin riesgos críticos
+    **Para:** Gerentes, coordinadores principales, mano derecha
+
+    **Ideal para:** Personas que necesitan gestionar todo, menos eliminar la productora
   </Accordion>
   <Accordion title="📋 Manager - Coordinadores de eventos">
-    **Para:** Personas que coordinan eventos específicos **Pueden:** Manejar
-    listas de invitados, crear entradas, ver estadísticas
+    **Para:** Personas que coordinan eventos
+
+    **Pueden:** Manejar invitados, emitir entradas, gestionar productos y ver estadísticas
   </Accordion>
   <Accordion title="💰 Vendedor - Equipo de ventas">
-    **Para:** Personal de ventas, promotores, vendedores de campo **Perfecto:**
-    Pueden cargar invitados (con límite) y solo ven sus propios números
+    **Para:** Personal de ventas, promotores, vendedores de campo
+
+    **Pueden:** Cargar invitados (con límite) y solo ven sus propios números
+  </Accordion>
+  <Accordion title="🔗 Vendedor (solo link) - RRPP que vende online">
+    **Para:** RRPP que solo comparten su link
+
+    **Pueden:** Vender con su link personal y ver sus propias ventas. No emiten entradas a mano
   </Accordion>
   <Accordion title="📱 Escaner - Personal de ingreso">
     **Para:** Personal de puerta, seguridad, recepcionistas
@@ -210,7 +216,7 @@ Cada fila tiene un menú (⋮) para gestionar al colaborador. Arriba tenés un b
     Asigná el rol mínimo necesario para cada función
   </Card>
   <Card title="Revisión periódica" icon="rotate">
-    Revisá el equipo cada 3-6 meses y removế personal inactivo
+    Revisá el equipo cada 3-6 meses y sacá al personal inactivo
   </Card>
   <Card title="Cambio de roles graduales" icon="arrow-up">
     Empezá con roles menores y ascendé según confianza
@@ -229,28 +235,7 @@ Cada fila tiene un menú (⋮) para gestionar al colaborador. Arriba tenés un b
 
 ## Seguimiento de actividad
 
-### Métricas por colaborador
-
-En cada evento podés ver:
-
-- **Entradas creadas** por cada colaborador
-- **Recaudación generada** por ventas manuales
-- **Última actividad** de cada uno
-- **Productos más vendidos** por persona
-
-### Reportes de equipo
-
-<Steps>
-  <Step title="Ir a estadísticas del evento">
-    Dashboard → Evento → "Estadísticas"
-  </Step>
-  <Step title="Sección 'Equipo'">
-    Ver rendimiento individual de cada colaborador
-  </Step>
-  <Step title="Exportar datos">
-    Descargá reportes en CSV para análisis detallado
-  </Step>
-</Steps>
+En cada evento, la sección **[Equipo](/events/team)** muestra cuántas entradas vendió cada persona (**"Vendidos"**) y permite exportar la lista. Con **"Ver Detalles"** abrís la ficha de un miembro: total vendido, ventas manuales y online, recaudación y su avance por producto. Cada vendedor ve su propia ficha en [Mis ventas](/events/mis-ventas).
 
 ## Problemas comunes
 
@@ -265,14 +250,17 @@ En cada evento podés ver:
     **Alternativa:** Usá el link de invitación por WhatsApp
   </Accordion>
   <Accordion title="Un colaborador no puede hacer algo que debería">
-    **Verificá:** - Que tenga el rol correcto asignado - Que esté conectado con el
-    usuario correcto - Que no haya restricciones específicas del evento
+    **Verificá:**
+
+    - Que tenga el rol correcto asignado
+    - Que esté conectado con el usuario correcto
+    - Que no esté restringido a otros eventos (**"Restringir eventos"**)
   </Accordion>
   <Accordion title="¿Puedo cambiar el rol del creador de la productora?">
     No, el creador siempre es administrador y no se puede cambiar ni remover.
   </Accordion>
   <Accordion title="¿Los colaboradores pueden ver los créditos?">
-    Solo administradores y sub-administradores pueden ver el balance de créditos. Otros roles no.
+    Ven el balance de créditos quienes tienen el permiso **Comprar créditos** (Administrador, Sub-administrador y Manager). Otros roles no.
   </Accordion>
 </AccordionGroup>
 
@@ -282,7 +270,7 @@ En cada evento podés ver:
   <Card title="Crear eventos" icon="calendar" href="/events/index">
     Empezá a crear eventos con tu equipo
   </Card>
-  <Card title="Configurar scanner" icon="qrcode" href="/events/scanner">
+  <Card title="Configurar el escáner" icon="qrcode" href="/events/scanner">
     Preparar la validación de entradas
   </Card>
   <Card title="Ver estadísticas" icon="chart-line" href="/events/stats">

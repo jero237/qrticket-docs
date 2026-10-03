@@ -38,7 +38,7 @@ El dinero de cada venta entra **directamente a tu cuenta de Recurrente**. qrTick
     Dashboard → Tu productora
   </Step>
   <Step title="Entrá a Recurrente">
-    En el menú lateral, hacé clic en **"Recurrente"**
+    En la sección **"Cuentas de cobro"** (del menú lateral o del inicio de la productora), hacé clic en **"Recurrente"**. En el inicio, la tarjeta te muestra el estado: por ejemplo **"Conectada"**, **"En prueba"** o **"Sin terminar"**.
   </Step>
 </Steps>
 
@@ -130,20 +130,24 @@ Conectar Recurrente a tu productora habilita el cobro, pero todavía tenés que 
     Para vender con Recurrente, el tipo de entrada debe tener un precio configurado. Más información en [Tipos de Entrada](/events/products).
   </Step>
   <Step title="Activá la venta en el evento">
-    Dashboard → Seleccionar evento → **"Canales de venta"** → **Recurrente** → activá el deslizador **"Ventas con Recurrente"**.
+    Dashboard → Tu evento → **"Cobros"** → tocá la tarjeta **Recurrente** → encendé **"Vender con Recurrente"**.
   </Step>
   <Step title="Verificar configuración">
-    Si todo está bien, aparece ✅ **"Habilitado"**.
+    Si todo está bien, la tarjeta de Recurrente muestra **"Activo"**.
   </Step>
 </Steps>
 
-<Card title="Más sobre canales de venta" icon="gear">
-  Mirá cómo configurar todos los métodos de cobro de un evento en [Canales de venta](/events/sales).
+<Tip>
+  Si todavía no conectaste Recurrente, el panel del evento te muestra **"Conectá tu cuenta de Recurrente"** con el botón **"Conectar"**, que abre esta pantalla en otra pestaña. Pegás tu clave y volvés a la pestaña del evento.
+</Tip>
+
+<Card title="Más sobre Cobros" icon="credit-card" href="/events/sales">
+  Mirá cómo configurar todos los medios de cobro de un evento.
 </Card>
 
 ### ¿Qué pasa cuando está habilitado?
 
-- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
+- Los compradores ven el botón **"Comprar entradas"** en tu página del evento
 - Eligen **"Tarjeta (Recurrente)"** y pagan en el checkout de Recurrente
 - Tras el pago exitoso, reciben las entradas por email
 - **Se consumen créditos automáticamente** por cada entrada vendida
@@ -177,10 +181,10 @@ Si el total del carrito queda por debajo de ese monto, el comprador ve un aviso 
 
 ## Cargos de Recurrente
 
-En cada evento, dentro de **"Canales de venta" → Recurrente**, vas a encontrar la opción **"Pasar cargos al comprador"**:
+En cada evento, en **"Cobros"** → **Recurrente**, respondés **"¿Quién paga la comisión?"**:
 
-- **Apagada:** vos absorbés el cargo de procesamiento; el comprador paga el precio base.
-- **Activada:** se le suma el cargo al comprador y vos recibís el precio base. Al activarla se aplica **5,5%** por defecto, y podés elegir un preset (**5,5% — Tarjeta internacional**, **4,5% — Tarjeta local**, **3,5% — Tarifa base**, **0% (sin recargo)**) u **"Otro porcentaje"**.
+- **Vos** (recomendado): absorbés el cargo de procesamiento; el comprador paga el precio de la entrada. Te conviene incluirlo en ese precio.
+- **El comprador**: se le suma un recargo al pagar y vos recibís el precio de la entrada. En **"Cuánto se suma"** elegís **3,5%** (tarifa base), **4,5%** (tarjeta local), **5,5%** (tarjeta internacional) u **"Otro"** para escribir tu porcentaje. Por defecto se elige **5,5%**.
 
 <Note>
   El cargo real de Recurrente varía según el medio de pago que elija el comprador y según las condiciones de tu cuenta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra comisión por venta**: el único cargo adicional es del medio de pago.
@@ -234,7 +238,7 @@ Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hac
 
     - Que la productora tenga Recurrente conectado y **no** en modo de prueba
     - Que todos los productos tengan precio (no gratuitos)
-    - Que el deslizador **"Ventas con Recurrente"** esté activado en "Canales de venta"
+    - Que **"Vender con Recurrente"** esté activado en **Cobros** del evento (la tarjeta tiene que decir **"Activo"**)
     - Que a la productora le queden créditos disponibles
   </Accordion>
   <Accordion title="'El comprador pagó pero no le llegó la entrada'">
@@ -247,7 +251,7 @@ Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hac
 ## Próximos pasos
 
 <CardGroup cols={2}>
-  <Card title="Canales de venta" icon="gear" href="/events/sales">
+  <Card title="Cobros" icon="credit-card" href="/events/sales">
     Combiná Recurrente con transferencia bancaria y WhatsApp
   </Card>
   <Card title="Tipos de entrada" icon="ticket" href="/events/products">

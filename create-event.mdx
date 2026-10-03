@@ -1,108 +1,97 @@
 ---
 title: "Crear tu primer evento"
-description: "Pasos rápidos para crear un evento"
+description: "Armá tu evento en 4 pasos: evento, entradas, cobro y publicación"
 icon: "calendar-plus"
 ---
 
 # Crear tu primer evento
 
-Crear un evento en qrTicket es simple y rápido. El asistente te lleva por 4 pasos y, mientras completás cada uno, vas viendo una **vista previa en vivo** de tu evento a la derecha (tipo pantalla de celular) para que sepas cómo lo van a ver tus compradores.
+El asistente para crear eventos tiene 4 pasos: **Evento**, **Entradas**, **Cobro** y **Publicar**. Si acabás de crear tu primera productora, se abre solo; si no, desde tu productora tocá **"Nuevo evento"** (o **"Crear mi primer evento"** si todavía no tenés ninguno).
 
-## Crear en 4 pasos
+<Frame>
+  <img src="/images/wizard-paso-evento.png" alt="Primer paso del asistente para crear un evento, con nombre, fecha, horarios, flyer y ubicación" style={{ maxWidth: "360px" }} />
+</Frame>
 
 <Steps>
-  <Step title="Detalles básicos">
-    - **Nombre del evento:** Ej: "Fiesta de Fin de Año".
-    - **Fecha:** cuándo será el evento. Si dura más de un día, marcá el checkbox **"El evento dura múltiples días"**.
-    - **Imagen / flyer:** subí el flyer del evento (JPG, PNG o WebP, formato **3:4 vertical**). Podés usar el enlace **"Descargar logos de qrTicket"** para sumar el logo a tu flyer y aparecer en **Eventos Destacados**.
-    - **Ubicación:** buscá un lugar en Google Maps para mostrar un minimapa, o escribí el texto que prefieras.
-    - **Descripción:** detalles adicionales del evento (opcional).
-    - **Instagram del evento:** cuenta de Instagram asociada, ej: `@tuevento` (opcional).
-    - **Más opciones → Galería del evento:** sumá hasta **12 imágenes y/o videos** (fotos del lugar, line-up, ediciones anteriores o un trailer corto) (opcional).
+  <Step title="Evento">
+    - **Nombre del evento:** ej: "Fiesta de Fin de Año".
+    - **Fecha:** el día del evento. Si dura más de un día, marcá **"Dura varios días"** y elegí la **fecha de finalización**.
+    - **Empieza / Termina** (opcionales): la hora de inicio y de fin. Si la hora de fin es anterior a la de inicio (ej: de 23:00 a 06:00), entendemos que termina al día siguiente. En los eventos de varios días no hay horarios: los de cada día van en la descripción.
+    - **Imagen del evento:** subí el flyer en JPG, PNG o WebP, formato **3:4 vertical**.
+    - **Ubicación:** buscá la dirección o escribí el texto que quieras.
+    - **Descripción** (opcional): line-up, horarios, dress code, edad mínima…
+    - **Más opciones** (opcional): Instagram y sitio web del evento (podés usar los de tu productora) y la **galería del evento**, con hasta 12 imágenes y/o videos.
   </Step>
-  <Step title="Productos">
-    Definí lo que vas a vender desde las pestañas **Entradas**, **Adicionales** (bebidas, estacionamiento, merchandising… que se canjean con QR) y **Combos**. Por cada entrada cargás:
+  <Step title="Entradas">
+    Lo que vas a vender, en tres partes: **Entradas**, **Adicionales** y **Combos**. El botón **"Siguiente"** te lleva por las tres antes de pasar al próximo paso.
 
-    - **Nombre:** ej: General, VIP, Preventa.
-    - **Precio.**
-    - **Estado:** Activo (visible para todos), Oculto (equipo y link directo), Exclusivo (solo administradores), Agotado o Inactivo.
-    - **Cantidad:** límite total de unidades (opcional).
-    - **Límite por compra:** máximo por compra (opcional).
-    - **Descripción** (opcional).
+    - **Entradas:** tocá una sugerencia (General, VIP, Preventa, Primera Tanda) o agregá una personalizada.
+    - **Adicionales:** lo que se vende aparte de la entrada y se canjea en el evento con el QR (ej: Cerveza, Fernet con coca, Estacionamiento, Remera).
+    - **Combos:** packs a precio especial (ej: "Entrada + adicional" o "2x1 entradas"). Necesitás al menos una entrada o un adicional para armarlos.
 
-    Usá **"Agregar entrada"** para sumar más tipos.
+    Por cada producto cargás **nombre**, **precio** (o marcalo como gratis) y **stock** (opcional). En **"Más opciones"** están el estado, el límite por compra y la descripción. Si ya tenés productos en tu catálogo, usá **"Importar del catálogo"**.
+
+    Más detalle en [Productos](/events/products).
   </Step>
-  <Step title="Venta Online">
-    Elegí y activá los métodos con los que querés vender:
+  <Step title="Cobro">
+    Elegí uno o más medios de cobro. Tocá cada tarjeta para configurarlo y activalo con el interruptor **"Vender con…"**. Los medios que ves dependen del país de tu productora:
 
-    - **MercadoPago:** pagos con tarjeta y otros medios.
-    - **Stripe:** tarjetas internacionales (ver [Stripe](/organizations/stripe)).
-    - **Transferencia bancaria:** transferencias directas a tu cuenta.
-    - **WhatsApp:** ventas coordinadas por chat.
+    - **MercadoPago:** tarjeta, débito y dinero en cuenta. Cobro automático.
+    - **Recurrente:** para productoras de Guatemala, El Salvador y Honduras. Cobro automático.
+    - **Stripe:** tarjetas de todo el mundo. Cobro automático.
+    - **Transferencia bancaria:** el comprador sube el comprobante y vos lo aprobás (semiautomático, sin comisión).
+    - **WhatsApp:** tus RRPP coordinan el pago por chat (manual, sin comisión).
 
-    La configuración detallada de cada método la ajustás luego en [Canales de venta](/events/sales) del evento.
+    En Argentina también puede aparecer **Transferencia automática**: la transferencia se aprueba sola, sin comprobantes.
+
+    En los medios con comisión elegís **"¿Quién paga la comisión?"**: **El comprador** o **Vos**. Si MercadoPago, Stripe o Recurrente piden conectar una cuenta, el mismo panel te muestra cómo hacerlo.
+
+    <Tip>
+      Si vendés solo con RRPP, no hace falta activar ningún medio de cobro: cada RRPP coordina el pago y emite las entradas desde **"Emitir entradas"**.
+    </Tip>
+
+    Podés cambiar todo esto después desde [Cobros](/events/sales), en el menú del evento.
   </Step>
-  <Step title="Configuración del evento">
-    - **Publicar evento:** activá este toggle para que tu evento aparezca en la página pública de qrTicket y se promocione en nuestro Instagram. Para publicar necesitás tener activada la venta por **MercadoPago y/o WhatsApp** y una imagen del evento.
-    - **Permitir transferencia de entradas:** dejá este toggle activo para que tus asistentes puedan transferir sus entradas a otros usuarios.
+  <Step title="Publicar">
+    - **Publicar en qrTicket:** tu evento sale gratis en la cartelera de qrTicket y puede ir a la historia de Instagram de qrTicket. Lo revisamos antes de publicarlo y te avisamos por mail. Para publicarlo necesitás **un medio de cobro** y **el flyer**; si falta algo, el asistente te muestra qué y te lleva al paso correspondiente.
+    - **Permitir transferir entradas:** quien compra puede pasarle su entrada a otra persona (viene activado).
 
-    Tocá **"Finalizar"** para crear el evento.
+    Tocá **"Crear evento"**. Si no lo publicaste, te preguntamos **"¿Crear sin publicar?"**: el evento se vende igual con su link, y lo podés publicar después.
+
+    <Tip>
+      Si tu flyer lleva el [logo de qrTicket](https://qrticket.app/marca), tu evento puede salir en Destacados.
+    </Tip>
   </Step>
 </Steps>
 
-![Qrticket App Create Event Pn](/images/qrticket.app_create_event.png)
+## Después de crear
 
-## Configuración detallada
-
-Una vez creado tu evento, configurá cada aspecto:
+Llegás a la página de tu evento. Arriba vas a ver una tarjeta con lo que le falta para vender (por ejemplo **"Elegí cómo cobrar"**, **"Subí el flyer"** o **"Publicalo en qrTicket"**). Cuando está todo, dice **"Ya podés vender"**: compartí el link y listo.
 
 <CardGroup cols={2}>
   <Card title="Productos" icon="box" href="/events/products">
-    Crear entradas, adicionales y combos con precios
+    Entradas, adicionales y combos
   </Card>
-  <Card title="Canales de venta" icon="cart-shopping" href="/events/sales">
-    Habilitar MercadoPago, Stripe, transferencia y WhatsApp
+  <Card title="Cobros" icon="cart-shopping" href="/events/sales">
+    MercadoPago, Stripe, transferencia y WhatsApp
   </Card>
-  <Card title="Scanner" icon="qrcode" href="/events/scanner">
-    Preparar validación para el día del evento
+  <Card title="Escáner" icon="qrcode" href="/events/scanner">
+    Prepará la puerta para el día del evento
   </Card>
   <Card title="Equipo" icon="users" href="/organizations/team">
-    Asignar roles a colaboradores
+    Sumá colaboradores con sus roles
   </Card>
 </CardGroup>
-
-## Después de crear
-
-Tu evento tendrá:
-
-<AccordionGroup>
-  <Accordion title="Página pública">
-    Link único donde los compradores pueden ver detalles y comprar entradas
-  </Accordion>
-  <Accordion title="Panel de Control">
-    Panel para ver ventas, estadísticas, lista de invitados y configuraciones
-  </Accordion>
-</AccordionGroup>
 
 ## Ejemplo práctico
 
 **Evento:** "Fiesta de Cumpleaños"
 
-1. **Detalles:** nombre, fecha sábado 20hs y ubicación "Mi casa"
-2. **Productos:**
-   - Entrada General (\$5000)
-   - Bebida (\$2000) como adicional
-3. **Venta Online:** WhatsApp activado para coordinar pagos
-4. **Configuración:** evento sin publicar (privado) y transferencia de entradas activada
-
-**Resultado:** página pública lista para compartir. Después podés sumar el [Scanner](/events/scanner) y tu [equipo](/organizations/team) desde el panel del evento.
-
-## Próximo paso
-
-<Card title="Configurar productos" icon="box-circle-check" href="/events/products">
-  Ya tenés tu evento, ahora definí qué vas a vender
-</Card>
+1. **Evento:** nombre, fecha, empieza 21:00 y ubicación.
+2. **Entradas:** General (\$5000) y un adicional "Cerveza" (\$2000).
+3. **Cobro:** WhatsApp activado para coordinar los pagos.
+4. **Publicar:** sin publicar (se comparte solo con el link) y transferencia de entradas activada.
 
 ---
 
-¿Problemas creando tu evento? Contactanos por [WhatsApp](https://wa.me/5491122503348)
+¿Problemas creando tu evento? Escribinos por [WhatsApp](https://wa.me/5491122503348).

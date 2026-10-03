@@ -15,14 +15,18 @@ Hecha con **Mintlify**. Se publica en https://docs.qrticket.app.
 - Mantené la terminología del producto consistente (ver glosario abajo).
 
 ## Contexto del producto
-qrTicket permite a organizadores: crear entradas digitales con QR, venderlas (MercadoPago / transferencia bancaria / WhatsApp), y validarlas en la puerta con un scanner. **No cobra comisión por venta** — el organizador paga créditos.
+qrTicket permite a organizadores: crear entradas digitales con QR, venderlas (MercadoPago / transferencia bancaria / WhatsApp), y validarlas en la puerta con el escáner. **No cobra comisión por venta** — el organizador paga créditos.
 
 Glosario (usar SIEMPRE estos términos):
 - **Productora** — "carpeta" que agrupa eventos; tiene su propio equipo, créditos y configuración.
 - **Créditos** — moneda interna. **1 crédito = 1 entrada QR**. Se compran una vez y se usan al generar entradas.
 - **Evento** — cada actividad; puede tener varios tipos de entrada y precios.
-- **Scanner** — herramienta para validar entradas el día del evento (web o link compartible).
-- Medios de cobro: **MercadoPago**, **transferencia bancaria**, **WhatsApp**.
+- **Escáner** — herramienta para validar entradas el día del evento (en el menú del evento: "Escáner"). Se usa con la cuenta ("Abrir escáner") o con el **link para tu equipo de puerta** (sin cuenta). El rol del sistema sigue llamándose **Escaner** (sin tilde, así figura en el producto).
+- **Cobros** — página del evento donde se eligen los medios de cobro (antes "Canales de venta"; no usar "canal de venta" en la guía).
+- **Medios de cobro**: **MercadoPago**, **Stripe**, **Recurrente** (Guatemala, El Salvador, Honduras), **Transferencia automática** (Argentina), **transferencia bancaria**, **WhatsApp**. Cuáles aparecen depende del país de la productora.
+- **Emitir entradas** — generar entradas a mano para personas puntuales (invitados, ventas en mano). Antes "Crear entradas".
+- **Productos** — los tipos de entrada, adicionales y combos del evento.
+- **Editar evento** — datos del evento y publicación en qrTicket (antes "Configuración").
 
 ## Estructura del proyecto
 - Páginas: archivos **`.mdx`** con frontmatter YAML, en la raíz y en `credits/`, `organizations/`, `events/`.

@@ -1,16 +1,29 @@
 ---
-title: "Configuración del evento"
-description: "Modificá los datos y opciones de tu evento"
+title: "Editar evento"
+description: "Modificá los datos de tu evento, publicalo en qrTicket y elegí qué datos pedirle al comprador"
 icon: "gear"
 ---
 
-# Configuración del evento
+# Editar evento
 
-Desde la configuración del evento podés modificar todos los detalles básicos y opciones avanzadas en cualquier momento.
+Desde **Editar evento** podés modificar los datos de tu evento en cualquier momento, publicarlo en qrTicket y elegir qué datos pedirle a quien compra.
 
 ## Acceder
 
-Dashboard → Tu evento → **"Configuración"**
+Dashboard → Tu evento → sección **Configuración** → **"Editar evento"**
+
+## Publicar en qrTicket
+
+Arriba de todo está el switch **"Publicar en qrTicket"**. Es gratis: tu evento sale en la cartelera de qrTicket y puede ir a la historia de Instagram de qrTicket. Este switch se aplica al instante, sin tocar **"Guardar cambios"**.
+
+- Al activarlo, el evento queda **en revisión**: lo revisamos y te avisamos por mail cuando se apruebe.
+- Para publicarlo necesitás **un medio de cobro** activo (en [Cobros](/events/sales)) y **el flyer** cargado. Si falta algo, la tarjeta te dice qué (**"Para publicarlo falta:"**).
+- Si no lo publicás, el evento es **privado**: no aparece en la cartelera, pero **se vende igual** con el link del evento.
+- Si no se aprueba, vas a ver el motivo. Corregilo y volvé a publicarlo.
+
+<Note>
+  Si tu evento ya está publicado y guardás cambios en sus datos, **vuelve a revisión** antes de seguir en la cartelera.
+</Note>
 
 ## Datos editables
 
@@ -19,7 +32,8 @@ Dashboard → Tu evento → **"Configuración"**
 - **Nombre del evento:** El título que ven los compradores.
 - **Link del evento:** El slug del link público es editable. Tu evento vive en `qrticket.app/e/{slug}` y podés personalizar la parte final para que sea más fácil de recordar y compartir.
 - **Fecha:** Cuándo se realiza el evento.
-- **El evento dura múltiples días:** Activá este checkbox si tu evento se extiende por más de un día (festivales, conferencias, etc.).
+- **Horario (opcional):** **Empieza** y **Termina**. Podés cargar los dos, uno solo o ninguno. Si la hora de fin es anterior a la de inicio, se entiende que termina a la madrugada siguiente (por ejemplo, de 23:00 a 06:00).
+- **Dura varios días:** Activá esta casilla si tu evento se extiende por más de un día (festivales, conferencias, etc.) y elegí la **fecha de finalización**. Los eventos de varios días no llevan horario: los horarios de cada día van en la descripción.
 - **Descripción (opcional):** Detalles adicionales sobre el evento.
 
 ### Imagen principal
@@ -27,7 +41,7 @@ Dashboard → Tu evento → **"Configuración"**
 Subí el flyer o imagen del evento en formato **JPG, PNG o WebP** (formato recomendado: 3:4 vertical).
 
 <Note>
-  Incluí el logo de qrTicket en tu flyer para aparecer en **Eventos Destacados**. Hacé clic en **"Descargar logos"** para obtenerlos.
+  Si tu flyer lleva el **logo de qrTicket**, tu evento puede salir en **Destacados**. Los logos están en el link "logo de qrTicket" de la tarjeta **Publicar en qrTicket**.
 </Note>
 
 ### Ubicación
@@ -38,22 +52,23 @@ Buscá un lugar en Google Maps para mostrar un minimapa en la página del evento
 
 Sumá hasta **12 archivos** entre imágenes y/o videos. Es ideal para mostrar fotos del lugar, de ediciones anteriores o un trailer corto del evento.
 
-### Configuración
+### Opciones
 
-- **Instagram del evento:** Cuenta de Instagram asociada al evento.
-- **Permitir transferencia de entradas:** Al activar este toggle, los asistentes pueden transferir sus entradas a otros usuarios. Se genera una nueva entrada QR para el receptor y la original queda anulada.
-- **Datos del comprador:** Definí qué información se pide al momento de la compra.
+- **Instagram del evento:** Cuenta de Instagram asociada al evento. Podés usar la de la productora o cargar otra.
+- **Sitio web del evento:** Opcional.
+- **Permitir transferencia de entradas:** Quien compra puede pasarle su entrada a otra persona. Se genera una nueva entrada QR para quien la recibe y la original queda anulada.
+
+### Datos del comprador
+
+Configurá qué pedirle al asistente al comprar su entrada.
 
 <AccordionGroup>
-  <Accordion title="Campos obligatorios">
-    Seleccioná qué campos son obligatorios al momento de la compra de entradas (nombre, email, teléfono, etc.).
-  </Accordion>
   <Accordion title="Campos personalizados">
-    Configurá campos adicionales para recopilar de los compradores. Por ejemplo: talle, fecha de nacimiento, empresa, alergias alimentarias.
+    Configurá campos adicionales para recopilar de los compradores. Por ejemplo: talle, fecha de nacimiento, empresa, alergias alimentarias. Cada campo puede marcarse como **Requerido**.
 
     - **Tipos de campo:** Texto, **Fecha** (ideal para fecha de nacimiento), Opción única (radio) y Múltiples opciones (checkbox).
     - **¿A qué productos aplica?:** un desplegable con casillas, agrupado en **Entradas** y **Adicionales**. Por defecto el campo se pregunta en toda la compra; si elegís productos, se pregunta **solo cuando alguno está en el carrito, una vez por unidad** — dos remeras son dos talles, cada uno bajo su bloque "Remera · 1 de 2" — un campo *Talle* que aplica a la remera no se le pide a quien compra únicamente una botellita. Un combo que contiene el producto también lo activa.
-    - **Momento de recolección:** al momento de la compra, o al abrir el ticket (el comprador completa los datos antes de ver sus QRs).
+    - **Momento de recolección:** **Al momento de la compra**, o **Al ver el ticket** (el comprador completa los datos antes de ver sus QRs).
   </Accordion>
   <Accordion title="Datos de los asistentes">
     Elegí de quién se piden los datos en cada compra:
@@ -66,20 +81,11 @@ Sumá hasta **12 archivos** entre imágenes y/o videos. Es ideal para mostrar fo
   </Accordion>
 </AccordionGroup>
 
-## Eventos destacados
+## Guardar, duplicar y eliminar
 
-Al descargar los logos de qrTicket e incluirlos en tu flyer, tu evento aparecerá en la sección de **"Eventos Destacados"**. Hacé clic en **"Descargar logos"** para obtenerlos.
-
-## Vista previa
-
-En el lado derecho de la pantalla podés ver una vista previa en vivo de cómo se verá tu evento en la página pública, incluyendo la imagen, nombre, fecha, ubicación y los tipos de entrada disponibles. Se actualiza a medida que vas editando.
-
-## Zona de peligro
-
-En la parte inferior de la configuración encontrás la **Zona de peligro**, con dos acciones:
-
-- **Duplicar:** Crea una copia del evento con su configuración, para que armes uno nuevo sin empezar de cero.
-- **Eliminar evento:** Borra el evento de forma permanente.
+- **Guardar cambios:** guarda lo que editaste en el formulario.
+- **Duplicar:** al lado de "Guardar cambios". Crea una copia del evento con su configuración, para que armes uno nuevo sin empezar de cero.
+- **Eliminar este evento:** en la **Zona de peligro**, al final de la página.
 
 <Warning>
   Eliminar un evento es **irreversible**. Al eliminarlo, los créditos **no usados** se transfieren a tu cuenta. Esta acción no se puede deshacer.
@@ -87,4 +93,4 @@ En la parte inferior de la configuración encontrás la **Zona de peligro**, con
 
 ---
 
-¿Necesitás ayuda con la configuración? Contactanos por [WhatsApp](https://wa.me/5491122503348)
+¿Necesitás ayuda para editar tu evento? Contactanos por [WhatsApp](https://wa.me/5491122503348)

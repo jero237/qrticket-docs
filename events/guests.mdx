@@ -10,9 +10,11 @@ La sección **"Compras y transferencias"** es el centro de control de todas las 
 
 ## Acceder
 
-Dashboard → Tu evento → **"Compras y transferencias"**
+Dashboard → Tu evento → sección **Ventas** → **"Compras y transferencias"**
 
-Con el botón **"Crear entradas"** (arriba a la derecha) generás entradas manualmente. Ver [Crear entradas](/events/create-tickets).
+Si hay transferencias bancarias esperando tu aprobación, la tarjeta de la portada del evento lo avisa con una etiqueta (por ejemplo, **"3 por aprobar"**).
+
+Con el botón **"Emitir entradas"** (arriba a la derecha) generás entradas manualmente. Ver [Emitir entradas](/events/create-tickets).
 
 ## Resumen
 
@@ -57,17 +59,17 @@ Sobre la tabla hay dos pestañas:
 - **Por compra**: una fila por orden — quién pagó, por qué medio, cuántas personas y el total. Es la vista natural cuando alguien te escribe *"compré 4 entradas"*. Cada compra se **expande** para ver a sus personas con la misma tabla y las mismas acciones de siempre, y el número de **Orden** abre la [página de detalle de la compra](#detalle-de-una-compra).
 
 <Note>
-  Si tu evento pide [datos por entrada](/events/settings#configuración), una compra de 4 corredores son 4 invitados y **un** pago — la vista por compra es donde eso se ve junto.
+  Si tu evento pide [datos por entrada](/events/settings#datos-del-comprador), una compra de 4 corredores son 4 invitados y **un** pago — la vista por compra es donde eso se ve junto.
 </Note>
 
 ## Tabla de invitados
 
-En la pestaña **"Por invitado"** vas a ver **una sola tabla** con todas las entradas (ya no hay pestañas separadas por canal). El canal de venta se muestra en la columna **"Medio"**, que también podés filtrar.
+En la pestaña **"Por invitado"** vas a ver **una sola tabla** con todas las entradas (ya no hay pestañas separadas por canal). El medio de la venta se muestra en la columna **"Medio"**, que también podés filtrar.
 
 | Columna | Qué muestra |
 | --- | --- |
 | **Nombre** | Nombre del asistente (con link al detalle) |
-| **Medio** | Canal de la venta: MercadoPago, Stripe, Transferencia, Gratis, WhatsApp, Manual o Desconocido |
+| **Medio** | Medio de la venta: MercadoPago, Stripe, Recurrente, Transferencia automática, Transferencia, Gratis, WhatsApp, Manual o Desconocido |
 | **Tipo** | Producto y cantidad (ej: *2x VIP*) |
 | **Cantidad** | Cantidad de entradas |
 | **Género** | Masculino / Femenino |
@@ -131,7 +133,7 @@ En la tarjeta **"Herramientas de invitados"** podés exportar la lista o complet
 ## Próximos pasos
 
 <CardGroup cols={2}>
-  <Card title="Crear entradas" icon="ticket" href="/events/create-tickets">
+  <Card title="Emitir entradas" icon="ticket" href="/events/create-tickets">
     Generá entradas manualmente o importá una lista de invitados.
   </Card>
   <Card title="Estadísticas" icon="chart-line" href="/events/stats">

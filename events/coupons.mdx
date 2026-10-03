@@ -19,7 +19,7 @@ Los **cupones de descuento** son códigos que tus compradores aplican en la comp
     Dashboard → Tu evento
   </Step>
   <Step title="Abrir 'Cupones'">
-    En el menú del evento, hacé clic en **"Cupones"**
+    En el menú del evento, sección **Configuración**, hacé clic en **"Cupones"**
   </Step>
 </Steps>
 
@@ -31,6 +31,7 @@ Vas a ver una tabla con todos los cupones del evento:
 | --- | --- |
 | **Código** | El texto que ingresa el comprador |
 | **Descuento** | Porcentaje o monto fijo del cupón |
+| **Aplica a** | Toda la orden o solo los productos que elegiste |
 | **Usos** | Cuántas veces se usó (y el límite, si tiene) |
 | **Vencimiento** | Fecha de expiración, si la definiste |
 | **Estado** | Si el cupón está activo o no |
@@ -53,6 +54,9 @@ Si todavía no creaste ninguno, vas a ver el mensaje **"No hay cupones creados p
     - Si elegiste porcentaje: ingresá el **Porcentaje de descuento (%)**
     - Si elegiste monto fijo: ingresá el **Monto** a descontar
   </Step>
+  <Step title="Elegir a qué aplica">
+    En **"¿A qué aplica el descuento?"** elegí **Toda la orden** (todos los productos) o **Solo productos seleccionados**: el descuento no toca los que no elijas, ideal para excluir combos.
+  </Step>
   <Step title="Definir el límite de usos (opcional)">
     Ingresá un **Límite de usos** para que el cupón deje de funcionar al alcanzarlo. **Dejalo vacío para usos ilimitados.**
   </Step>
@@ -64,6 +68,14 @@ Si todavía no creaste ninguno, vas a ver el mensaje **"No hay cupones creados p
   </Step>
 </Steps>
 
+## Editar, desactivar o eliminar un cupón
+
+Desde el menú de cada cupón en la tabla:
+
+- **Editar:** el **código** y el **descuento** no se pueden cambiar una vez creado el cupón (si necesitás otro, creá uno nuevo). El alcance (**"¿A qué aplica el descuento?"**) se puede cambiar hasta que el cupón se use por primera vez. El **límite de usos** y el **vencimiento** se pueden cambiar siempre; el límite nunca puede ser menor que los usos que ya tiene.
+- **Desactivar / Activar:** deja de aplicarse (o vuelve a aplicarse) sin borrarlo.
+- **Eliminar:** solo si todavía no se usó. Un cupón que ya se usó en compras no se puede eliminar: desactivalo.
+
 ## Cómo se aplica el descuento
 
 El cupón se aplica en el **checkout de las ventas web** de tu evento. Cuando un comprador ingresa un código válido al pagar, el descuento se resta del total antes de completar la compra por **MercadoPago**, **Stripe** o **transferencia bancaria**.
@@ -73,7 +85,7 @@ El cupón se aplica en el **checkout de las ventas web** de tu evento. Cuando un
 </Tip>
 
 <Card title="Configurar las ventas web" icon="gear" href="/events/sales">
-  Revisá los canales de venta de tu evento para que el descuento funcione en el checkout.
+  Revisá los medios de cobro de tu evento en **Cobros** para que el descuento funcione en el checkout.
 </Card>
 
 ---

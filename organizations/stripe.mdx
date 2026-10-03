@@ -29,13 +29,11 @@ Dirigite a la sección de **Stripe** de tu productora.
     Dashboard → Tu productora
   </Step>
   <Step title="Entrá a Stripe">
-    En el menú lateral, hacé clic en **"Stripe"**
+    En la sección **"Cuentas de cobro"** (del menú lateral o del inicio de la productora), hacé clic en **"Stripe"**. En el inicio, la tarjeta te muestra el estado: por ejemplo **"Conectada"** o **"Sin terminar"**.
   </Step>
 </Steps>
 
-En esta pantalla vas a ver el encabezado **"Conectar Stripe"** y el estado de tu cuenta: **Conectado**, **Onboarding pendiente** o **Desconectado**.
-
-> Conecta tu cuenta de Stripe a tu productora para habilitar ventas online con tarjeta de crédito/débito internacional en tus eventos.
+En esta pantalla vas a ver el encabezado **"Conectar Stripe"**, el texto *"Conectá tu cuenta de Stripe para cobrar con tarjetas de todo el mundo en tus eventos."* y el estado de tu cuenta: **Conectado**, **Onboarding pendiente** o **Desconectado**.
 
 ---
 
@@ -96,19 +94,21 @@ Los fondos de cada venta se depositan **directamente en tu cuenta bancaria**, se
 
 Conectar Stripe a tu productora habilita el cobro, pero todavía tenés que activarlo en cada evento que quieras vender online.
 
-Para hacerlo, en el menú del evento abrí la opción **"Canales de venta"** y activá la venta con el deslizador.
-
 <Steps>
   <Step title="Ir a tu evento">
-    Dashboard → Seleccionar evento → **"Canales de venta"**
+    Dashboard → Tu evento → **"Cobros"** → tocá la tarjeta **Stripe**
   </Step>
-  <Step title="Activar la venta online">
-    Activá la venta con tarjeta para que tus clientes puedan pagar desde la página del evento
+  <Step title="Activar la venta">
+    Encendé **"Vender con Stripe"** para que tus clientes puedan pagar con tarjeta desde la página del evento
   </Step>
 </Steps>
 
-<Card title="Más sobre canales de venta" icon="gear">
-  Mirá cómo configurar todos los métodos de cobro de un evento en [Canales de venta](/events/sales).
+<Tip>
+  Si todavía no conectaste Stripe, el panel del evento te muestra **"Conectá tu cuenta de Stripe"** con el botón **"Conectar"**, que abre esta pantalla en otra pestaña. Cuando termines, volvé a la pestaña del evento.
+</Tip>
+
+<Card title="Más sobre Cobros" icon="credit-card" href="/events/sales">
+  Mirá cómo configurar todos los medios de cobro de un evento.
 </Card>
 
 ## Monedas y países
@@ -123,6 +123,8 @@ Stripe cobra en la **moneda de tu productora**, que queda definida por el **Paí
 | Colombia | COP |
 | Ecuador | USD |
 | El Salvador | USD |
+| España | EUR |
+| Estados Unidos | USD |
 | Guatemala | GTQ |
 | Honduras | USD |
 | México | MXN |
@@ -136,7 +138,7 @@ Stripe cobra en la **moneda de tu productora**, que queda definida por el **Paí
 
 ### ¿En qué países puedo abrir una cuenta de Stripe?
 
-La tabla de arriba dice **en qué moneda cobrás**, no en qué países Stripe habilita cuentas. Stripe solo permite abrir una cuenta de comercio en los [países que tiene habilitados](https://stripe.com/global), y en Latinoamérica hoy son **Brasil y México**.
+La tabla de arriba dice **en qué moneda cobrás**, no en qué países Stripe habilita cuentas. Stripe solo permite abrir una cuenta de comercio en los [países que tiene habilitados](https://stripe.com/global) (entre ellos **España** y **Estados Unidos**), y en Latinoamérica hoy son **Brasil y México**.
 
 Si tu productora es de otro país, para usar Stripe necesitás una cuenta de Stripe de una entidad radicada en alguno de esos países. Es lo que hacen varios organizadores que venden al exterior.
 
@@ -154,10 +156,10 @@ Los medios de pago online no procesan cobros por montos muy chicos. Si el total 
 
 ## Cargos de Stripe
 
-En cada evento, dentro de **"Canales de venta"**, vas a encontrar la opción **"Pasar cargos al comprador"** para Stripe:
+En cada evento, en **"Cobros"** → **Stripe**, respondés **"¿Quién paga la comisión?"**:
 
-- **Apagada:** vos absorbés el cargo de procesamiento de Stripe; el comprador paga el precio base.
-- **Activada:** se le suma el cargo al comprador y vos recibís el precio base. Al activarla se aplica **4,5%** por defecto, y podés elegir un preset (**4,5% — Tarjeta internacional**, **3,5% — Tarjeta local**, **2,9% — Tarifa base**, **0% (sin recargo)**) u **"Otro porcentaje"**.
+- **Vos** (recomendado): absorbés el cargo de Stripe; el comprador paga el precio de la entrada. Te conviene incluirlo en ese precio.
+- **El comprador**: se le suma un recargo al pagar y vos recibís el precio de la entrada. En **"Cuánto se suma"** elegís **2,9%** (tarifa base), **3,5%** (tarjeta local), **4,5%** (tarjeta internacional) u **"Otro"** para escribir tu porcentaje. Por defecto se elige **4,5%**.
 
 <Note>
   Stripe cobra un porcentaje variable según el país y la tarjeta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra comisión**: el único cargo adicional es del medio de pago.
@@ -191,14 +193,14 @@ Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hac
   <Accordion title="'Mi cuenta quedó en Onboarding pendiente'">
     Stripe todavía no terminó de verificarte. Entrá a **"Completar registro"** y cargá los datos que te pida.
 
-    Hasta que Stripe verifique la cuenta no podés cobrar, y el deslizador de ventas del evento aparece deshabilitado.
+    Hasta que Stripe verifique la cuenta no podés cobrar: en **Cobros** del evento vas a ver *"Stripe todavía no habilitó los cobros"* y el interruptor **"Vender con Stripe"** deshabilitado.
   </Accordion>
   <Accordion title="'No aparece el botón de compra'">
     **Verificá:**
 
     - Que la cuenta de Stripe figure como **Conectado** (no "Onboarding pendiente")
     - Que todos los productos tengan precio (no gratuitos)
-    - Que el deslizador **"Ventas con Stripe"** esté activado en "Canales de venta"
+    - Que **"Vender con Stripe"** esté activado en **Cobros** del evento (la tarjeta tiene que decir **"Activo"**)
     - Que a la productora le queden créditos disponibles
   </Accordion>
   <Accordion title="'Stripe no me deja crear la cuenta desde mi país'">
@@ -223,8 +225,8 @@ Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hac
 ## Próximos pasos
 
 <CardGroup cols={2}>
-  <Card title="Canales de venta" icon="gear" href="/events/sales">
-    Combiná Stripe con MercadoPago, transferencia bancaria y WhatsApp
+  <Card title="Cobros" icon="credit-card" href="/events/sales">
+    Combiná Stripe con otros medios de cobro, transferencia bancaria y WhatsApp
   </Card>
   <Card title="Tipos de entrada" icon="ticket" href="/events/products">
     Configurá precios y límites de tus entradas

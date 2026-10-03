@@ -59,41 +59,23 @@ Una **productora** es como una "carpeta" que contiene múltiples eventos y compa
 
 ## Crear tu primera productora
 
-### Información básica requerida
-
 <Steps>
-  <Step title="Nombre de la productora">
-    Ej: "Mi Empresa", "Eventos López", "Club Deportivo"
+  <Step title="Abrí el formulario">
+    Desde la pantalla de bienvenida tocá **"Crear productora"**, o desde el Panel de Control → **"Mis Productoras"** → **"Crear"**.
   </Step>
-  <Step title="País">
-    Seleccioná tu país para configuraciones locales (moneda, precios de créditos)
+  <Step title="Completá los datos">
+    - **Nombre de la productora** (obligatorio). Si organizás por tu cuenta, puede ser tu nombre.
+    - **Logo** (opcional).
+    - **País:** define la moneda de tus eventos y los medios de cobro disponibles.
+    - **WhatsApp** (obligatorio): el número de contacto de la productora.
+    - **Instagram** y **Sitio web** (opcionales).
   </Step>
-  <Step title="Teléfono de contacto">
-    Para comunicaciones importantes y soporte técnico
-  </Step>
-  <Step title="Logo (opcional)">
-    Imagen que aparecerá en tus eventos y páginas públicas
+  <Step title="Recibí tus créditos de regalo">
+    Cada productora nueva arranca con **30 créditos de regalo**. Si es tu primera productora, te llevamos directo a crear tu primer evento.
   </Step>
 </Steps>
 
-### Proceso de creación
-
-<Steps>
-  <Step title="Ir al Panel de Control">
-    Desde el panel de control hacé clic en "Crear" productora
-  </Step>
-  <Step title="Recibir créditos gratuitos">
-    Automáticamente recibís 30 créditos para empezar
-  </Step>
-  <Step title="Configurar MercadoPago">
-    Opcional pero recomendado para ventas online
-  </Step>
-</Steps>
-
-<Note>
-  **Créditos de bienvenida:** Cada nueva productora recibe 30 créditos gratuitos
-  para probar la plataforma.
-</Note>
+Paso a paso con capturas en [Crear tu primera productora](/create-organization).
 
 ## Gestión de productoras
 
@@ -105,14 +87,22 @@ Podés crear varias productoras desde la misma cuenta:
 - **Separar por cliente:** Una productora por cliente grande
 - **Separar por región:** Productora CABA, Productora Provincia
 
-<Warning>
-  Cada productora tiene su balance de créditos independiente. No podés
-  transferir créditos entre productoras.
-</Warning>
+<Note>
+  Cada productora tiene su propio saldo de créditos. Si sos parte del equipo de
+  las dos, podés pasar créditos de una a otra desde **Créditos** →
+  **"Transferir créditos"**. Los 30 créditos de bienvenida no se pueden
+  transferir.
+</Note>
 
-### Configuraciones de productora
+### Qué encontrás en tu productora
 
-Una vez creada, podés configurar:
+En **"Mi productora"** ves tus próximos eventos y, abajo, las secciones **Gestión** (eventos, créditos, catálogo), **Cuentas de cobro** (MercadoPago, Stripe o Recurrente según tu país), **Equipo** y **Configuración**. Con **"Ver página"** abrís la página pública de tu productora.
+
+<Note>
+  La transferencia bancaria y WhatsApp no necesitan una cuenta conectada: se activan en cada evento, en **Cobros**.
+</Note>
+
+Desde ahí podés configurar:
 
 <CardGroup cols={3}>
   <Card title="MercadoPago" icon="credit-card" href="/organizations/mercadopago">
@@ -139,8 +129,8 @@ Una vez creada, podés configurar:
   <Card title="Analytics y Pixel" icon="chart-line" href="/organizations/analytics">
     Conectá Google Analytics y Meta Pixel
   </Card>
-  <Card title="Configuración" icon="gear" href="/organizations/settings">
-    Modificá nombre, logo, país y teléfono
+  <Card title="Perfil de la productora" icon="gear" href="/organizations/settings">
+    Modificá nombre, logo, país, WhatsApp y redes
   </Card>
 </CardGroup>
 
@@ -155,11 +145,12 @@ Una vez creada, podés configurar:
 
 <AccordionGroup>
   <Accordion title="¿Puedo cambiar el nombre después?">
-    Sí, podés modificar el nombre y otros datos desde "Configuración" en cualquier momento.
+    Sí, podés modificar el nombre y otros datos desde **"Perfil de la productora"** en cualquier momento.
   </Accordion>
   <Accordion title="¿Puedo eliminar una productora?">
-    Sí, pero perdés todos los créditos no utilizados y se borran todos los
-    eventos. No es reversible.
+    Sí, desde **"Perfil de la productora"** → **"Eliminar productora"** (solo
+    los administradores de la productora). Junto con ella se eliminan todos sus
+    eventos, equipo y créditos. No se puede deshacer.
   </Accordion>
   <Accordion title="¿Necesito una productora por cada evento?">
     No, al contrario. Lo recomendado es agrupar eventos similares bajo la misma
@@ -188,7 +179,7 @@ Una vez creada, podés configurar:
   <Card title="Analytics y Pixel" icon="chart-line" href="/organizations/analytics">
     Rastreá visitas con Google Analytics y Meta Pixel
   </Card>
-  <Card title="Configuración" icon="gear" href="/organizations/settings">
+  <Card title="Perfil de la productora" icon="gear" href="/organizations/settings">
     Editá los datos de tu productora
   </Card>
   <Card title="Crear evento" icon="calendar" href="/create-event">

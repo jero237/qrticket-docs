@@ -22,21 +22,58 @@ Un **evento** es cualquier actividad que organizás: fiesta, conferencia, concie
 Los eventos se crean en **4 pasos simples**:
 
 <Steps>
-  <Step title="Detalles básicos">
-    Nombre, fecha, ubicación, imagen/flyer, descripción y galería
+  <Step title="Evento">
+    Nombre, fecha y horario, ubicación, flyer, descripción y galería
   </Step>
-  <Step title="Productos">
+  <Step title="Entradas">
     Entradas, adicionales y combos
   </Step>
-  <Step title="Venta Online">
-    MercadoPago, Stripe, transferencia bancaria y WhatsApp
+  <Step title="Cobro">
+    Cómo te pagan: MercadoPago, transferencia bancaria, WhatsApp y los demás medios de cobro disponibles en tu país
   </Step>
-  <Step title="Configuración del evento">
-    Publicación del evento y transferencia de entradas
+  <Step title="Publicar">
+    Publicarlo en qrTicket y permitir (o no) que se transfieran las entradas
   </Step>
 </Steps>
 
-Después de crear el evento, configurás el resto desde su panel: [Scanner](/events/scanner), [equipo](/events/team) y [link de referido](/events/referral).
+Después de crear el evento, seguís desde su panel.
+
+## El panel del evento
+
+Al entrar a un evento ves su nombre y fecha, un resumen de ventas y el menú, agrupado en tres secciones (las mismas en el menú lateral y en la portada del evento):
+
+<CardGroup cols={3}>
+  <Card title="Ventas" icon="chart-line">
+    - [Link del evento](/events/referral)
+    - [Compras y transferencias](/events/guests)
+    - [Emitir entradas](/events/create-tickets)
+    - [Estadísticas](/events/stats)
+    - [Mis ventas](/events/mis-ventas) (vendedores)
+  </Card>
+  <Card title="Puerta y equipo" icon="door-open">
+    - [Escáner](/events/scanner)
+    - [Equipo](/events/team)
+  </Card>
+  <Card title="Configuración" icon="gear">
+    - [Productos](/events/products)
+    - [Cupones](/events/coupons)
+    - [Cobros](/events/sales)
+    - [Editar evento](/events/settings)
+  </Card>
+</CardGroup>
+
+- Arriba a la derecha, **"Ver página"** abre la página pública del evento. Si sos vendedor con venta limitada, ese botón dice **"Tu link"** y te lleva a tu link personal para vender.
+- Si hay transferencias bancarias esperando tu aprobación, la tarjeta **Compras y transferencias** lo avisa (por ejemplo, **"3 por aprobar"**).
+- Cada persona ve solo las secciones que su rol le permite.
+
+### Lo que le falta a tu evento
+
+Mientras el evento no pueda vender o no tenga flyer, la portada muestra una tarjeta con lo que falta:
+
+- **"Elegí cómo cobrar":** lo único imprescindible para vender. Te lleva a [Cobros](/events/sales).
+- **Para llegar a más gente (opcional):** **"Subí el flyer"** y **"Publicalo en qrTicket"**.
+
+Cuando ya tiene un medio de cobro, la tarjeta te dice **"Ya podés vender"** y te ofrece **"Compartir"** el link.
 
 ## Tipos de productos en eventos
 
@@ -49,7 +86,7 @@ Después de crear el evento, configurás el resto desde su panel: [Scanner](/eve
     - Diferentes estados
   </Card>
   <Card title="Adicionales" icon="bag-shopping" href="/events/adicionales">
-    **Pre-venta de tragos**
+    **Todo lo que se suma a la entrada**
 
     - Bebidas, estacionamiento, merchandising, traslados
     - Se compran online, se canjean con QR
@@ -86,9 +123,9 @@ Cada producto puede tener diferentes estados:
   </Accordion>
 </AccordionGroup>
 
-## Métodos de venta
+## Medios de cobro
 
-Cada evento puede vender de **4 formas**:
+Cómo te pagan los compradores se elige en **[Cobros](/events/sales)**. Según tu país, vas a ver opciones como:
 
 <CardGroup cols={2}>
   <Card title="MercadoPago" icon="credit-card">
@@ -98,7 +135,6 @@ Cada evento puede vender de **4 formas**:
   </Card>
   <Card title="Stripe" icon="credit-card">
     - Tarjeta de crédito/débito internacional
-    - Para productoras fuera de Argentina
     - Requiere Stripe conectado
   </Card>
   <Card title="Transferencia bancaria" icon="building-columns">
@@ -109,13 +145,10 @@ Cada evento puede vender de **4 formas**:
   <Card title="WhatsApp" icon="message-dots">
     - Compradores contactan por WhatsApp
     - Coordinás el pago manualmente
-    - Para eventos personalizados
   </Card>
 </CardGroup>
 
-### Ventas mixtas
-
-Podés habilitar **cualquier combinación** de métodos al mismo tiempo.
+Podés activar **cualquier combinación** de medios de cobro al mismo tiempo. Todos los detalles en [Cobros](/events/sales).
 
 ## Página pública del evento
 
@@ -125,77 +158,76 @@ Cada evento tiene su **página pública** donde los compradores pueden:
 - Recorrer la **galería** del evento (fotos y videos del lugar, line-up o ediciones anteriores)
 - Ver la **ubicación** con un minimapa
 - Elegir productos y cantidades
-- Pagar con MercadoPago, Stripe, transferencia bancaria o contactarte por WhatsApp
+- Pagar con los medios de cobro que activaste o contactarte por WhatsApp
 - Recibir entradas con códigos QR únicos
 
-El botón principal es **Comprar Entradas**, que muestra el precio más bajo disponible ("Desde $X"). Si tu productora está verificada, tu nombre aparece con un badge **Verificado** que les da más confianza a los compradores.
+El botón principal es **Comprar entradas**, que muestra el precio más bajo disponible ("Desde $X"). Si tu productora está verificada, tu nombre aparece con un badge **Verificado** que les da más confianza a los compradores.
 
 ### Publicación del evento
 
 <AccordionGroup>
-  <Accordion title="Evento público">
-    Aparece en la página principal de qrTicket y puede ser promocionado en nuestra página de Instagram.
+  <Accordion title="Publicado en qrTicket">
+    Aparece en la cartelera de qrTicket y puede ir a la historia de Instagram de qrTicket. Es gratis. Antes de salir lo revisamos y te avisamos por mail.
 
-    **Requisito:** Tener ventas por MercadoPago y/o WhatsApp habilitado.
+    **Requisito:** tener un medio de cobro activo y el flyer cargado.
   </Accordion>
-  <Accordion title="Evento privado">
-    Solo accesible por link directo. No aparece en listados públicos.
+  <Accordion title="Sin publicar (privado)">
+    No aparece en la cartelera, pero **se vende igual** con el link del evento.
 
-    **Ideal para:** Eventos corporativos, privados, beta testing.
+    **Ideal para:** eventos corporativos, privados o que vendés solo por tu cuenta.
   </Accordion>
 </AccordionGroup>
 
+Lo cambiás cuando quieras desde [Editar evento](/events/settings#publicar-en-qrticket).
+
 ## Gestión de asistentes
 
-### Lista de invitados
+### Compras y transferencias
 
-Todos los que tienen entradas aparecen en la "Lista de Invitados":
+Todos los que tienen entradas aparecen en **[Compras y transferencias](/events/guests)**:
 
-- **Ventas manuales:** Entradas creadas por el equipo
-- **Ventas MercadoPago:** Compras automáticas online
-- **Filtros:** Por tipo de entrada, estado, fecha
-- **Acciones:** Editar, transferir, reimprimir códigos QR
+- **Ventas online y manuales** en una sola tabla, con el medio de cada venta
+- **Vista por invitado o por compra**
+- **Filtros:** por medio, tipo de entrada, vendedor, escaneados y más
+- **Acciones:** ver detalles, editar, reimprimir, reembolsar
 
 ### Validación con QR
 
 <Steps>
   <Step title="En la entrada del evento">
-    El personal usa el scanner de qrTicket en celular o tablet
+    Tu equipo usa el [escáner](/events/scanner) de qrTicket en el celular, con su cuenta o con el link de puerta
   </Step>
   <Step title="Escanear código QR">
     Cada entrada tiene un código QR único e irrepetible
   </Step>
   <Step title="Resultado instantáneo">
-    ✅ Verde: Entrada válida (se marca como escaneada)\
-    ⚠️ Amarillo: tipo de entrada no corresponde.\
-    ❌ Rojo: Entrada inválida, duplicada o ya usada
+    ✅ Verde: entrada válida (se marca como escaneada)\
+    ⚠️ Amarillo: es otro producto, no el que valida ese puesto\
+    ❌ Rojo: ya utilizada, no reconocida, reembolsada, transferida o dada de baja
   </Step>
 </Steps>
 
 ## Estadísticas del evento
 
-Cada evento proporciona métricas detalladas:
+Cada evento tiene su sección de [Estadísticas](/events/stats):
 
 <CardGroup cols={2}>
   <Card title="Ventas" icon="chart-line">
-    - Total vendido por tipo de producto
-    - Recaudación por método de pago
+    - Entradas vendidas, divididas por género
     - Progreso de ventas en el tiempo
+    - Recaudación por cuenta de cobro
   </Card>
   <Card title="Asistencia" icon="users">
     - Porcentaje de entradas escaneadas
-    - Horarios de mayor llegada
-    - Tipos de entrada más usados
+    - Progreso de escaneos por día
   </Card>
-  <Card title="Marketing" icon="megaphone">
+  <Card title="Difusión" icon="megaphone">
     - Vistas de la página del evento
-    - Enlaces de referido más exitosos
-    - Conversión de visitas a ventas
+    - Embudo de la visita a la entrada emitida
   </Card>
   <Card title="Equipo" icon="people-group">
-    - Ventas por cada colaborador
-    - Rendimiento individual
-    - Productos más vendidos por persona
+    - Vendidos por cada miembro, en [Equipo](/events/team)
+    - Cada vendedor ve lo suyo en [Mis ventas](/events/mis-ventas)
   </Card>
 </CardGroup>
 
@@ -203,33 +235,21 @@ Cada evento proporciona métricas detalladas:
 
 ### Eventos de múltiples días
 
-Para festivales o conferencias:
-
-- Fecha de inicio y fin
-- Entradas válidas para todos los días
-- Productos específicos por día
+Para festivales o conferencias, tildá **"Dura varios días"** y elegí la fecha de inicio y de finalización. Los eventos de varios días no llevan horario: los horarios de cada día van en la descripción.
 
 ### Transferencia de entradas
 
-Los compradores pueden transferir sus entradas a otras personas:
-
-- Link único de transferencia
-- Nueva entrada QR para el receptor
-- Historial de transferencias
+Si lo permitís, los compradores pueden pasarle su entrada a otra persona: quien la recibe obtiene una entrada QR nueva y la original queda anulada. Ver [Compartir y transferir entradas](/buyers/share-transfer).
 
 ### Enlaces de referidos
 
-Cada colaborador puede tener su link personalizado:
-
-- Seguimiento de ventas por referido
-- Reconocimiento en las compras
-- Estadísticas de rendimiento
+Cada miembro del equipo tiene su link personal: las ventas que entran por ese link quedan a su nombre. Ver [Link del evento](/events/referral).
 
 ## Límites y consideraciones
 
 - **Sin límite** de productos por evento
 - **Sin límite** de entradas vendidas
-- **1 crédito por entrada/producto** generado
+- **1 crédito por entrada/adicional** generado
 - **Requiere balance suficiente** para ventas automáticas
 
 ## Próximos pasos
@@ -238,11 +258,11 @@ Cada colaborador puede tener su link personalizado:
   <Card title="Crear productos" icon="box" href="/events/products">
     Definí entradas, adicionales y combos
   </Card>
-  <Card title="Canales de venta" icon="gear" href="/events/sales">
-    Habilitá MercadoPago, transferencia y WhatsApp
+  <Card title="Cobros" icon="gear" href="/events/sales">
+    Elegí cómo te pagan los compradores
   </Card>
-  <Card title="Preparar scanner" icon="qrcode" href="/events/scanner">
-    Configurá la validación de entradas
+  <Card title="Preparar el escáner" icon="qrcode" href="/events/scanner">
+    Pasale el link a tu equipo de puerta
   </Card>
 </CardGroup>
 

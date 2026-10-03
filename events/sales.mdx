@@ -1,478 +1,298 @@
 ---
-title: "Canales de venta"
-description: "Cómo habilitar ventas por MercadoPago, Stripe, Recurrente, transferencia bancaria y WhatsApp"
-icon: "gear"
+title: "Cobros"
+description: "Elegí cómo te pagan en cada evento: MercadoPago, Stripe, Recurrente, transferencia bancaria o WhatsApp"
+icon: "credit-card"
 ---
 
-# Canales de venta
+# Cobros
 
-Cada evento puede vender de **varias formas diferentes**: automáticamente por MercadoPago, con tarjetas internacionales vía Stripe, con Recurrente si tu productora es de Centroamérica, por transferencia bancaria con aprobación manual, o coordinando por WhatsApp. Podés combinar los que quieras al mismo tiempo.
-
-Cada evento tiene su propio link público de venta: **qrticket.app/e/{nombre-del-evento}**. Compartilo en redes, WhatsApp o donde quieras: cualquiera que entre puede ver el evento y comprar entradas.
+En **Cobros** elegís cómo te pagan en cada evento. Cada opción es un **medio de cobro**: podés activar uno o varios al mismo tiempo, y la plata de cada venta va **directo a tu cuenta** (qrTicket no la retiene).
 
 <Card title="Requisito previo" icon="info">
-  Antes de configurar ventas, necesitás tener **productos creados** con precios
-  definidos.
+  Antes de activar un medio de cobro, necesitás tener **productos creados** con precio. Mirá [Tipos de entrada](/events/products).
 </Card>
 
-## Métodos de venta disponibles
+## Dónde está
 
-<CardGroup cols={2}>
-  <Card title="MercadoPago (automático)" icon="credit-card">
-    **Recibe pagos con tarjeta y otros medios**
+Dashboard → Tu evento → **"Cobros"** (en el menú lateral, o en la tarjeta **"Cobros — Cómo te pagan"** del inicio del evento).
 
-    - Compradores pagan con tarjeta/transferencia
-    - Entradas se envían por email automáticamente
-    - Requiere MercadoPago conectado en la productora
-    - Ideal para eventos grandes y públicos en Argentina
-  </Card>
-  <Card title="Stripe (automático)" icon="globe">
-    **Acepta tarjetas internacionales vía Stripe**
+<Note>
+  Los mismos medios de cobro aparecen en el paso **"Cobro"** del asistente para crear un evento. Lo que elijas ahí lo podés cambiar después desde **Cobros**.
+</Note>
 
-    - Pensado para cobros internacionales
-    - Compradores pagan con tarjeta de cualquier país
-    - Requiere Stripe conectado en la productora → [Guía Stripe](/organizations/stripe)
-    - Ideal para audiencias fuera de Argentina
-  </Card>
-  <Card title="Recurrente (automático)" icon="money-bill-transfer">
-    **Cobrá en Guatemala, El Salvador y Honduras**
+## Medios de cobro disponibles
 
-    - Tarjeta, transferencia y dólares digitales
-    - Solo para productoras de esos 3 países
-    - Requiere Recurrente conectado en la productora → [Guía Recurrente](/organizations/recurrente)
-    - Ideal para audiencias centroamericanas
-  </Card>
-  <Card title="Transferencia bancaria (semi-automático)" icon="building-columns">
-    **Recibe transferencias directas a tu cuenta**
+La pantalla muestra una tarjeta por medio de cobro, con su comisión y cómo se confirma la venta. Solo ves los que están disponibles para el país de tu productora.
 
-    - Compradores transfieren y suben el comprobante
-    - Vos aprobás o rechazás cada solicitud
-    - No requiere MercadoPago ni Stripe
-    - Ideal para quienes prefieren cobrar directo a su cuenta bancaria
-  </Card>
-  <Card title="WhatsApp (manual)" icon="message-dots">
-    **Coordina ventas por chat directo**
+| Medio de cobro | Qué acepta | Comisión | Confirmación | Disponible en |
+| --- | --- | --- | --- | --- |
+| **MercadoPago** | Tarjeta, débito y dinero en cuenta | La de MercadoPago (en Argentina, desde 1,6% + IVA) | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay |
+| **Transferencia automática** | Transferencia, sin comprobantes | 0,7% + IVA | Automático | Argentina (ver [más abajo](#transferencia-automática)) |
+| **Recurrente** | Tarjeta, transferencia y dólares digitales | Desde 3,5% | Automático | Guatemala, El Salvador y Honduras |
+| **Stripe** | Tarjetas de todo el mundo | Desde 2,9% (según el país) | Automático | Todos los países |
+| **Transferencia bancaria** | El comprador sube el comprobante y vos aprobás | Sin comisión | Semiautomático | Todos los países |
+| **WhatsApp** | Tus RRPP coordinan el pago por chat | Sin comisión | Manual | Todos los países |
 
-    - Compradores te escriben por WhatsApp
-    - Coordinás pago (efectivo, transferencia)
-    - Creás las entradas manualmente
-    - Ideal para eventos personalizados/pequeños, conferencias, cumpleaños, recepciones
-  </Card>
-</CardGroup>
+- **Automático:** el medio de pago confirma el cobro y la entrada le llega sola al comprador.
+- **Semiautomático:** el comprador sube el comprobante y la entrada sale cuando vos lo aprobás.
+- **Manual:** la venta se arregla por fuera de qrTicket y emitís las entradas a mano.
+
+Una tarjeta muestra **"Activo"** solo cuando el medio de cobro está encendido **y** su cuenta está lista para cobrar. Si todavía no activaste ninguno, la pantalla marca uno como **"Recomendado"**.
+
+<Info>
+  **¿Vendés con RRPP?** No hace falta activar ningún medio de cobro: cada RRPP coordina el pago y emite las entradas a mano desde [**"Emitir entradas"**](/events/create-tickets).
+</Info>
 
 ---
 
-## Configurar ventas MercadoPago
-
-### Requisitos previos
+## Cómo se configura un medio de cobro
 
 <Steps>
-  <Step title="Conectar MercadoPago en la productora">
-    La productora debe tener MercadoPago conectado → [Guía MercadoPago](/organizations/mercadopago)
+  <Step title="Tocá la tarjeta">
+    Se abre el panel de ese medio de cobro (en la computadora, una ventana; en el celular, un panel desde abajo).
   </Step>
-  <Step title="Productos con precio">
-    Todos los productos deben tener precio definido (no pueden ser gratuitos)
+  <Step title="Resolvé lo que falte">
+    Si el medio necesita una cuenta conectada y todavía no la tenés, arriba del panel aparece un aviso con el botón para hacerlo (por ejemplo, **"Conectá tu cuenta de Stripe"** → **"Conectar"**). Mientras tanto, el interruptor queda deshabilitado.
+  </Step>
+  <Step title="Activá la venta">
+    Encendé el interruptor **"Vender con …"** (por ejemplo, **"Vender con MercadoPago"**). Recién ahí aparecen las opciones de ese medio.
+  </Step>
+  <Step title="Listo">
+    Los cambios se guardan **en el momento**, sin botón de guardar. Cerrá el panel con **"Listo"**. La única excepción son los datos de la cuenta bancaria, que se guardan con **"Guardar"**.
   </Step>
 </Steps>
 
-### Habilitar ventas automáticas
+<Note>
+  **Conectar cuentas** es una configuración de la productora: necesitás un rol con permiso para administrarla (por defecto, el **Administrador**). Si no lo tenés, el aviso te dice *"Pedile a quien administra la productora que la conecte."* Mirá [Roles y permisos](/organizations/roles).
+</Note>
 
-<Steps>
-  <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta"
-  </Step>
-  <Step title="Expandir 'MercadoPago'">
-    Activá el toggle **"Ventas con MercadoPago"** para habilitar las ventas con MercadoPago en este evento.
-  </Step>
-  <Step title="Verificar configuración">
-    Si todo está bien, aparece ✅ "Habilitado"
-  </Step>
-</Steps>
+### ¿Quién paga la comisión?
 
-### ¿Quién paga el cargo de MercadoPago?
+En MercadoPago, Stripe, Recurrente y la transferencia automática, una vez que activás la venta te aparece la pregunta **"¿Quién paga la comisión?"**:
 
-En la configuración de MercadoPago vas a encontrar el toggle **"Pasar cargos al comprador"**:
-
-- **Activado:** el comprador asume el cargo de MercadoPago (se suma al precio que ve al pagar).
-- **Apagado:** el costo lo absorbés vos como organizador.
+- **Vos** (Recomendado): *"Sumala al precio de tu entrada."* El comprador paga el precio que pusiste y la comisión sale de lo que cobrás.
+- **El comprador**: *"Se agrega como recargo al pagar."* Al precio de la entrada se le suma un porcentaje para cubrir la comisión.
 
 <Tip>
-  qrTicket es **partner oficial de MercadoPago**: por esa alianza, tus ventas tienen **liberación instantánea con tarifas preferenciales** por defecto, sin que tengas que configurar nada. Mirá el detalle de las tarifas en la [Guía MercadoPago](/organizations/mercadopago).
+  Te recomendamos incluir la comisión en el precio de la entrada: así el comprador ve el mismo precio desde la página del evento hasta el pago, sin un recargo de último momento.
 </Tip>
 
-<Note>
-  Las tarifas preferenciales y la liberación instantánea/a 10 días aplican a productoras de **Argentina**. Si tu productora es de otro país, al activar "Pasar cargos al comprador" definís vos el **porcentaje** que se le suma al comprador para cubrir el cargo de MercadoPago.
-</Note>
-
-### ¿Qué pasa cuando está habilitado?
-
-- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
-- Pueden seleccionar cantidades de cada producto
-- Son redirigidos al checkout de MercadoPago
-- Tras el pago exitoso, reciben las entradas por email
-- **Se consumen créditos automáticamente** por cada entrada/producto vendido
-
 ---
 
-## Configurar ventas con Stripe
-
-Stripe es el canal pensado para **cobros internacionales**: te permite aceptar tarjetas de crédito/débito de cualquier parte del mundo. Los fondos se depositan directamente en tu cuenta bancaria.
-
-### Requisitos previos
+## MercadoPago
 
 <Steps>
-  <Step title="Conectar Stripe en la productora">
-    La productora debe tener Stripe conectado → [Guía Stripe](/organizations/stripe)
+  <Step title="Conectá tu cuenta">
+    Si la productora no tiene MercadoPago conectado, el panel muestra **"Conectá tu cuenta de MercadoPago"**. En **Argentina**, el botón **"Conectar"** abre la autorización de MercadoPago ahí mismo y, al terminar, la venta queda activada sola. En los demás países te lleva a la página de MercadoPago de tu productora, en otra pestaña. Más detalles en la [guía de MercadoPago](/organizations/mercadopago).
   </Step>
-  <Step title="Productos con precio">
-    Todos los productos deben tener precio definido (no pueden ser gratuitos)
+  <Step title="Activá la venta">
+    Encendé **"Vender con MercadoPago"**.
+  </Step>
+  <Step title="Elegí quién paga la comisión">
+    Respondé **"¿Quién paga la comisión?"**.
   </Step>
 </Steps>
 
-### Habilitar ventas con Stripe
+Si elegís **El comprador**:
 
-<Steps>
-  <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta"
-  </Step>
-  <Step title="Expandir 'Stripe'">
-    Activá el toggle **"Ventas con Stripe"** para este evento.
-  </Step>
-  <Step title="Verificar configuración">
-    Si todo está bien, aparece ✅ "Habilitado"
-  </Step>
-</Steps>
+- En los países con tarifa cargada (Argentina, Brasil, Chile, Colombia, México, Perú y Uruguay), se suma **la tarifa de MercadoPago de tu país**. El panel muestra cuánto **"Se suma al precio"** y, en **"Ver por medio de pago"**, la tarifa de cada medio. Se suma la más alta: si el comprador paga con un medio más barato, la diferencia es tuya.
+- **"¿Cuándo cobrás?"**: elegís **"Al instante"** (recomendado) o **"A X días"** (comisión más baja; los días dependen del país, por ejemplo 10 en Argentina). En Argentina, la liberación diferida **se coordina antes con qrTicket** (el panel tiene un botón **"Escribinos"**); en los demás países, elegila solo si tu cuenta de MercadoPago ya cobra a esos días.
+- Con **"Usar otro porcentaje"** ponés vos el porcentaje en **"Cuánto se suma"**, y con **"Usar la tarifa de MercadoPago"** volvés a la tarifa automática.
+- En **Ecuador** no hay tarifa cargada: escribís el porcentaje en **"Cuánto se suma"** (el panel tiene el link **"Ver sus tarifas"**).
 
-### ¿Qué pasa cuando está habilitado?
-
-- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
-- Pagan con tarjeta internacional a través del checkout de Stripe
-- Tras el pago exitoso, reciben las entradas por email
-- **Se consumen créditos automáticamente** por cada entrada/producto vendido
-
-<Note>
-  Stripe está pensado para audiencias internacionales. Si vendés principalmente en Argentina, usá MercadoPago. Podés tener ambos activos al mismo tiempo.
-</Note>
-
----
-
-## Configurar ventas con Recurrente
-
-Recurrente es el canal de cobro para productoras de **Guatemala, El Salvador y Honduras**, donde no opera MercadoPago. Acepta tarjeta, transferencia bancaria y dólares digitales, y el dinero entra directo a tu balance de Recurrente.
-
-<Note>
-  La opción de Recurrente aparece en "Canales de venta" **solo si tu productora es de Guatemala, El Salvador u Honduras**.
-</Note>
-
-### Requisitos previos
-
-<Steps>
-  <Step title="Conectar Recurrente en la productora">
-    La productora debe tener Recurrente conectado con una clave de producción → [Guía Recurrente](/organizations/recurrente)
-  </Step>
-  <Step title="Productos con precio">
-    Todos los productos deben tener precio definido (no pueden ser gratuitos)
-  </Step>
-</Steps>
-
-### Habilitar ventas con Recurrente
-
-<Steps>
-  <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta"
-  </Step>
-  <Step title="Expandir 'Recurrente'">
-    Activá el toggle **"Ventas con Recurrente"** para este evento.
-  </Step>
-  <Step title="Verificar configuración">
-    Si todo está bien, aparece ✅ "Habilitado"
-  </Step>
-</Steps>
-
-### ¿Qué pasa cuando está habilitado?
-
-- Los compradores ven el botón **"Comprar Entradas"** en tu página del evento
-- Eligen **"Tarjeta (Recurrente)"** y pagan en el checkout de Recurrente
-- Tras el pago exitoso, reciben las entradas por email
-- **Se consumen créditos automáticamente** por cada entrada/producto vendido
+<Tip>
+  qrTicket es **partner oficial de MercadoPago** en Argentina: tus ventas tienen tarifas preferenciales. Mirá el detalle en la [guía de MercadoPago](/organizations/mercadopago#cargos-por-venta).
+</Tip>
 
 <Warning>
-  Si la conexión está en **modo de prueba** o el webhook no quedó registrado, el toggle aparece deshabilitado: sin eso los pagos se cobrarían pero las entradas no se emitirían solas. Revisá la [guía de Recurrente](/organizations/recurrente).
+  Si se vence la conexión con MercadoPago, el panel muestra **"Se venció la conexión con MercadoPago"** con el botón **"Reconectar"**. Hasta que la vuelvas a conectar, tus eventos no ofrecen MercadoPago.
 </Warning>
 
 ---
 
-## Configurar ventas por transferencia bancaria
+## Stripe
 
-### Cómo funciona
-
-El flujo de transferencia bancaria es semi-automático: el comprador completa la compra desde la página del evento, realiza la transferencia por su cuenta, sube el comprobante, y vos solo tenés que aprobar o rechazar la solicitud desde el dashboard.
-
-### Habilitar transferencia bancaria
+Stripe es el medio pensado para **cobrar con tarjetas de todo el mundo**.
 
 <Steps>
-  <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta"
+  <Step title="Conectá tu cuenta">
+    Si no está conectada, el panel muestra **"Conectá tu cuenta de Stripe"** → **"Conectar"**, que se abre en otra pestaña. Si Stripe todavía no terminó de verificarte, vas a ver **"Stripe todavía no habilitó los cobros"** → **"Completar"**. Más detalles en la [guía de Stripe](/organizations/stripe).
   </Step>
-  <Step title="Expandir 'Transferencia bancaria'">
-    Activá el toggle **"Ventas por transferencia bancaria"**.
+  <Step title="Activá la venta">
+    Volvé a la pestaña del evento y encendé **"Vender con Stripe"**.
   </Step>
-  <Step title="Configurar datos bancarios">
-    Completá la información de tu cuenta bancaria:
-
-    - **Nombre del titular de la cuenta** (obligatorio)
-    - **CBU/CVU/Alias** (obligatorio)
-    - **Nombre del banco**
-    - **CUIT/CUIL** del titular (obligatorio)
-    - **Instrucciones adicionales** (opcional) - información extra que los compradores verán al momento de transferir
-
-    Hacé clic en **"Guardar información bancaria"** para confirmar.
-  </Step>
-  <Step title="Activar notificación por email (opcional)">
-    Activá el toggle **"Notificación por email"** para recibir un email cada vez que un comprador realice una compra por transferencia bancaria.
-  </Step>
-  <Step title="Verificar configuración">
-    Si todo está bien, aparece ✅ "Habilitado"
+  <Step title="Elegí quién paga la comisión">
+    Si elegís **El comprador**, en **"Cuánto se suma"** tocás **2,9%** (tarifa base), **3,5%** (tarjeta local), **4,5%** (tarjeta internacional) u **"Otro"** para escribir tu porcentaje. Por defecto se elige 4,5%.
   </Step>
 </Steps>
 
-### ¿Qué pasa cuando está habilitado?
+---
 
-- Los compradores ven la opción de **transferencia bancaria** en la página del evento
-- Seleccionan los productos y cantidades que quieren comprar
-- Reciben los datos bancarios para realizar la transferencia
-- Suben el comprobante de pago desde la misma página
-- **Vos recibís la solicitud** en el dashboard y la aprobás o rechazás
-- Al aprobar, las entradas se generan y envían automáticamente
-- **Se consumen créditos** al aprobar cada solicitud
+## Recurrente
 
-### Gestión de solicitudes
+Recurrente es el medio de cobro para productoras de **Guatemala, El Salvador y Honduras**. La tarjeta aparece solo en esos países.
 
 <Steps>
-  <Step title="Revisar solicitudes pendientes">
-    Dashboard → Evento → **"Compras y transferencias"** → tarjeta **"Transferencias por aprobar"**.
-    Vas a ver las solicitudes con estado **pendiente**, junto con el comprobante subido por el comprador.
+  <Step title="Conectá tu cuenta">
+    Si no está conectada, el panel muestra **"Conectá tu cuenta de Recurrente"** → **"Conectar"**: pegás tu clave en otra pestaña y volvés. Más detalles en la [guía de Recurrente](/organizations/recurrente).
+  </Step>
+  <Step title="Activá la venta">
+    Encendé **"Vender con Recurrente"**.
+  </Step>
+  <Step title="Elegí quién paga la comisión">
+    Si elegís **El comprador**, en **"Cuánto se suma"** tocás **3,5%** (tarifa base), **4,5%** (tarjeta local), **5,5%** (tarjeta internacional) u **"Otro"**. Por defecto se elige 5,5%.
+  </Step>
+</Steps>
+
+<Warning>
+  Si conectaste una **clave de prueba** (aviso *"Conectaste una clave de prueba"*) o Recurrente no puede avisarnos los pagos (aviso *"Recurrente no nos avisa los pagos"*), el interruptor queda deshabilitado: sin eso los pagos se cobrarían pero las entradas no se emitirían solas.
+</Warning>
+
+---
+
+## Transferencia automática
+
+Si tu productora es de **Argentina** y ves la tarjeta **"Transferencia automática"** (con la etiqueta **"Nuevo"**), podés cobrar por transferencia **sin revisar comprobantes**:
+
+- Cada compra recibe su propio alias para transferir.
+- Cuando la plata se acredita, la entrada le llega sola al comprador.
+- Sin comprobantes que revisar ni compras que aprobar.
+- La plata queda disponible al instante en tu cuenta de cobro y la pasás a tu banco cuando quieras.
+
+<Steps>
+  <Step title="Creá tu cuenta de cobro">
+    La primera vez, el panel muestra **"Creá tu cuenta de cobro"** → **"Crear cuenta"**, que se abre en otra pestaña.
+  </Step>
+  <Step title="Esperá la verificación">
+    Mientras se verifica vas a ver **"Estamos verificando tu cuenta"** (puede tardar hasta 36 h). Podés dejar **"Vender con transferencia automática"** activado: empieza a cobrar solo cuando la cuenta quede verificada.
+  </Step>
+  <Step title="Elegí quién paga la comisión">
+    La comisión es **0,7% + IVA** por venta. Si elegís **El comprador**, se suma **0,847%** al precio.
+  </Step>
+</Steps>
+
+<Note>
+  No confundir con la **transferencia bancaria** de abajo, en la que el comprador sube un comprobante y vos aprobás cada compra.
+</Note>
+
+---
+
+## Transferencia bancaria
+
+Es **semiautomática** y **sin comisión**: el comprador transfiere a tu cuenta, sube el comprobante, y vos aprobás o rechazás la compra.
+
+### Cargar la cuenta
+
+<Steps>
+  <Step title="Completá los datos">
+    En el panel de **"Transferencia bancaria"** completá los datos de tu cuenta. En Argentina son:
+
+    - **Titular de la cuenta**
+    - **CBU/CVU/Alias**
+    - **CUIT/CUIL** (del titular de la cuenta)
+
+    En **"Más datos (opcional)"** podés sumar el **Banco** y las **"Instrucciones para quien compra"**. Los campos cambian según el país de tu productora.
+  </Step>
+  <Step title="Guardá">
+    Tocá **"Guardar"**. La primera vez que guardás una cuenta completa, **"Vender por transferencia"** se activa solo. Si cerrás el panel con datos sin guardar, se guardan al cerrar (si falta algo, el panel te marca qué).
+  </Step>
+  <Step title="Avisos por email (opcional)">
+    Con la venta activada, encendé **"Avisarme por email"** para recibir un mail cuando alguien sube un comprobante.
+  </Step>
+</Steps>
+
+<Note>
+  **"Vender por transferencia"** queda deshabilitado hasta que los datos obligatorios estén completos.
+</Note>
+
+### Aprobar las compras
+
+<Steps>
+  <Step title="Revisar pendientes">
+    Dashboard → Evento → **"Compras y transferencias"** → tarjeta **"Transferencias por aprobar"**, con el comprobante de cada compra.
   </Step>
   <Step title="Verificar el comprobante">
-    Revisá que el monto transferido coincida con el total de la compra y que el comprobante sea válido.
+    Revisá que el monto coincida con el total de la compra y que el comprobante sea válido.
   </Step>
   <Step title="Aprobar o rechazar">
-    - **Aprobar:** Se generan las entradas automáticamente y se envían al comprador por email. Se descuentan créditos.
-    - **Rechazar:** La solicitud se cancela. No se consumen créditos. Podés indicar un motivo para que el comprador lo vea.
+    - **Aprobar:** se generan las entradas, se le envían al comprador por email y se descuentan créditos.
+    - **Rechazar:** la compra se cancela y no se consumen créditos. Podés indicar un motivo para que el comprador lo vea.
   </Step>
 </Steps>
 
 <Warning>
-  Revisá los comprobantes con atención. Una vez aprobada la solicitud, las entradas se generan y los créditos se descuentan.
+  Revisá los comprobantes con atención: una vez aprobada la compra, las entradas se generan y los créditos se descuentan.
 </Warning>
 
 ---
 
-## Configurar ventas WhatsApp
+## WhatsApp
 
-### Agregar números de WhatsApp
-
-<Steps>
-  <Step title="Ir a configuración de ventas">
-    Dashboard → Tu evento → "Canales de venta"
-  </Step>
-  <Step title="Agregar números">
-    En **"Números de WhatsApp para ventas"** ingresá cada número con el formato
-    **"11 1234-5678"** y tocá **"Añadir"**. Podés agregar varios: los compradores
-    que elijan "Contactar a vendedor" van a chatear con uno de estos números.
-  </Step>
-  <Step title="Activar ventas WhatsApp">
-    Una vez que tenés al menos 1 número, activá el toggle **"Ventas por WhatsApp"**.
-  </Step>
-</Steps>
-
-### ¿Qué pasa cuando está habilitado?
-
-- Los compradores ven el botón **"Contactar a vendedor"**
-- Son redirigidos a WhatsApp con mensaje prearmado
-- Vos coordinás el pago manualmente
-- **Creás las entradas desde el dashboard** consumiendo créditos
-
-### Gestión manual de ventas
-
-Una vez que alguien te escribe por WhatsApp:
+Es **manual** y **sin comisión**: el comprador toca **"Contactar a vendedor"** en la página del evento y te escribe por WhatsApp; ustedes arreglan el pago y vos emitís las entradas.
 
 <Steps>
-  <Step title="Coordinar pago">
-    - Efectivo: acordar lugar de encuentro
-    - Transferencia: enviar datos bancarios
-    - Otros métodos según tu preferencia
+  <Step title="Agregá los números">
+    En **"Números que atienden"** escribí un número con código de área (por ejemplo, **11 1234-5678**) y tocá **"Agregar"**. Podés sumar varios (el tuyo o los de tus RRPP): los pedidos se reparten entre ellos. Si la productora tiene teléfono cargado, también aparece **"Usar el de la productora"**.
   </Step>
-  <Step title="Crear entradas manualmente">
-    Dashboard → Evento → **"Crear entradas"** → Seleccioná el tipo de entrada, ingresá los nombres y confirmá.
-  </Step>
-  <Step title="Enviar entradas">
-    En el paso final de **"Crear entradas"** podés **"Compartir enlace"**, **"Copiar enlace"** o **"Enviar por email"** las entradas al comprador.
+  <Step title="Listo">
+    Con el primer número, **"Vender por WhatsApp"** se activa solo. Si quitás todos los números, se desactiva.
   </Step>
 </Steps>
-
----
-
-## Ventas mixtas (múltiples métodos)
-
-Podés habilitar **cualquier combinación** de MercadoPago, Stripe, Recurrente, transferencia bancaria y WhatsApp simultáneamente:
-
-<CardGroup cols={2}>
-  <Card title="Ventajas" icon="thumbs-up">
-    - Mayor flexibilidad para compradores
-    - Diferentes métodos para diferentes segmentos
-    - Maximiza conversión de ventas
-    - Reduce barreras de compra
-  </Card>
-  <Card title="Consideraciones" icon="lightbulb">
-    - Más trabajo manual por ventas WhatsApp y transferencias
-    - Control de stock entre todos los métodos
-    - Múltiples canales de atención
-  </Card>
-</CardGroup>
-
-### Gestión de inventario mixto
-
-<Warning>
-  Si tenés límites por producto, todos los métodos comparten el mismo stock.
-  Controlá que no se sobrevenda.
-</Warning>
-
-**Ejemplo:**
-
-- Producto: "Entrada General" - Límite: 100
-- MercadoPago vendió: 40
-- Stripe vendió: 10
-- Transferencia bancaria aprobaste: 25
-- WhatsApp vendiste: 20
-- **Disponibles:** 5 restantes
-
----
-
-## Publicación del evento
-
-### Evento público vs privado
-
-<AccordionGroup>
-  <Accordion title="🌍 Público - Aparece en qrTicket.app">
-    **Requisito:** tener activada la venta por **MercadoPago y/o WhatsApp** (al menos un canal de venta online). Te recomendamos también una **imagen/flyer**.
-
-    **Beneficios:**
-
-    - Aparece en la página principal de qrTicket (tras la aprobación del equipo)
-    - Puede ser promocionado en Instagram de qrTicket
-    - Mayor alcance y descubrimiento orgánico
-    - SEO y posicionamiento
-  </Accordion>
-  <Accordion title="🔒 Privado - Solo por link directo">
-    **Cuándo usar:** Eventos corporativos, beta testing, invitaciones cerradas
-
-    **Características:**
-
-    - No aparece en listados públicos
-    - Solo accesible por el link público de venta
-    - Mismas funciones de venta
-    - Control total de audiencia
-  </Accordion>
-</AccordionGroup>
-
-### Hacer público tu evento
-
-<Steps>
-  <Step title="Cumplir el requisito">
-    Tené activada la venta por **MercadoPago y/o WhatsApp** (al menos un canal online). Sumá una **imagen/flyer** para que tu evento se vea bien.
-  </Step>
-  <Step title="Activar publicación">
-    En **"Canales de venta"** → toggle **"Publicar evento"**. Tu evento pasa a **"En revisión"** con el aviso *"Tu evento está en revisión. Te notificaremos cuando sea aprobado."*
-  </Step>
-  <Step title="Esperar la aprobación">
-    El equipo de qrTicket revisa tu evento. Una vez **aprobado**, queda **Público** y aparece en la página principal. Si fuera **Rechazado**, recibís el motivo para editarlo y reenviarlo.
-  </Step>
-</Steps>
-
-<Card title="Difusión y descubrimiento" icon="bullhorn" href="/events/promotion">
-  Mirá cómo funciona la publicación, el video promocional y los Eventos Destacados.
-</Card>
 
 <Tip>
-  El **link público de venta** (qrticket.app/e/{nombre}) y tu **link de referido** personal están en la sección [Link del evento](/events/referral). Compartilos para vender y para llevar el registro de a quién invitás.
+  Si un vendedor tiene su WhatsApp cargado en su cuenta, los pedidos que entran por su [link personal](/events/referral) le llegan a él.
 </Tip>
 
----
+### Emitir las entradas
 
-## Control de ventas
-
-### Pausar ventas temporalmente
-
-Si necesitás pausar las ventas:
-
-<AccordionGroup>
-  <Accordion title="Pausar solo MercadoPago">
-    Desactivá el toggle **"Ventas con MercadoPago"**
-
-    - Los compradores siguen viendo la página
-    - Quedan disponibles los demás canales que tengas activos
-  </Accordion>
-  <Accordion title="Pausar solo Stripe">
-    Desactivá el toggle de ventas con Stripe
-
-    - Los compradores siguen viendo la página
-    - Quedan disponibles los demás canales que tengas activos
-  </Accordion>
-  <Accordion title="Pausar solo Recurrente">
-    Desactivá el toggle **"Ventas con Recurrente"**
-
-    - Los compradores siguen viendo la página
-    - Quedan disponibles los demás canales que tengas activos
-  </Accordion>
-  <Accordion title="Pausar solo transferencia bancaria">
-    Desactivá el toggle **"Ventas por transferencia bancaria"**
-
-    - Las solicitudes pendientes se mantienen para que las revises
-    - Quedan disponibles los demás canales que tengas activos
-  </Accordion>
-  <Accordion title="Pausar solo WhatsApp">
-    Desactivá el toggle **"Ventas por WhatsApp"** (o remové todos los números)
-
-    - Quedan disponibles los demás canales que tengas activos
-    - Útil si te saturaste de consultas manuales
-  </Accordion>
-  <Accordion title="Pausar todas las ventas">
-    Desactivá todos los toggles
-
-    - Página sigue visible pero sin opciones de compra
-    - Solo información del evento
-  </Accordion>
-</AccordionGroup>
-
-### Límites automáticos
-
-Las ventas se pausan automáticamente si:
-
-- **Se agotan los créditos** de la productora
-- **Se alcanzan los límites** de productos
-- **El medio de pago online presenta problemas** técnicos
+<Steps>
+  <Step title="Coordiná el pago">
+    Efectivo, transferencia o lo que acuerden por chat.
+  </Step>
+  <Step title="Emití las entradas">
+    Dashboard → Evento → **"Emitir entradas"** → elegí el tipo de entrada, cargá los nombres y confirmá. Mirá [Emitir entradas](/events/create-tickets).
+  </Step>
+  <Step title="Enviáselas">
+    En el último paso podés **"Compartir enlace"**, **"Copiar enlace"** o **"Enviar por email"**.
+  </Step>
+</Steps>
 
 ---
 
-## Análisis de ventas
+## Lo que ve el comprador
 
-### Métricas disponibles
+En la página del evento aparece el botón **"Comprar entradas"**. Al pagar, el comprador elige entre los medios que tengas activos: **MercadoPago**, **Transferencia** (automática), **Tarjeta (Stripe)**, **Tarjeta (Recurrente)**, **Transferencia bancaria** o **Contactar a vendedor**.
 
-En **"Compras y transferencias"** del evento ves todas las ventas en **una sola tabla**, con una columna **"Medio"** que indica el canal de cada compra (MercadoPago, Stripe, Recurrente, Transferencia, Gratis, WhatsApp o Manual). Podés filtrar por medio, tipo de entrada, vendedor, estado de escaneo y más. Las solicitudes de transferencia pendientes aparecen aparte, en la tarjeta **"Transferencias por aprobar"**.
+Con los medios automáticos, la entrada le llega por email apenas se confirma el pago y **se consume 1 crédito** por cada entrada emitida.
+
+<Warning>
+  Todos los medios de cobro comparten el **mismo stock**. Por ejemplo, si "Entrada General" tiene un límite de 100 y vendiste 40 por MercadoPago, 25 por transferencia y 20 por WhatsApp, quedan 15.
+</Warning>
+
+## Pausar un medio de cobro
+
+Abrí la tarjeta y apagá su interruptor **"Vender con …"**. La página del evento sigue visible y quedan disponibles los demás medios que tengas activos. Las transferencias bancarias pendientes se mantienen para que las revises.
+
+Si apagás todos, la página del evento sigue visible pero nadie puede comprar online.
+
+Las ventas online también se frenan solas si:
+
+- **Se agotan los créditos** de la productora.
+- **Se alcanzan los límites** de los productos.
+- **Se vence o se desconecta** la cuenta del medio de cobro.
+
+## Publicar el evento y compartir el link
+
+- **Publicar en qrTicket** (que aparezca en la cartelera) ya no está en Cobros: está arriba de todo en **"Editar evento"**. Para publicar necesitás al menos un medio de cobro activo y el flyer. Mirá [Difusión y descubrimiento](/events/promotion).
+- El **link del evento** para compartir, tu link personal y el afiche QR están en [Link del evento](/events/referral). Tu evento se vende con su link aunque no esté publicado.
+
+## Ver las ventas
+
+En **"Compras y transferencias"** ves todas las ventas en una sola tabla, con la columna **"Medio"** que indica cómo se cobró cada una. Podés filtrar por medio de cobro, tipo de entrada, vendedor y más.
 
 <Card title="Compras y transferencias" icon="users" href="/events/guests">
-  Mirá cómo gestionar invitados, filtrar por medio de pago y aprobar transferencias.
+  Gestioná invitados, filtrá por medio de cobro y aprobá transferencias.
 </Card>
-
-### Métricas combinadas
-
-En "Estadísticas" del evento:
-
-- **Recaudación total:** suma de todos los canales activos (MercadoPago, Stripe, transferencia bancaria y manual)
-- **Productos más vendidos** por cada canal
-- **Conversión:** Visitas vs ventas efectivas
-- **Tendencias:** Picos de venta por hora/día
 
 ---
 
@@ -482,90 +302,60 @@ En "Estadísticas" del evento:
   <Accordion title="'No aparece el botón de compra'">
     **Verificá:**
 
-    - Que la productora tenga MercadoPago (o Stripe) conectado
-    - Que todos los productos tengan precio (no gratuitos)
-    - Que el toggle del canal esté activado en "Canales de venta"
+    - Que al menos una tarjeta de **Cobros** diga **"Activo"** (encendida y con la cuenta lista).
+    - Que los productos tengan precio y estén a la venta.
+    - Que a la productora le queden créditos.
+  </Accordion>
+  <Accordion title="'El interruptor Vender con… está deshabilitado'">
+    Falta conectar la cuenta, o la conexión venció o está incompleta. El aviso arriba del interruptor te dice qué falta y tiene el botón para resolverlo. En la transferencia bancaria, faltan datos obligatorios de la cuenta.
   </Accordion>
   <Accordion title="'No recibo solicitudes de transferencia bancaria'">
     **Verificá:**
 
-    - Que el toggle de transferencia bancaria esté activado
-    - Que los datos bancarios estén cargados correctamente
-    - Que los productos tengan precio definido
-    - Si querés que te avisen por mail de cada compra, activá el toggle **"Notificación por email"**
+    - Que **"Vender por transferencia"** esté activado.
+    - Que los datos de la cuenta estén completos y guardados.
+    - Si querés un mail por cada comprobante, activá **"Avisarme por email"**.
   </Accordion>
   <Accordion title="'Los compradores no me escriben por WhatsApp'">
-    **Posibles causas:** - Números mal configurados (verificar formato) - WhatsApp
-    no habilitado en el evento - Compradores prefieren pago automático
-    **Solución:** Verificar configuración y considerar habilitar más métodos
+    Revisá que los números estén bien cargados (con código de área) y que **"Vender por WhatsApp"** esté activado. Si tu público prefiere pagar solo, sumá un medio automático.
   </Accordion>
-  <Accordion title="'Se vendieron más entradas que el límite'">
-    **Causa:** Ventas simultáneas por múltiples canales **Prevención:** - Monitorear
-    stock regularmente - Ajustar límites con margen - Pausar canales si el stock
-    está por agotarse
-  </Accordion>
-  <Accordion title="'No recibo el dinero de MercadoPago'">
-    **El dinero va directamente a tu cuenta MercadoPago**
-
-    - Verificá tu panel de MercadoPago
-    - Por ser partner oficial, tus ventas tienen liberación instantánea por defecto
-    - qrTicket no maneja ni retiene dinero
+  <Accordion title="'No recibo el dinero'">
+    La plata va **directo a tu cuenta** del medio de cobro (MercadoPago, Stripe, Recurrente o tu banco). Revisá ahí los plazos de liberación: qrTicket no maneja ni retiene dinero.
   </Accordion>
   <Accordion title="'Aprobé una transferencia por error'">
-    **Las entradas ya se generaron y los créditos se descontaron.**
-
-    - Podés **eliminar** las entradas desde la lista de invitados (no emite reembolso al comprador)
-    - Los créditos consumidos no se recuperan automáticamente
-    - Contactá soporte si necesitás ayuda
+    Las entradas ya se generaron y los créditos se descontaron. Podés **eliminar** las entradas desde [Compras y transferencias](/events/guests) (no le devuelve la plata al comprador). Los créditos consumidos no se recuperan.
   </Accordion>
 </AccordionGroup>
 
 ---
 
-## Mejores prácticas
+## Qué medios activar
 
-### Para eventos pequeños (hasta 100 personas)
-
-<Card title="Recomendación: WhatsApp o transferencia bancaria" icon="message-circle">
-  - **Más personal:** Conocés a cada comprador
-  - **Flexibilidad:** Diferentes métodos de pago
-  - **Control total:** Decidís a quién venderle
-  - **Transferencia bancaria:** Más ordenado que WhatsApp, el comprador sube el comprobante sin que tengas que pedirlo
-</Card>
-
-### Para eventos medianos (100-500 personas)
-
-<Card title="Recomendación: MercadoPago + transferencia bancaria" icon="zap">
-  - **MercadoPago:** Para la mayoría de ventas automáticas
-  - **Transferencia bancaria:** Para quienes no usan MercadoPago o prefieren transferir
-  - **Stripe:** Si esperás compradores del exterior
-  - **WhatsApp:** Para casos especiales, grupos, corporativos
-  - **Mejor conversión:** Diferentes preferencias de compra
-</Card>
-
-### Para eventos grandes (500\+ personas)
-
-<Card title="Recomendación: MercadoPago principal" icon="credit-card">
-  - **Escalabilidad:** No podés atender 500 WhatsApps ni revisar 500 comprobantes
-  - **MercadoPago / Stripe:** Cobros automáticos según el origen de tu público
-  - **Transferencia bancaria:** Solo para excepciones puntuales
-  - **WhatsApp:** Solo para casos excepcionales
-  - **Automatización:** Libera tiempo para otras tareas
-</Card>
+<CardGroup cols={3}>
+  <Card title="Eventos chicos" icon="message">
+    **WhatsApp o transferencia bancaria.** Más personal, sin comisión. La transferencia es más ordenada: el comprador sube el comprobante sin que se lo pidas.
+  </Card>
+  <Card title="Eventos medianos" icon="bolt">
+    **MercadoPago + transferencia.** La mayoría paga sola; la transferencia queda para quien prefiere no usar tarjeta. Sumá **Stripe** si esperás compradores del exterior.
+  </Card>
+  <Card title="Eventos grandes" icon="credit-card">
+    **Un medio automático como principal.** No vas a poder revisar cientos de comprobantes ni contestar cientos de chats.
+  </Card>
+</CardGroup>
 
 ---
 
 ## Próximos pasos
 
 <CardGroup cols={2}>
-  <Card title="Configurar scanner" icon="qrcode" href="/events/scanner">
-    Preparar la validación para el día del evento
+  <Card title="Link del evento" icon="link" href="/events/referral">
+    Compartí el link y el afiche QR
   </Card>
-  <Card title="Ver estadísticas" icon="chart-line" href="/events/stats">
-    Monitorear el rendimiento de ventas
+  <Card title="Configurar scanner" icon="qrcode" href="/events/scanner">
+    Prepará la validación para el día del evento
   </Card>
 </CardGroup>
 
 ---
 
-¿Problemas con los canales de venta? Contactanos por [WhatsApp](https://wa.me/5491122503348)
+¿Problemas con los cobros? Contactanos por [WhatsApp](https://wa.me/5491122503348)
