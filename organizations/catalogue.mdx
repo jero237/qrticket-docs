@@ -1,14 +1,14 @@
 ---
 title: "Catálogo"
-description: "Definí tus tipos de entrada y tus adicionales una vez y reutilizalos en todos tus eventos"
+description: "Definí tus tipos de entrada, tus adicionales y la carta de tu barra una vez y reutilizalos en todos tus eventos"
 icon: "box-archive"
 ---
 
 # Catálogo
 
-El **Catálogo** es la lista de productos reutilizables de tu productora. La idea es simple: definís tus tipos de entrada y tus adicionales **una sola vez** y los reutilizás en cualquier evento, sin volver a cargarlos cada vez.
+El **Catálogo** es la lista de productos reutilizables de tu productora. La idea es simple: definís tus tipos de entrada, tus adicionales y la carta de tu barra **una sola vez** y los reutilizás en cualquier evento, sin volver a cargarlos cada vez.
 
-En la pantalla vas a leer el subtítulo *"Productos reutilizables de tu productora"*. Si todavía no cargaste nada, aparece el mensaje:
+En la pantalla vas a leer el subtítulo *"Entradas, adicionales y la carta de la barra, para reusar en tus eventos"*. Si todavía no cargaste nada, aparece el mensaje:
 
 > Definí tus productos una vez y reutilizalos en todos tus eventos sin volver a cargarlos.
 
@@ -27,20 +27,29 @@ En la pantalla vas a leer el subtítulo *"Productos reutilizables de tu producto
   </Step>
 </Steps>
 
-El Catálogo tiene dos pestañas:
+El Catálogo tiene tres pestañas:
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Tipos de Entrada" icon="ticket">
     Tus entradas reutilizables (General, VIP, etc.).
   </Card>
   <Card title="Adicionales" icon="bag-shopping">
-    Tu pre-venta de tragos y bebidas que se canjean con QR.
+    Lo que se compra con la entrada y se canjea con QR: estacionamiento, merch, guardarropa, traslados.
+  </Card>
+  <Card title="Carta de la barra" icon="martini-glass-citrus" href="#carta-de-la-barra">
+    Tus tragos, con precio, foto y receta, para traer a la Barra de cada evento.
   </Card>
 </CardGroup>
 
-Si una pestaña está vacía, vas a ver **"Sin tipos de entrada en el catálogo"** o **"Sin adicionales en el catálogo"** según corresponda.
+Si una pestaña está vacía, vas a ver **"Sin tipos de entrada en el catálogo"** o **"Sin adicionales en el catálogo"** según corresponda. La pestaña **Carta de la barra** la ve quien tiene el permiso «Gestionar la barra».
+
+<Note>
+  En **Adicionales**, el catálogo te recuerda **"¿Tragos? Van en la Carta de la barra"**. Si un adicional se llama igual que un producto de la carta, lo marca con *"También en la carta de la barra"*: es el mismo trago cargado dos veces.
+</Note>
 
 ## Crear un producto
+
+Esto aplica a **Tipos de Entrada** y **Adicionales**; la carta de la barra tiene su propio formulario (ver [Carta de la barra](#carta-de-la-barra)).
 
 El botón de arriba a la derecha cambia según la pestaña en la que estés:
 
@@ -76,21 +85,6 @@ El tipo del producto queda fijado por la pestaña desde la que entraste y **no s
 <Warning>
   El **Precio** no se puede editar más adelante. Revisalo bien antes de crear el producto.
 </Warning>
-
-### Imágenes prearmadas de bebidas (solo en Adicionales)
-
-Cuando cargás la **Foto** de un adicional, debajo aparece la opción *"O elegí una de estas"* con 13 ilustraciones listas para usar:
-
-```text
-Fernet con coca · Cerveza · Gin tonic · Vodka · Cuba libre · Vino
-Aperol Spritz · Gancia · Espumante · Shots · Energizante · Gaseosa · Agua
-```
-
-Tocás una y se usa como imagen del producto. En **Tipos de Entrada** estas imágenes no aparecen.
-
-<Note>
-  El preset solo cambia la **ilustración** del producto. No crea la bebida solo: igual tenés que cargar el producto a mano (nombre, precio, etc.).
-</Note>
 
 ## Editar un producto
 
@@ -146,6 +140,26 @@ Esta es la parte clave: el catálogo se aprovecha al **importar** sus productos 
 
 Si el catálogo de ese tipo está vacío, el panel muestra *"Tu catálogo todavía no tiene tipos de entrada / adicionales"* con un enlace **"Crear en el catálogo"** para cargarlos en el momento.
 
+## Carta de la barra
+
+La pestaña **"Carta de la barra"** guarda tus tragos para la [Barra](/events/barra) de cada evento: los cargás una vez y los traés a cada evento.
+
+<Tip>
+  No hace falta cargarla a mano: **la primera vez que armás una barra, tu carta se guarda sola acá**.
+</Tip>
+
+- **"Agregar producto"**: nombre, foto, categoría, precio y cómo cuenta stock (**"Sin control"**, **"Por unidad"** o **"Con receta"**). En los productos por unidad podés guardar **"Lo de siempre por noche"**.
+- **"Traer mis adicionales"**: pensado para quien vendía tragos como adicionales. Suma a la carta **todos** los adicionales de tu catálogo que todavía no están en ella; si entre ellos hay algo que no es de la barra (por ejemplo, Estacionamiento), sacalo de la carta.
+- **Insumos**: las botellas de las recetas, con su **"Lo de siempre por noche"** opcional. Cada evento las trae con su carta.
+- Para sacar un producto, tocá el tacho: las barras que ya lo tienen lo siguen vendiendo.
+
+Para usarla en un evento:
+
+- **Al armar la barra**, tocá **"Usar mi carta"**.
+- **Con la barra ya armada**, en **Carta → Productos**, tocá **"Traer de mi carta"**.
+
+Igual que con los otros productos, en cada evento se crea una **copia**: el precio lo podés cambiar en ese evento sin tocar la carta del catálogo. Lo de siempre por noche aparece en el Stock del evento como **"Cargar lo de siempre"**. Más detalle en [Stock de la barra](/events/barra-stock).
+
 ## Preguntas frecuentes
 
 <AccordionGroup>
@@ -156,13 +170,13 @@ Si el catálogo de ese tipo está vacío, el panel muestra *"Tu catálogo todav�
     No. Al importar se crean copias independientes. Editar o quitar un producto en el catálogo **no afecta** las copias ya importadas en eventos. Y editar la copia dentro de un evento **no afecta** el catálogo.
   </Accordion>
   <Accordion title="¿El catálogo maneja stock o inventario?">
-    No. El catálogo solo guarda el **Límite por compra** (cuántas unidades por compra). No lleva stock ni inventario.
+    Para entradas y adicionales, no: solo guarda el **Límite por compra** (cuántas unidades por compra). La **carta de la barra** sí guarda cómo cuenta stock cada trago, sus recetas, los insumos y lo de siempre por noche; el stock real se lleva en la [Barra](/events/barra-stock) de cada evento.
   </Accordion>
   <Accordion title="¿Puedo crear Combos en el catálogo?">
     No. Los **Combos** existen solo dentro de un evento, no en el catálogo.
   </Accordion>
   <Accordion title="¿Por qué no puedo cambiar el precio de un producto del catálogo?">
-    El precio queda fijo para mantener la consistencia. Si necesitás otro precio, creá un producto nuevo con el botón de agregar.
+    En tipos de entrada y adicionales, el precio queda fijo para mantener la consistencia. Si necesitás otro precio, creá un producto nuevo con el botón de agregar. En la carta de la barra, el precio sí se puede cambiar.
   </Accordion>
   <Accordion title="¿Qué permisos necesito?">
     Ver, crear, editar, quitar e importar requieren los permisos de productos correspondientes. Revisalos en [Roles y permisos](/organizations/roles).
@@ -176,7 +190,10 @@ Si el catálogo de ese tipo está vacío, el panel muestra *"Tu catálogo todav�
     Mirá cómo se gestionan los productos importados dentro de un evento.
   </Card>
   <Card title="Adicionales del evento" icon="bag-shopping" href="/events/adicionales">
-    Configurá la pre-venta de tragos y bebidas de tu evento.
+    Configurá estacionamiento, merch y los demás adicionales de tu evento.
+  </Card>
+  <Card title="Barra del evento" icon="martini-glass-citrus" href="/events/barra">
+    Traé tu carta y vendé los tragos en el mostrador y desde el celu.
   </Card>
   <Card title="Cómo funcionan los créditos" icon="coins" href="/credits/what-are-credits">
     Entendé qué son los créditos y cómo se usan al generar entradas.

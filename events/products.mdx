@@ -6,7 +6,11 @@ icon: "box"
 
 # Productos del evento
 
-Los **productos** son todo lo que podés vender en tu evento: entradas de acceso, **adicionales** (bebidas, estacionamiento, merchandising… que se canjean con QR) y combos que combinan varios elementos.
+Los **productos** son lo que se compra en la página de tu evento: entradas de acceso, **adicionales** (estacionamiento, merchandising, guardarropa… que se canjean con QR) y combos que combinan varios elementos.
+
+<Note>
+  Los **tragos** no se cargan acá: se venden desde la [Barra](/events/barra) del evento, en el mostrador, desde el celu o con la entrada.
+</Note>
 
 <Card title="1 crédito = 1 producto" icon="coins">
   Cada vez que se genera o vende cualquier producto (entrada o adicional), se descuenta 1 crédito.
@@ -25,22 +29,22 @@ Los **productos** son todo lo que podés vender en tu evento: entradas de acceso
     - Anticipada, En puerta
   </Card>
   <Card title="Adicionales" icon="bag-shopping" href="/events/adicionales">
-    **Todo lo que vendés además de la entrada**
+    **Lo que se suma a la entrada**
 
     Tus clientes los compran online y los canjean en el evento con su QR:
 
-    - Cerveza, Fernet, Gin tonic
     - Estacionamiento, traslados
     - Remeras, gorras, merchandising
+    - Guardarropa
   </Card>
   <Card title="Combos" icon="box">
     **Paquetes combinados**
 
     Combinan entradas \+ adicionales:
 
-    - Entrada \+ 2 cervezas
+    - Entrada \+ estacionamiento
     - 2x1 entrada General
-    - Entrada VIP \+ consumo
+    - Entrada VIP \+ remera
   </Card>
 </CardGroup>
 
@@ -67,7 +71,7 @@ Tomando una **Entrada** como ejemplo, estos son los campos del editor:
   <Accordion title="Información básica">
     **Requerido:**
 
-    - **Nombre:** Ej: "General", "Cerveza", "VIP \+ Cena"
+    - **Nombre:** Ej: "General", "Estacionamiento", "VIP \+ Cena"
     - **Estado:** Activo, Oculto, Exclusivo, Agotado o Inactivo (ver más abajo)
 
     **Opcional:**
@@ -87,6 +91,11 @@ Tomando una **Entrada** como ejemplo, estos son los campos del editor:
     - **Límite:** Total disponible del producto (ej: 200 entradas VIP). Cuando se alcanza, el producto pasa a "Agotado".
     - **Programar venta:** Desde cuándo y hasta cuándo se vende, o que empiece cuando termine otra entrada (en un combo, otro combo). Es la base de las **tandas** — mirá [Tandas y ventana de venta](/events/tandas).
     - **Limitar vigencia de uso:** Hora a partir de la cual el QR ya no se puede escanear en la puerta.
+  </Accordion>
+  <Accordion title="Consumiciones incluidas (opcional, solo entradas)">
+    Cuántos tragos trae la entrada (por ejemplo, una VIP con 2). Se canjean en la [Barra](/events/barra) del evento: en la barra escanean la entrada y eligen el trago. No usan créditos, y en la entrada de tu cliente aparece cuántas incluye.
+
+    Mirá [Tragos incluidos con la entrada](/events/barra-pedidos#tragos-incluidos-con-la-entrada).
   </Accordion>
   <Accordion title="Estados del producto">
     - **Activo:** Visible para todos.

@@ -20,19 +20,19 @@ Son los roles predefinidos de qrTicket. **No se pueden editar ni eliminar**, y c
 
 <CardGroup cols={2}>
   <Card title="Administrador" icon="crown">
-    **Acceso total** — 23 permisos.
+    **Acceso total** — 24 permisos.
 
     Es el rol del creador de la productora y el único que puede eliminarla.
   </Card>
   <Card title="Sub-administrador" icon="gear">
-    **Casi todo** — 22 permisos.
+    **Casi todo** — 23 permisos.
 
     Lo mismo que el Administrador, menos eliminar la productora.
   </Card>
   <Card title="Manager" icon="clipboard">
-    **Gestión operativa** — 14 permisos.
+    **Gestión operativa** — 15 permisos.
 
-    Ver, cargar, editar y eliminar invitados, escanear, comprar créditos y más.
+    Ver, cargar, editar y eliminar invitados, escanear, gestionar la barra, comprar créditos y más.
   </Card>
   <Card title="Vendedor" icon="money-bills">
     **Equipo de ventas** — 3 permisos.
@@ -52,7 +52,7 @@ Son los roles predefinidos de qrTicket. **No se pueden editar ni eliminar**, y c
 </CardGroup>
 
 <Note>
-  El Administrador tiene acceso total con 23 de los 25 permisos porque no lleva «Ver invitados propios» ni «Cargar invitados (con límite)»: ya tiene sus versiones amplias, «Ver todos los invitados» y «Cargar invitados (sin límite)».
+  El Administrador tiene acceso total con 24 de los 26 permisos porque no lleva «Ver invitados propios» ni «Cargar invitados (con límite)»: ya tiene sus versiones amplias, «Ver todos los invitados» y «Cargar invitados (sin límite)».
 </Note>
 
 <Tip>
@@ -74,7 +74,7 @@ Si los roles del sistema no se ajustan a tu operación, creá roles propios de t
     Escribí el **nombre del rol** (por ejemplo, "Encargado de puerta") y, si querés, una **descripción** (opcional) para que tu equipo sepa para qué sirve.
   </Step>
   <Step title="Elegir los permisos">
-    Activá los permisos que querés darle al rol. Están agrupados en 7 categorías y solo ves los que podés otorgar (un Administrador ve los 25).
+    Activá los permisos que querés darle al rol. Están agrupados en 7 categorías y solo ves los que podés otorgar (un Administrador ve los 26).
   </Step>
   <Step title="Guardar">
     Tocá **"Crear rol"** al final del formulario. El rol queda disponible para asignarlo a cualquier miembro desde la sección [Equipo](/organizations/team).
@@ -87,7 +87,7 @@ Si los roles del sistema no se ajustan a tu operación, creá roles propios de t
 
 ## Catálogo completo de permisos
 
-qrTicket tiene **25 permisos** organizados en **7 categorías**. Estos son los permisos que ves al armar un rol personalizado.
+qrTicket tiene **26 permisos** organizados en **7 categorías**. Estos son los permisos que ves al armar un rol personalizado.
 
 <AccordionGroup>
   <Accordion title="Invitados (7)" icon="user-group">
@@ -102,11 +102,12 @@ qrTicket tiene **25 permisos** organizados en **7 categorías**. Estos son los p
   <Accordion title="Escaneo (1)" icon="qrcode">
     - Escanear entradas
   </Accordion>
-  <Accordion title="Eventos (4)" icon="calendar">
+  <Accordion title="Eventos (5)" icon="calendar">
     - Crear eventos
     - Editar eventos
     - Eliminar eventos
     - Ver estadísticas del evento
+    - Gestionar la barra: armar la carta y el stock, los links de barra, y ver ventas y cajas ([Barra](/events/barra))
   </Accordion>
   <Accordion title="Productos (4)" icon="ticket">
     - Crear productos
