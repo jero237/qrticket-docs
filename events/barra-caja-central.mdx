@@ -1,0 +1,117 @@
+---
+title: "Caja central"
+description: "Para los lugares donde se paga en una caja y se retira en otra barra: la caja cobra y da un ticket con un código, y la barra de retiro entrega"
+icon: "receipt"
+---
+
+# Caja central
+
+En muchos lugares no se cobra en la barra: se paga en una **caja** y los tragos se retiran en **otra barra**. La [Barra](/events/barra) funciona así si se lo indicás: la caja cobra y le da al cliente un **ticket de retiro** con un código, y la barra de retiro le entrega los tragos cuando muestra ese código.
+
+<Note>
+  Necesitás la barra armada y al menos dos barras: la caja y una que entregue. Si todavía no la armaste, empezá por [Armar la barra](/events/barra#armar-la-barra).
+</Note>
+
+---
+
+## Configurarla
+
+En la Barra, **Ajustes → "Barras"**, al lado de cada barra elegís qué hace:
+
+| Opción | Qué hace |
+| --- | --- |
+| **Cobra y entrega** | La barra de siempre: cobra y sirve en el momento. Así arranca cada barra. |
+| **Solo cobra (caja)** | Cobra y da un código; los tragos se retiran en otra barra. |
+| **Solo entrega** | No cobra: entrega lo que se pagó en la caja o desde el celu. |
+
+<Steps>
+  <Step title="Sumá las barras que falten">
+    Una por mostrador: la caja y cada barra donde se retira. Las sumás con **"Agregar barra"** (por ejemplo, "Caja" y "Barra de retiro").
+  </Step>
+  <Step title="Marcá dónde se retira">
+    Al lado de la barra que entrega, elegí **"Solo entrega"**.
+  </Step>
+  <Step title="Marcá la caja">
+    Al lado de la barra donde se cobra, elegí **"Solo cobra (caja)"**.
+  </Step>
+  <Step title="Mandá los links y probá">
+    Cada barra abre con su propio link, en **En vivo → ["Links y QR"](/events/barra#links-y-qr)**: mandale a cada una el suyo. Con **"Practicar"** abrís la caja en modo práctica: cobrá algo de mentira y vas a ver el ticket de retiro, con la barra donde se retira.
+  </Step>
+</Steps>
+
+**Siempre tiene que haber al menos una barra que entregue.** Si un cambio deja los pedidos sin dónde retirarse, no se guarda y Ajustes te avisa: *"Alguna barra tiene que entregar los pedidos: marcá una como «Solo entrega» o que entregue pedidos."* Por eso conviene marcar primero la barra de retiro y después la caja.
+
+Lo más simple es que la caja solo cobre y las barras de retiro solo entreguen. Si además dejás alguna barra **"Cobra y entrega"** que entrega los [pedidos desde el celu](/events/barra-pedidos#activarlos) (las tildadas en **"Se retiran en"**; al principio, la primera), esa barra también entrega los de la caja. El ticket de retiro dice en qué barras se retira.
+
+---
+
+## En la caja
+
+La caja se abre y cobra como cualquier barra: efectivo, posnet, QR o Point. La diferencia es que después de cada cobro aparece el **"Ticket de retiro"**:
+
+- El **código**, grande: por ejemplo, **C14**. Los de la caja empiezan con C; los de los pedidos desde el celu, con A (**A27**).
+- **"Retirá en …"**: la barra donde se retira.
+- Un **QR** para que el cliente lo escanee **con la cámara del celu**: se lleva el pedido en el teléfono, en la misma página que tiene un pedido desde el celu, con su código, el QR para mostrar en la barra y el estado (**Pagado**, **Listo**, **Entregado**). Esa página le avisa cuando está listo.
+- Lo que lleva.
+
+Si no escanea el QR, alcanza con el código: que se lo acuerde o le saque una foto. **"Imprimir"** saca el ticket en papel, pensado para una impresora de tickets de 58 mm: lleva el código, dónde retirar, lo que lleva y el QR para el celu. Con **"Siguiente"** pasás al próximo cliente.
+
+La caja no tiene **"Canjear"**: no entrega nada. Los pedidos, los tragos con la entrada y los adicionales se entregan en las otras barras.
+
+<Warning>
+  **Para dar el código, la caja necesita señal.** Sin conexión, la venta en efectivo o posnet queda guardada en el equipo y sube sola cuando vuelve, pero el código sale recién entonces.
+</Warning>
+
+---
+
+## En la barra de retiro
+
+Una barra **"Solo entrega"** no tiene carta ni cobra: su pantalla muestra los **"Pedidos"** que esperan, los de la caja (**"Pagado en la caja"**) y los del celu (con el nombre), cada uno con su código y lo que lleva. Cuando entra uno, suena y avisa **"Nuevo pedido"**.
+
+1. Los nuevos dicen **"Pagado · preparar"**. Cuando está preparado, tocá **"Marcar listo"**: si el cliente escaneó el QR, le llega el aviso en el celu.
+2. Para entregarlo, tocá **"Entregar"** (arriba, o la tecla **F2**) o **"Entregar con el código"**, y escaneá el QR que el cliente tiene en el celu o escribí el código (**C14** o **A27**). Si trae el ticket en papel o una foto, escribí el código.
+3. Ves el pedido antes de entregarlo; tocá **"Entregar"**. Un pedido ya entregado no se puede entregar dos veces.
+
+Desde **"Entregar"** también se canjea lo demás que se retira en la barra: [tragos con la entrada](/events/barra-pedidos#tragos-con-la-entrada), [entradas que vienen con tragos](/events/barra-pedidos#tragos-que-vienen-con-la-entrada) y adicionales.
+
+La barra de retiro se abre como cualquier otra, con el nombre de quien atiende (el cambio inicial puede quedar vacío: ahí no se cobra). Arriba dice **Turno** en lugar de **Caja**.
+
+---
+
+## La plata, el stock y los créditos
+
+| | Cómo queda |
+| --- | --- |
+| **La plata** | En la caja que cobró: suma a su efectivo esperado y a lo cobrado en [Cajas](/events/barra#cajas), como cualquier venta. |
+| **El stock** | Se descuenta en la barra que entrega, cuando entrega. Si controlás [stock](/events/barra-stock), las botellas van en la barra de retiro, no en la caja. |
+| **Los créditos** | No usa: es una venta del mostrador. |
+
+En **Ventas → Ventas**, cada venta de la caja muestra su código al lado del nombre de la barra. Si anulás una (como cualquier venta, desde la caja o desde Ventas), el pedido desaparece de la barra de retiro y ya no se puede entregar. Si el cliente abre su pedido, ve que la barra lo anuló y que se acerque a la caja.
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Puedo tener más de una caja o más de una barra de retiro?">
+    Sí: marcá cada una con lo que hace. El ticket de retiro dice en qué barras se retira (por ejemplo, *"Retirá en Barra 1 o Barra 2"*).
+  </Accordion>
+  <Accordion title="¿Los pedidos desde el celu también se retiran en la barra de retiro?">
+    Sí. Una barra **"Solo entrega"** entrega los pedidos de la caja y los del celu. La caja, en cambio, no entrega nada.
+  </Accordion>
+</AccordionGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Barra" icon="martini-glass-citrus" href="/events/barra">
+    Armar la barra, cobrar y cerrar la caja
+  </Card>
+  <Card title="Pedidos desde el celu" icon="mobile-screen" href="/events/barra-pedidos">
+    Pedidos sin fila, tragos con la entrada y tragos que vienen con la entrada
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda? Contactanos por [WhatsApp](https://wa.me/5491122503348)

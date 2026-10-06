@@ -77,6 +77,7 @@
                 "pages": [
                   "events/barra",
                   "events/barra-pedidos",
+                  "events/barra-caja-central",
                   "events/barra-stock"
                 ]
               },

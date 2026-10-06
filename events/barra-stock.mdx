@@ -47,6 +47,8 @@ Cada insumo muestra lo que **entró**, lo **vendido** según las recetas, las **
 
 El stock está en lugares: el **Depósito** y **cada barra**. Si tenés una sola barra, lo que cargás va por defecto a esa barra.
 
+Cada venta descuenta de la barra donde se sirvió. Los pedidos —desde el celu o de una [caja central](/events/barra-caja-central)— descuentan de la barra que los entrega, recién cuando los entrega: con una caja central, las botellas van en la barra de retiro, no en la caja.
+
 - **"Cargar stock"**: lo que entra. Elegís el insumo, cuánto (en botellas; **0,5** es media) y dónde entra.
 - **"Mover a una barra"** (en **Más**): pasa stock del depósito a una barra, o de una barra a otra.
 - **"Registrar rotura"** (en **Más**): botellas rotas o derramadas.
@@ -54,7 +56,7 @@ El stock está en lugares: el **Depósito** y **cada barra**. Si tenés una sola
 Desde la caja, quien atiende también puede:
 
 - **"Reposición"**: registrar lo que le trajeron del depósito. Queda a cargo de esa barra.
-- **"Rotura"**: registrar una botella rota. Pide el [PIN del encargado](/events/barra#pin-para-anular), porque es donde podrían esconderse botellas que faltan.
+- **"Rotura"**: registrar una botella rota. Pide el [PIN del encargado](/events/barra#pin-del-encargado), porque es donde podrían esconderse botellas que faltan.
 
 <Note>
   Si un insumo se termina según las ventas, la caja avisa pero **se sigue vendiendo** (las recetas son una estimación): pedí reposición. Los [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu), en cambio, no se pueden hacer con un producto agotado.

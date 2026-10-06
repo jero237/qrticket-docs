@@ -12,12 +12,15 @@ La **Barra** es el punto de venta de tu evento. Cargás qué vendés y a qué pr
   Efectivo, posnet, QR, Point y cortesías: nada de lo que se cobra en la barra descuenta créditos. Los tragos que se venden online usan 1 crédito cada uno, que se descuenta después del evento. Mirá [Créditos](#créditos).
 </Card>
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Caja en el mostrador" icon="cash-register">
     Cobrás, das vuelto, anulás con PIN y cerrás la caja a ciegas. Está en esta página.
   </Card>
   <Card title="Pedidos desde el celu" icon="mobile-screen" href="/events/barra-pedidos">
     Tu público pide y paga desde el celular y retira sin fila. También, tragos con la entrada.
+  </Card>
+  <Card title="Caja central" icon="receipt" href="/events/barra-caja-central">
+    Se paga en una caja y se retira en otra barra: la caja da un código y la barra entrega.
   </Card>
   <Card title="Stock de botellas" icon="wine-bottle" href="/events/barra-stock">
     Opcional: recetas, reposición y conteo al cierre para ver si falta algo.
@@ -58,8 +61,8 @@ Después ves la pantalla **"Barra armada"**:
 
 - **"Probar la caja"**: abre la caja en **modo práctica**. Cobrás un par de tragos de mentira y no se guarda nada. Es lo primero que conviene hacer.
 - **La noche del evento**: el link de la barra, para copiar o **"Mandar por WhatsApp"** a quien la atienda. Si los pedidos desde el celu arrancaron prendidos, ahí mismo dice **"Pedidos desde el celu: activados"**, con **"Ver el afiche"**.
-- **PIN del encargado**: se muestra **una sola vez**. Anotalo; lo cambiás cuando quieras en **Ajustes → "PIN para anular"**.
-- **Para más adelante**: tragos con la entrada, QR y Point de MercadoPago, un trago incluido con la entrada, más de una barra, control de botellas y, si no tenés MercadoPago conectado, pedidos desde el celu. Nada de eso hace falta para vender esa noche.
+- **PIN del encargado**: se muestra **una sola vez**. Anotalo; lo cambiás cuando quieras en [Ajustes](#pin-del-encargado).
+- **Para más adelante**: tragos que se compran con la entrada, QR y Point de MercadoPago, tragos que vienen con la entrada, más de una barra, control de botellas y, si no tenés MercadoPago conectado, pedidos desde el celu. Nada de eso hace falta para vender esa noche.
 
 <Tip>
   La primera vez que armás una barra, tu carta se guarda sola en **Catálogo → "Carta de la barra"**. En el próximo evento la traés con un toque. Mirá [Catálogo](/organizations/catalogue#carta-de-la-barra).
@@ -74,7 +77,7 @@ Una vez armada, la Barra tiene cuatro pestañas:
 | **En vivo** | Lo que se usa la noche del evento, en [Links y QR](#links-y-qr), y lo que está pasando: lo vendido, la cantidad de ventas, el ticket promedio y cuánto entra online, los tragos vendidos online, y las ventas por hora, por medio de pago y por barra, lo que se está terminando (si controlás stock) y lo más pedido. Se actualiza sola. |
 | **Carta** | **Productos**: lo que se vende, sus precios, si se puede comprar con la entrada o pedir desde el celu, cómo cuenta stock cada uno y los tragos que vienen con cada entrada. **Stock**: botellas e insumos (opcional). |
 | **Ventas** | **Ventas**: cada venta del mostrador y del celu. **Cajas**: cada caja de la noche, con lo contado y las diferencias. |
-| **Ajustes** | Una sola página con lo que decidís una vez: cómo se cobra en la caja, MercadoPago, pedidos desde el celu, las barras y el PIN para anular. Mirá [Ajustes](#ajustes). |
+| **Ajustes** | Una sola página con lo que decidís una vez: cómo se cobra en la caja, MercadoPago, pedidos desde el celu, las barras (y qué hace cada una) y el PIN del encargado. Mirá [Ajustes](#ajustes). |
 
 Hasta la primera venta, **En vivo** muestra arriba la lista **"Antes de abrir"**: probar la caja en práctica, mandarle el link a cada barra y, si recibís pedidos desde el celu, poner el afiche. Desaparece con la primera venta.
 
@@ -180,11 +183,11 @@ Solo aparecen los medios que prendiste en [Cómo se cobra en la caja](#cómo-se-
 
 ### Si se corta la señal
 
-**Efectivo y posnet siguen funcionando sin internet.** Las ventas quedan guardadas en ese equipo (arriba ves **"Sin señal"** y cuántas hay guardadas) y suben solas cuando vuelve la conexión, sin duplicarse. **QR y Point necesitan señal**: sin conexión aparecen deshabilitados.
+**Efectivo y posnet siguen funcionando sin internet.** Las ventas quedan guardadas en ese equipo (arriba ves **"Sin señal"** y cuántas hay guardadas) y suben solas cuando vuelve la conexión, sin duplicarse. **QR y Point necesitan señal**: sin conexión aparecen deshabilitados. En una [caja central](/events/barra-caja-central), el código del ticket de retiro también necesita señal.
 
 ### Cortesías, anulaciones y retiros
 
-Algunas acciones piden el **PIN del encargado** (el que cambiás en [Ajustes → "PIN para anular"](#pin-para-anular)), para que nadie pueda hacer desaparecer plata o botellas:
+Algunas acciones piden el **PIN del encargado** (lo cambiás en [Ajustes](#pin-del-encargado)), para que nadie pueda hacer desaparecer plata o botellas:
 
 - **Cortesía**: el pedido sale sin cobrar, descuenta stock y queda en el reporte con el motivo.
 - **Anular una venta**: quien atiende puede anular su última venta durante unos segundos sin PIN, desde **Caja → "Últimas ventas de este equipo"**. Pasado ese momento, hace falta el PIN.
@@ -192,7 +195,7 @@ Algunas acciones piden el **PIN del encargado** (el que cambiás en [Ajustes →
 - **Rotura** de botellas y **confirmar a mano** un cobro de MercadoPago que no se confirmó solo.
 
 <Note>
-  El PIN tiene 4 números y es uno por evento. Después de 5 intentos fallidos se bloquea 10 minutos. Si se filtró, cambialo en **Ajustes → "PIN para anular"**.
+  El PIN tiene 4 números y es uno por evento. Después de 5 intentos fallidos se bloquea 10 minutos. Si se filtró, cambialo en **Ajustes → "PIN del encargado"**.
 </Note>
 
 Desde **Caja** también podés **"Cambiar de persona"** cuando hay cambio de turno.
@@ -203,12 +206,12 @@ Desde **Caja** también podés **"Cambiar de persona"** cuando hay cambio de tur
 
 Desde ahí se entregan:
 
-- **Pedidos desde el celu**: con su QR o su código (por ejemplo, **A27**).
+- **Pedidos**: los del celu y, si tenés una [caja central](/events/barra-caja-central), los que se pagaron en la caja. Con su QR o su código (por ejemplo, **A27** o **C14**).
 - **Tragos con la entrada** que tu público compró al sacar su entrada.
 - **Entradas que vienen con tragos**: elegís qué trago se lleva.
 - **Adicionales** que ya vendiste, por ejemplo tragos cargados como adicional antes de que existiera la Barra.
 
-Todo esto está explicado en [Pedidos desde el celu y tragos con la entrada](/events/barra-pedidos).
+Todo esto está explicado en [Pedidos desde el celu y tragos con la entrada](/events/barra-pedidos). En una [caja central](/events/barra-caja-central), la caja no tiene **"Canjear"** y en la barra de retiro el botón se llama **"Entregar"**.
 
 ### Modo día o noche
 
@@ -272,7 +275,8 @@ La tarjeta **"Pedidos desde el celu"** tiene el switch para recibirlos, dónde s
 Una barra por mostrador: cada una tiene su **propio link**, sus cajas y su stock. En la tarjeta **"Barras"** ves cada una (con **"Caja abierta"** si tiene una caja abierta y **"Point"** si tiene uno vinculado) y podés:
 
 - **"Agregar barra"**: sumás otra (por ejemplo, "Barra VIP"). Su link aparece en [Links y QR](#links-y-qr).
-- **"Vincular Point"** o **"Cambiar Point"**: aparece si cobrás con Point. Mirá [Vincular un Point](#vincular-un-point).
+- **Qué hace cada barra**: al lado de cada una elegís **"Cobra y entrega"** (la de siempre), **"Solo cobra (caja)"** o **"Solo entrega"**. Las dos últimas son para cuando se paga en una caja y se retira en otra barra: mirá [Caja central](/events/barra-caja-central).
+- **"Vincular Point"** o **"Cambiar Point"**: aparece si cobrás con Point (no en las barras **"Solo entrega"**, que no cobran). Mirá [Vincular un Point](#vincular-un-point).
 
 Desde el menú **⋯** de cada barra:
 
@@ -298,9 +302,9 @@ Funciona con **Point Smart**, y el Point tiene que estar con la misma cuenta de 
 
 Si la lista está vacía, encendé el Point, entrá con tu cuenta de MercadoPago y volvé a abrirla. Desde el mismo lugar podés **"Cambiar Point"** o **"Desvincular"**.
 
-### PIN para anular
+### PIN del encargado
 
-La tarjeta **"PIN para anular"** guarda el PIN que la caja pide para anular ventas, dar cortesías y sacar efectivo (y también para registrar roturas y confirmar a mano un cobro de MercadoPago). En la caja aparece como **"PIN del encargado"**. Se genera al armar la barra; para poner otro, tocá **"Cambiar"**, cargá el **"PIN nuevo"** y tocá **"Guardar PIN"**.
+La tarjeta **"PIN del encargado"** guarda el PIN que la caja pide para anular ventas, dar cortesías y sacar efectivo (y también para registrar roturas y confirmar a mano un cobro de MercadoPago). Se genera al armar la barra; para poner otro, tocá **"Cambiar"**, cargá el **"PIN nuevo"** y tocá **"Guardar PIN"**.
 
 Sin PIN, la caja no puede anular, dar cortesías ni sacar efectivo.
 
@@ -361,7 +365,7 @@ En el mostrador, si el Point dice *Aprobado* pero la caja no lo confirmó, quien
 
 | Qué | ¿Usa créditos? |
 | --- | --- |
-| Todo lo que se cobra en el mostrador (efectivo, posnet, QR, Point, cortesías) | **No** |
+| Todo lo que se cobra en el mostrador, también en una [caja central](/events/barra-caja-central) (efectivo, posnet, QR, Point, cortesías) | **No** |
 | [Tragos que vienen con la entrada](/events/barra-pedidos#tragos-que-vienen-con-la-entrada) | **No**: van con el crédito de la entrada |
 | Tragos online: [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu) y [tragos con la entrada](/events/barra-pedidos#tragos-con-la-entrada) | **1 crédito por trago**, desde el primero |
 
@@ -382,13 +386,16 @@ Los créditos de los tragos online se descuentan **una sola vez, después del ev
     Sí, desde **Carta → Productos**. Las ventas que ya se hicieron quedan con el precio al que se cobraron.
   </Accordion>
   <Accordion title="¿Cada persona que atiende tiene su PIN?">
-    No. Hay un solo PIN por evento (el de **Ajustes → "PIN para anular"**, que en la caja aparece como **PIN del encargado**); quien atiende pone su nombre al abrir la caja y queda en cada venta.
+    No. Hay un solo **PIN del encargado** por evento (lo cambiás en **Ajustes**); quien atiende pone su nombre al abrir la caja y queda en cada venta.
   </Accordion>
   <Accordion title="¿Funciona con Payway, Clover o Getnet?">
     Sí, como **posnet**: cobrás en tu posnet y confirmás en la caja cuando sale el comprobante. Al cerrar, el cierre de lote te muestra si algo no cuadra.
   </Accordion>
+  <Accordion title="¿Qué pasa si cobro en una caja y entrego en otra barra?">
+    Se puede. En **Ajustes → "Barras"**, marcá la barra de retiro como **"Solo entrega"** y la caja como **"Solo cobra (caja)"**. Cada venta de la caja sale con un ticket de retiro con un código (por ejemplo, **C14**), y la barra de retiro entrega con ese código. La plata queda en la caja que cobró, el stock se descuenta en la barra que entrega y no usa créditos. Mirá [Caja central](/events/barra-caja-central).
+  </Accordion>
   <Accordion title="¿Se pueden imprimir tickets o comandas?">
-    Por ahora no. La caja no imprime.
+    Solo el ticket de retiro de una [caja central](/events/barra-caja-central), con **"Imprimir"**, en una impresora de tickets. Las demás barras no imprimen tickets ni comandas.
   </Accordion>
   <Accordion title="Dupliqué el evento: ¿se copió la barra?">
     No. En el evento nuevo armá la barra y traé tu carta de Catálogo con **"Usar mi carta"** (o, con la barra ya armada, **"Traer de mi carta"**).
@@ -400,9 +407,12 @@ Los créditos de los tragos online se descuentan **una sola vez, después del ev
 
 ## Próximos pasos
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Pedidos desde el celu" icon="mobile-screen" href="/events/barra-pedidos">
     Pedidos sin fila, tragos con la entrada y tragos que vienen con la entrada
+  </Card>
+  <Card title="Caja central" icon="receipt" href="/events/barra-caja-central">
+    Se cobra en una caja y se retira en otra barra
   </Card>
   <Card title="Stock de la barra" icon="wine-bottle" href="/events/barra-stock">
     Botellas, recetas y conteo al cierre
