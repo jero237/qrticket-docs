@@ -1,0 +1,113 @@
+---
+title: "Stock de la barra"
+description: "Opcional: controlá botellas e insumos con recetas, repartilos entre barras y contá al cierre para ver si falta algo"
+icon: "wine-bottle"
+---
+
+# Stock de la barra
+
+El stock es **opcional**: para vender en la [Barra](/events/barra) no hace falta. Sirve para saber qué entra, qué se vende y, al cierre, **si falta algo**. Cargás lo que entra a la barra (botellas, latas, hielo), cada venta descuenta lo que lleva y, al final, contás lo que quedó.
+
+## Dónde está
+
+En la Barra de tu evento, **Carta → Stock**. Si todavía no cargaste nada, vas a ver **"Controlá las botellas (opcional)"** con el botón **"Agregar botella o insumo"**.
+
+---
+
+## Cómo cuenta stock cada producto
+
+En **Carta → Productos**, al editar un producto, tocá **"Controlar el stock (opcional)"** y elegí una de tres formas:
+
+| Opción | Para qué | Cómo descuenta |
+| --- | --- | --- |
+| **Sin control** | Lo que no querés seguir | No descuenta ni avisa cuando se termina. |
+| **Por unidad** | Lo que se vende entero: latas, aguas, botellas cerradas | Cada venta descuenta 1. En **"Cuántas hay"** cargás la cantidad. |
+| **Con receta** | Los tragos que se sirven de una botella | Cada venta descuenta lo que lleva de cada insumo (por ejemplo, ml de fernet y de gaseosa). |
+
+Con receta, agregás los insumos que lleva el trago y cuánto de cada uno. Si el insumo todavía no existe, lo creás desde la misma receta.
+
+## Insumos
+
+Un **insumo** es lo que entra a la barra y se va usando: una botella de fernet, una de gaseosa, una bolsa de hielo. Lo creás con **"Agregar insumo"** (o **"Agregar botella o insumo"** la primera vez):
+
+- **Nombre**: por ejemplo, *Fernet Branca*.
+- **Se mide en**: **ml**, **g** o **unidades**.
+- **Viene en** y **cuánto trae cada una**: por ejemplo, *Botella* de *750* ml.
+- **Avisar con** (opcional): con cuántos te avisa que queda poco. Si no lo completás, avisa con el 15% de lo cargado.
+
+Cada insumo muestra lo que **entró**, lo **vendido** según las recetas, las **roturas**, el **ajuste por conteo** y lo que **queda**, con las etiquetas **"Queda poco"** y **"Agotado"**.
+
+<Tip>
+  Si ya cargaste tus recetas en **Catálogo → "Carta de la barra"**, traé los insumos con **"Traer de mi carta"**. Y si guardaste allá la cantidad de siempre de cada uno (**"Lo de siempre por noche"**), en Stock aparece **"Cargar lo de siempre"** para cargarla de un toque.
+</Tip>
+
+---
+
+## Cargar, mover y registrar roturas
+
+El stock está en lugares: el **Depósito** y **cada barra**. Si tenés una sola barra, lo que cargás va por defecto a esa barra.
+
+- **"Cargar stock"**: lo que entra. Elegís el insumo, cuánto (en botellas; **0,5** es media) y dónde entra.
+- **"Mover a una barra"** (en **Más**): pasa stock del depósito a una barra, o de una barra a otra.
+- **"Registrar rotura"** (en **Más**): botellas rotas o derramadas.
+
+Desde la caja, quien atiende también puede:
+
+- **"Reposición"**: registrar lo que le trajeron del depósito. Queda a cargo de esa barra.
+- **"Rotura"**: registrar una botella rota. Pide el **PIN del encargado**, porque es donde podrían esconderse botellas que faltan.
+
+<Note>
+  Si un insumo se termina según las ventas, la caja avisa pero **se sigue vendiendo** (las recetas son una estimación): pedí reposición. Los [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu), en cambio, no se pueden hacer con un producto agotado.
+</Note>
+
+<Warning>
+  Si una barra muestra stock negativo, vendió algo que nunca se registró como movido hacia ella. Registrá las reposiciones para que cada barra cuadre.
+</Warning>
+
+---
+
+## Contar al cierre
+
+Contar es lo que te dice si falta algo. Se cuenta **a ciegas**: quien cuenta no ve cuánto debería haber.
+
+- **Desde la caja**: **Caja → "Contar stock"**. También te lo ofrece apenas cerrás la caja.
+- **Desde el dashboard**: **Carta → Stock → "Contar"**, en el depósito o en cualquier barra.
+
+Contá todo lo que hay, **abiertas incluidas**: media botella es **0,5**. Lo que dejes vacío no se cuenta.
+
+Después de contar ves, por insumo, si **cuadra** o cuánto **falta** o **sobra**, contra lo que deberían haber dejado las ventas según las recetas. En **Carta → Stock**, **"Diferencias del último conteo"** te muestra la diferencia en botellas, cuántos tragos son aproximadamente y, si faltan, cuánta plata. Esa diferencia también va en el mail del cierre.
+
+<Note>
+  Cada conteo arranca de cero: el próximo mide solo lo que pasó desde el último.
+</Note>
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Tengo que cargar stock para vender?">
+    No. Sin stock la barra vende igual; solo no te avisa cuando algo se termina ni te dice si falta algo al cierre.
+  </Accordion>
+  <Accordion title="¿Las recetas son exactas?">
+    Son una estimación: dependen de cuánto sirve cada persona. Por eso un insumo agotado avisa pero no frena la venta en el mostrador, y el conteo al cierre es lo que te dice la verdad.
+  </Accordion>
+  <Accordion title="Si cambio una receta a mitad de la noche, ¿qué pasa?">
+    La receta nueva se aplica a todas las ventas de ese producto, también a las de antes del cambio.
+  </Accordion>
+</AccordionGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Barra" icon="martini-glass-citrus" href="/events/barra">
+    Armar la barra, cobrar y cerrar la caja
+  </Card>
+  <Card title="Catálogo" icon="box-archive" href="/organizations/catalogue#carta-de-la-barra">
+    Tu carta e insumos, para reusar en cada evento
+  </Card>
+</CardGroup>
+
+---
+
+¿Necesitás ayuda? Contactanos por [WhatsApp](https://wa.me/5491122503348)

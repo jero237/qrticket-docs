@@ -70,6 +70,16 @@
               "events/referral",
               "events/mis-ventas",
               "events/scanner",
+              {
+                "group": "Barra",
+                "icon": "martini-glass-citrus",
+                "tag": "Nuevo",
+                "pages": [
+                  "events/barra",
+                  "events/barra-pedidos",
+                  "events/barra-stock"
+                ]
+              },
               "events/settings"
             ]
           },
@@ -141,8 +151,5 @@
     "socials": {
       "instagram": "https://www.instagram.com/qrticket.app"
     }
-  },
-  "redirects": [
-    { "source": "/events/barra", "destination": "/events/adicionales" }
-  ]
+  }
 }
