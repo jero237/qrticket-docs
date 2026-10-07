@@ -1,69 +1,107 @@
 ---
 title: "Stock de la barra"
-description: "Opcional: controlá botellas e insumos con recetas, repartilos entre barras y contá al cierre para ver si falta algo"
+description: "Opcional: controlá por unidad lo que se vende entero o, en el modo avanzado, las botellas de los tragos con recetas, y contá al cierre para ver si falta algo"
 icon: "wine-bottle"
 ---
 
 # Stock de la barra
 
-El stock es **opcional**: para vender en la [Barra](/events/barra) no hace falta. Sirve para saber qué entra, qué se vende y, al cierre, **si falta algo**. Cargás lo que entra a la barra (botellas, latas, hielo), cada venta descuenta lo que lleva y, al final, contás lo que quedó.
+El stock es **opcional**: para vender en la [Barra](/events/barra) no hace falta. Sirve para saber qué entra, qué se vende y, al cierre, **si falta algo**. Cargás lo que entra, cada venta descuenta lo que lleva y, al final, contás lo que quedó.
 
 ## Dónde está
 
-En la Barra de tu evento, la pestaña **Stock**. Si todavía no cargaste nada, vas a ver **"Controlá las botellas (opcional)"** con el botón **"Agregar botella o insumo"**.
+En la Barra de tu evento, la pestaña **Stock**. Si todavía no controlás nada, vas a ver **"Controlá las latas y botellitas (opcional)"** con el botón **"Ir a la Carta"**.
+
+## Simple o avanzado
+
+El stock tiene dos modos. Arranca en el **simple**, que alcanza para la mayoría de las noches.
+
+| | Simple (el que viene) | Avanzado |
+| --- | --- | --- |
+| **Para qué** | Lo que se vende entero: latas, aguas, energizantes, botellas cerradas | Las botellas de los tragos: un fernet con coca lleva 60 ml de Fernet |
+| **Cómo descuenta** | Cada venta, 1 unidad | Cada venta, lo que dice su receta (en ml, g o unidades) |
+| **Dónde está el stock** | En un solo lugar: tu única barra o, si tenés varias, todo el evento | En el depósito y en cada barra, con movimientos y reposiciones |
+| **Cómo se cuenta** | Por unidad | Por barra, con botellas empezadas: media botella es 0,5 |
+
+Para pasar al avanzado, prendé el switch de la tarjeta **"Stock avanzado"**, al final de **Stock**. Para volver al simple, sacá las botellas con receta (o pasá esos productos a **"Por unidad"** en la Carta): mientras haya, el switch no se puede apagar.
 
 ---
 
 ## Cómo cuenta stock cada producto
 
-En **Carta**, al editar un producto, elegí en **"Stock"** una de tres formas. Mientras el evento no tenga ningún insumo, ese campo está plegado: tocá antes **"Controlar el stock (opcional)"**.
+En **Carta**, al editar un producto, elegí en **"Stock"** cómo cuenta. Mientras el evento no tenga stock, ese campo está plegado: tocá antes **"Controlar el stock (opcional)"**.
 
 | Opción | Para qué | Cómo descuenta |
 | --- | --- | --- |
 | **Sin control** | Lo que no querés seguir | No descuenta ni avisa cuando se termina. |
-| **Por unidad** | Lo que se vende entero: latas, aguas, botellas cerradas | Cada venta descuenta 1. En **"Cuántas hay"** cargás la cantidad. |
-| **Con receta** | Los tragos que se sirven de una botella | Cada venta descuenta lo que lleva de cada insumo (por ejemplo, ml de fernet y de gaseosa). |
+| **Por unidad** | Lo que se vende entero: latas, aguas, botellas cerradas | Cada venta descuenta 1. En **"Cuántas hay"** cargás la cantidad (después, **"Cargar más"**). |
+| **Con receta** | Los tragos que se sirven de una botella (solo en el stock avanzado) | Cada venta descuenta lo que lleva de cada insumo (por ejemplo, ml de fernet y de gaseosa). |
 
-Con receta, agregás los insumos que lleva el trago y cuánto de cada uno. Si el insumo todavía no existe, lo creás desde la misma receta.
+Las unidades también se cargan al armar la barra, en el paso **Stock**.
 
-## Insumos
+---
 
-Un **insumo** es lo que entra a la barra y se va usando: una botella de fernet, una de gaseosa, una bolsa de hielo. Lo creás con **"Agregar insumo"** (o **"Agregar botella o insumo"** la primera vez):
+## Stock simple
+
+Cada producto por unidad aparece en **Stock** con lo que **entró**, lo **vendido**, las **roturas**, la **diferencia al contar** y lo que **queda**, con las etiquetas **"Queda poco"** y **"Agotado"**.
+
+- **"Cargar stock"**: lo que entra. Elegís el producto y cuántas unidades.
+- **"Contar lo que quedó"**: el conteo del cierre. Mirá [Contar al cierre](#contar-al-cierre).
+- **"Registrar rotura"**: lo que se rompió o se tiró.
+
+Cada fila también tiene **"Cargar"** y, en su menú **⋯**, **"Registrar rotura"** y **"Sacar"**.
+
+Todo está en **un solo lugar**:
+
+- **Con una sola barra**, es esa barra, y su pantalla también puede contar.
+- **Con varias barras**, es todo el evento: se cuenta desde el dashboard, sumando todas las barras.
+
+Desde la pantalla, quien atiende puede registrar una **"Rotura"** (en **Turno**). Pide el [PIN del encargado](/events/barra#pin-del-encargado), porque es donde podrían esconderse unidades que faltan.
+
+---
+
+## Stock avanzado
+
+### Insumos
+
+Un **insumo** es lo que entra a la barra y se va usando: una botella de fernet, una de gaseosa, una bolsa de hielo. Lo creás con **"Agregar insumo"** (en **Más**), o con **"Agregar botella o insumo"** la primera vez:
 
 - **Nombre**: por ejemplo, *Fernet Branca*.
 - **Se mide en**: **ml**, **g** o **unidades**.
 - **Viene en** y **cuánto trae cada una**: por ejemplo, *Botella* de *750* ml.
 - **Avisar con** (opcional): con cuántos te avisa que queda poco. Si no lo completás, avisa con el 15% de lo cargado.
 
-Cada insumo muestra lo que **entró**, lo **vendido** según las recetas, las **roturas**, el **ajuste por conteo** y lo que **queda**, con las etiquetas **"Queda poco"** y **"Agotado"**.
+Cada insumo muestra lo que **entró**, lo **vendido** según las recetas, las **roturas**, la **diferencia al contar** y lo que **queda**, con las etiquetas **"Queda poco"** y **"Agotado"**.
+
+### Recetas
+
+En **Carta**, elegí **"Con receta"** en el producto y agregá los insumos que lleva y cuánto de cada uno. Si el insumo todavía no existe, lo creás desde la misma receta.
 
 <Tip>
-  Si ya cargaste tus recetas en **Catálogo → "Carta de la barra"**, traé los insumos con **"Traer de mi carta"**. Y si guardaste allá la cantidad de siempre de cada uno (**"Lo de siempre por noche"**), en Stock aparece **"Cargar lo de siempre"** para cargarla de un toque.
+  Si ya cargaste tus recetas en **Catálogo → "Carta de la barra"**, traé los insumos con **"Traer de mi carta"** (en **Más**). Y si guardaste allá la cantidad de siempre de cada uno (**"Lo de siempre por noche"**), en Stock aparece **"Cargar lo de siempre"** para cargarla de un toque.
 </Tip>
 
----
-
-## Cargar, mover y registrar roturas
+### Cargar, mover y registrar roturas
 
 El stock está en lugares: el **Depósito** y **cada barra**. Si tenés una sola barra, lo que cargás va por defecto a esa barra.
 
-Cada venta descuenta de la barra donde se sirvió. Los pedidos desde el celu descuentan de la barra que los entrega, recién cuando los entrega. Lo que vende o canjea una [caja central](/events/barra-caja-central) descuenta de la primera barra: las botellas van en las barras, no en la caja.
+Cada venta descuenta de la barra donde se sirvió. Los pedidos desde el celular descuentan del puesto que los entrega, recién cuando los entrega. Lo que vende o canjea una [caja](/events/barra-caja-central) descuenta de la primera barra: las botellas van en las barras, no en la caja.
 
-- **"Cargar stock"**: lo que entra. Elegís el insumo, cuánto (en botellas; **0,5** es media) y dónde entra.
+- **"Cargar stock"**: lo que entra. Elegís el insumo, cuánto (en botellas; **0,5** es media) y **"Dónde entra"**.
 - **"Mover a una barra"** (en **Más**): pasa stock del depósito a una barra, o de una barra a otra.
 - **"Registrar rotura"** (en **Más**): botellas rotas o derramadas.
 
-Desde la caja, quien atiende también puede:
+Desde la pantalla de cobro (en **Turno**), quien atiende también puede:
 
 - **"Reposición"**: registrar lo que le trajeron del depósito. Queda a cargo de esa barra.
 - **"Rotura"**: registrar una botella rota. Pide el [PIN del encargado](/events/barra#pin-del-encargado), porque es donde podrían esconderse botellas que faltan.
 
 <Note>
-  Si un insumo se termina según las ventas, la caja avisa pero **se sigue vendiendo** (las recetas son una estimación): pedí reposición. Los [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu), en cambio, no se pueden hacer con un producto agotado.
+  Si un insumo se termina según las ventas, la pantalla avisa pero **se sigue vendiendo** (las recetas son una estimación): pedí reposición. Los [pedidos desde el celular](/events/barra-pedidos#pedidos-desde-el-celular), en cambio, no se pueden hacer con un producto agotado.
 </Note>
 
 <Warning>
-  Si una barra muestra stock negativo, vendió algo que nunca se registró como movido hacia ella. Registrá las reposiciones para que cada barra cuadre.
+  Si una barra muestra stock negativo (*"vendió sin reposición registrada"*), vendió algo que nunca se registró como movido hacia ella. Registrá las reposiciones para que cada barra cuadre.
 </Warning>
 
 ---
@@ -72,15 +110,15 @@ Desde la caja, quien atiende también puede:
 
 Contar es lo que te dice si falta algo. Se cuenta **a ciegas**: quien cuenta no ve cuánto debería haber.
 
-- **Desde la caja**: **Caja → "Contar stock"**. También te lo ofrece apenas cerrás la caja.
-- **Desde el dashboard**: **Stock → "Contar"**, en el depósito o en cualquier barra.
+- **Desde la pantalla**: **Turno → "Contar stock"**. También te lo ofrece apenas cerrás el turno. En el modo simple, solo cuando el evento tiene una sola barra.
+- **Desde el dashboard**: **Stock → "Contar lo que quedó"** en el modo simple (con varias barras, contá todo lo que quedó sumando todas), o **"Contar"** en el avanzado, en el depósito o en cualquier barra.
 
-Contá todo lo que hay, **abiertas incluidas**: media botella es **0,5**. Lo que dejes vacío no se cuenta.
+Contá todo lo que hay. En el avanzado, **abiertas incluidas**: media botella es **0,5**. Lo que dejes vacío no se cuenta.
 
-Después de contar ves, por insumo, si **cuadra** o cuánto **falta** o **sobra**, contra lo que deberían haber dejado las ventas según las recetas. En **Stock**, **"Diferencias del último conteo"** te muestra la diferencia en botellas, cuántos tragos son aproximadamente y, si faltan, cuánta plata. Esa diferencia también va en el mail del cierre.
+Después de contar ves, por producto o insumo, si **cuadra** o cuánto **falta** o **sobra**, contra lo que deberían haber dejado las ventas. En **Stock**, **"Diferencias de la noche"** te muestra la diferencia, cuántos tragos son aproximadamente y, si faltan, cuánta plata. Esa diferencia también va en [el cierre de la noche](/events/barra#el-cierre-de-la-noche).
 
 <Note>
-  Cada conteo arranca de cero: el próximo mide solo lo que pasó desde el último.
+  Cada conteo arranca de cero: el próximo mide solo lo que pasó desde el último. Por eso la diferencia de la noche **suma todos los conteos**: un segundo conteo hecho enseguida no esconde lo que faltaba en el primero.
 </Note>
 
 ---
@@ -90,6 +128,9 @@ Después de contar ves, por insumo, si **cuadra** o cuánto **falta** o **sobra*
 <AccordionGroup>
   <Accordion title="¿Tengo que cargar stock para vender?">
     No. Sin stock la barra vende igual; solo no te avisa cuando algo se termina ni te dice si falta algo al cierre.
+  </Accordion>
+  <Accordion title="¿Necesito el modo avanzado?">
+    Solo si querés controlar las botellas de los tragos que se sirven (fernet, gin, vodka). Para latas, aguas y botellas cerradas alcanza el simple, por unidad.
   </Accordion>
   <Accordion title="¿Las recetas son exactas?">
     Son una estimación: dependen de cuánto sirve cada persona. Por eso un insumo agotado avisa pero no frena la venta en el mostrador, y el conteo al cierre es lo que te dice la verdad.
@@ -103,7 +144,7 @@ Después de contar ves, por insumo, si **cuadra** o cuánto **falta** o **sobra*
 
 <CardGroup cols={2}>
   <Card title="Barra" icon="martini-glass-citrus" href="/events/barra">
-    Armar la barra, cobrar y cerrar la caja
+    Armar la barra, cobrar y cerrar el turno
   </Card>
   <Card title="Catálogo" icon="box-archive" href="/organizations/catalogue#carta-de-la-barra">
     Tu carta e insumos, para reusar en cada evento

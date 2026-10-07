@@ -6,35 +6,32 @@ icon: "receipt"
 
 # Caja central
 
-En muchas fiestas no se cobra en la barra: se paga en una **caja** y los tragos se retiran en la **barra**. La [Barra](/events/barra) funciona así si se lo indicás: la caja cobra (o canjea lo que se compró online) y le da al cliente un **papel**; en la barra sirven lo que dice el papel y se lo quedan. En la barra no hay que escanear nada.
+En muchas fiestas no se cobra en la barra: se paga en una **caja** y los tragos se retiran en la **barra**. La [Barra](/events/barra) funciona así si se lo indicás: la caja cobra (o canjea lo que se compró antes) y le da al cliente un **papel**; en la barra sirven lo que dice el papel y se lo quedan. En la barra no hay que escanear nada.
 
 <Note>
-  Necesitás la barra armada y al menos dos barras: la caja y una barra que sirva. Si todavía no la armaste, empezá por [Armar la barra](/events/barra#armar-la-barra).
+  Necesitás la barra armada y al menos dos puestos: la caja y una barra que sirva. Si todavía no la armaste, empezá por [Armar la barra](/events/barra#armar-la-barra): en el paso **Puestos**, elegí **"Se paga en una caja y se retira en la barra"**.
 </Note>
 
 ---
 
 ## Configurarla
 
-En la Barra, **Ajustes → "Barras"**, al lado de cada barra elegís qué es:
+Cada puesto es una barra o una caja:
 
-| Opción | Qué hace |
+| Puesto | Qué hace |
 | --- | --- |
-| **Barra** | La de siempre: cobra y sirve en el momento. Así arranca cada barra. |
-| **Caja** | Cobra y canjea como una barra, y después de cada venta o canje imprime un papel que se entrega en la barra. |
+| **Barra** | Cobra y sirve en el momento. Así arranca cada puesto. |
+| **Caja** | Solo cobra (y canjea): después de cada venta o canje imprime un papel que se entrega en la barra. |
 
 <Steps>
   <Step title="Sumá la caja">
-    Con **"Agregar barra"** sumás una por mostrador (por ejemplo, "Caja").
-  </Step>
-  <Step title="Marcala como caja">
-    Al lado de esa barra, elegí **"Caja"**.
+    En la Barra, **Ajustes → Puestos**, tocá **"Agregar puesto"**, elegí **"Caja"** y ponele nombre (por ejemplo, "Caja de la entrada"). A un puesto que ya existe lo cambiás con el selector **Barra** / **Caja** de su fila.
   </Step>
   <Step title="Conectá la impresora">
     En la compu de la caja, poné una impresora de tickets de 58 mm como impresora predeterminada.
   </Step>
   <Step title="Mandá los links y probá">
-    Cada barra abre con su propio link, en **En vivo → ["Para la noche"](/events/barra#para-la-noche)**: mandale a cada una el suyo. Con **"Probar en práctica"** (en el menú **⋯** de cada fila) abrís la caja en modo práctica: cobrá algo de mentira y vas a ver el papel. En práctica no se imprime solo; con **"Imprimir"** sale un papel que dice **"PRÁCTICA · NO VALE"**, para probar la impresora.
+    Cada puesto abre su pantalla con su propio link, en **En vivo → ["Para la noche"](/events/barra#para-la-noche)**: mandale a cada uno el suyo. Con **"Práctica"** (en el celular, **"Probar en práctica"** en el menú **⋯**) abrís la pantalla en modo práctica: cobrá algo de mentira y vas a ver el papel. En práctica no se imprime solo; con **"Imprimir"** sale un papel que dice **PRÁCTICA** y **NO VALE**, para probar la impresora.
   </Step>
 </Steps>
 
@@ -42,15 +39,15 @@ En la Barra, **Ajustes → "Barras"**, al lado de cada barra elegís qué es:
 
 ## En la caja
 
-La caja se abre y trabaja como cualquier barra:
+La caja abre su turno y trabaja con la misma pantalla que una barra:
 
-- **Cobra**: efectivo, posnet, QR, Point y cortesías.
-- **Canjea** (arriba, **"Canjear"**, o la tecla **F2**): [pedidos desde el celu](/events/barra-pedidos), [tragos con la entrada](/events/barra-pedidos#tragos-con-la-entrada), [entradas que vienen con tragos](/events/barra-pedidos#tragos-que-vienen-con-la-entrada) y adicionales. Escaneás el QR del cliente o escribís su código.
+- **Cobra**: efectivo, posnet, QR de Mercado Pago y cortesías.
+- **Canjea** (arriba, **"Canjear"**, o la tecla **F2**): [pedidos desde el celular](/events/barra-pedidos), [entradas con consumición](/events/barra-pedidos#entradas-con-consumición) y adicionales. Escaneás el QR del cliente o escribís su código.
 
 Después de cada venta y de cada canje aparece el **"Papel para la barra"** y se imprime solo. El papel lleva:
 
 - La **contraseña de la noche**, arriba de todo y lo más grande (ver más abajo).
-- Una **referencia**: el código del pedido del celu (por ejemplo, **A27**) o uno corto de la venta (por ejemplo, **#3F9A**).
+- Una **referencia**: el código del pedido del celular (por ejemplo, **A27**) o uno corto de la venta (por ejemplo, **#3F9A**).
 - **Lo que hay que servir**.
 - El evento, la hora y **"Entregá este papel en la barra"**.
 
@@ -62,20 +59,30 @@ Después de cada venta y de cada canje aparece el **"Papel para la barra"** y se
 
 **Funciona sin señal.** El papel no necesita internet: sale igual, y la venta en efectivo o posnet queda guardada en el equipo y sube sola cuando vuelve la conexión.
 
+### Un pago, un papel
+
+Si hace falta imprimir el papel otra vez (se trabó la impresora), tocá **"Imprimir copia"**. La copia sale con **COPIA 1** (después **COPIA 2**…) en una franja negra arriba, y queda registrada en esa venta:
+
+- La pantalla avisa **"Salió 1 copia"**.
+- En **Ventas**, la venta lleva la etiqueta **"1 copia"** (o **"N copias"**).
+- En [el cierre de la noche](/events/barra#el-cierre-de-la-noche) se cuentan los **papeles de la caja impresos de nuevo**.
+
+Así un pago no se convierte en varios tragos.
+
 ---
 
 ## La contraseña de la noche
 
 Cualquiera podría imprimir un papel parecido en otro lado. Por eso cada papel de la caja lleva, arriba de todo y bien grande, la **contraseña de la noche**: una palabra con un número, por ejemplo **TIGRE 47**. En la barra se sirve **solo el papel que la dice**.
 
-- **Nadie la elige.** Sale al azar cuando armás la barra, así un papel impreso en otro evento tiene otra.
+- **Nadie la elige.** Sale al azar cuando armás la barra (o cuando agregás la primera caja), así un papel impreso en otro evento tiene otra.
 - **La barra la ve en su pantalla**, en una franja negra arriba: *"Papel de la caja: vale si dice TIGRE 47"*.
-- **Muestra para la barra.** En la caja, arriba, **"Muestra para la barra"** imprime un papel con la contraseña en grande para pegar en la barra. Sirve aunque la barra no use el sistema.
-- **Si se filtra, cambiala** en **Ajustes → "Barras" → "Contraseña de la noche" → "Cambiar"**. La caja toma la nueva sola; imprimí la muestra nueva y avisale a la barra, porque los papeles que ya se imprimieron dicen la anterior.
+- **Muestra para la barra.** En la pantalla de la caja, arriba, **"Muestra para la barra"** imprime un papel con la contraseña en grande para pegar en la barra. Sirve aunque la barra no use el sistema.
+- **Si se filtra, cambiala** en **Ajustes → Puestos → "Contraseña de la noche" → "Cambiar"**. La caja toma la nueva sola; imprimí la muestra nueva y avisale a la barra, porque los papeles que ya se imprimieron dicen la anterior.
 - **Los papeles de práctica no la llevan:** dicen **PRÁCTICA**.
 
 <Tip>
-  Usá un rollo de papel térmico de color (amarillo, rosa, celeste): un papel copiado en blanco salta a la vista.
+  Usá un rollo de papel térmico de color (amarillo, rosa, celeste): una fotocopia o un papel impreso en otro lado, en blanco, se nota a simple vista. Ajustes también te lo recuerda.
 </Tip>
 
 ---
@@ -86,9 +93,11 @@ La barra sirve lo que dice el papel —si tiene la contraseña de la noche— y 
 
 ---
 
-## Pedidos desde el celu
+## Pedidos desde el celular
 
-Si querés que los [pedidos desde el celu](/events/barra-pedidos) se retiren en la caja, tildala en **"Se retiran en"** (Ajustes → Pedidos desde el celu): tu público ve que retira en la caja. Ahí la caja canjea el pedido con el QR o el código y le da el papel para la barra. La caja no muestra la lista de pedidos para preparar: los canjea cuando llega el cliente.
+Los [pedidos desde el celular](/events/barra-pedidos) se pueden retirar en la caja: al armar la barra, en **"¿Dónde se retiran?"**, elegí **"En la caja"**, o después tildala en **"Dónde se retiran"** (Ajustes → Pedidos desde el celular).
+
+Así, la página de pedidos le dice a tu público **"Pagá sin hacer la fila"**: paga desde el celular, muestra su código en la caja, la caja lo canjea y le da el papel, y retira el trago en la barra. La caja no muestra la lista de pedidos para preparar: los canjea cuando llega el cliente.
 
 ---
 
@@ -96,9 +105,9 @@ Si querés que los [pedidos desde el celu](/events/barra-pedidos) se retiren en 
 
 | | Cómo queda |
 | --- | --- |
-| **La plata** | En la caja que cobró: suma a su efectivo esperado y a lo cobrado en [Cajas](/events/barra#cajas), como cualquier venta. |
-| **El stock** | Lo que vende o canjea la caja se descuenta en la **primera barra** de la lista. Si controlás [stock](/events/barra-stock), las botellas van en las barras, no en la caja. Con varias barras, el conteo de botellas al cierre muestra cuál sirvió más. |
-| **Los créditos** | Lo que se cobra en la caja no usa créditos. Los tragos que se compraron online usan 1 crédito cada uno, como siempre, se canjeen donde se canjeen. |
+| **La plata** | En el turno de la caja que cobró: suma a su efectivo esperado y a lo cobrado en [Turnos](/events/barra#turnos), como cualquier venta. |
+| **El stock** | Lo que vende o canjea la caja se descuenta en la **primera barra** de la lista. Si controlás [stock](/events/barra-stock), las botellas van en las barras, no en la caja. |
+| **Los créditos** | Lo que se cobra en la caja no usa créditos. Los tragos pedidos desde el celular usan 1 crédito cada uno, como siempre, se canjeen donde se canjeen. |
 
 ---
 
@@ -106,10 +115,13 @@ Si querés que los [pedidos desde el celu](/events/barra-pedidos) se retiren en 
 
 <AccordionGroup>
   <Accordion title="¿Puedo tener más de una caja o más de una barra?">
-    Sí: marcá cada una con lo que es. El papel se entrega en cualquier barra.
+    Sí: agregá un puesto por cada una y marcá qué es. El papel se entrega en cualquier barra.
   </Accordion>
   <Accordion title="¿Qué pasa si el cliente pierde el papel?">
-    Lo que se pagó queda en **Ventas**, con la caja y la hora. Si hace falta, se puede reimprimir el último papel con **"Imprimir"** antes de pasar al siguiente cliente.
+    Lo que se pagó queda en **Ventas**, con el puesto y la hora. Si hace falta, imprimí otro con **"Imprimir copia"** antes de pasar al siguiente cliente: sale con COPIA y queda registrado.
+  </Accordion>
+  <Accordion title="¿Por qué el papel dice COPIA?">
+    Porque es la segunda vez (o más) que se imprime el papel de ese pago. Cada copia queda registrada en la venta y en el cierre de la noche, para que un pago no se convierta en varios tragos.
   </Accordion>
 </AccordionGroup>
 
@@ -117,10 +129,10 @@ Si querés que los [pedidos desde el celu](/events/barra-pedidos) se retiren en 
 
 <CardGroup cols={2}>
   <Card title="Barra" icon="martini-glass-citrus" href="/events/barra">
-    Armar la barra, cobrar y cerrar la caja
+    Armar la barra, cobrar y cerrar el turno
   </Card>
-  <Card title="Pedidos desde el celu" icon="mobile-screen" href="/events/barra-pedidos">
-    Pedidos sin fila, tragos con la entrada y tragos que vienen con la entrada
+  <Card title="Pedidos desde el celular" icon="mobile-screen" href="/events/barra-pedidos">
+    Pedidos sin fila y entradas con consumición
   </Card>
 </CardGroup>
 
