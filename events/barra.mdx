@@ -35,6 +35,10 @@ La **Barra** es el punto de venta de tu evento. Cargás qué vendés y a qué pr
 
 Dashboard → Tu evento → sección **Puerta y equipo** → **"Barra"**.
 
+<Note>
+  La Barra está en los países donde funciona MercadoPago: **Argentina, Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay**. En los demás no aparece, y los tragos se venden como [Adicionales](/events/adicionales).
+</Note>
+
 Para entrar necesitás un rol con el permiso **«Gestionar la barra»** (lo traen el Administrador, el Sub-administrador y el Manager; en un rol personalizado lo activás desde [Roles y permisos](/organizations/roles)). Quien atiende la barra **no necesita cuenta**: trabaja con el link de su barra.
 
 ---
@@ -95,9 +99,12 @@ En **En vivo**, la tarjeta **"Para la noche"** junta lo que se usa la noche del 
 
 - **"Abrir caja"**: la abre en el equipo que estás usando.
 - El botón de **copiar**: copia su link para pasárselo a quien atiende.
-- El menú **⋯**: **"Mandar por WhatsApp"**, **"QR para abrir la caja"** (escanealo con el equipo de la barra y la caja se abre ahí) y **"Probar en práctica"**.
+- **"QR"**: el QR para abrir la caja (escanealo con el equipo de la barra y la caja se abre ahí).
+- **"Práctica"**: la abre en modo práctica.
 
-Si hay una caja, abajo está la **contraseña de la noche**. Si la barra recibe [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu), también el **link de pedidos**, para copiar, y **"Afiche QR"**, para imprimir y pegar en la barra, las mesas y la fila.
+En la compu están todos a la vista; en el celu, **"QR"** y **"Práctica"** están en el menú **⋯**.
+
+Si hay una caja, abajo está la **contraseña de la noche**. Si prendiste los [pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu), también el **link de pedidos**, para copiar, y **"Afiche QR"**, para imprimir y pegar en la barra, las mesas y la fila. Si todavía no se pueden tomar pedidos, ahí mismo te dice qué falta (conectar MercadoPago, elegir qué se pide desde el celu, cargar créditos) o que el evento ya terminó.
 
 <Warning>
   El link y el **"QR para abrir la caja"** son **solo para tu equipo**: cualquiera que los tenga puede cobrar en esa barra. **No los muestres al público** ni los pegues en la barra. Si se los pasaste a alguien que ya no tiene que atender, cambiá el link desde [Ajustes → "Barras"](#barras).
@@ -180,6 +187,10 @@ En **Ajustes → Online → "Con la entrada"**, al lado de cada entrada del even
 
 Solo aparecen los medios que prendiste en [Cómo se cobra en la caja](#cómo-se-cobra-en-la-caja).
 
+<Note>
+  MercadoPago cobra con QR y Point **desde $15** (en Argentina). Con un pedido más chico, esos dos aparecen apagados con **"desde $15"**: cobralo en efectivo o con posnet.
+</Note>
+
 ### Si se corta la señal
 
 **Efectivo y posnet siguen funcionando sin internet.** Las ventas quedan guardadas en ese equipo (arriba ves **"Sin señal"** y cuántas hay guardadas) y suben solas cuando vuelve la conexión, sin duplicarse. **QR y Point necesitan señal**: sin conexión aparecen deshabilitados. En una [caja central](/events/barra-caja-central), el papel para la barra sale igual sin señal.
@@ -201,13 +212,13 @@ Desde **Caja** también podés **"Cambiar de persona"** cuando hay cambio de tur
 
 ### Canjear
 
-**"Canjear"** (arriba en la caja, o la tecla **F2**) abre la cámara para escanear lo que trae el cliente. Si el QR no escanea, escribís el código. En una compu, un lector de QR USB abre el canje solo.
+En el **celu**, abajo de todo está el botón grande **"Escanear QR"** (cuando el pedido tiene algo, queda como un botón cuadrado al lado de **"Cobrar"**). En la **compu**, es **"Canjear"**, arriba, o la tecla **F2**. Se abre la cámara —desde abajo en el celu, en una ventana en la compu— con el mismo visor y los mismos colores y sonidos que el [escáner de la puerta](/events/scanner): **verde** si se puede entregar y **rojo** si no (ya se entregó, es de otro evento, ya usó sus consumiciones). Si el QR no escanea, escribís el código. En una compu, un lector de QR USB abre el canje solo.
 
 Desde ahí se entregan:
 
 - **Pedidos desde el celu**: con su QR o su código (por ejemplo, **A27**).
 - **Tragos con la entrada** que tu público compró al sacar su entrada.
-- **Entradas que vienen con tragos**: elegís qué trago se lleva.
+- **Entradas que vienen con tragos**: elegís qué se lleva. Si le quedan varias, puede llevarse tragos distintos de una vez (un fernet y una cerveza) o algunos ahora y el resto después.
 - **Adicionales** que ya vendiste, por ejemplo tragos cargados como adicional antes de que existiera la Barra.
 
 Todo esto está explicado en [Pedidos desde el celu y tragos con la entrada](/events/barra-pedidos). Una [caja central](/events/barra-caja-central) también canjea, y después da el papel para retirar en la barra.
@@ -220,7 +231,7 @@ La caja tiene modo **Día** y **Noche**: cambialo con el botón de arriba de la 
 
 ## Ajustes
 
-**Ajustes** tiene lo que decidís una vez, en el mismo orden que el asistente: **Barras**, **Cobros**, **Online** y **Seguridad**. Cada cambio se guarda al toque y lo confirma con **"Guardado"**. Los links y el afiche para la noche están en [En vivo → "Para la noche"](#para-la-noche).
+**Ajustes** tiene lo que decidís una vez, en el mismo orden que el asistente: **Barras**, **Cobros**, **Online** y **Seguridad**. Cada cambio se guarda al toque y lo confirma con **"Guardado"**. Los links para la noche están en [En vivo → "Para la noche"](#para-la-noche); el afiche de pedidos, ahí y en **Online**.
 
 ### Barras
 
@@ -269,11 +280,11 @@ MercadoPago pide un permiso **aparte** para cobrar con QR y Point. Se da una sol
 - Lo conecta quien puede editar la productora (por defecto, el **Administrador**). Si no ves el botón, dice **"Lo conecta quien administra la productora"**: pedíselo.
 - Abajo de los switches ves con qué cuenta cobran y **"Cambiar la cuenta"**. Si es distinta a la de las entradas, te lo avisa.
 - Si el permiso vence, QR y Point se apagan y aparece **"Renovar permiso"**. Efectivo y posnet siguen funcionando.
-- Si MercadoPago no funciona en el país de tu productora, no vas a ver QR, Point ni pedidos desde el celu: la barra cobra en efectivo y con posnet.
+- La Barra solo está en los países donde funciona MercadoPago (mirá [Dónde está](#dónde-está)).
 
 ### Online
 
-- **"Pedidos desde el celu"**: el switch para recibirlos y, si tenés más de una barra, **"Se retiran en"**. Necesita MercadoPago conectado: si no lo está, aparece **"Conectar Mercado Pago"**. Todo el detalle está en [Pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu).
+- **"Pedidos desde el celu"**: el switch para recibirlos, **"Afiche QR"** y, si tenés más de una barra, **"Se retiran en"**. Necesita MercadoPago conectado: si no lo está, aparece **"Conectar Mercado Pago"**. Todo el detalle está en [Pedidos desde el celu](/events/barra-pedidos#pedidos-desde-el-celu).
 - **"Con la entrada"**: los tragos que **se pueden comprar con la entrada** (los tildás y se suman al checkout de las entradas) y los que **ya vienen en la entrada** (cuántos trae cada una). Mirá [Tragos con la entrada](/events/barra-pedidos#tragos-con-la-entrada).
 
 Abajo dice lo que cuesta: cada trago vendido online usa 1 crédito cuando se paga. Lo del mostrador y los que ya vienen en la entrada no usan créditos.
@@ -371,10 +382,10 @@ Los créditos de los tragos online se descuentan **cuando se pagan**, como las e
 
 <AccordionGroup>
   <Accordion title="¿Qué equipo necesito en la barra?">
-    Cualquier celular, tablet o computadora con navegador. En una compu podés cobrar con el teclado y canjear con un lector de QR USB. Para QR y Point necesitás conexión; efectivo y posnet funcionan sin señal.
+    Cualquier celular, tablet o computadora con navegador. En una compu podés cobrar con el teclado y canjear con un lector de QR USB. Si en una barra el celu solo se usa para canjear, el botón grande **"Escanear QR"** está abajo de todo. Para QR y Point necesitás conexión; efectivo y posnet funcionan sin señal.
   </Accordion>
   <Accordion title="¿Qué QR pego en la barra para el público?">
-    El **afiche de pedidos desde el celu**, que está en **En vivo → "Para la noche"**. El **"QR para abrir la caja"** es otra cosa: abre la caja de esa barra y es solo para quien atiende.
+    El **afiche de pedidos desde el celu**, que está en **En vivo → "Para la noche"** y en **Ajustes → Online**. El **"QR para abrir la caja"** es otra cosa: abre la caja de esa barra y es solo para quien atiende.
   </Accordion>
   <Accordion title="¿Puedo cambiar un precio a mitad de la noche?">
     Sí, desde **Carta**. Las ventas que ya se hicieron quedan con el precio al que se cobraron.
