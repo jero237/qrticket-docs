@@ -20,7 +20,7 @@ La **Barra** es el punto de venta de tu evento. Cargás qué vendés y a qué pr
     Tu público pide y paga desde el celular y retira sin fila. También, tragos con la entrada.
   </Card>
   <Card title="Caja central" icon="receipt" href="/events/barra-caja-central">
-    Se paga en una caja y se retira en otra barra: la caja da un código y la barra entrega.
+    Se paga en una caja y se retira en la barra: la caja da un papel y la barra se lo queda.
   </Card>
   <Card title="Stock de botellas" icon="wine-bottle" href="/events/barra-stock">
     Opcional: recetas, reposición y conteo al cierre para ver si falta algo.
@@ -183,7 +183,7 @@ Solo aparecen los medios que prendiste en [Cómo se cobra en la caja](#cómo-se-
 
 ### Si se corta la señal
 
-**Efectivo y posnet siguen funcionando sin internet.** Las ventas quedan guardadas en ese equipo (arriba ves **"Sin señal"** y cuántas hay guardadas) y suben solas cuando vuelve la conexión, sin duplicarse. **QR y Point necesitan señal**: sin conexión aparecen deshabilitados. En una [caja central](/events/barra-caja-central), el código del ticket de retiro también necesita señal.
+**Efectivo y posnet siguen funcionando sin internet.** Las ventas quedan guardadas en ese equipo (arriba ves **"Sin señal"** y cuántas hay guardadas) y suben solas cuando vuelve la conexión, sin duplicarse. **QR y Point necesitan señal**: sin conexión aparecen deshabilitados. En una [caja central](/events/barra-caja-central), el papel para la barra sale igual sin señal.
 
 ### Cortesías, anulaciones y retiros
 
@@ -206,12 +206,12 @@ Desde **Caja** también podés **"Cambiar de persona"** cuando hay cambio de tur
 
 Desde ahí se entregan:
 
-- **Pedidos**: los del celu y, si tenés una [caja central](/events/barra-caja-central), los que se pagaron en la caja. Con su QR o su código (por ejemplo, **A27** o **C14**).
+- **Pedidos desde el celu**: con su QR o su código (por ejemplo, **A27**).
 - **Tragos con la entrada** que tu público compró al sacar su entrada.
 - **Entradas que vienen con tragos**: elegís qué trago se lleva.
 - **Adicionales** que ya vendiste, por ejemplo tragos cargados como adicional antes de que existiera la Barra.
 
-Todo esto está explicado en [Pedidos desde el celu y tragos con la entrada](/events/barra-pedidos). En una [caja central](/events/barra-caja-central), la caja no tiene **"Canjear"** y en la barra de retiro el botón se llama **"Entregar"**.
+Todo esto está explicado en [Pedidos desde el celu y tragos con la entrada](/events/barra-pedidos). Una [caja central](/events/barra-caja-central) también canjea, y después da el papel para retirar en la barra.
 
 ### Modo día o noche
 
@@ -275,8 +275,8 @@ La tarjeta **"Pedidos desde el celu"** tiene el switch para recibirlos, dónde s
 Una barra por mostrador: cada una tiene su **propio link**, sus cajas y su stock. En la tarjeta **"Barras"** ves cada una (con **"Caja abierta"** si tiene una caja abierta y **"Point"** si tiene uno vinculado) y podés:
 
 - **"Agregar barra"**: sumás otra (por ejemplo, "Barra VIP"). Su link aparece en [Links y QR](#links-y-qr).
-- **Qué hace cada barra**: al lado de cada una elegís **"Cobra y entrega"** (la de siempre), **"Solo cobra (caja)"** o **"Solo entrega"**. Las dos últimas son para cuando se paga en una caja y se retira en otra barra: mirá [Caja central](/events/barra-caja-central).
-- **"Vincular Point"** o **"Cambiar Point"**: aparece si cobrás con Point (no en las barras **"Solo entrega"**, que no cobran). Mirá [Vincular un Point](#vincular-un-point).
+- **Barra o caja**: al lado de cada una elegís **"Barra"** (la de siempre: cobra y sirve) o **"Caja"** (cobra y canjea, y da un papel que se entrega en la barra). Mirá [Caja central](/events/barra-caja-central).
+- **"Vincular Point"** o **"Cambiar Point"**: aparece si cobrás con Point. Mirá [Vincular un Point](#vincular-un-point).
 
 Desde el menú **⋯** de cada barra:
 
@@ -392,10 +392,10 @@ Los créditos de los tragos online se descuentan **una sola vez, después del ev
     Sí, como **posnet**: cobrás en tu posnet y confirmás en la caja cuando sale el comprobante. Al cerrar, el cierre de lote te muestra si algo no cuadra.
   </Accordion>
   <Accordion title="¿Qué pasa si cobro en una caja y entrego en otra barra?">
-    Se puede. En **Ajustes → "Barras"**, marcá la barra de retiro como **"Solo entrega"** y la caja como **"Solo cobra (caja)"**. Cada venta de la caja sale con un ticket de retiro con un código (por ejemplo, **C14**), y la barra de retiro entrega con ese código. La plata queda en la caja que cobró, el stock se descuenta en la barra que entrega y no usa créditos. Mirá [Caja central](/events/barra-caja-central).
+    Se puede. En **Ajustes → "Barras"**, marcá la caja como **"Caja"**. Después de cada venta o canje, la caja imprime un papel con lo que hay que servir; en la barra sirven lo del papel y se lo quedan. La plata queda en la caja que cobró, el stock se descuenta en la primera barra y lo que se cobra en la caja no usa créditos. Mirá [Caja central](/events/barra-caja-central).
   </Accordion>
   <Accordion title="¿Se pueden imprimir tickets o comandas?">
-    Solo el ticket de retiro de una [caja central](/events/barra-caja-central), con **"Imprimir"**, en una impresora de tickets. Las demás barras no imprimen tickets ni comandas.
+    Solo el papel para la barra de una [caja central](/events/barra-caja-central), en una impresora de tickets de 58 mm. Las demás barras no imprimen tickets ni comandas.
   </Accordion>
   <Accordion title="Dupliqué el evento: ¿se copió la barra?">
     No. En el evento nuevo armá la barra y traé tu carta de Catálogo con **"Usar mi carta"** (o, con la barra ya armada, **"Traer de mi carta"**).
@@ -412,7 +412,7 @@ Los créditos de los tragos online se descuentan **una sola vez, después del ev
     Pedidos sin fila, tragos con la entrada y tragos que vienen con la entrada
   </Card>
   <Card title="Caja central" icon="receipt" href="/events/barra-caja-central">
-    Se cobra en una caja y se retira en otra barra
+    Se cobra en una caja y se retira en la barra, con un papel
   </Card>
   <Card title="Stock de la barra" icon="wine-bottle" href="/events/barra-stock">
     Botellas, recetas y conteo al cierre
