@@ -1,0 +1,138 @@
+---
+title: "Impresora de la caja"
+description: "Cómo imprimir el papel de la caja: la app qrTicket Caja para Windows, que imprime sola y corta el papel, o el navegador"
+icon: "print"
+---
+
+# Impresora de la caja
+
+En una [caja central](/events/barra-caja-central), cada venta y cada canje imprime un **papel para la barra**. Hay dos formas de imprimirlo:
+
+| | **App qrTicket Caja** (recomendada) | **Navegador** |
+| --- | --- | --- |
+| Dónde | Compu con **Windows 10 u 11** | Cualquier compu con Chrome |
+| Ventana de imprimir | No: el papel sale solo | Sí, salvo que abras Chrome en [modo kiosco](#sin-la-ventana-de-imprimir) |
+| Corte del papel | Sí, siempre | Depende de cómo esté configurado el controlador de la impresora |
+| Impresoras | De tickets por USB o por red | La que esté instalada en la compu |
+
+<Note>
+  La impresión es solo para la **caja**. Las barras no imprimen: sirven lo que dice el papel y se lo quedan.
+</Note>
+
+## Qué impresora usar
+
+Cualquier **impresora térmica de tickets** de **80 mm** o **58 mm**: 3nStar, Epson, Xprinter, Bixolon, Gadnic, Hasar y las genéricas. Casi todas hablan el mismo idioma (ESC/POS), que es el que usa la app.
+
+- **Con cortador automático**, así el papel sale cortado. La mayoría de las de 80 mm lo traen.
+- **USB** si va enchufada a la compu de la caja; **de red** (cable o wifi) si querés ubicarla lejos de la compu.
+- Las impresoras de hojas A4 o de inyección no sirven para esto.
+
+---
+
+## App qrTicket Caja para Windows
+
+Es la caja de siempre adentro de una app liviana para Windows: le agrega lo que el navegador no hace, imprimir directo en la impresora de tickets, **sin ventana de imprimir y cortando el papel**. Todo lo demás (cobrar, canjear con la cámara, cerrar el turno) es igual que en el navegador.
+
+### Instalarla
+
+<Steps>
+  <Step title="Descargala">
+    En la Barra, **En vivo → ["Para la noche"](/events/barra#para-la-noche)**, en la fila **"qrTicket Caja para Windows"**, tocá **"Descargar"**. Aparece cuando el evento tiene una caja. Bajala en la compu de la caja.
+  </Step>
+  <Step title="Abrí el instalador">
+    Abrí **qrTicketCaja-Setup.exe**. Si Windows muestra **"Windows protegió tu PC"**, tocá **"Más información"** y después **"Ejecutar de todas formas"**: aparece porque la app todavía no tiene firma digital de Microsoft. No pide contraseña de administrador.
+  </Step>
+  <Step title="Pegá el link de la caja">
+    La primera vez pregunta **"¿Qué caja abrimos?"**. Pegá el link de la caja, el mismo de **Para la noche** (por ejemplo, `qrticket.app/barra/…`), y tocá **"Abrir la caja"**. La app lo recuerda.
+  </Step>
+</Steps>
+
+Queda un acceso directo **qrTicket Caja** en el escritorio y en el menú Inicio.
+
+### Configurar la impresora
+
+<Steps>
+  <Step title="Instalá el controlador de la impresora">
+    Si la impresora es USB, primero instalá en Windows el controlador que da su fabricante (por ejemplo, el de 3nStar está en su página de descargas) y enchufala. Una impresora de red no necesita controlador.
+  </Step>
+  <Step title="Elegila en la app">
+    Arriba a la izquierda, tocá **"Impresora"**. Elegí **"Conectada a esta compu (USB)"** y la impresora de la lista, o **"En la red"** y escribí su IP (por ejemplo, `192.168.0.50`).
+  </Step>
+  <Step title="Papel y corte">
+    Elegí el **ancho del papel** (**80 mm** o **58 mm**) y el **corte**: **"Parcial"** deja el papel colgando de una tirita para que no se caiga, **"Completo"** lo separa del todo, **"Sin corte"** es para impresoras sin cortador. Si la caja tiene un cajón de dinero conectado a la impresora, tildá **"Abrir el cajón de dinero al imprimir"**.
+  </Step>
+  <Step title="Probá y guardá">
+    Tocá **"Probar impresora"**: sale un papel de prueba con acentos y la Ñ. Si salió bien y cortado, tocá **"Guardar"**.
+  </Step>
+</Steps>
+
+Desde ahí, cada papel sale solo. Si algo falla al imprimir, la caja lo avisa arriba con **"No se pudo imprimir"** y el motivo.
+
+### El menú de la app
+
+| Opción | Para qué |
+| --- | --- |
+| **Impresora** (o **Ctrl+P**) | Cambiar la impresora, el papel o el corte |
+| **Caja → Probar impresora** | Imprimir un papel de prueba |
+| **Caja → Abrir otra caja…** | Usar la compu para otro puesto u otro evento |
+| **Caja → Recargar** (o **F5**) | Volver a cargar la pantalla |
+| **Caja → Pantalla completa** (o **F11**) | Esconder el menú y la barra de Windows; **F11** de nuevo la muestra |
+
+---
+
+## Desde el navegador
+
+Sin instalar nada, la caja imprime con la impresora que esté instalada en la compu:
+
+1. Instalá el controlador de la impresora y ponela como **impresora predeterminada**.
+2. En las preferencias de impresión de la impresora (en Windows, **Configuración → Impresoras → tu impresora → Preferencias de impresión**), elegí el papel de **80 mm** (o 58 mm) y activá el **corte al final del documento**.
+3. Abrí la caja en Chrome. Con la primera venta aparece la ventana de imprimir: elegí la impresora, márgenes **Ninguno** y escala **100 %**. Chrome lo recuerda.
+
+### Sin la ventana de imprimir
+
+Chrome puede imprimir directo en la impresora predeterminada, sin preguntar. En Windows, creá un acceso directo en el escritorio (clic derecho → **Nuevo → Acceso directo**) con este destino, cambiando el link por el de tu caja:
+
+```text
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --kiosk-printing --user-data-dir="C:\qrticket-caja" https://qrticket.app/barra/TU-LINK
+```
+
+Abriendo la caja desde ese acceso directo, cada papel sale solo. `--user-data-dir` hace que esa ventana sea un Chrome aparte: sin eso, si ya había otro Chrome abierto, la opción no se aplica.
+
+<Warning>
+  En una **Mac**, el corte depende del controlador de la impresora y muchos controladores genéricos no cortan. Si el papel sale bien pero no se corta, usá una compu con Windows y la app, o cortalo a mano.
+</Warning>
+
+---
+
+## Si algo no anda
+
+<AccordionGroup>
+  <Accordion title="El papel sale bien pero no se corta">
+    **En la app:** en **Impresora**, probá con el corte **"Completo"** en vez de **"Parcial"** y tocá **"Probar impresora"**. Si tampoco corta, revisá que la impresora tenga cortador automático y que esté activado (en algunos modelos se activa desde unos interruptores chiquitos en la impresora; mirá su manual). **En el navegador:** activá el corte al final del documento en las preferencias de impresión del controlador.
+  </Accordion>
+  <Accordion title="«No se encontró la impresora»">
+    La impresora elegida no está conectada o cambió de nombre en Windows. Enchufala, esperá a que Windows la reconozca y elegila de nuevo en **Impresora**.
+  </Accordion>
+  <Accordion title="«No hay impresora en …» (impresora de red)">
+    La app no la encuentra en esa IP. Revisá que esté prendida y en la misma red que la compu, y la IP: la mayoría de las impresoras de tickets la imprimen si las prendés con el botón de avance de papel apretado.
+  </Accordion>
+  <Accordion title="No aparecen impresoras en la lista">
+    Windows no tiene ninguna instalada. Instalá el controlador del fabricante y volvé a abrir **Impresora**.
+  </Accordion>
+  <Accordion title="Los acentos o la Ñ salen como símbolos raros">
+    La impresora usa otra tabla de caracteres. Pasa con pocos modelos; avisanos por WhatsApp con la marca y el modelo.
+  </Accordion>
+  <Accordion title="El texto sale cortado a la derecha o muy angosto">
+    El ancho del papel no coincide: en **Impresora**, elegí **80 mm** o **58 mm** según el rollo.
+  </Accordion>
+  <Accordion title="Windows dice que necesita «Microsoft Edge WebView2»">
+    Pasa solo en Windows 10 desactualizados. La app ofrece abrir la página de Microsoft para instalarlo (es gratis); después volvé a abrir qrTicket Caja.
+  </Accordion>
+  <Accordion title="¿Hay app para Mac?">
+    Todavía no. En una Mac la caja funciona en el navegador; el corte depende del controlador de la impresora.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+¿Problemas con la impresora el día del evento? Contactanos urgente por [WhatsApp](https://wa.me/5491122503348)
