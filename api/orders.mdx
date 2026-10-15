@@ -110,7 +110,7 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
 </ResponseField>
 
 <ResponseField name="channel" type="string">
-  Cómo se vendió: `mercadopago`, `stripe`, `recurrente`, `automatic_transfer`, `bank_transfer`, `whatsapp`, `free`, `staff`.
+  Cómo se vendió: `mercadopago`, `stripe`, `recurrente`, `dlocal`, `automatic_transfer`, `bank_transfer`, `whatsapp`, `free`, `staff`.
 
   `automatic_transfer` es la transferencia automática (alias propio por compra, se aprueba sola al acreditarse); `bank_transfer` la transferencia con comprobante que aprueba el organizador. `staff` es una carga manual del equipo (o una importación), `free` es una entrada gratuita reclamada online. Este es el campo para agrupar por canal — es el mismo criterio que usa el dashboard.
 </ResponseField>
@@ -132,7 +132,7 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
 </ResponseField>
 
 <ResponseField name="payment.external_id" type="string | null">
-  La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente, id del pago de la transferencia automática). Sirve para conciliar contra el extracto del procesador. Nunca devolvemos tokens ni credenciales de cobro.
+  La referencia del pago en el procesador (id de MercadoPago, PaymentIntent de Stripe, intent de Recurrente, id del pago de dLocal, id del pago de la transferencia automática). Sirve para conciliar contra el extracto del procesador. Nunca devolvemos tokens ni credenciales de cobro.
 </ResponseField>
 
 <ResponseField name="updated_at" type="string">

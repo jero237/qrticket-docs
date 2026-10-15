@@ -1,6 +1,6 @@
 ---
 title: "Cobros"
-description: "Elegí cómo te pagan en cada evento: MercadoPago, Stripe, Recurrente, transferencia bancaria o WhatsApp"
+description: "Elegí cómo te pagan en cada evento: MercadoPago, Stripe, Recurrente, dLocal, transferencia bancaria o WhatsApp"
 icon: "credit-card"
 ---
 
@@ -29,6 +29,7 @@ La pantalla muestra una tarjeta por medio de cobro, con su comisión y cómo se 
 | **MercadoPago** | Tarjeta, débito y dinero en cuenta | La de MercadoPago (en Argentina, desde 1,6% + IVA) | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay |
 | **Transferencia automática** | Transferencia, sin comprobantes | 0,7% + IVA | Automático | Argentina (ver [más abajo](#transferencia-automática)) |
 | **Recurrente** | Tarjeta, transferencia y dólares digitales | Desde 3,5% | Automático | Guatemala, El Salvador y Honduras |
+| **dLocal** | Tarjeta, débito y transferencias locales | Según país y medio | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, Guatemala, México, Perú y Uruguay |
 | **Stripe** | Tarjetas de todo el mundo | Desde 2,9% (según el país) | Automático | Todos los países |
 | **Transferencia bancaria** | El comprador sube el comprobante y vos aprobás | Sin comisión | Semiautomático | Todos los países |
 | **WhatsApp** | Tus RRPP coordinan el pago por chat | Sin comisión | Manual | Todos los países |
@@ -68,7 +69,7 @@ Una tarjeta muestra **"Activo"** solo cuando el medio de cobro está encendido *
 
 ### ¿Quién paga la comisión?
 
-En MercadoPago, Stripe, Recurrente y la transferencia automática, una vez que activás la venta te aparece la pregunta **"¿Quién paga la comisión?"**:
+En MercadoPago, Stripe, Recurrente, dLocal y la transferencia automática, una vez que activás la venta te aparece la pregunta **"¿Quién paga la comisión?"**:
 
 - **Vos** (Recomendado): *"Sumala al precio de tu entrada."* El comprador paga el precio que pusiste y la comisión sale de lo que cobrás.
 - **El comprador**: *"Se agrega como recargo al pagar."* Al precio de la entrada se le suma un porcentaje para cubrir la comisión.
@@ -147,6 +148,28 @@ Recurrente es el medio de cobro para productoras de **Guatemala, El Salvador y H
 <Warning>
   Si conectaste una **clave de prueba** (aviso *"Conectaste una clave de prueba"*) o Recurrente no puede avisarnos los pagos (aviso *"Recurrente no nos avisa los pagos"*), el interruptor queda deshabilitado: sin eso los pagos se cobrarían pero las entradas no se emitirían solas.
 </Warning>
+
+---
+
+## dLocal
+
+dLocal es un medio de cobro para productoras de **Argentina, Brasil, Chile, Colombia, Ecuador, Guatemala, México, Perú y Uruguay**, con tu propia cuenta de dLocal Go. La tarjeta aparece solo en esos países, con la etiqueta **"Nuevo"**.
+
+<Steps>
+  <Step title="Conectá tu cuenta">
+    Si no está conectada, el panel muestra **"Conectá tu cuenta de dLocal"** → **"Conectar"**: pegás tus claves en otra pestaña y volvés. Más detalles en la [guía de dLocal](/organizations/dlocal).
+  </Step>
+  <Step title="Activá la venta">
+    Encendé **"Vender con dLocal"**.
+  </Step>
+  <Step title="Elegí quién paga la comisión">
+    Si elegís **El comprador**, en **"Cuánto se suma"** tocás **3,5%** (débito y transferencia), **5%** (tarjeta de crédito), **6,5%** (tarjeta con impuestos) u **"Otro"**. Por defecto se elige 6,5%.
+  </Step>
+</Steps>
+
+<Note>
+  El comprador tiene **60 minutos** para completar el pago en dLocal; si no paga, la compra se cancela sola.
+</Note>
 
 ---
 
@@ -261,7 +284,7 @@ Es **manual** y **sin comisión**: el comprador toca **"Contactar a vendedor"** 
 
 ## Lo que ve el comprador
 
-En la página del evento aparece el botón **"Comprar entradas"**. Al pagar, el comprador elige entre los medios que tengas activos: **MercadoPago**, **Transferencia** (automática), **Tarjeta (Stripe)**, **Tarjeta (Recurrente)**, **Transferencia bancaria** o **Contactar a vendedor**.
+En la página del evento aparece el botón **"Comprar entradas"**. Al pagar, el comprador elige entre los medios que tengas activos: **MercadoPago**, **Transferencia** (automática), **Tarjeta (Stripe)**, **Tarjeta (Recurrente)**, **Tarjeta (dLocal)**, **Transferencia bancaria** o **Contactar a vendedor**.
 
 Con los medios automáticos, la entrada le llega por email apenas se confirma el pago y **se consume 1 crédito** por cada entrada emitida.
 
@@ -320,7 +343,7 @@ En **"Compras y transferencias"** ves todas las ventas en una sola tabla, con la
     Revisá que los números estén bien cargados (con código de área) y que **"Vender por WhatsApp"** esté activado. Si tu público prefiere pagar solo, sumá un medio automático.
   </Accordion>
   <Accordion title="'No recibo el dinero'">
-    La plata va **directo a tu cuenta** del medio de cobro (MercadoPago, Stripe, Recurrente o tu banco). Revisá ahí los plazos de liberación: qrTicket no maneja ni retiene dinero.
+    La plata va **directo a tu cuenta** del medio de cobro (MercadoPago, Stripe, Recurrente, dLocal o tu banco). Revisá ahí los plazos de liberación: qrTicket no maneja ni retiene dinero.
   </Accordion>
   <Accordion title="'Aprobé una transferencia por error'">
     Las entradas ya se generaron y los créditos se descontaron. Podés **eliminar** las entradas desde [Compras y transferencias](/events/guests) (no le devuelve la plata al comprador). Los créditos consumidos no se recuperan.

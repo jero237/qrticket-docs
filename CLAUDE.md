@@ -23,7 +23,7 @@ Glosario (usar SIEMPRE estos términos):
 - **Evento** — cada actividad; puede tener varios tipos de entrada y precios.
 - **Escáner** — herramienta para validar entradas el día del evento (en el menú del evento: "Escáner"). Se usa con la cuenta ("Abrir escáner") o con el **link para tu equipo de puerta** (sin cuenta). El rol del sistema sigue llamándose **Escaner** (sin tilde, así figura en el producto).
 - **Cobros** — página del evento donde se eligen los medios de cobro (antes "Canales de venta"; no usar "canal de venta" en la guía).
-- **Medios de cobro**: **MercadoPago**, **Stripe**, **Recurrente** (Guatemala, El Salvador, Honduras), **Transferencia automática** (Argentina), **transferencia bancaria**, **WhatsApp**. Cuáles aparecen depende del país de la productora.
+- **Medios de cobro**: **MercadoPago**, **Stripe**, **Recurrente** (Guatemala, El Salvador, Honduras), **dLocal** (cuenta de dLocal Go: Argentina, Brasil, Chile, Colombia, Ecuador, Guatemala, México, Perú, Uruguay), **Transferencia automática** (Argentina), **transferencia bancaria**, **WhatsApp**. Cuáles aparecen depende del país de la productora.
 - **Emitir entradas** — generar entradas a mano para personas puntuales (invitados, ventas en mano). Antes "Crear entradas".
 - **Productos** — los tipos de entrada, adicionales y combos del evento.
 - **Editar evento** — datos del evento y publicación en qrTicket (antes "Configuración").
