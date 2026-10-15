@@ -45,6 +45,7 @@
               "organizations/mercadopago",
               "organizations/stripe",
               "organizations/recurrente",
+              "organizations/dlocal",
               "organizations/team",
               "organizations/roles",
               "organizations/analytics",
