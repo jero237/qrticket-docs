@@ -26,7 +26,7 @@ La pantalla muestra una tarjeta por medio de cobro, con su comisión y cómo se 
 
 | Medio de cobro | Qué acepta | Comisión | Confirmación | Disponible en |
 | --- | --- | --- | --- | --- |
-| **MercadoPago** | Tarjeta, débito y dinero en cuenta | La de MercadoPago (en Argentina, desde 1,6% + IVA) | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay |
+| **MercadoPago** | Tarjeta, débito y dinero en cuenta | La de MercadoPago (en Argentina, desde 3,5% + IVA) | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, México, Perú y Uruguay |
 | **Transferencia automática** | Transferencia, sin comprobantes | 0,7% + IVA | Automático | Argentina (ver [más abajo](#transferencia-automática)) |
 | **Recurrente** | Tarjeta, transferencia y dólares digitales | Desde 3,5% | Automático | Guatemala, El Salvador y Honduras |
 | **dLocal** | Tarjeta, débito y transferencias locales | Según país y medio | Automático | Argentina, Brasil, Chile, Colombia, Ecuador, Guatemala, México, Perú y Uruguay |
@@ -96,8 +96,7 @@ En MercadoPago, Stripe, Recurrente, dLocal y la transferencia automática, una v
 
 Si elegís **El comprador**:
 
-- En los países con tarifa cargada (Argentina, Brasil, Chile, Colombia, México, Perú y Uruguay), se suma **la tarifa de MercadoPago de tu país**. El panel muestra cuánto **"Se suma al precio"** y, en **"Ver por medio de pago"**, la tarifa de cada medio. Se suma la más alta: si el comprador paga con un medio más barato, la diferencia es tuya.
-- **"¿Cuándo cobrás?"**: elegís **"Al instante"** (recomendado) o **"A X días"** (comisión más baja; los días dependen del país, por ejemplo 10 en Argentina). En Argentina, la liberación diferida **se coordina antes con qrTicket** (el panel tiene un botón **"Escribinos"**); en los demás países, elegila solo si tu cuenta de MercadoPago ya cobra a esos días.
+- En los países con tarifa cargada (Argentina, Brasil, Chile, Colombia, México, Perú y Uruguay), se suma **la tarifa de MercadoPago de tu país**. El panel muestra **"Lo que cobra MercadoPago"** según cómo pague cada comprador (en Argentina, 3,5% con dinero en cuenta, 4,2% con débito y 6,2% con crédito, más IVA) y cuánto **"Se suma al precio"**: la más alta, porque no se sabe antes cómo va a pagar. Si paga con un medio más barato, la diferencia es tuya.
 - Con **"Usar otro porcentaje"** ponés vos el porcentaje en **"Cuánto se suma"**, y con **"Usar la tarifa de MercadoPago"** volvés a la tarifa automática.
 - En **Ecuador** no hay tarifa cargada: escribís el porcentaje en **"Cuánto se suma"** (el panel tiene el link **"Ver sus tarifas"**).
 
