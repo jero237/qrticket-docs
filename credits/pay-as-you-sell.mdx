@@ -1,0 +1,103 @@
+---
+title: "Cargá y ahorrá o pagá cuando vendés"
+description: "Las dos formas de pagar los créditos de un evento: cargarlos antes o pagarlos del cobro de cada venta, sin cargar nada"
+icon: "hand-holding-dollar"
+---
+
+# Cargá y ahorrá o pagá cuando vendés
+
+Cada entrada que emitís usa **1 crédito**: un valor fijo, nunca un porcentaje del precio. En cada evento elegís cómo pagarlo:
+
+<CardGroup cols={2}>
+  <Card title="Cargá y ahorrá" icon="piggy-bank">
+    Comprás [packs de créditos](/credits/credits-purchase) antes de vender. Cuanto más grande el pack, más barata cada entrada. Es la opción más económica.
+  </Card>
+  <Card title="Pagá cuando vendés" icon="bolt">
+    No cargás nada. Cada entrada que se cobra con MercadoPago o con tarjeta paga su crédito **del mismo cobro**, al precio del **Pack 100**.
+  </Card>
+</CardGroup>
+
+El comprador paga lo mismo en los dos casos: el crédito siempre lo pagás vos, nunca se le suma a tu público.
+
+## Cómo funciona «Pagá cuando vendés»
+
+Cuando alguien compra una entrada con un medio que lo permite, del cobro sale el valor del crédito de esa entrada y **el resto llega a tu cuenta**, igual que siempre. No hace falta tener créditos cargados: el evento sigue vendiendo con esos medios aunque tu saldo esté en 0.
+
+| La venta se cobra con… | ¿De dónde sale el crédito? |
+| --- | --- |
+| **MercadoPago** (Argentina, con la cuenta conectada con el botón de qrTicket) | Del cobro de la venta |
+| **Stripe** (todos los países menos Brasil) | Del cobro de la venta |
+| Transferencia automática, dLocal, Recurrente | De tus créditos cargados |
+| Transferencia bancaria, WhatsApp | De tus créditos cargados |
+| Entradas gratis y las que emitís a mano | De tus créditos cargados |
+
+<Note>
+  Los medios que no permiten descontar el crédito del cobro siguen usando tus créditos cargados. Si en un evento «Pagá cuando vendés» no te quedan créditos, esos medios dejan de ofrecerse y el evento sigue vendiendo solo con MercadoPago o Stripe.
+</Note>
+
+### Cuánto cuesta
+
+Cada entrada vale lo mismo que en el **Pack 100**: el precio por crédito del pack más chico de tu moneda. Cargando créditos antes pagás menos por entrada (hasta el precio del **Pack 2000**), así que si ya sabés cuántas vas a vender, te conviene cargar.
+
+- Con [marca blanca](/organizations/white-label), cada entrada usa **2 créditos**, igual que con créditos cargados.
+- Los [pedidos de la Barra desde el celular](/events/barra-pedidos) pagados con MercadoPago también pagan su crédito del cobro: **1 por pedido**, traiga los tragos que traiga.
+- Si el precio de una compra es tan bajo que el crédito se llevaría casi todo el cobro, esa compra usa tus créditos cargados.
+
+### Devoluciones
+
+Si devolvés una entrada, el crédito no se devuelve, igual que con los créditos cargados.
+
+## Dónde se elige
+
+<Steps>
+  <Step title="Al crear el evento">
+    En el paso **"Cobro"** del asistente te preguntamos **"¿Cómo le pagás a qrTicket?"**. Elegí **Cargá y ahorrá** o **Pagá cuando vendés**: no hay una opción marcada de antemano.
+  </Step>
+  <Step title="Después, en Cobros">
+    En el menú del evento, **"Cobros"** → **"¿Cómo le pagás a qrTicket?"**. El cambio se guarda al instante y vale para las compras que se hagan desde ese momento.
+  </Step>
+</Steps>
+
+<Tip>
+  Para que «Pagá cuando vendés» funcione, activá **MercadoPago** (en Argentina) o **Stripe** en [Cobros](/events/sales). Si no hay ninguno activo, el panel te lo avisa.
+</Tip>
+
+## Dónde ves lo que pagaste
+
+- En **Cobros** del evento, debajo de la pregunta: cuántos créditos pagó el evento al vender y cuánto sumaron.
+- En **Créditos** de tu productora, el historial muestra una fila **"Pagados al vender"** por evento, con el total.
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Cuál me conviene?">
+    Si sabés más o menos cuántas entradas vas a vender, **cargá y ahorrá**: los packs grandes salen bastante menos por entrada. Si estás arrancando o no querés poner plata antes, **pagá cuando vendés**: pagás solo lo que vendés, en el momento en que lo cobrás.
+  </Accordion>
+  <Accordion title="¿Puedo usar las dos?">
+    Sí. La elección es por evento: podés tener un evento con créditos cargados y otro pagando cuando vendés. Y en un evento «Pagá cuando vendés», lo que no se cobra con MercadoPago o Stripe usa tus créditos cargados.
+  </Accordion>
+  <Accordion title="¿Puedo cambiar de opción con el evento a la venta?">
+    Sí, desde **Cobros**. Cada compra queda con la opción que estaba elegida cuando se hizo.
+  </Accordion>
+  <Accordion title="¿Mi público paga algo extra?">
+    No. El crédito sale de lo que cobrás vos; el comprador paga el precio que pusiste (más la comisión del medio de pago, solo si elegiste que la pague él).
+  </Accordion>
+  <Accordion title="Tengo MercadoPago fuera de Argentina, ¿puedo pagar cuando vendo?">
+    Por ahora no con MercadoPago: fuera de Argentina, «Pagá cuando vendés» funciona con **Stripe**.
+  </Accordion>
+</AccordionGroup>
+
+## Próximos pasos
+
+<CardGroup cols={2}>
+  <Card title="Comprar créditos" icon="cart-circle-plus" href="/credits/credits-purchase">
+    Ver paquetes y precios
+  </Card>
+  <Card title="Cobros" icon="credit-card" href="/events/sales">
+    Configurar los medios de cobro del evento
+  </Card>
+</CardGroup>
+
+---
+
+¿Dudas? Contactanos por [WhatsApp](https://wa.me/5491122503348)

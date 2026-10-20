@@ -164,7 +164,7 @@ En cada evento, en **"Cobros"** → **Stripe**, respondés **"¿Quién paga la c
 - **El comprador**: se le suma un recargo al pagar y vos recibís el precio de la entrada. En **"Cuánto se suma"** elegís **2,9%** (tarifa base), **3,5%** (tarjeta local), **4,5%** (tarjeta internacional) u **"Otro"** para escribir tu porcentaje. Por defecto se elige **4,5%**.
 
 <Note>
-  Stripe cobra un porcentaje variable según el país y la tarjeta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra comisión**: el único cargo adicional es del medio de pago.
+  Stripe cobra un porcentaje variable según el país y la tarjeta. Elegí un porcentaje que cubra ese cargo. qrTicket **no cobra porcentaje**: usa 1 crédito fijo por entrada. Si el evento está en **«Pagá cuando vendés»**, ese crédito se descuenta del cobro de cada venta (salvo en Brasil). Mirá [cómo funciona](/credits/pay-as-you-sell).
 </Note>
 
 ## Precio de las entradas
@@ -203,7 +203,7 @@ Podés reembolsar una compra desde el dashboard de qrTicket. El reembolso se hac
     - Que la cuenta de Stripe figure como **Conectado** (no "Onboarding pendiente")
     - Que todos los productos tengan precio (no gratuitos)
     - Que **"Vender con Stripe"** esté activado en **Cobros** del evento (la tarjeta tiene que decir **"Activo"**)
-    - Que a la productora le queden créditos disponibles
+    - Que a la productora le queden créditos disponibles, o que el evento esté en [«Pagá cuando vendés»](/credits/pay-as-you-sell)
   </Accordion>
   <Accordion title="'Stripe no me deja crear la cuenta desde mi país'">
     Stripe habilita cuentas de comercio solo en [ciertos países](https://stripe.com/global). Si el tuyo no está en la lista, necesitás una entidad radicada en un país habilitado.

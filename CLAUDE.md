@@ -15,7 +15,7 @@ Hecha con **Mintlify**. Se publica en https://docs.qrticket.app.
 - Mantené la terminología del producto consistente (ver glosario abajo).
 
 ## Contexto del producto
-qrTicket permite a organizadores: crear entradas digitales con QR, venderlas (MercadoPago / transferencia bancaria / WhatsApp), y validarlas en la puerta con el escáner. **No cobra comisión por venta** — el organizador paga créditos.
+qrTicket permite a organizadores: crear entradas digitales con QR, venderlas (MercadoPago / transferencia bancaria / WhatsApp), y validarlas en la puerta con el escáner. **No cobra porcentaje por venta** — el organizador paga 1 crédito fijo por entrada, cargado antes («Cargá y ahorrá») o descontado del cobro de cada venta con MercadoPago en Argentina o Stripe («Pagá cuando vendés», al precio del Pack 100; ver `credits/pay-as-you-sell`).
 
 Glosario (usar SIEMPRE estos términos):
 - **Productora** — "carpeta" que agrupa eventos; tiene su propio equipo, créditos y configuración.
