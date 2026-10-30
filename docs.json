@@ -81,6 +81,7 @@
                   "events/barra-pedidos",
                   "events/barra-caja-central",
                   "events/barra-impresora",
+                  "events/barra-point",
                   "events/barra-stock"
                 ]
               },
