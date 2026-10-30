@@ -393,7 +393,7 @@ En la pantalla, si la app del cliente (o el Point) dice *Aprobado* pero el cobro
 
 ### Ventas que no se pudieron registrar
 
-Son ventas que se cobraron en un puesto sin señal y que el sistema no pudo tomar cuando subieron. Aparecen en una tarjeta roja con el monto, el medio, el puesto, la hora y lo que se vendió. **No suman al efectivo esperado**: si la plata está, explica una diferencia del turno.
+Son ventas que se cobraron en un puesto sin señal y que el sistema no pudo tomar cuando subieron. Aparecen en una tarjeta roja con el monto, el medio, el puesto, la hora y lo que se vendió. **No suman al efectivo esperado**: si la plata está, explica una diferencia del turno. También van ahí las ventas con tarjeta de un Point que Mercado Pago dice que no salieron, con el motivo (mirá [Todas las ventas](#todas-las-ventas)).
 
 ### Turnos
 
@@ -416,6 +416,8 @@ Arriba de los turnos, **"Mandar el cierre ahora"** te manda [el cierre de la noc
 Abajo está cada venta del mostrador y del celular, de la más nueva a la más vieja. Se cargan de a una página: **"Cargar más"** trae las siguientes. Podés filtrar por medio de pago y descargar con **"Exportar"** un archivo con todas las ventas del filtro, no solo las que están en pantalla. Arriba ves **cuántas ventas y cuánto suman en toda la noche**, sin contar las anuladas: si filtrás por un medio, es el total de ese medio.
 
 Algunas ventas llevan una etiqueta: **"Anulada"**, o **"1 copia"** / **"N copias"** cuando el papel de una [caja](/events/barra-caja-central#un-pago-un-papel) se imprimió de nuevo. Los cobros con QR o Point muestran el número de pago de Mercado Pago.
+
+Las ventas cobradas con tarjeta en un Point con la [app de qrTicket](/events/barra-point) llevan **"Sin verificar"** (*"Cobrada con tarjeta en el Point: Mercado Pago todavía no la confirmó"*) hasta que Mercado Pago las confirma. qrTicket busca cada una en Mercado Pago por su referencia (el número de la venta), con los [permisos de Mercado Pago](#mercado-pago) de tu productora (el Point tiene que cobrar en una de esas cuentas), apenas llega. Si todavía no está confirmada, la vuelve a buscar más o menos cada minuto mientras un Point tenga abierto ese puesto (las de las últimas 6 horas). Mientras tanto, cuenta como cualquier venta. Si Mercado Pago dice que el pago no salió (por ejemplo, rechazado o cancelado), la venta deja de contar y pasa a [Ventas que no se pudieron registrar](#ventas-que-no-se-pudieron-registrar), con el motivo en su nota (*"Mercado Pago dice que el pago está …"*).
 
 Para anular una venta, abrí el menú **⋯** de esa venta, tocá **"Anular venta…"** y escribí el motivo:
 
