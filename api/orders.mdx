@@ -95,7 +95,8 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
   "utm": { "source": "instagram", "medium": "cpc", "campaign": "euforia", "content": null, "term": null },
   "created_at": "2026-08-01T18:04:11.000Z",
   "updated_at": "2026-08-01T18:05:02.000Z",
-  "refunded_at": null
+  "refunded_at": null,
+  "combo_parent_order_id": null
 }
 ```
 
@@ -137,6 +138,10 @@ Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de c
 
 <ResponseField name="updated_at" type="string">
   Se mueve cada vez que la orden cambia de estado. Es el campo para `updated_after`.
+</ResponseField>
+
+<ResponseField name="combo_parent_order_id" type="string | null">
+  **Combo de varias fechas** (por ejemplo, Navidad + Año Nuevo). El combo se paga en un evento, y cada otra fecha recibe su propia orden con sus asistentes y credenciales. En esa orden, este campo es el id de la orden que se pagó. Su `amount` es la parte de esa fecha, que el `amount` de la orden pagada ya incluye: **al sumar plata, salteá las órdenes con este campo**. Se reembolsa junto con la orden pagada. `null` en el resto.
 </ResponseField>
 
 ## `attendees[]` (solo en el detalle)

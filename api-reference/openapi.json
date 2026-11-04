@@ -1187,9 +1187,10 @@
             "description": "Solo en los combos: qué trae adentro y cuántas unidades de cada cosa. `null` en los ítems sueltos. Un combo emite una credencial por unidad incluida.",
             "items": {
               "type": "object",
-              "required": ["ticket_type_id", "name", "category", "quantity"],
+              "required": ["ticket_type_id", "event_id", "name", "category", "quantity"],
               "properties": {
                 "ticket_type_id": { "type": "string" },
+                "event_id": { "type": "string", "description": "El evento del ítem. En un combo de varias fechas puede ser otro evento de la productora: esa credencial se emite allí, en una orden con `combo_parent_order_id`." },
                 "name": { "type": "string" },
                 "category": { "type": "string", "enum": ["ticket", "merchandise"] },
                 "quantity": { "type": "integer" }
@@ -1310,7 +1311,8 @@
           },
           "created_at": { "type": "string", "format": "date-time" },
           "updated_at": { "type": "string", "format": "date-time", "description": "Se mueve cada vez que la orden cambia de estado. Es el campo para `updated_after`." },
-          "refunded_at": { "type": ["string", "null"], "format": "date-time" }
+          "refunded_at": { "type": ["string", "null"], "format": "date-time" },
+          "combo_parent_order_id": { "type": ["string", "null"], "description": "Combo de varias fechas: en la orden de la otra fecha, la orden que se pagó. Su `amount` es la parte de esa fecha, que el `amount` de la orden pagada ya incluye — al sumar plata, salteá estas órdenes. `null` en el resto." }
         },
         "example": {
           "id": "OwcEMGo0jm",

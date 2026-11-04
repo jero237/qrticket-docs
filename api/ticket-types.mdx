@@ -75,8 +75,8 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
       "sales_end_status": "sold_out",
       "on_sale": true,
       "includes": [
-        { "ticket_type_id": "TvEPjMm1rx", "name": "PREVENTA", "category": "ticket", "quantity": 1 },
-        { "ticket_type_id": "c9Lm2Qp",    "name": "Fernet",   "category": "merchandise", "quantity": 2 }
+        { "ticket_type_id": "TvEPjMm1rx", "event_id": "kd8Yq2Lp0a", "name": "PREVENTA", "category": "ticket", "quantity": 1 },
+        { "ticket_type_id": "c9Lm2Qp",    "event_id": "kd8Yq2Lp0a", "name": "Fernet",   "category": "merchandise", "quantity": 2 }
       ]
     }
   ],
@@ -143,8 +143,10 @@ Esta lista **no se pagina**: un evento tiene pocos tipos de entrada y te los dev
   Solo en los combos: qué trae adentro y cuántas unidades de cada cosa. `null` en los ítems sueltos.
 
   Un combo emite **una credencial por unidad incluida**. El combo del ejemplo genera 3 QRs por unidad vendida: una entrada y dos fernets.
+
+  Cada ítem trae su `event_id`. En un **combo de varias fechas** (por ejemplo, Navidad + Año Nuevo) alguno es de otro evento de la productora: esa credencial se emite en ese evento, en una orden propia (ver `combo_parent_order_id` en [Órdenes](/api/orders)).
 </ResponseField>
 
 <Note>
-  **`include_deleted`.** Eliminar un tipo de entrada no invalida las credenciales ya vendidas bajo él: la gente igual entra. Si estás reconciliando órdenes viejas y te aparece un `ticket_type_id` que no está en la lista, volvé a pedirla con `include_deleted=true` para resolver el nombre.
+  **`include_deleted`.** Eliminar un tipo de entrada no invalida las credenciales ya vendidas bajo él: la gente igual entra. Si estás reconciliando órdenes viejas y te aparece un `ticket_type_id` que no está en la lista, volvé a pedirla con `include_deleted=true` para resolver el nombre. Un tipo de entrada o combo sin ventas ni credenciales se borra definitivamente al eliminarlo, así que tampoco aparece con `include_deleted=true`.
 </Note>
