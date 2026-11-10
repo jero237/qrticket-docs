@@ -56,27 +56,48 @@ Rastrea visitas y conversiones desde Facebook e Instagram para optimizar tus cam
 
 Una vez configurados, qrTicket dispara el **embudo de compra completo** hacia tu propio Pixel y tu propia cuenta de Google Analytics, en las páginas públicas de tus eventos. No tenés que configurar nada más:
 
-<Steps>
-  <Step title="Vista del evento">
-    Cuando alguien abre la página de tu evento (`ViewContent` en Meta, `view_item` en GA).
-  </Step>
-  <Step title="Agregar al carrito">
-    Cuando suma entradas (`AddToCart`).
-  </Step>
-  <Step title="Iniciar compra">
-    Cuando arranca el checkout (`InitiateCheckout` / `begin_checkout`).
-  </Step>
-  <Step title="Compra">
-    Cuando se confirma la compra de entradas (`Purchase` / `purchase`), con el monto, la moneda y los productos.
-  </Step>
-</Steps>
+| Evento de Meta | En Google Analytics | Cuándo se envía | Qué datos lleva |
+| --- | --- | --- | --- |
+| `PageView` | `page_view` | En cada página de tu productora y de tus eventos (incluidas la compra y la confirmación) | — |
+| `ViewContent` | `view_item` | Cuando alguien abre la página de tu evento | El evento, el precio más bajo a la venta y la moneda |
+| `AddToCart` | — | Cada vez que suma una entrada o un combo | Ese producto, su precio y la moneda |
+| `InitiateCheckout` | `begin_checkout` | Cuando toca «Continuar» y pasa al checkout | El total del carrito, los productos y la cantidad de entradas |
+| `Purchase` | `purchase` | Cuando la compra está **pagada** y el comprador llega a la confirmación | El monto pagado, la moneda, los productos con precio y cantidad, y un identificador único de la compra |
+
+<Note>
+  `Purchase` se envía **solo cuando la compra está pagada**: un pago en efectivo que todavía está pendiente no cuenta como venta. Se informa una sola vez por compra, con el email, el teléfono y el nombre de quien compró como **Advanced Matching** (el SDK del Pixel los envía **hasheados**, cifrados de forma irreversible), para que Meta reconozca mejor a tus compradores.
+</Note>
 
 <Tip>
-  Tener el embudo completo te permite **optimizar tus campañas de Facebook, Instagram y Google**: medís conversiones reales, armás audiencias de quienes compran y calculás el retorno de tu inversión publicitaria. El Pixel usa **Advanced Matching** (mejora la coincidencia con datos del comprador, que el navegador envía **hasheados** —cifrados de forma irreversible— por el SDK del Pixel) y deduplica las compras para no contarlas dos veces.
+  Tener el embudo completo te permite **optimizar tus campañas de Facebook, Instagram y Google**: medís conversiones reales, armás audiencias de quienes compran y calculás el retorno de tu inversión publicitaria.
 </Tip>
 
 <Note>
-  El Pixel y la GA de tu productora son **independientes** de los de qrTicket: los eventos de compra de tus entradas van **solo a tus cuentas**. Si tu comprador usa un bloqueador de anuncios, el Pixel puede no cargar.
+  El Pixel y la GA de tu productora son **independientes** de los de qrTicket: los eventos de tus entradas van **solo a tus cuentas**, y tu pixel no recibe ningún evento de qrTicket. Si tu comprador usa un bloqueador de anuncios, el Pixel puede no cargar: para eso está la API de Conversiones.
+</Note>
+
+## API de Conversiones de Meta
+
+El Pixel funciona en el navegador del comprador. Si cierra la app de Mercado Pago antes de volver a la confirmación, bloquea el Pixel o paga más tarde (en efectivo, o con una transferencia que aprobás después), esa venta no le llega a Meta desde el navegador.
+
+Con la **API de Conversiones**, cada venta pagada también le llega a tu pixel **desde nuestro servidor**, con el mismo identificador que la del navegador, así Meta la cuenta **una sola vez**. Mejora la cantidad de compras que Meta atribuye a tus anuncios y su optimización.
+
+<Steps>
+  <Step title="Cargá tu Meta Pixel">
+    Primero tenés que tener tu Meta Pixel guardado en **"Analytics y Pixel"** (ver arriba).
+  </Step>
+  <Step title="Generá el token en Meta">
+    En el [Administrador de eventos](https://business.facebook.com/events_manager) elegí tu pixel → **Configuración** → **API de Conversiones** → **Generar token de acceso**, y copialo.
+  </Step>
+  <Step title="Conectalo en qrTicket">
+    Dashboard → Tu productora → **"Analytics y Pixel"** → tarjeta **"API de Conversiones"** → pegá el token y tocá **"Conectar"**. Verificamos con Meta que el token tenga acceso a tu pixel antes de guardarlo.
+  </Step>
+</Steps>
+
+La tarjeta te muestra el estado: **Conectada** y la fecha de la última venta enviada, o **Con error** y lo que respondió Meta (por ejemplo, si el token venció o lo revocaste). En ese caso generá uno nuevo y tocá **"Cambiar token"**.
+
+<Note>
+  El token queda guardado en nuestro servidor y **no se vuelve a mostrar**. Se usa solo para enviar las ventas de tus entradas a tu pixel. Si cambiás el Meta Pixel de tu productora, la conexión se borra y tenés que conectar el token del pixel nuevo. Las entradas que emite tu equipo a mano no se envían: no son ventas que traiga un anuncio.
 </Note>
 
 ## Preguntas frecuentes
@@ -87,6 +108,9 @@ Una vez configurados, qrTicket dispara el **embudo de compra completo** hacia tu
   </Accordion>
   <Accordion title="¿Puedo tener diferentes pixels por evento?">
     No, la configuración es por productora. Si necesitás tracking diferente, podés crear productoras separadas.
+  </Accordion>
+  <Accordion title="¿Se cuentan dos veces las ventas si uso Pixel y API de Conversiones?">
+    No. Las dos envían la compra con el mismo identificador y Meta la deduplica.
   </Accordion>
   <Accordion title="¿Afecta la velocidad de carga de mis eventos?">
     El impacto es mínimo. Los scripts de Google Analytics y Meta Pixel se cargan de forma asíncrona.
