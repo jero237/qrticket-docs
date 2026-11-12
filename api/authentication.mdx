@@ -44,7 +44,10 @@ Una clave lee **toda** la productora: los permisos no se restringen por evento n
 | ------- | ------------ | ------------------ |
 | `EVENTS_READ`  | `GET /events`, `GET /events/{id}`, `GET /events/{id}/ticket-types`, `GET /me` | No |
 | `ORDERS_READ`  | `GET /orders`, `GET /orders/{id}` | **Sí** — nombre, email, teléfono y documento del comprador |
-| `TICKETS_READ` | `GET /tickets`, `GET /tickets/{id}` | **Sí** — nombre y datos del asistente |
+| `TICKETS_READ` | `GET /tickets`, `GET /tickets/{id}`, `GET /events/{id}/tickets-by-email` | **Sí** — nombre y datos del asistente |
+| `ORDERS_WRITE` | `POST /orders/{id}/approve`, `POST /orders/{id}/reject` | **Sí** — incluye `ORDERS_READ` |
+
+`ORDERS_WRITE` es el único permiso que **cambia** algo: aprueba o rechaza ventas. En «Crear clave» aparece aparte, bajo **Escritura** («Aprobar y rechazar pedidos»), y viene destildado.
 
 Si una clave llega a un endpoint para el que no tiene permiso, la respuesta es `403 insufficient_scope`.
 

@@ -49,6 +49,61 @@ GET /api/v1/orders/{order_id}
 
 Devuelve lo mismo que la lista **más `attendees[]`**, con las credenciales de cada asistente.
 
+## Aprobar una venta
+
+```http
+POST /api/v1/orders/{order_id}/approve
+```
+
+```bash
+curl -X POST "https://qrticket.app/api/v1/orders/OwcEMGo0jm/approve" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+Aprueba una venta por **transferencia bancaria** (`bank_transfer`) o un **pedido por WhatsApp** (`whatsapp`) que está esperando tu revisión, igual que el botón «Aprobar» del dashboard: se emiten las entradas, se descuentan tus créditos y le llegan por mail al comprador.
+
+Requiere el permiso `ORDERS_WRITE`. Responde con la venta ya aprobada, con la misma forma que [consultar una venta](#consultar-una-venta).
+
+- Se aprueban las ventas en `pending`. Una transferencia **rechazada por error** (`cancelled`) también se puede aprobar, como desde el dashboard.
+- **Si la venta ya estaba aprobada**, responde `200` con la venta tal como está y no emite nada de nuevo: si se te cortó la conexión, podés repetir la llamada sin miedo.
+- Sin créditos suficientes para emitir las entradas responde `409 insufficient_credits` y la venta sigue pendiente.
+
+## Rechazar una venta
+
+```http
+POST /api/v1/orders/{order_id}/reject
+```
+
+```bash
+curl -X POST "https://qrticket.app/api/v1/orders/OwcEMGo0jm/reject" \
+  -H "Authorization: Bearer qrt_live_..." \
+  -H "Content-Type: application/json" \
+  -d '{ "reason": "El comprobante no corresponde al importe." }'
+```
+
+| Campo    | Tipo  | Descripción |
+| -------- | ----- | ----------- |
+| `reason` | texto | **Obligatorio**, hasta 500 caracteres. En una transferencia, el comprador lo recibe por mail. Queda en `payment.rejection_reason`. |
+
+Rechaza una venta en `pending`, igual que «Rechazar» en el dashboard: las entradas que reservaba vuelven a estar a la venta y, si era por transferencia, le avisamos al comprador por mail con el motivo. Dispara el webhook `order.rejected`.
+
+Requiere el permiso `ORDERS_WRITE` y responde con la venta. **Si ya estaba rechazada**, responde `200` con la venta tal como está.
+
+### Errores al aprobar o rechazar
+
+| Código HTTP | `code`                 | Qué pasó |
+| ----------- | ---------------------- | -------- |
+| 400         | `invalid_request`      | Falta `reason` al rechazar, o el cuerpo no es JSON. |
+| 403         | `insufficient_scope`   | La clave no tiene `ORDERS_WRITE`. |
+| 404         | `not_found`            | La venta no existe o no es de tu productora. |
+| 409         | `order_not_manual`     | No es una venta por transferencia bancaria ni por WhatsApp: esas se aprueban solas al pagarse. |
+| 409         | `order_not_pending`    | Ya se decidió de otra forma (por ejemplo, rechazar una venta aprobada). |
+| 409         | `insufficient_credits` | No hay créditos para emitir las entradas. |
+
+<Tip>
+  **Cómo enterarte de las ventas a revisar:** consultá `GET /orders?status=pending&updated_after=…` cada tanto. Las que tienen `channel` `bank_transfer` o `whatsapp` son las que esperan tu decisión. El comprobante está en `payment.transfer_proof_url`.
+</Tip>
+
 ## El objeto Orden
 
 ```json

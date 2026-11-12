@@ -47,8 +47,45 @@ GET /api/v1/tickets/{ticket_id}
 El `ticket_id` es **el valor que está codificado en el QR**, así que este endpoint también sirve para "leí este código, decime qué es".
 
 <Warning>
-  Consultar acá **no hace entrar a nadie**: la API es de solo lectura y no marca la credencial como usada. El ingreso lo registra únicamente el [escáner](/events/scanner) de qrTicket.
+  Consultar acá **no hace entrar a nadie**: la API no marca la credencial como usada. El ingreso lo registra únicamente el [escáner](/events/scanner) de qrTicket.
 </Warning>
+
+## Entradas de una persona en un evento
+
+```http
+GET /api/v1/events/{event_id}/tickets-by-email?email={email}
+```
+
+```bash
+curl "https://qrticket.app/api/v1/events/m94K1zLU8S/tickets-by-email?email=camila@example.com" \
+  -H "Authorization: Bearer qrt_live_..."
+```
+
+Las entradas que ese email **todavía puede usar** en el evento, agrupadas por tipo de entrada. Responde en una sola llamada lo que, si no, sería listar `/tickets` y agrupar.
+
+```json
+{
+  "data": [
+    {
+      "ticket_type_id": "TvEPjMm1rx",
+      "category": "ticket",
+      "name": "PREVENTA",
+      "description": "Ingreso hasta las 2 AM",
+      "price": 14000,
+      "currency": "ARS",
+      "quantity": 2,
+      "ticket_ids": ["2vLwQ8GE135z", "9kPq2RtY7mWx"]
+    }
+  ],
+  "event_id": "m94K1zLU8S",
+  "email": "camila@example.com"
+}
+```
+
+- **Cuáles cuenta:** las de estado `valid`: sin escanear, sin transferir, sin anular y sin reembolsar. Si no tiene ninguna, `data` viene vacío.
+- **Qué email:** el del asistente, el que figura en cada entrada. Si alguien le transfirió una entrada, aparece acá con su email, y deja de aparecer en el de quien se la pasó. No distingue mayúsculas.
+- **`price`:** el precio actual del tipo de entrada, el mismo que en [tipos de entrada](/api/ticket-types). Lo que se cobró en cada compra (con cupón, o dentro de un combo) está en la [venta](/api/orders).
+- **`category`:** `ticket` para entradas, `merchandise` para adicionales.
 
 ## El objeto Entrada
 

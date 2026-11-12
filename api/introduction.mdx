@@ -9,7 +9,7 @@ icon: "plug"
 La API te deja **leer** los datos de tu productora desde cualquier herramienta: un CRM, una planilla, un panel interno, una automatización. Y los **webhooks** te avisan en el momento en que algo pasa, sin tener que estar consultando.
 
 <Note>
-  La API es de **solo lectura**. No se puede crear, modificar ni borrar nada de qrTicket desde ella. Todo lo que se toca sigue tocándose desde el dashboard.
+  La API es de **lectura**, con una sola excepción: [aprobar y rechazar](/api/orders#aprobar-una-venta) los pedidos por transferencia o WhatsApp que esperan tu revisión, con una clave que tenga ese permiso. Todo lo demás se sigue tocando desde el dashboard.
 </Note>
 
 ## Qué podés leer
@@ -111,6 +111,7 @@ Los errores llegan con el código HTTP correspondiente y un cuerpo estable:
 | 401         | `unauthorized`        | Falta la clave, es inválida, está revocada o venció. |
 | 403         | `insufficient_scope`  | La clave es válida pero no tiene el permiso que ese endpoint pide. |
 | 404         | `not_found`           | No existe, o no pertenece a tu productora. |
+| 409         | `order_not_pending`, `order_not_manual`, `insufficient_credits` | Solo al aprobar o rechazar: la venta ya no se puede decidir, no es de las que se aprueban a mano, o no te alcanzan los créditos. |
 | 500         | `internal_error`      | Error nuestro. Reintentá; si persiste, escribinos. |
 
 <Note>
